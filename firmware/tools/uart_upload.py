@@ -1,7 +1,8 @@
-"""Experimental PC peer for our UART update application (explicit serial port only).
+"""Experimental PC peer for custom and stock-B2 UART update entry.
 
 Running this CLI writes firmware to hardware. Building/importing it does not.
-The stock Ai-Thinker/Hi-Link application entry wrapper is not implemented.
+Stock-B2 entry is recovered from Hi-Link V2.14; V2.04 needs a BLE bridge first.
+Stock transfer/handoff and target boot still require physical validation.
 """
 import argparse
 import binascii
@@ -101,15 +102,28 @@ def main():
     p.add_argument('image',type=Path)
     p.add_argument('--port',required=True,help='Explicit port, e.g. COM7; never auto-detected')
     p.add_argument('--baud',type=int,default=256000)
+    p.add_argument('--initial-baud',type=int,default=256000,
+                   help='Currently configured module UART rate')
+    p.add_argument('--entry',choices=('custom','stock-b2'),default='custom',
+                   help='stock-b2 sends configuration enable, version query and B2 first')
     a=p.parse_args(); raw=a.image.read_bytes(); container(raw)
     peer=Peer(raw,a.baud)
     try: import serial
     except ImportError: p.error('Install pyserial to use the hardware uploader.')
     # DTR/RTS remain deasserted; no assumed reset wiring.
-    port=serial.Serial(port=None,baudrate=256000,timeout=0.02,write_timeout=2,
+    port=serial.Serial(port=None,baudrate=a.initial_baud,timeout=0.02,write_timeout=2,
                        rtscts=False,dsrdtr=False)
     port.dtr=False; port.rts=False; port.port=a.port; port.open()
     with port:
+        if a.entry=='stock-b2':
+            from stock_uart import StockSession
+            session=StockSession(port)
+            try:
+                session.enter()
+            except (TimeoutError,RuntimeError):
+                try: session.command(0xfe)
+                except (TimeoutError,RuntimeError): pass
+                raise
         upload(port,peer)
     print(f'Device reported final success after {peer.read_requests} read requests. Verify the new boot banner.')
 

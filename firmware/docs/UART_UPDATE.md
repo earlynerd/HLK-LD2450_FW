@@ -5,7 +5,45 @@ uploader are implemented and host-tested. Stock-to-custom serial installation
 and physical stock restoration are not yet verified. The
 [stock compatibility investigation](../../output/stock_uart_compatibility/report.md)
 finds a 0xB2 entry wrapper in V2.14 that is absent from the V2.04 command
-dispatcher, plus START negotiation and handoff details requiring attention.
+dispatcher. The host now implements that wrapper and a no-image entry probe.
+START negotiation and handoff still require hardware verification.
+
+## Installing from stock
+
+The intended route for V2.04 owners is to install the stock V2.14 transparent
+firmware with the existing BLE updater, then use the module UART for the first
+custom image. This is an experimental route, not a completed flashing test.
+The user has accepted the one-time BLE prerequisite. Every custom image keeps
+our UART entry service, so subsequent updates use `--entry custom` (the default).
+
+First test entry without supplying any firmware file:
+
+```powershell
+python firmware/tools/stock_uart.py --port COM7 --log firmware/build/stock-entry.json
+```
+
+Substitute the actual port. The probe sends configuration enable (`FF`, data
+`01 00`), version query (`A0`), entry (`B2`), then updater READY (`06`). It
+records raw traffic and stops on a CRC-valid START. It never acknowledges START
+or serves file data, so this tests the application's updater entry only, not
+the staged flash loader. An accepted B2 can leave the stock parser in update
+mode; power-cycle afterward. If no entry is detected, the probe attempts end
+configuration (`FE`). Its default module rate is 256000; `--baud` overrides it.
+
+The transfer command, when flashing is deliberately authorized, is:
+
+```powershell
+python firmware/tools/uart_upload.py firmware/build/image/update.ufw --port COM7 --entry stock-b2
+```
+
+It requires successful configuration, version, and B2 acknowledgements before
+serving the UFW. `--initial-baud` specifies the current module rate; `--baud`
+specifies the negotiated update rate (both default 256000). Do not substitute
+the Ai-Thinker tool's entry command or its baud transition for Hi-Link's: its
+downloaded executable uses a different product wrapper. Stock handoff pin
+defaults, staging/reset behavior, loader acceptance, and custom boot remain
+unverified until a complete physical transfer. No firmware data is sent by
+the separate entry probe.
 
 ## What runs where
 
@@ -68,9 +106,12 @@ behavior still needs a transaction capture.
 The stock example and archived UART driver begin at **9600 baud**. The PDF
 illustrates 9600 entry, a 10,000-baud loader-staging phase, and a later negotiated
 firmware-transfer rate. These are evidence for the vendor implementation,
-not proof of the Ai-Thinker tool's exact behavior. Its documented 256000-baud
-setting and any product-specific entry wrapper still need a capture or tool
-analysis. For our own application/host pair we can choose a documented entry
+not a universal module entry rate. Static inspection of the official
+Ai-Thinker Rd-03D_V2 updater now shows a protocol-command call with argument
+0x66 at the selected module rate, followed by reopening at 9600, READY, and
+START with baud 9600. This is a different product wrapper from Hi-Link V2.14's
+B2 gate; we have not run that executable or established its compatibility
+with LD2450. For our own application/host pair we can choose a documented entry
 rate, but must keep the negotiated baud consistent through the loader handoff.
 
 ## Implemented integration in our application

@@ -2,8 +2,9 @@ from pathlib import Path
 import struct
 import sys
 import unittest
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-from uart_upload import Peer, Parser, frame
+from uart_upload import Peer, Parser, frame, upload
 
 
 class HostPeerTests(unittest.TestCase):
@@ -47,6 +48,41 @@ class HostPeerTests(unittest.TestCase):
         for baud in (0,9599,1000001,0xffffffff):
             with self.assertRaises(ValueError):
                 peer.reply(b'\x01'+struct.pack('<I',baud))
+
+    def test_upload_across_stock_reset_without_staged_stop(self):
+        image=bytes(range(256))*4
+        starts=b'\x01'+struct.pack('<I',256000)
+        request=b'\x02'+struct.pack('<II',0,16)
+        class Port:
+            baudrate=9600
+            def __init__(self):
+                self.rx=bytearray(); self.writes=[]; self.starts=0; self.reads=0
+            def write(self,data):
+                self.writes.append((self.baudrate,data))
+                payload=Parser().feed(data)[0]
+                if payload==b'\x06': self.rx.extend(frame(b'\x01'))
+                elif payload==starts:
+                    self.starts+=1
+                    self.rx.extend(frame(starts if self.starts==1 else request))
+                elif payload==request+image[:16]:
+                    self.reads+=1
+                    # Stock can reset into the loader without STOP 0x80.
+                    self.rx.extend(frame(b'\x01' if self.reads==1 else b'\x03\x00'))
+                elif payload!=b'\x03\x00': raise AssertionError(payload)
+                return len(data)
+            def read(self,count):
+                data=bytes(self.rx[:count]); del self.rx[:count]; return data
+            def flush(self): pass
+        port=Port(); peer=Peer(image,256000)
+        ticks=iter(i*0.001 for i in range(20000))
+        with patch('uart_upload.time.monotonic',side_effect=lambda:next(ticks)):
+            upload(port,peer)
+        self.assertTrue(peer.complete)
+        self.assertFalse(peer.loader_staged)
+        self.assertEqual(peer.read_requests,2)
+        self.assertEqual(port.starts,3)
+        self.assertEqual(port.writes[1],(9600,frame(starts)))
+        self.assertTrue(all(baud==256000 for baud,_ in port.writes[2:]))
 
 
 if __name__=='__main__': unittest.main()

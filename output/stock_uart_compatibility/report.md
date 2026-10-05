@@ -14,8 +14,8 @@ disassembly is retained in v214.asm and v204.asm.
   require it. Candidate entry is configuration-enable then 0xB2.
 - VMA 0x1e15602 tests that same byte before parsing AA 55, little-endian length,
   payload and CRC. Its opcode table includes READY 6, which posts the updater
-  task's READY message. This establishes a product entry wrapper that our
-  uploader currently does not send.
+  task's READY message. The host now implements this product entry wrapper
+  under explicit `--entry stock-b2` and in the no-image `stock_uart.py` probe.
 - VMA 0x1e19648 changes the negotiated baud and emits START with four baud
   bytes. Our original PC peer rejected this valid five-byte payload. The peer
   now accepts opcode-only START and START+baud, with baud range validation.
@@ -45,7 +45,29 @@ our application supplies its own handoff parameters. Actual stock restoration
 still requires loader acceptance and a bench test. Once V2.04 is restored,
 its application entry capabilities return too; our updater service is gone.
 
-Stock-to-custom is version-dependent and not yet implemented end-to-end.
-V2.14 now has a recovered entry candidate; V2.04 needs another established
-route. Resolve handoff semantics and model the full serial dialogue before
-presenting an initial-install command as supported.
+Stock-to-custom is version-dependent. V2.14's recovered entry sequence is now
+implemented and host-tested, but no complete physical transfer is established.
+The user accepts a BLE update from V2.04 to the stock V2.14 image as the bridge
+before the first UART custom installation. The separate entry probe sends no
+START response or file data; even a successful result does not validate the
+staged loader, handoff, or firmware programming.
+
+## Official Ai-Thinker PC updater
+
+The [official Rd-03D_V2 page](https://docs.aithinker.com/Rd-03D_V2/index.html)
+links an English serial burning tool archive. Its executable and archive are
+pinned in `vendor_tool_manifest.json`. The program was not executed; selected
+x64 disassembly and resolved import names are in `vendor_tool.asm`.
+
+- VMA 0x140007cdc supplies argument 0x66 to the imported
+  `ICLM_Interface_RadarDevice_Protocol_SendCommand_NoCheckAck`, with no data.
+  The DLL's wire encoding has not been reconstructed here, so this is not a
+  claim that the transmitted LD2450 command is 0x66.
+- VMA 0x140007d27 supplies baud 9600 to serial reopen after that call.
+- VMA 0x140007dab builds READY opcode 6; 0x140007f7d / 0x140007fcd build START
+  opcode 1 with baud 9600. Its receive loop recognizes read/stop/size/keepalive
+  opcodes 2..5. The read handler extracts offset and count as 32-bit values.
+
+This independently supports the remote-file protocol already recovered from
+the SDK. It does not establish the Ai-Thinker product wrapper as compatible
+with Hi-Link firmware. We use the Hi-Link application's own recovered B2 path.

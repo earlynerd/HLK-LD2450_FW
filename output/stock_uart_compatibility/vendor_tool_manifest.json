@@ -1,0 +1,10 @@
+{
+  "source_page": "https://docs.aithinker.com/Rd-03D_V2/index.html",
+  "download_url": "https://aithinker-static.oss-cn-shenzhen.aliyuncs.com/docs/Public%20Document%20Center/Radar/rd-03/Rd-03D_V2/Support/rd-03d_v2-burning-tool-en.zip",
+  "retrieved": "2026-10-04",
+  "archive_sha256": "0aa74b5345cd9b66879161ef68d07ec0b713884d2d12d34c2da20c7d73e8b5a4",
+  "executable_name": "ICL_Download_JIELI.exe",
+  "executable_sha256": "cda75fc408cefe2be0dcaaa559d73b3d5e67a8620118f343cfaaa70c37caf11f",
+  "executed": false,
+  "inspection": "PE import table and x64 disassembly using Capstone; no executable or DLL loaded"
+}

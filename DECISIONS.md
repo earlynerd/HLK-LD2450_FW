@@ -45,3 +45,10 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Why:** The user expected both directions. V2.14 has a recovered configuration-command 0xB2 wrapper; V2.04 lacks that handler. Stock STOP/baud and zero-valued handoff pin fields need further interpretation. Restoring V2.04 also removes our application's UART entry service.
 - **Supersedes:** Any implication that the custom application/host pair alone establishes stock firmware interoperability.
 - **Affects:** UART updater, compatibility report and UART integration documentation. No device update was performed.
+
+## 2026-10-04 — Add stock UART entry with a BLE bridge for V2.04
+
+- **Decision:** Implement the recovered Hi-Link B2 wrapper as an explicit uploader mode and provide a separate no-image probe that stops before acknowledging START. For V2.04, use the stock BLE updater to reach V2.14 first, as accepted by the user. Keep the PC peer available across staging whether or not stock emits STOP 0x80.
+- **Why:** V2.14 contains a concrete UART entry service; V2.04 lacks the corresponding handler. The official Ai-Thinker PC tool independently supports the remote-file protocol, but its product entry and baud handling differ. Entry success alone cannot validate loader handoff or flashing.
+- **Supersedes:** The implementation-pending portion of "Require explicit stock-to-custom and restoration compatibility"; physical validation remains required.
+- **Affects:** `stock_uart.py`, `uart_upload.py`, UART entry tests and integration documentation.

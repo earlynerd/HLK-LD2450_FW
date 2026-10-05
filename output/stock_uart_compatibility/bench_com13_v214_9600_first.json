@@ -1,0 +1,339 @@
+{
+  "port": "COM13",
+  "baud": 9600,
+  "image_bytes_sent": 0,
+  "trace": [
+    {
+      "seconds": 1e-05,
+      "direction": "tx",
+      "baud": 9600,
+      "hex": "fd fc fb fa 04 00 ff 00 01 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.00194,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.003135,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.00408,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "68"
+    },
+    {
+      "seconds": 0.005202,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.006234,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007379,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.008352,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.009508,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.01048,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.011608,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012673,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.013782,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.01481,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.016106,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.016907,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.018088,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.019023,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.02016,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.021199,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "e0"
+    },
+    {
+      "seconds": 0.022275,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.0233,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.024422,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.025484,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "08"
+    },
+    {
+      "seconds": 0.026611,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.027657,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "ff"
+    },
+    {
+      "seconds": 0.028677,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.029778,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.030832,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.031827,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.032955,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.034078,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "40"
+    },
+    {
+      "seconds": 0.035102,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.036103,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.037231,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.038272,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.039396,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "01"
+    },
+    {
+      "seconds": 2.015479,
+      "direction": "tx",
+      "baud": 9600,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 3.039374,
+      "direction": "tx",
+      "baud": 9600,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 4.045161,
+      "direction": "tx",
+      "baud": 9600,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 5.020583,
+      "direction": "tx",
+      "baud": 9600,
+      "hex": "fd fc fb fa 02 00 fe 00 04 03 02 01"
+    },
+    {
+      "seconds": 5.039426,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fd"
+    },
+    {
+      "seconds": 5.040617,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fc"
+    },
+    {
+      "seconds": 5.04163,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fb"
+    },
+    {
+      "seconds": 5.042703,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fa"
+    },
+    {
+      "seconds": 5.043828,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "04"
+    },
+    {
+      "seconds": 5.044816,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 5.045813,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "fe"
+    },
+    {
+      "seconds": 5.047033,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "01"
+    },
+    {
+      "seconds": 5.047929,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 5.049059,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "00"
+    },
+    {
+      "seconds": 5.050077,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "04"
+    },
+    {
+      "seconds": 5.051212,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "03"
+    },
+    {
+      "seconds": 5.052228,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "02"
+    },
+    {
+      "seconds": 5.053335,
+      "direction": "rx",
+      "baud": 9600,
+      "hex": "01"
+    }
+  ],
+  "result": "No ACK for command 0xff",
+  "cleanup": "configuration ended"
+}

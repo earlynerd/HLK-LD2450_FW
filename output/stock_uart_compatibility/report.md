@@ -1,6 +1,6 @@
 # Stock UART update compatibility
 
-Read-only static findings, 2026-10-04. No serial commands or flashing performed.
+Static findings and entry-only bench results, 2026-10-04. No firmware data sent or flashing performed.
 The accompanying manifest pins both stock application hashes; selected vendor
 disassembly is retained in v214.asm and v204.asm.
 
@@ -71,3 +71,50 @@ x64 disassembly and resolved import names are in `vendor_tool.asm`.
 This independently supports the remote-file protocol already recovered from
 the SDK. It does not establish the Ai-Thinker product wrapper as compatible
 with Hi-Link firmware. We use the Hi-Link application's own recovered B2 path.
+
+## Entry-only bench test: stock V2.04, COM13
+
+On 2026-10-04 the user identified COM13 and authorized testing loader entry.
+At 256000 baud, the probe received successful acknowledgements for configuration
+entry (FF), firmware version (A0), and subsequent configuration exit (FE).
+The version bytes were `00 01 04 02 15 19 10 23`, consistent with V2.04.
+Command B2 received no acknowledgement during its two-second deadline. Three
+CRC-framed READY requests over the following three seconds produced no updater
+START frame. This confirms the tested B2 entry path did not work on this unit;
+it does not exclude every possible stock serial boot/download route.
+
+The final FE acknowledgement confirms configuration mode was exited. No START
+acknowledgement, image data, reset command, or baud change was sent. DTR/RTS
+were configured deasserted. Raw byte traffic and timings are preserved in
+`bench_com13_v204.json`. The next test is the same probe after the user installs
+stock V2.14 using the existing BLE updater.
+
+## Entry-only bench test: stock V2.14, COM13
+
+After the user updated through BLE, the module's UART output was readable at
+**9600 baud**, not the previous 256000. This establishes the rate on this unit
+at this time, not a universal V2.14 default. A passive scan received valid
+`AA FF 03 00 ... 55 CC` target frames at 9600; other tested rates yielded zeros.
+The 256000 entry probe received no valid acknowledgements.
+
+At 9600, the first attempt received a damaged configuration-ACK header
+(`E0 FC FB FA`, where `FD FC FB FA` was expected). The parser correctly rejected
+it, and subsequent FE was acknowledged. Repeating the unchanged probe at 9600
+succeeded: FF, A0 and B2 were acknowledged; READY produced CRC-valid START
+payload `01`. The reported version bytes were `00 01 14 02 12 24 11 25` (V2.14).
+The exact exchanges are retained in `bench_com13_v214_9600_success.json`, with
+separate first-attempt and passive-check logs.
+
+**Confirmed:** stock V2.14's B2 UART application-update entry is accessible on
+the normal module serial interface. **Not tested:** START/baud negotiation,
+loader staging, reset/handoff, flash programming, custom boot or restoration.
+No START acknowledgement or image data was sent. The successful probe left the
+application in its update service; power-cycle before another fresh-entry test.
+For this unit, use `--baud 9600` on the probe and `--initial-baud 9600` on the
+uploader; the uploader's separate `--baud` controls subsequent negotiation.
+
+The earlier configuration-only control captured 23 target-frame headers in
+2 seconds before FF, zero bytes during 3 seconds in configuration, and 21
+headers in 2 seconds after FE. Its firmware version was not queried, and the
+user subsequently reported an overlapping BLE update, so the control's
+`v204` filename must not be treated as verified firmware identity.

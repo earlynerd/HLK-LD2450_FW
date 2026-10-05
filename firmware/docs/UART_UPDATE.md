@@ -8,6 +8,14 @@ finds a 0xB2 entry wrapper in V2.14 that is absent from the V2.04 command
 dispatcher. The host now implements that wrapper and a no-image entry probe.
 START negotiation and handoff still require hardware verification.
 
+Bench update: COM13 running V2.14 successfully acknowledged FF/A0/B2 and
+returned updater START on 2026-10-04. Its UART was running at **9600 baud**
+after the user's BLE update. Use `--baud 9600` for the probe and
+`--initial-baud 9600` for the uploader on that unit. This validates entry only;
+no START response or image data was sent. See the compatibility report for
+raw exchanges, the initial baud mismatch, and a corrupted first ACK.
+
+
 ## Installing from stock
 
 The intended route for V2.04 owners is to install the stock V2.14 transparent

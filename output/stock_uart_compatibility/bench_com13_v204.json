@@ -1,0 +1,376 @@
+{
+  "port": "COM13",
+  "baud": 256000,
+  "image_bytes_sent": 0,
+  "trace": [
+    {
+      "seconds": 1.1e-05,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 04 00 ff 00 01 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.00736,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.007396,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.007408,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.007418,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.007429,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "08"
+    },
+    {
+      "seconds": 0.007438,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.00745,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "ff"
+    },
+    {
+      "seconds": 0.00746,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007469,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007478,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007486,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007495,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007513,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "40"
+    },
+    {
+      "seconds": 0.00752,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.00753,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.007538,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.007545,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.007552,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007561,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 a0 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.014798,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.014816,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.014826,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.014833,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.014842,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "0c"
+    },
+    {
+      "seconds": 0.01485,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.015259,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "a0"
+    },
+    {
+      "seconds": 0.015284,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.015296,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.015313,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.01532,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.015328,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.015335,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.015343,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.01535,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "15"
+    },
+    {
+      "seconds": 0.015357,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "19"
+    },
+    {
+      "seconds": 0.015364,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "10"
+    },
+    {
+      "seconds": 0.015372,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "23"
+    },
+    {
+      "seconds": 0.015379,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.015387,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.015394,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.015401,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.015419,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 b2 00 04 03 02 01"
+    },
+    {
+      "seconds": 2.03329,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 3.050993,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 4.068625,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 5.037029,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 fe 00 04 03 02 01"
+    },
+    {
+      "seconds": 5.044108,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 5.044132,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 5.044141,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 5.044147,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 5.044155,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 5.044162,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 5.044171,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fe"
+    },
+    {
+      "seconds": 5.044178,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 5.044187,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 5.044194,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 5.0442,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 5.044207,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 5.044216,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 5.044222,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    }
+  ],
+  "result": "No ACK for command 0xb2",
+  "cleanup": "configuration ended",
+  "version_hex": "00 01 04 02 15 19 10 23"
+}

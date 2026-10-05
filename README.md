@@ -15,7 +15,8 @@ The project links a minimal BR23 UART recovery application and packages it
 into `.ufw` images using either pinned stock firmware as a layout template.
 The application contains our UART receiver and register profile, and uses the
 vendor update engine and preserved `uart_user.bin` for the flash-writing stage.
-Radar power remains off. Images are target-built and host-verified, but have
+Startup applies the selected radar profile with the recovered 75-write / SPI /
+REXT / five-write ordering. Images are target-built and host-verified, but have
 not been flashed or boot-tested on a module.
 
 ## Initial snapshot

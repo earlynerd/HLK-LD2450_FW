@@ -102,8 +102,10 @@ The reserved 128-byte update RAM begins at `0x2ff80`, with the record at
 `+8`, leaving 120 available bytes. The application preserves the SDK linker
 reservation, copies 112 bytes, and resets only after peripheral shutdown.
 Entry is included in every image built here. Aborted sessions return to
-256000 baud. Radar startup is not attempted, so it cannot block the service;
-a failure to initialize the basic MCU peripherals currently resets the MCU.
+256000 baud. Radar startup runs first with bounded I2C deadlines; any radar
+failure powers it down and preserves UART entry. Accepting READY powers the
+radar down, and aborted update sessions leave it off until reboot. A failure
+to initialize the basic MCU peripherals currently resets the MCU.
 
 A Python PC peer implements our entry protocol and serves both stages. Its
 behavior, the adapter, framing and failure paths are host-tested. The vendor

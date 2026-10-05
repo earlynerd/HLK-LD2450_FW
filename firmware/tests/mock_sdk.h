@@ -58,13 +58,13 @@ uint32_t clk_get(const char *);
 uint32_t timer_get_ms(void);
 void mock_sdk_sync(void);
 
-struct mock_gpio { uint8_t direction, value, die, pull_up, pull_down, output_calls; };
-struct mock_i2c_event { uint8_t byte, start, stop, read, nack; };
+struct mock_gpio { uint8_t direction, value, die, pull_up, pull_down, output_calls, spi_enabled; uint32_t changed_at; };
+struct mock_i2c_event { uint8_t byte, start, stop, read, nack, power, bias, spi_enabled; uint32_t time; };
 extern struct mock_gpio mock_gpio[64];
 extern struct uart_platform_data_t mock_uart_config[2];
-extern struct mock_i2c_event mock_i2c_events[64];
+extern struct mock_i2c_event mock_i2c_events[512];
 extern size_t mock_i2c_event_count;
-extern uint32_t mock_clock, mock_time;
+extern uint32_t mock_clock, mock_time, mock_timer_quantum;
 extern unsigned mock_uart_open_count, mock_uart_close_count, mock_uart_fail_on;
 extern unsigned mock_i2c_tx_count, mock_i2c_nack_on;
 extern uint8_t mock_i2c_stall, mock_i2c_read_data[32];

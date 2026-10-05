@@ -5,6 +5,8 @@
 #define RADAR_POWER_PIN IO_PORTC_02 /* PW_CTL: low turns Q1 on. */
 #define RADAR_BIAS_PIN  IO_PORTC_03 /* REXT_CTL: high turns Q2 on. */
 #define UART_BUFFER_SIZE 1024u
+/* Pinned SDK timer_get_ms() returns jiffies * 10 (verified in linked code). */
+#define TIMER_RESOLUTION_MS 10u
 
 #ifdef _MSC_VER
 #define ALIGNED4 __declspec(align(4))
@@ -85,8 +87,10 @@ int ld2450_peripherals_init(const struct ld2450_config *cfg)
     input_pin(cs_pin[0], 0);
     input_pin(cs_pin[1], 0);
     JL_IOMAP->CON1 &= ~((1u << 4) | (1u << 16)); /* SPI1/2 group A. */
-    spi_receiver_init(JL_SPI1);
-    spi_receiver_init(JL_SPI2);
+    JL_SPI1->CON = 0;
+    JL_SPI2->CON = 0;
+    JL_SPI1->CNT = 0;
+    JL_SPI2->CNT = 0;
 
     input_pin(IO_PORTC_04, 0); /* External pulls go to switched 3V3_SOC. */
     input_pin(IO_PORTC_05, 0);
@@ -155,16 +159,48 @@ int ld2450_radar_power(uint8_t enabled)
 {
     if (!status.initialized) { return LD2450_NOT_READY; }
     if (enabled) {
-        control_pin(RADAR_BIAS_PIN, 1);
         control_pin(RADAR_POWER_PIN, 0);
     } else {
         control_pin(RADAR_POWER_PIN, 1);
         control_pin(RADAR_BIAS_PIN, 0);
+        JL_SPI1->CON = 0;
+        JL_SPI2->CON = 0;
         JL_SPI1->CNT = 0;
         JL_SPI2->CNT = 0;
         status.dma_armed_mask = 0;
+        status.radar_bias_enabled = 0;
+        status.spi_ready = 0;
     }
     status.radar_powered = enabled != 0;
+    return LD2450_OK;
+}
+
+int ld2450_radar_bias(uint8_t enabled)
+{
+    if (!status.initialized || (enabled && !status.radar_powered)) {
+        return LD2450_NOT_READY;
+    }
+    control_pin(RADAR_BIAS_PIN, enabled != 0);
+    status.radar_bias_enabled = enabled != 0;
+    return LD2450_OK;
+}
+
+int ld2450_spi_prepare(void)
+{
+    if (!status.initialized) { return LD2450_NOT_READY; }
+    if (status.dma_armed_mask) { return LD2450_BUSY; }
+    spi_receiver_init(JL_SPI1);
+    spi_receiver_init(JL_SPI2);
+    status.spi_ready = 1;
+    return LD2450_OK;
+}
+
+int ld2450_delay_ms(uint32_t milliseconds)
+{
+    uint32_t start;
+    if (!milliseconds || milliseconds > 1000u) { return LD2450_BAD_ARGUMENT; }
+    start = timer_get_ms();
+    while ((uint32_t)(timer_get_ms() - start) < milliseconds + TIMER_RESOLUTION_MS) { ld_sdk_sync(); }
     return LD2450_OK;
 }
 
@@ -174,6 +210,7 @@ int ld2450_spi_arm(uint8_t lane, void *buffer, size_t size)
     if (!status.initialized) { return LD2450_NOT_READY; }
     if (lane > 1 || !buffer || !size || size > 65535u ||
         ((uintptr_t)buffer & 3u)) { return LD2450_BAD_ARGUMENT; }
+    if (!status.spi_ready) { return LD2450_NOT_READY; }
     if (status.dma_armed_mask & (1u << lane)) { return LD2450_BUSY; }
     spi = lane_spi(lane);
     ld_spi_clear(spi);

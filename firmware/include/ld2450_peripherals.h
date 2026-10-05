@@ -12,8 +12,7 @@ enum ld2450_result {
     LD2450_UART_UNAVAILABLE = -4,
     LD2450_BUSY = -5,
     LD2450_TIMEOUT = -6,
-    LD2450_I2C_NACK = -7,
-    LD2450_CONFIG_CAPTURE_REQUIRED = -8
+    LD2450_I2C_NACK = -7
 };
 
 struct ld2450_config {
@@ -28,7 +27,8 @@ struct ld2450_status {
     uint8_t initialized;
     uint8_t radar_powered;
     uint8_t dma_armed_mask;
-    uint8_t radar_configuration_known;
+    uint8_t radar_bias_enabled;
+    uint8_t spi_ready;
 };
 
 struct ld2450_spi_completion {
@@ -43,8 +43,13 @@ int ld2450_peripherals_init(const struct ld2450_config *config);
 void ld2450_peripherals_deinit(void);
 struct ld2450_status ld2450_get_status(void);
 
-/* Power/bias gate control only; does not write radar registers. */
+/* Enable supply independently of REXT. Power-off also disables REXT and SPI. */
 int ld2450_radar_power(uint8_t enabled);
+int ld2450_radar_bias(uint8_t enabled);
+/* Configure both receive-only SPI controllers at the init-table boundary. */
+int ld2450_spi_prepare(void);
+/* Minimum delay, with a tick of margin for timer quantization; 1..1000 ms. */
+int ld2450_delay_ms(uint32_t milliseconds);
 
 /* One-shot DMA. Arm both lanes BEFORE radar clocking begins. Buffers are
  * borrowed, must be four-byte aligned, and remain owned until completion.
@@ -62,8 +67,9 @@ int ld2450_module_uart_read(uint8_t *data, size_t size, uint32_t timeout_ms);
 int ld2450_module_uart_set_baud(uint32_t baud);
 int ld2450_debug_write(const char *message);
 
-/* SDK application entry hook. Returns CONFIG_CAPTURE_REQUIRED after
- * successful peripheral setup, because radar register setup is not captured. */
+/* Set up peripherals and apply the selected radar profile in stock order.
+ * Radar failure powers it down but preserves initialized UARTs for updating.
+ * Success means writes ACKed, not verified RF operation or sample acquisition. */
 int ld2450_app_start(void);
 
 #endif

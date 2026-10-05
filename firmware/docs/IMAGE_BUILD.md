@@ -1,4 +1,4 @@
-# Minimal UART recovery image
+# Radar experiment image with UART recovery
 
 This pipeline produces a complete `.ufw` containing a project-owned BR23
 application. It uses the pinned vendor startup, RTOS, hardware libraries and
@@ -32,10 +32,9 @@ For the example register experiment:
 python firmware/tools/build_image.py --radar-config firmware/config/radar_no_idle_powerdown.json --out firmware/build/no-idle-powerdown
 ```
 
-The selected table is retained in the linked binary and its bytes are checked
-before packaging. This first application's main loop does **not** apply it:
-automatic power/bias sequencing and acquisition still need implementation
-from the planned capture.
+The selected table is retained in the linked binary, checked before packaging,
+and applied automatically at boot. The default mode-2 table matches all 80
+writes in [the captured I2C sequence](../../output/i2c_init_comparison/report.txt).
 
 Outputs in `firmware/build/image`:
 
@@ -53,11 +52,35 @@ using an output; a failed rebuild can leave files from an earlier build.
 
 ## Application behavior and assumptions
 
-`target/br23/image/main.c` starts the known peripherals, with PC2 high and
-PC3 low (radar supply/bias disabled). It then initializes the SDK update
-runtime and polls for READY on PA1 TX / PA0 RX at 256000 baud, 8N1. PA9 emits
-the `HLK-LD2450_FW UART recovery application 0.1` banner at 115200 baud.
-There are no Bluetooth, tracking or target-report services in this image.
+`target/br23/image/main.c` invokes `ld2450_app_start()` from `app_core`:
+
+1. Initialize UART/I2C with PC2 high (supply off), PC3 low (REXT disconnected)
+   and both SPI receivers disabled.
+2. Drive PC2 low, retaining PC3 low; wait at least 20 ms for supply startup.
+3. Apply register writes 1..75 at address 0x20.
+4. Configure both receive-only SPI controllers without driving PB1/RESET.
+5. Drive PC3 high, wait at least 3 ms, then apply writes 76..80.
+6. Leave supply and REXT enabled and poll the UART update service.
+
+The 75/SPI/REXT/delay/5 ordering is recovered from stock code. The initial
+low REXT state and 20 ms supply delay are engineering choices, not recovered
+waveforms. The datasheet gives approximately 4 ms typical readiness, not a
+worst-case guarantee. The capture's 2.424396 ms gap between writes 75 and 76
+includes SPI setup, GPIO and a stock delay loop with argument 1000. Our 3 ms
+bias delay is an initial margin, not a conversion of that loop count. The SDK
+timer returns `jiffies * 10`, verified in the linked SDK disassembly: its
+resolution is 10 ms. The delay adds a full tick to avoid finishing early.
+Thus the 20 ms minimum normally takes 20..30 ms, and the 3 ms minimum takes
+10..20 ms (task preemption can extend either). Neither exact timing nor RF
+behavior has been bench-validated.
+
+Any radar I2C NACK/timeout aborts further writes, powers down the radar and
+leaves the initialized UART updater available. A basic peripheral setup failure
+resets the MCU. PA1 TX / PA0 RX use 256000 baud, 8N1. PA9 prints init status
+and `HLK-LD2450_FW radar experiment application 0.2` at 115200 baud.
+SPI controllers are prepared but DMA is not armed: sustained acquisition,
+Bluetooth, tracking and target-report services remain unimplemented.
+External I2C/SPI capture can observe register experiments now.
 
 The update transaction runs synchronously in `app_core` (`task_en=0`), so
 one task owns the UART/parser throughout. Reads are split into at most 512
@@ -67,7 +90,9 @@ an acknowledged STOP `0x80`, and a verified flash handoff-record write.
 Only then does the application close peripherals, copy the 112-byte record
 into the reserved update RAM and reset. The record carries the actual
 negotiated baud, PA1/PA0 pins and a ten-second loader timeout. Failure leaves
-the receiver at its 256000-baud entry rate for another session.
+the receiver at its 256000-baud entry rate for another session. Accepting
+an update request powers down the radar; an aborted update leaves it off
+until reboot.
 
 The clock configuration in `target/br23/image/app_config.h` assumes a 24 MHz
 crystal and 24 MHz system clock, taken from the SDK baseline. The module's
@@ -118,17 +143,24 @@ therefore depends on the user's USB bootloader work or another established
 stock-compatible loading route. A UFW is an update container, not a raw flash
 dump to write at address zero.
 
-First hardware validation should establish the clock, install the recovery
-image, observe its PA9 banner and power-off GPIO state, then use UART to load
-a second custom image and repeat once more. Confirm stock restoration through
-the recovery route before proceeding to radar register experiments.
+First hardware validation should establish the clock, install the baseline
+image, and observe its PA9 init status and I2C/SPI output. Verify UART loading
+of another custom image and a repeated update, plus stock restoration through
+the established recovery route.
 
 ## Validation performed
+
+[Startup validation record](../../output/firmware_build/radar_startup_validation.json)
+records both current images and their source hashes. The earlier
+`validation.json` describes the preceding recovery-only application.
 
 `python firmware/tools/test_host.py` runs five native C suites and twelve
 Python tests: captured packet parsing, pin/peripheral behavior, radar table
 generation, bounded UART framing, actual adapter logic with modeled device
-I/O, two-stage PC protocol handling and packaging boundaries. Both stock
+I/O, two-stage PC protocol handling and packaging boundaries. Startup tests
+check the exact 80-write payload/order, supply/bias/SPI states at each stage,
+minimum delays at all ten timer phases, timer wraparound, and all 320 possible address/data NACK
+locations, including UART availability after failure. Both stock
 applications repack to byte-identical original UFWs. Both example profiles
 target-link; the chosen table survives LTO. A separate jl-misctools-based
 decoder verifies custom applications in all four flash variants.

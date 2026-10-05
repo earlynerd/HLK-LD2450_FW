@@ -1,0 +1,1197 @@
+{
+  "capture": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\captures\\radar_i2c.csv",
+  "capture_sha256": "3a00aa131c7aa274f6bba24f2380399201508b6311b1fe174f5a53b5c08ef296",
+  "extraction_manifest_sha256": "612f2995c3e1c243fc421dfa06613e01ef38305545f46c3634f3953fab294213",
+  "transaction_count": 80,
+  "acknowledged_bytes": 320,
+  "expected_acknowledged_bytes": 320,
+  "total_span_ms": 56.077704,
+  "median_intertransaction_idle_us": 365.24,
+  "comparisons": [
+    {
+      "version": "V2.04",
+      "profile": "mode_1_rom",
+      "expected_count": 80,
+      "captured_count": 80,
+      "exact_match": false,
+      "differences": [
+        {
+          "sequence": 8,
+          "captured": "43=A980",
+          "expected": "43=72D0"
+        },
+        {
+          "sequence": 9,
+          "captured": "44=0040",
+          "expected": "44=0020"
+        },
+        {
+          "sequence": 12,
+          "captured": "47=1001",
+          "expected": "47=1000"
+        },
+        {
+          "sequence": 13,
+          "captured": "48=4820",
+          "expected": "48=A410"
+        },
+        {
+          "sequence": 14,
+          "captured": "49=2001",
+          "expected": "49=2000"
+        },
+        {
+          "sequence": 15,
+          "captured": "4A=4820",
+          "expected": "4A=2AF8"
+        },
+        {
+          "sequence": 16,
+          "captured": "4B=0001",
+          "expected": "4B=0002"
+        },
+        {
+          "sequence": 17,
+          "captured": "4C=09A0",
+          "expected": "4C=9428"
+        },
+        {
+          "sequence": 20,
+          "captured": "4F=0006",
+          "expected": "4F=0000"
+        },
+        {
+          "sequence": 21,
+          "captured": "50=B6C0",
+          "expected": "50=4E20"
+        },
+        {
+          "sequence": 22,
+          "captured": "51=001E",
+          "expected": "51=0030"
+        },
+        {
+          "sequence": 23,
+          "captured": "52=8480",
+          "expected": "52=D400"
+        },
+        {
+          "sequence": 27,
+          "captured": "56=0011",
+          "expected": "56=0023"
+        },
+        {
+          "sequence": 29,
+          "captured": "58=FFEF",
+          "expected": "58=FF78"
+        },
+        {
+          "sequence": 46,
+          "captured": "02=103C",
+          "expected": "02=003C"
+        },
+        {
+          "sequence": 49,
+          "captured": "0A=4200",
+          "expected": "0A=0200"
+        },
+        {
+          "sequence": 55,
+          "captured": "0D=1000",
+          "expected": "0D=2000"
+        },
+        {
+          "sequence": 56,
+          "captured": "0E=4000",
+          "expected": "0E=2000"
+        }
+      ],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "version": "V2.04",
+      "profile": "mode_2_ram_initial",
+      "expected_count": 80,
+      "captured_count": 80,
+      "exact_match": true,
+      "differences": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "version": "V2.14",
+      "profile": "mode_1_rom",
+      "expected_count": 80,
+      "captured_count": 80,
+      "exact_match": false,
+      "differences": [
+        {
+          "sequence": 8,
+          "captured": "43=A980",
+          "expected": "43=72D0"
+        },
+        {
+          "sequence": 9,
+          "captured": "44=0040",
+          "expected": "44=0020"
+        },
+        {
+          "sequence": 12,
+          "captured": "47=1001",
+          "expected": "47=1000"
+        },
+        {
+          "sequence": 13,
+          "captured": "48=4820",
+          "expected": "48=A410"
+        },
+        {
+          "sequence": 14,
+          "captured": "49=2001",
+          "expected": "49=2000"
+        },
+        {
+          "sequence": 15,
+          "captured": "4A=4820",
+          "expected": "4A=2AF8"
+        },
+        {
+          "sequence": 16,
+          "captured": "4B=0001",
+          "expected": "4B=0002"
+        },
+        {
+          "sequence": 17,
+          "captured": "4C=09A0",
+          "expected": "4C=9428"
+        },
+        {
+          "sequence": 20,
+          "captured": "4F=0006",
+          "expected": "4F=0000"
+        },
+        {
+          "sequence": 21,
+          "captured": "50=B6C0",
+          "expected": "50=4E20"
+        },
+        {
+          "sequence": 22,
+          "captured": "51=001E",
+          "expected": "51=0030"
+        },
+        {
+          "sequence": 23,
+          "captured": "52=8480",
+          "expected": "52=D400"
+        },
+        {
+          "sequence": 27,
+          "captured": "56=0011",
+          "expected": "56=0023"
+        },
+        {
+          "sequence": 29,
+          "captured": "58=FFEF",
+          "expected": "58=FF78"
+        },
+        {
+          "sequence": 46,
+          "captured": "02=103C",
+          "expected": "02=003C"
+        },
+        {
+          "sequence": 49,
+          "captured": "0A=4200",
+          "expected": "0A=0200"
+        },
+        {
+          "sequence": 55,
+          "captured": "0D=1000",
+          "expected": "0D=2000"
+        },
+        {
+          "sequence": 56,
+          "captured": "0E=4000",
+          "expected": "0E=2000"
+        }
+      ],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "version": "V2.14",
+      "profile": "mode_2_ram_initial",
+      "expected_count": 80,
+      "captured_count": 80,
+      "exact_match": true,
+      "differences": [],
+      "missing_count": 0,
+      "extra_count": 0
+    }
+  ],
+  "transactions": [
+    {
+      "sequence": 1,
+      "address_7bit": "0x20",
+      "register": "0x40",
+      "value": "0x4207",
+      "payload_hex": "40 42 07",
+      "ack_count": 4,
+      "start_seconds": "1.99651806",
+      "stop_seconds": "1.996828628",
+      "duration_us": 310.568,
+      "preceding_idle_us": null
+    },
+    {
+      "sequence": 2,
+      "address_7bit": "0x20",
+      "register": "0x41",
+      "value": "0x0004",
+      "payload_hex": "41 00 04",
+      "ack_count": 4,
+      "start_seconds": "1.997194884",
+      "stop_seconds": "1.99749792",
+      "duration_us": 303.036,
+      "preceding_idle_us": 366.256
+    },
+    {
+      "sequence": 3,
+      "address_7bit": "0x20",
+      "register": "0x09",
+      "value": "0xE901",
+      "payload_hex": "09 e9 01",
+      "ack_count": 4,
+      "start_seconds": "1.997897476",
+      "stop_seconds": "1.998204928",
+      "duration_us": 307.452,
+      "preceding_idle_us": 399.556
+    },
+    {
+      "sequence": 4,
+      "address_7bit": "0x20",
+      "register": "0x01",
+      "value": "0x0000",
+      "payload_hex": "01 00 00",
+      "ack_count": 4,
+      "start_seconds": "1.998570184",
+      "stop_seconds": "1.99887322",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.256
+    },
+    {
+      "sequence": 5,
+      "address_7bit": "0x20",
+      "register": "0x67",
+      "value": "0x0000",
+      "payload_hex": "67 00 00",
+      "ack_count": 4,
+      "start_seconds": "1.999238408",
+      "stop_seconds": "1.999541444",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 6,
+      "address_7bit": "0x20",
+      "register": "0x72",
+      "value": "0x0650",
+      "payload_hex": "72 06 50",
+      "ack_count": 4,
+      "start_seconds": "1.999936",
+      "stop_seconds": "2.000243468",
+      "duration_us": 307.468,
+      "preceding_idle_us": 394.556
+    },
+    {
+      "sequence": 7,
+      "address_7bit": "0x20",
+      "register": "0x42",
+      "value": "0x0003",
+      "payload_hex": "42 00 03",
+      "ack_count": 4,
+      "start_seconds": "2.000608724",
+      "stop_seconds": "2.00091176",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.256
+    },
+    {
+      "sequence": 8,
+      "address_7bit": "0x20",
+      "register": "0x43",
+      "value": "0xA980",
+      "payload_hex": "43 a9 80",
+      "ack_count": 4,
+      "start_seconds": "2.001276948",
+      "stop_seconds": "2.001579984",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 9,
+      "address_7bit": "0x20",
+      "register": "0x44",
+      "value": "0x0040",
+      "payload_hex": "44 00 40",
+      "ack_count": 4,
+      "start_seconds": "2.00197824",
+      "stop_seconds": "2.002285692",
+      "duration_us": 307.452,
+      "preceding_idle_us": 398.256
+    },
+    {
+      "sequence": 10,
+      "address_7bit": "0x20",
+      "register": "0x45",
+      "value": "0x0000",
+      "payload_hex": "45 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.00265088",
+      "stop_seconds": "2.002953916",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 11,
+      "address_7bit": "0x20",
+      "register": "0x46",
+      "value": "0x0FA0",
+      "payload_hex": "46 0f a0",
+      "ack_count": 4,
+      "start_seconds": "2.003319172",
+      "stop_seconds": "2.003622208",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.256
+    },
+    {
+      "sequence": 12,
+      "address_7bit": "0x20",
+      "register": "0x47",
+      "value": "0x1001",
+      "payload_hex": "47 10 01",
+      "ack_count": 4,
+      "start_seconds": "2.00402038",
+      "stop_seconds": "2.004327852",
+      "duration_us": 307.472,
+      "preceding_idle_us": 398.172
+    },
+    {
+      "sequence": 13,
+      "address_7bit": "0x20",
+      "register": "0x48",
+      "value": "0x4820",
+      "payload_hex": "48 48 20",
+      "ack_count": 4,
+      "start_seconds": "2.004693088",
+      "stop_seconds": "2.004996124",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 14,
+      "address_7bit": "0x20",
+      "register": "0x49",
+      "value": "0x2001",
+      "payload_hex": "49 20 01",
+      "ack_count": 4,
+      "start_seconds": "2.00536136",
+      "stop_seconds": "2.0056644",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 15,
+      "address_7bit": "0x20",
+      "register": "0x4A",
+      "value": "0x4820",
+      "payload_hex": "4a 48 20",
+      "ack_count": 4,
+      "start_seconds": "2.006062336",
+      "stop_seconds": "2.006369792",
+      "duration_us": 307.456,
+      "preceding_idle_us": 397.936
+    },
+    {
+      "sequence": 16,
+      "address_7bit": "0x20",
+      "register": "0x4B",
+      "value": "0x0001",
+      "payload_hex": "4b 00 01",
+      "ack_count": 4,
+      "start_seconds": "2.006735028",
+      "stop_seconds": "2.007038064",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 17,
+      "address_7bit": "0x20",
+      "register": "0x4C",
+      "value": "0x09A0",
+      "payload_hex": "4c 09 a0",
+      "ack_count": 4,
+      "start_seconds": "2.007403304",
+      "stop_seconds": "2.00770634",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.24
+    },
+    {
+      "sequence": 18,
+      "address_7bit": "0x20",
+      "register": "0x4D",
+      "value": "0x0000",
+      "payload_hex": "4d 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.008104228",
+      "stop_seconds": "2.008407264",
+      "duration_us": 303.036,
+      "preceding_idle_us": 397.888
+    },
+    {
+      "sequence": 19,
+      "address_7bit": "0x20",
+      "register": "0x4E",
+      "value": "0x0001",
+      "payload_hex": "4e 00 01",
+      "ack_count": 4,
+      "start_seconds": "2.008772452",
+      "stop_seconds": "2.009075488",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 20,
+      "address_7bit": "0x20",
+      "register": "0x4F",
+      "value": "0x0006",
+      "payload_hex": "4f 00 06",
+      "ack_count": 4,
+      "start_seconds": "2.009440728",
+      "stop_seconds": "2.009743764",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.24
+    },
+    {
+      "sequence": 21,
+      "address_7bit": "0x20",
+      "register": "0x50",
+      "value": "0xB6C0",
+      "payload_hex": "50 b6 c0",
+      "ack_count": 4,
+      "start_seconds": "2.010136084",
+      "stop_seconds": "2.01043912",
+      "duration_us": 303.036,
+      "preceding_idle_us": 392.32
+    },
+    {
+      "sequence": 22,
+      "address_7bit": "0x20",
+      "register": "0x51",
+      "value": "0x001E",
+      "payload_hex": "51 00 1e",
+      "ack_count": 4,
+      "start_seconds": "2.010804308",
+      "stop_seconds": "2.011107348",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 23,
+      "address_7bit": "0x20",
+      "register": "0x52",
+      "value": "0x8480",
+      "payload_hex": "52 84 80",
+      "ack_count": 4,
+      "start_seconds": "2.011472584",
+      "stop_seconds": "2.01177562",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 24,
+      "address_7bit": "0x20",
+      "register": "0x53",
+      "value": "0x0A02",
+      "payload_hex": "53 0a 02",
+      "ack_count": 4,
+      "start_seconds": "2.01216774",
+      "stop_seconds": "2.01247078",
+      "duration_us": 303.04,
+      "preceding_idle_us": 392.12
+    },
+    {
+      "sequence": 25,
+      "address_7bit": "0x20",
+      "register": "0x54",
+      "value": "0xAAAB",
+      "payload_hex": "54 aa ab",
+      "ack_count": 4,
+      "start_seconds": "2.012836032",
+      "stop_seconds": "2.013139068",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 26,
+      "address_7bit": "0x20",
+      "register": "0x55",
+      "value": "0x0000",
+      "payload_hex": "55 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.01350424",
+      "stop_seconds": "2.013807276",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.172
+    },
+    {
+      "sequence": 27,
+      "address_7bit": "0x20",
+      "register": "0x56",
+      "value": "0x0011",
+      "payload_hex": "56 00 11",
+      "ack_count": 4,
+      "start_seconds": "2.014199464",
+      "stop_seconds": "2.014503436",
+      "duration_us": 303.972,
+      "preceding_idle_us": 392.188
+    },
+    {
+      "sequence": 28,
+      "address_7bit": "0x20",
+      "register": "0x57",
+      "value": "0xFFFF",
+      "payload_hex": "57 ff ff",
+      "ack_count": 4,
+      "start_seconds": "2.014868608",
+      "stop_seconds": "2.015171644",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.172
+    },
+    {
+      "sequence": 29,
+      "address_7bit": "0x20",
+      "register": "0x58",
+      "value": "0xFFEF",
+      "payload_hex": "58 ff ef",
+      "ack_count": 4,
+      "start_seconds": "2.015536796",
+      "stop_seconds": "2.015839836",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.152
+    },
+    {
+      "sequence": 30,
+      "address_7bit": "0x20",
+      "register": "0x59",
+      "value": "0x0000",
+      "payload_hex": "59 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.016230956",
+      "stop_seconds": "2.016533992",
+      "duration_us": 303.036,
+      "preceding_idle_us": 391.12
+    },
+    {
+      "sequence": 31,
+      "address_7bit": "0x20",
+      "register": "0x5A",
+      "value": "0x0000",
+      "payload_hex": "5a 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.016899228",
+      "stop_seconds": "2.017202268",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 32,
+      "address_7bit": "0x20",
+      "register": "0x5B",
+      "value": "0x0022",
+      "payload_hex": "5b 00 22",
+      "ack_count": 4,
+      "start_seconds": "2.017567488",
+      "stop_seconds": "2.017904908",
+      "duration_us": 337.42,
+      "preceding_idle_us": 365.22
+    },
+    {
+      "sequence": 33,
+      "address_7bit": "0x20",
+      "register": "0x5C",
+      "value": "0x0022",
+      "payload_hex": "5c 00 22",
+      "ack_count": 4,
+      "start_seconds": "2.018270128",
+      "stop_seconds": "2.018573168",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.22
+    },
+    {
+      "sequence": 34,
+      "address_7bit": "0x20",
+      "register": "0x5D",
+      "value": "0x1919",
+      "payload_hex": "5d 19 19",
+      "ack_count": 4,
+      "start_seconds": "2.01893842",
+      "stop_seconds": "2.019241456",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 35,
+      "address_7bit": "0x20",
+      "register": "0x5E",
+      "value": "0xFF00",
+      "payload_hex": "5e ff 00",
+      "ack_count": 4,
+      "start_seconds": "2.019606644",
+      "stop_seconds": "2.019944216",
+      "duration_us": 337.572,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 36,
+      "address_7bit": "0x20",
+      "register": "0x61",
+      "value": "0x0021",
+      "payload_hex": "61 00 21",
+      "ack_count": 4,
+      "start_seconds": "2.020310768",
+      "stop_seconds": "2.020613808",
+      "duration_us": 303.04,
+      "preceding_idle_us": 366.552
+    },
+    {
+      "sequence": 37,
+      "address_7bit": "0x20",
+      "register": "0x62",
+      "value": "0x0021",
+      "payload_hex": "62 00 21",
+      "ack_count": 4,
+      "start_seconds": "2.020978996",
+      "stop_seconds": "2.021282032",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 38,
+      "address_7bit": "0x20",
+      "register": "0x63",
+      "value": "0x0021",
+      "payload_hex": "63 00 21",
+      "ack_count": 4,
+      "start_seconds": "2.021647284",
+      "stop_seconds": "2.021984856",
+      "duration_us": 337.572,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 39,
+      "address_7bit": "0x20",
+      "register": "0x64",
+      "value": "0x0021",
+      "payload_hex": "64 00 21",
+      "ack_count": 4,
+      "start_seconds": "2.022352928",
+      "stop_seconds": "2.022655964",
+      "duration_us": 303.036,
+      "preceding_idle_us": 368.072
+    },
+    {
+      "sequence": 40,
+      "address_7bit": "0x20",
+      "register": "0x6E",
+      "value": "0xC3FC",
+      "payload_hex": "6e c3 fc",
+      "ack_count": 4,
+      "start_seconds": "2.023021216",
+      "stop_seconds": "2.023324256",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 41,
+      "address_7bit": "0x20",
+      "register": "0x66",
+      "value": "0x0F00",
+      "payload_hex": "66 0f 00",
+      "ack_count": 4,
+      "start_seconds": "2.023689444",
+      "stop_seconds": "2.024027012",
+      "duration_us": 337.568,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 42,
+      "address_7bit": "0x20",
+      "register": "0x6C",
+      "value": "0x9990",
+      "payload_hex": "6c 99 90",
+      "ack_count": 4,
+      "start_seconds": "2.024395068",
+      "stop_seconds": "2.024698104",
+      "duration_us": 303.036,
+      "preceding_idle_us": 368.056
+    },
+    {
+      "sequence": 43,
+      "address_7bit": "0x20",
+      "register": "0x6D",
+      "value": "0x9580",
+      "payload_hex": "6d 95 80",
+      "ack_count": 4,
+      "start_seconds": "2.02506334",
+      "stop_seconds": "2.02536638",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 44,
+      "address_7bit": "0x20",
+      "register": "0x70",
+      "value": "0x26A0",
+      "payload_hex": "70 26 a0",
+      "ack_count": 4,
+      "start_seconds": "2.025731548",
+      "stop_seconds": "2.02606892",
+      "duration_us": 337.372,
+      "preceding_idle_us": 365.168
+    },
+    {
+      "sequence": 45,
+      "address_7bit": "0x20",
+      "register": "0x76",
+      "value": "0x0021",
+      "payload_hex": "76 00 21",
+      "ack_count": 4,
+      "start_seconds": "2.026438508",
+      "stop_seconds": "2.026741544",
+      "duration_us": 303.036,
+      "preceding_idle_us": 369.588
+    },
+    {
+      "sequence": 46,
+      "address_7bit": "0x20",
+      "register": "0x02",
+      "value": "0x103C",
+      "payload_hex": "02 10 3c",
+      "ack_count": 4,
+      "start_seconds": "2.027106784",
+      "stop_seconds": "2.02740982",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.24
+    },
+    {
+      "sequence": 47,
+      "address_7bit": "0x20",
+      "register": "0x04",
+      "value": "0x030C",
+      "payload_hex": "04 03 0c",
+      "ack_count": 4,
+      "start_seconds": "2.027774992",
+      "stop_seconds": "2.02811688",
+      "duration_us": 341.888,
+      "preceding_idle_us": 365.172
+    },
+    {
+      "sequence": 48,
+      "address_7bit": "0x20",
+      "register": "0x09",
+      "value": "0x6901",
+      "payload_hex": "09 69 01",
+      "ack_count": 4,
+      "start_seconds": "2.028482132",
+      "stop_seconds": "2.028785168",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 49,
+      "address_7bit": "0x20",
+      "register": "0x0A",
+      "value": "0x4200",
+      "payload_hex": "0a 42 00",
+      "ack_count": 4,
+      "start_seconds": "2.029150356",
+      "stop_seconds": "2.029453392",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 50,
+      "address_7bit": "0x20",
+      "register": "0x0B",
+      "value": "0xC03C",
+      "payload_hex": "0b c0 3c",
+      "ack_count": 4,
+      "start_seconds": "2.029818648",
+      "stop_seconds": "2.030160652",
+      "duration_us": 342.004,
+      "preceding_idle_us": 365.256
+    },
+    {
+      "sequence": 51,
+      "address_7bit": "0x20",
+      "register": "0x05",
+      "value": "0x0010",
+      "payload_hex": "05 00 10",
+      "ack_count": 4,
+      "start_seconds": "2.030525904",
+      "stop_seconds": "2.030828944",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 52,
+      "address_7bit": "0x20",
+      "register": "0x06",
+      "value": "0x0122",
+      "payload_hex": "06 01 22",
+      "ack_count": 4,
+      "start_seconds": "2.031194132",
+      "stop_seconds": "2.031497168",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 53,
+      "address_7bit": "0x20",
+      "register": "0x07",
+      "value": "0x01B2",
+      "payload_hex": "07 01 b2",
+      "ack_count": 4,
+      "start_seconds": "2.03189692",
+      "stop_seconds": "2.032204392",
+      "duration_us": 307.472,
+      "preceding_idle_us": 399.752
+    },
+    {
+      "sequence": 54,
+      "address_7bit": "0x20",
+      "register": "0x08",
+      "value": "0x001C",
+      "payload_hex": "08 00 1c",
+      "ack_count": 4,
+      "start_seconds": "2.03256958",
+      "stop_seconds": "2.032872616",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 55,
+      "address_7bit": "0x20",
+      "register": "0x0D",
+      "value": "0x1000",
+      "payload_hex": "0d 10 00",
+      "ack_count": 4,
+      "start_seconds": "2.033237804",
+      "stop_seconds": "2.03354084",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 56,
+      "address_7bit": "0x20",
+      "register": "0x0E",
+      "value": "0x4000",
+      "payload_hex": "0e 40 00",
+      "ack_count": 4,
+      "start_seconds": "2.033939196",
+      "stop_seconds": "2.034246668",
+      "duration_us": 307.472,
+      "preceding_idle_us": 398.356
+    },
+    {
+      "sequence": 57,
+      "address_7bit": "0x20",
+      "register": "0x14",
+      "value": "0x5A03",
+      "payload_hex": "14 5a 03",
+      "ack_count": 4,
+      "start_seconds": "2.034611836",
+      "stop_seconds": "2.034914876",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.168
+    },
+    {
+      "sequence": 58,
+      "address_7bit": "0x20",
+      "register": "0x15",
+      "value": "0x1708",
+      "payload_hex": "15 17 08",
+      "ack_count": 4,
+      "start_seconds": "2.035280112",
+      "stop_seconds": "2.035583148",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 59,
+      "address_7bit": "0x20",
+      "register": "0x17",
+      "value": "0x0210",
+      "payload_hex": "17 02 10",
+      "ack_count": 4,
+      "start_seconds": "2.03598122",
+      "stop_seconds": "2.036288692",
+      "duration_us": 307.472,
+      "preceding_idle_us": 398.072
+    },
+    {
+      "sequence": 60,
+      "address_7bit": "0x20",
+      "register": "0x20",
+      "value": "0x0000",
+      "payload_hex": "20 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.03665386",
+      "stop_seconds": "2.0369569",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.168
+    },
+    {
+      "sequence": 61,
+      "address_7bit": "0x20",
+      "register": "0x21",
+      "value": "0x0000",
+      "payload_hex": "21 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.037322136",
+      "stop_seconds": "2.037625172",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 62,
+      "address_7bit": "0x20",
+      "register": "0x22",
+      "value": "0x0000",
+      "payload_hex": "22 00 00",
+      "ack_count": 4,
+      "start_seconds": "2.038023476",
+      "stop_seconds": "2.038330948",
+      "duration_us": 307.472,
+      "preceding_idle_us": 398.304
+    },
+    {
+      "sequence": 63,
+      "address_7bit": "0x20",
+      "register": "0x23",
+      "value": "0x1DDC",
+      "payload_hex": "23 1d dc",
+      "ack_count": 4,
+      "start_seconds": "2.038696136",
+      "stop_seconds": "2.038999172",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 64,
+      "address_7bit": "0x20",
+      "register": "0x24",
+      "value": "0x1D5E",
+      "payload_hex": "24 1d 5e",
+      "ack_count": 4,
+      "start_seconds": "2.039364424",
+      "stop_seconds": "2.039667464",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 65,
+      "address_7bit": "0x20",
+      "register": "0x25",
+      "value": "0x1CE2",
+      "payload_hex": "25 1c e2",
+      "ack_count": 4,
+      "start_seconds": "2.040065852",
+      "stop_seconds": "2.04037332",
+      "duration_us": 307.468,
+      "preceding_idle_us": 398.388
+    },
+    {
+      "sequence": 66,
+      "address_7bit": "0x20",
+      "register": "0x26",
+      "value": "0x1C64",
+      "payload_hex": "26 1c 64",
+      "ack_count": 4,
+      "start_seconds": "2.040738508",
+      "stop_seconds": "2.041041544",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 67,
+      "address_7bit": "0x20",
+      "register": "0x27",
+      "value": "0x17D0",
+      "payload_hex": "27 17 d0",
+      "ack_count": 4,
+      "start_seconds": "2.041406732",
+      "stop_seconds": "2.041709772",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 68,
+      "address_7bit": "0x20",
+      "register": "0x28",
+      "value": "0x16D4",
+      "payload_hex": "28 16 d4",
+      "ack_count": 4,
+      "start_seconds": "2.042107656",
+      "stop_seconds": "2.042410696",
+      "duration_us": 303.04,
+      "preceding_idle_us": 397.884
+    },
+    {
+      "sequence": 69,
+      "address_7bit": "0x20",
+      "register": "0x29",
+      "value": "0x15DC",
+      "payload_hex": "29 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.042775948",
+      "stop_seconds": "2.043078988",
+      "duration_us": 303.04,
+      "preceding_idle_us": 365.252
+    },
+    {
+      "sequence": 70,
+      "address_7bit": "0x20",
+      "register": "0x2A",
+      "value": "0x15DC",
+      "payload_hex": "2a 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.043444224",
+      "stop_seconds": "2.04374726",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.236
+    },
+    {
+      "sequence": 71,
+      "address_7bit": "0x20",
+      "register": "0x2B",
+      "value": "0x15DC",
+      "payload_hex": "2b 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.044139316",
+      "stop_seconds": "2.044443284",
+      "duration_us": 303.968,
+      "preceding_idle_us": 392.056
+    },
+    {
+      "sequence": 72,
+      "address_7bit": "0x20",
+      "register": "0x2C",
+      "value": "0x15DC",
+      "payload_hex": "2c 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.044808456",
+      "stop_seconds": "2.045111492",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.172
+    },
+    {
+      "sequence": 73,
+      "address_7bit": "0x20",
+      "register": "0x2D",
+      "value": "0x15DC",
+      "payload_hex": "2d 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.045476648",
+      "stop_seconds": "2.045779684",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.156
+    },
+    {
+      "sequence": 74,
+      "address_7bit": "0x20",
+      "register": "0x2E",
+      "value": "0x15DC",
+      "payload_hex": "2e 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.046170788",
+      "stop_seconds": "2.046473824",
+      "duration_us": 303.036,
+      "preceding_idle_us": 391.104
+    },
+    {
+      "sequence": 75,
+      "address_7bit": "0x20",
+      "register": "0x2F",
+      "value": "0x15DC",
+      "payload_hex": "2f 15 dc",
+      "ack_count": 4,
+      "start_seconds": "2.046838996",
+      "stop_seconds": "2.047142032",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.172
+    },
+    {
+      "sequence": 76,
+      "address_7bit": "0x20",
+      "register": "0x72",
+      "value": "0x0653",
+      "payload_hex": "72 06 53",
+      "ack_count": 4,
+      "start_seconds": "2.049566428",
+      "stop_seconds": "2.049903964",
+      "duration_us": 337.536,
+      "preceding_idle_us": 2424.396
+    },
+    {
+      "sequence": 77,
+      "address_7bit": "0x20",
+      "register": "0x67",
+      "value": "0x1E40",
+      "payload_hex": "67 1e 40",
+      "ack_count": 4,
+      "start_seconds": "2.05025062",
+      "stop_seconds": "2.050553656",
+      "duration_us": 303.036,
+      "preceding_idle_us": 346.656
+    },
+    {
+      "sequence": 78,
+      "address_7bit": "0x20",
+      "register": "0x01",
+      "value": "0x8222",
+      "payload_hex": "01 82 22",
+      "ack_count": 4,
+      "start_seconds": "2.050918844",
+      "stop_seconds": "2.05122188",
+      "duration_us": 303.036,
+      "preceding_idle_us": 365.188
+    },
+    {
+      "sequence": 79,
+      "address_7bit": "0x20",
+      "register": "0x41",
+      "value": "0xC844",
+      "payload_hex": "41 c8 44",
+      "ack_count": 4,
+      "start_seconds": "2.051587136",
+      "stop_seconds": "2.051924724",
+      "duration_us": 337.588,
+      "preceding_idle_us": 365.256
+    },
+    {
+      "sequence": 80,
+      "address_7bit": "0x20",
+      "register": "0x40",
+      "value": "0x0207",
+      "payload_hex": "40 02 07",
+      "ack_count": 4,
+      "start_seconds": "2.052292728",
+      "stop_seconds": "2.052595764",
+      "duration_us": 303.036,
+      "preceding_idle_us": 368.004
+    }
+  ],
+  "timing_scope": "Decoder START-to-STOP and STOP-to-START timestamps; no power, bias or SPI channels in this CSV."
+}

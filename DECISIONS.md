@@ -31,3 +31,10 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Why:** This supplies reproducible complete images and a repeatable-update entry service without importing conflicting soundbox UART or board initializers. One UART owner avoids queued-frame races. Stock-template packaging preserves the known bootloader/layout while byte-identical no-op roundtrips and an independent decoder check its transforms. The clock default and all physical loader/boot behavior still require bench verification.
 - **Supersedes:** The UART implementation-pending status above and the earlier component-only build scope. Automatic radar startup remains pending captured supply/bias timing.
 - **Affects:** `firmware/target/br23/image/`, UART protocol/PC peer, compiler setup, image builder/packager, and `firmware/docs/IMAGE_BUILD.md`.
+
+## 2026-10-04 — Apply the captured radar profile at boot in recovered stock order
+
+- **Decision:** Enable supply with REXT low, wait at least 20 ms, apply the selected profile's first 75 writes, configure both SPI receivers, assert REXT, wait at least 3 ms, and apply the final five writes. Leave REXT asserted. The SDK timer has 10 ms resolution, so waits round up with a full tick of margin. A radar failure powers it down but preserves UART updating. Acquisition remains separate.
+- **Why:** The capture matches all 80 mode-2 writes, and stock code establishes late REXT assertion. Initial REXT low and the settling margins are engineering choices; the captured 2.424396 ms boundary includes SPI/GPIO work, and the stock 1000-loop argument has no established time unit. The user authorized using this evidence without requiring rail captures.
+- **Supersedes:** Earlier automatic-startup-disabled and capture-prerequisite decisions.
+- **Affects:** Startup, independent supply/bias control, SPI preparation, host failure tests, and image/experiment documentation. Target builds are not bench validation.

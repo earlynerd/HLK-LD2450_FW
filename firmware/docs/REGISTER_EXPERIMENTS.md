@@ -1,7 +1,7 @@
 # Register experiment firmware
 
-The next deliverable is a minimal bootable BR23 application that applies a
-chosen radar profile and reports its identity and initialization result.
+The BR23 application now applies the selected radar profile automatically
+and reports initialization success or failure on its debug UART.
 The logic analyzer can capture I2C and both radar SPI lanes directly, so this
 first application does not require implementing tracking or sustained sample
 transport to the PC.
@@ -23,12 +23,13 @@ transport to the PC.
   [IMAGE_BUILD.md](IMAGE_BUILD.md) for the current five CTest/twelve Python checks.
 
 `libld2450.a` is an SDK component, not a bootable or flashable image.
-`ld2450_app_start()` still initializes peripherals with radar power off.
-The explicit stage writer does not call itself from startup, sequence power or
-bias, insert settling delays, enforce PRE-before-POST, or arm acquisition.
-Those operations belong to the application integration below. In particular,
-the current convenience power API changes supply and bias together; reproducing
-the stock delayed bias operation needs separate control in the boot sequencer.
+`ld2450_app_start()` now sequences independent supply/REXT controls, minimum
+20 ms supply settling, writes 1..75, SPI receiver setup, REXT assertion,
+minimum 3 ms settling, then writes 76..80. A bus error aborts remaining writes
+and powers down the radar while preserving UART updating. The timing choices
+and evidence boundaries are described in [IMAGE_BUILD.md](IMAGE_BUILD.md).
+The stage writer remains separately callable; DMA arming and sustained
+acquisition are not part of the boot application.
 
 ## Select and build a profile
 
@@ -89,25 +90,18 @@ defaults to the conventional `C:/JL/pi32/bin`; `--toolchain` selects another
 installation. The compiler package and extracted files remain local cache
 inputs. No system installation or global PATH change was made.
 
-## Remaining radar application integration
+## Bench validation and subsequent acquisition work
 
-1. The minimal UART recovery image now links startup, clocks, RTOS, timer and
-   watchdog service, with stock soundbox board initialization excluded. Confirm
-   its clock/flash assumptions on the actual module.
-2. First boot a console/heartbeat application with radar power off. Establish
-   that the image can be loaded, boots, and can be replaced by stock firmware.
-3. Incorporate the measured supply/bias order and settling delays. Apply
-   sequences 1..75, set up/arm receivers, establish the captured bias/delay
-   operation, then apply sequences 76..80. A bus failure aborts startup; do not
-   issue the remaining enable writes. The stock delay argument 1000 is a loop
-   count, not a measured microsecond delay.
-4. Print profile name/table hash and write status. Capture a baseline first,
-   then change one setting or one coordinated group and compare the I2C/SPI
-   results. Add runtime profile commands after the baseline boot path works.
+The linked application implements the recovered startup ordering and the
+captured mode-2 register sequence. Clock/flash assumptions, physical loading,
+boot and radar output still need verification on the module. Capture a baseline
+first, then change one setting or one coordinated group and compare I2C/SPI
+results. Build provenance records the selected profile and table hash.
 
-The MCU oscillator/clock settings and the physical loading path still need
-verification on this board. Application linking and firmware packaging now
-work; device flashing and bench validation have not occurred.
+Continuous acquisition, synchronized SPI lanes, PC sample transport and
+runtime profile commands remain subsequent work. External logic-analyzer
+capture is sufficient for the first register experiments; rail captures are
+not a prerequisite for the implemented startup sequence.
 
 ## Loading paths to establish
 

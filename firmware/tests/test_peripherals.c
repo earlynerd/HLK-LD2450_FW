@@ -1,4 +1,5 @@
 #include "ld2450_peripherals.h"
+#include "ld2450_radar_init.h"
 #include "mock_sdk.h"
 #include "sdk_bridge.h"
 #include <stdio.h>
@@ -26,7 +27,7 @@ static void test_initialization(void)
     reset(); mock_iomap.CON1 = 0xffffffff;
     init();
     CHECK(ld2450_get_status().initialized && !ld2450_get_status().radar_powered);
-    CHECK(!ld2450_get_status().radar_configuration_known);
+    CHECK(!ld2450_get_status().radar_bias_enabled);
     CHECK(mock_gpio[34].value == 1 && mock_gpio[35].value == 0);
     CHECK(mock_gpio[34].output_calls == 1 && mock_gpio[35].output_calls == 1);
     for (p = 0; p < sizeof(input_pins); ++p) {
@@ -39,6 +40,9 @@ static void test_initialization(void)
     CHECK((mock_iomap.CON1 & ((1u << 4) | (1u << 16))) == 0);
     CHECK((mock_iomap.CON1 & (3u << 18)) == (1u << 18));
     CHECK((mock_iomap.CON1 & (1u << 31)) != 0); /* Unrelated mux is preserved. */
+    CHECK(!mock_spi[0].CON && !mock_spi[1].CON);
+    CHECK(!ld2450_get_status().spi_ready);
+    CHECK(ld2450_spi_prepare() == LD2450_OK);
     for (p = 0; p < 2; ++p) {
         uint32_t con = mock_spi[p].CON;
         CHECK(con & LD_SPI_ENABLE); CHECK(con & LD_SPI_SLAVE); CHECK(con & LD_SPI_RECEIVE);
@@ -51,7 +55,10 @@ static void test_initialization(void)
     CHECK(((uintptr_t)mock_uart_config[0].rx_cbuf & 3) == 0);
     CHECK(mock_uart_config[1].tx_pin == 9 && mock_uart_config[1].rx_pin == 255);
     CHECK(ld2450_peripherals_init(&cfg) == LD2450_BUSY);
+    CHECK(ld2450_radar_bias(1) == LD2450_NOT_READY);
     CHECK(ld2450_radar_power(1) == LD2450_OK);
+    CHECK(mock_gpio[34].value == 0 && mock_gpio[35].value == 0);
+    CHECK(ld2450_radar_bias(1) == LD2450_OK);
     CHECK(mock_gpio[34].value == 0 && mock_gpio[35].value == 1);
     CHECK(ld2450_radar_power(0) == LD2450_OK);
     CHECK(mock_gpio[34].value == 1 && mock_gpio[35].value == 0);
@@ -86,7 +93,10 @@ static void test_dma(void)
     CHECK(ld2450_spi_arm(0, buffers[0] + 1, 100) == LD2450_BAD_ARGUMENT);
     CHECK(ld2450_spi_arm(0, buffers[0], 0) == LD2450_BAD_ARGUMENT);
     CHECK(ld2450_spi_arm(0, buffers[0], 65536) == LD2450_BAD_ARGUMENT);
+    CHECK(ld2450_spi_arm(0, buffers[0], 2056) == LD2450_NOT_READY);
+    CHECK(ld2450_spi_prepare() == LD2450_OK);
     CHECK(ld2450_spi_arm(0, buffers[0], 2056) == LD2450_OK);
+    CHECK(ld2450_spi_prepare() == LD2450_BUSY);
     CHECK(ld2450_spi_arm(1, buffers[1], 2056) == LD2450_OK);
     CHECK(ld2450_get_status().dma_armed_mask == 3);
     CHECK(ld2450_spi_arm(0, buffers[0], 2056) == LD2450_BUSY);
@@ -144,9 +154,9 @@ static void test_uart_and_startup(void)
 {
     uint8_t tx[] = {0x01, 0xff}, rx[4];
     reset();
-    CHECK(ld2450_app_start() == LD2450_CONFIG_CAPTURE_REQUIRED);
-    CHECK(ld2450_get_status().initialized && !ld2450_get_status().radar_powered);
-    CHECK(!mock_i2c_event_count && mock_uart_tx_size[1] > 0);
+    CHECK(ld2450_app_start() == LD2450_OK);
+    CHECK(ld2450_get_status().initialized && ld2450_get_status().radar_powered);
+    CHECK(mock_i2c_event_count == 400 && mock_uart_tx_size[1] > 0);
     CHECK(ld2450_module_uart_write(tx, 2) == LD2450_OK);
     CHECK(mock_uart_tx_size[0] == 2 && !memcmp(tx, mock_uart_tx[0], 2));
     mock_uart_rx[0] = 0xaa; mock_uart_rx[1] = 0x55; mock_uart_rx_size = 2;
@@ -163,9 +173,65 @@ static void test_uart_and_startup(void)
     CHECK(ld2450_module_uart_write(tx, 2) == LD2450_NOT_READY);
 }
 
+static void test_radar_startup_order_and_failures(void)
+{
+    size_t n;
+    uint8_t byte = 0x55;
+    reset();
+    CHECK(ld2450_app_start() == LD2450_OK);
+    CHECK(mock_i2c_event_count == 400);
+    CHECK(mock_i2c_events[0].time - mock_gpio[34].changed_at >= 20);
+    CHECK(mock_gpio[35].spi_enabled == 3); /* Both configured BEFORE REXT high. */
+    CHECK(mock_i2c_events[375].time - mock_gpio[35].changed_at >= 3);
+    for (n = 0; n < 80; ++n) {
+        const struct mock_i2c_event *e = &mock_i2c_events[5 * n];
+        const struct ld2450_radar_write *w = &ld2450_build_radar_profile.writes[n];
+        CHECK(e[0].start && e[0].byte == 0x40 && e[4].stop);
+        CHECK(e[1].byte == w->reg && e[2].byte == (w->value >> 8) &&
+              e[3].byte == (w->value & 255));
+        CHECK(e[0].power && e[4].power);
+        CHECK(e[0].bias == (n >= 75) && e[4].bias == (n >= 75));
+        CHECK(e[0].spi_enabled == (n >= 75 ? 3 : 0));
+    }
+    CHECK(ld2450_get_status().radar_bias_enabled && ld2450_get_status().spi_ready);
+    CHECK(!ld2450_get_status().dma_armed_mask); /* Acquisition is a separate step. */
+    CHECK(!mock_gpio[17].output_calls);
+    for (n = 0; n < 320; ++n) {
+        reset(); mock_i2c_nack_on = (unsigned)n + 1;
+        CHECK(ld2450_app_start() == LD2450_I2C_NACK);
+        CHECK(mock_i2c_tx_count == n + 1); /* No subsequent writes after any NACK. */
+        CHECK(ld2450_get_status().initialized && !ld2450_get_status().radar_powered);
+        CHECK(mock_gpio[34].value == 1 && mock_gpio[35].value == 0);
+        CHECK(!mock_spi[0].CON && !mock_spi[1].CON);
+        CHECK(!mock_uart_close_count);
+        CHECK(ld2450_module_uart_write(&byte, 1) == LD2450_OK);
+    }
+    reset(); mock_i2c_stall = 1;
+    CHECK(ld2450_app_start() == LD2450_TIMEOUT);
+    CHECK(!ld2450_get_status().radar_powered);
+    CHECK(ld2450_module_uart_write(&byte, 1) == LD2450_OK);
+    reset(); mock_uart_fail_on = 1;
+    CHECK(ld2450_app_start() == LD2450_UART_UNAVAILABLE);
+    CHECK(!ld2450_get_status().initialized && !mock_i2c_event_count);
+    reset(); mock_time = UINT32_MAX - 5;
+    CHECK(ld2450_delay_ms(20) == LD2450_OK && mock_time < 40);
+    for (n = 0; n < 10; ++n) {
+        uint32_t start;
+        reset(); mock_timer_quantum = 10; mock_time = (uint32_t)n;
+        start = mock_time;
+        CHECK(ld2450_delay_ms(3) == LD2450_OK);
+        CHECK(mock_time - start >= 3 && mock_time - start <= 21);
+        start = mock_time;
+        CHECK(ld2450_delay_ms(20) == LD2450_OK);
+        CHECK(mock_time - start >= 20 && mock_time - start <= 31);
+    }
+    CHECK(ld2450_delay_ms(0) == LD2450_BAD_ARGUMENT);
+    CHECK(ld2450_delay_ms(1001) == LD2450_BAD_ARGUMENT);
+}
+
 int main(void)
 {
-    test_initialization(); test_dma(); test_i2c(); test_uart_and_startup();
+    test_initialization(); test_dma(); test_i2c(); test_uart_and_startup(); test_radar_startup_order_and_failures();
     puts("Validated pin ownership, mode/baud setup, rollback, dual DMA, I2C deadlines/recovery, UART, and startup status.");
     return 0;
 }

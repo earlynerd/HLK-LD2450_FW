@@ -7,9 +7,9 @@ JL_IIC_TypeDef mock_iic;
 JL_IOMAP_TypeDef mock_iomap;
 struct mock_gpio mock_gpio[64];
 struct uart_platform_data_t mock_uart_config[2];
-struct mock_i2c_event mock_i2c_events[64];
+struct mock_i2c_event mock_i2c_events[512];
 size_t mock_i2c_event_count;
-uint32_t mock_clock, mock_time;
+uint32_t mock_clock, mock_time, mock_timer_quantum;
 unsigned mock_uart_open_count, mock_uart_close_count, mock_uart_fail_on;
 unsigned mock_i2c_tx_count, mock_i2c_nack_on;
 uint8_t mock_i2c_stall, mock_i2c_read_data[32];
@@ -27,6 +27,7 @@ void mock_sdk_reset(void)
     memset(mock_i2c_events, 0, sizeof(mock_i2c_events));
     mock_clock = 24000000;
     mock_time = 0;
+    mock_timer_quantum = 1;
     mock_uart_open_count = mock_uart_close_count = mock_uart_fail_on = 0;
     mock_i2c_tx_count = mock_i2c_nack_on = 0;
     mock_i2c_event_count = mock_i2c_read_size = mock_i2c_read_index = 0;
@@ -42,20 +43,33 @@ int gpio_direction_output(uint32_t p, int v)
 {
     mock_gpio[p].direction = 0;
     mock_gpio[p].value = (uint8_t)v;
+    mock_gpio[p].changed_at = mock_time;
+    mock_gpio[p].spi_enabled = (mock_spi[0].CON & LD_SPI_ENABLE ? 1 : 0) |
+                               (mock_spi[1].CON & LD_SPI_ENABLE ? 2 : 0);
     ++mock_gpio[p].output_calls;
     return 0;
 }
 uint32_t gpio_read(uint32_t p) { return mock_gpio[p].value; }
 uint32_t clk_get(const char *name) { return strcmp(name, "lsb") ? 0 : mock_clock; }
-uint32_t timer_get_ms(void) { return mock_time++; }
+uint32_t timer_get_ms(void)
+{
+    uint32_t result = (mock_time / mock_timer_quantum) * mock_timer_quantum;
+    ++mock_time;
+    return result;
+}
 
 void mock_sdk_sync(void)
 {
     struct mock_i2c_event *e;
     uint16_t con = mock_iic.CON0;
     if (!(con & LD_I2C_GO) || mock_i2c_stall) { return; }
-    if (mock_i2c_event_count >= 64) { return; }
+    if (mock_i2c_event_count >= 512) { return; }
     e = &mock_i2c_events[mock_i2c_event_count++];
+    e->time = mock_time;
+    e->power = !mock_gpio[34].value;
+    e->bias = mock_gpio[35].value;
+    e->spi_enabled = (mock_spi[0].CON & LD_SPI_ENABLE ? 1 : 0) |
+                     (mock_spi[1].CON & LD_SPI_ENABLE ? 2 : 0);
     e->byte = mock_iic.BUF;
     e->start = (con & LD_I2C_START) != 0;
     e->stop = (con & LD_I2C_STOP) != 0;

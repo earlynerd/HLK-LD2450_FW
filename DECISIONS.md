@@ -38,3 +38,10 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Why:** The capture matches all 80 mode-2 writes, and stock code establishes late REXT assertion. Initial REXT low and the settling margins are engineering choices; the captured 2.424396 ms boundary includes SPI/GPIO work, and the stock 1000-loop argument has no established time unit. The user authorized using this evidence without requiring rail captures.
 - **Supersedes:** Earlier automatic-startup-disabled and capture-prerequisite decisions.
 - **Affects:** Startup, independent supply/bias control, SPI preparation, host failure tests, and image/experiment documentation. Target builds are not bench validation.
+
+## 2026-10-04 — Require explicit stock-to-custom and restoration compatibility
+
+- **Decision:** Treat installing over stock and restoring stock as required compatibility directions, not implied consequences of SDK protocol support. Accept both SDK START payload forms in the PC uploader. Keep stock entry unsupported until the version-specific wrapper and handoff are integrated and validated.
+- **Why:** The user expected both directions. V2.14 has a recovered configuration-command 0xB2 wrapper; V2.04 lacks that handler. Stock STOP/baud and zero-valued handoff pin fields need further interpretation. Restoring V2.04 also removes our application's UART entry service.
+- **Supersedes:** Any implication that the custom application/host pair alone establishes stock firmware interoperability.
+- **Affects:** UART updater, compatibility report and UART integration documentation. No device update was performed.

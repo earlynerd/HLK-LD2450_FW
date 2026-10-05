@@ -1,0 +1,30 @@
+{
+  "method": "Read-only static examination of hash-verified stock app.bin using pinned vendor llvm-objdump 2.5.2. Temporary ELF wrapper maps app bytes to 0x1e00120. Jump tables are data, not instructions.",
+  "device_accessed": false,
+  "sources": [
+    {
+      "version": "V2.14",
+      "application": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/files/app.bin",
+      "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc",
+      "selected_disassembly": "v214.asm",
+      "disassembly_sha256": "f902b3afe00aef4803a3f175c1fd3d90c986f284813f94c347dc5f5119e1d6af",
+      "uart_update_strings_present": true
+    },
+    {
+      "version": "V2.04",
+      "application": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/files/app.bin",
+      "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5",
+      "selected_disassembly": "v204.asm",
+      "disassembly_sha256": "0460261761c034075d256f014767d61a2c63f728e050ad3795798e761c56522b",
+      "uart_update_strings_present": false
+    }
+  ],
+  "v214_b2_dispatch": {
+    "command": "0x00B2",
+    "table_vma": "0x1e11e82",
+    "index": 18,
+    "entry": "0x1d9",
+    "handler_vma": "0x1e12234",
+    "gate_ram": "0x7390"
+  }
+}

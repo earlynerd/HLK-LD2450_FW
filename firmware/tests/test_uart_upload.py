@@ -38,5 +38,15 @@ class HostPeerTests(unittest.TestCase):
         self.assertEqual(p.reply(b'\x03\x02'),b'\x03\x02')
         self.assertEqual(p.error,2); self.assertFalse(p.complete)
 
+    def test_sdk_start_baud_confirmation(self):
+        peer=Peer(b'x'*1024,256000)
+        response=b'\x01'+struct.pack('<I',256000)
+        self.assertEqual(peer.reply(b'\x01'),response)
+        self.assertEqual(peer.reply(response),response)
+        self.assertEqual(peer.reply(b'\x01'+struct.pack('<I',9600)),response)
+        for baud in (0,9599,1000001,0xffffffff):
+            with self.assertRaises(ValueError):
+                peer.reply(b'\x01'+struct.pack('<I',baud))
+
 
 if __name__=='__main__': unittest.main()

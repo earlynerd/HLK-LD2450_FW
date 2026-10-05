@@ -44,7 +44,11 @@ class Peer:
     def reply(self, p):
         if not p: raise ValueError('Empty command')
         op=p[0]
-        if op==1 and len(p)==1:
+        if op==1 and len(p) in (1,5):
+            # The SDK/stock application sends START + current baud after
+            # changing baud; our application sends the opcode alone.
+            if len(p)==5 and not 9600<=struct.unpack_from('<I',p,1)[0]<=1000000:
+                raise ValueError('Invalid device START baud')
             self.started=True
             return b'\x01'+struct.pack('<I',self.baud)
         if not self.started: raise ValueError('Data before START')
@@ -81,7 +85,7 @@ def upload(port, peer, timeout=20.0):
         for p in parser.feed(data):
             reply=peer.reply(p)
             port.write(frame(reply)); port.flush(); last=time.monotonic()
-            if p==b'\x01' and port.baudrate!=peer.baud:
+            if p[0]==1 and port.baudrate!=peer.baud:
                 port.baudrate=peer.baud  # Reply sent at old baud; next START uses new baud.
             if peer.loader_staged and not announced:
                 print('Loader staged; waiting for its firmware requests.'); announced=True

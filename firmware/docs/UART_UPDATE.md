@@ -1,10 +1,11 @@
 # UART update integration investigation
 
-Status: 2026-10-04. The application-to-loader route is established from the
-pinned SDK source, its compiled library, and its bundled protocol specification.
-The BR23 ABI checks compile with the actual target compiler. No UART receiver
-has been added to our application, no complete application has been linked,
-and no device has been updated in this investigation.
+Status: 2026-10-04. Our application receiver, complete image builder and PC
+uploader are implemented and host-tested. Stock-to-custom serial installation
+and physical stock restoration are not yet verified. The
+[stock compatibility investigation](../../output/stock_uart_compatibility/report.md)
+finds a 0xB2 entry wrapper in V2.14 that is absent from the V2.04 command
+dispatcher, plus START negotiation and handoff details requiring attention.
 
 ## What runs where
 

@@ -1,0 +1,1185 @@
+{
+  "date": "2026-10-04",
+  "files": [
+    {
+      "path": "5o09fdkye1jo8.ufw",
+      "bytes": 1035776,
+      "sha256": "b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093"
+    },
+    {
+      "path": "DECISIONS.md",
+      "bytes": 3185,
+      "sha256": "87f2e97a842983a7e62ee64247aa0f95532bb2a2581b9268d3c50bbe5bd7ac05"
+    },
+    {
+      "path": "docs/radar_ic_and_internal_interfaces.md",
+      "bytes": 16304,
+      "sha256": "6a280fe62dbcad6f894887474ca84f381a1c6804f6599c3e80203ef15e875dcd"
+    },
+    {
+      "path": "firmware/.gitignore",
+      "bytes": 30,
+      "sha256": "d381319c197de149e20e6348af681915de05e74d26ac7e0e7a2f78832995fc1a"
+    },
+    {
+      "path": "firmware/CMakeLists.txt",
+      "bytes": 2942,
+      "sha256": "497719500124b7154895804da81a0365ecbbf918bbd256f9df8ae1f2b9bdfcd3"
+    },
+    {
+      "path": "firmware/config/radar_baseline_mode2.json",
+      "bytes": 96,
+      "sha256": "e57a49ba0ab0c240cbe38583a5828f7e9446f92a84ac60cef47f7ea622d2d0f2"
+    },
+    {
+      "path": "firmware/config/radar_no_idle_powerdown.json",
+      "bytes": 370,
+      "sha256": "02e6636158d305a79a40ea6f32e9f1509fcdeff239d6a417ed97b2a9ab88c1b9"
+    },
+    {
+      "path": "firmware/docs/CAPTURE_PLAN.md",
+      "bytes": 3022,
+      "sha256": "df2f71c6a4993e8fdfe818bedc499bb64d014e835da1b1b53102ab877ec9bb00"
+    },
+    {
+      "path": "firmware/docs/REGISTER_EXPERIMENTS.md",
+      "bytes": 7678,
+      "sha256": "1052355e7280ced007121bc17fa7741852720d9aba4d10b049ddd6b6351da701"
+    },
+    {
+      "path": "firmware/docs/UART_UPDATE.md",
+      "bytes": 11978,
+      "sha256": "313efcd01295e5c10daafeb5ec0cbf70f314f40c4a576c0872ef9417f6af21f0"
+    },
+    {
+      "path": "firmware/include/ld2450_peripherals.h",
+      "bytes": 2292,
+      "sha256": "4900454f00b9db868e46c1c383ec9304f67a75cc957cfd88e2f305782a63ce57"
+    },
+    {
+      "path": "firmware/include/ld2450_radar_init.h",
+      "bytes": 1588,
+      "sha256": "a291755ac60fbf7a0abd3711b6893403902968257e4a6d2b1834ed4b148d29e1"
+    },
+    {
+      "path": "firmware/include/radar_wire.h",
+      "bytes": 1000,
+      "sha256": "39e9b76afed201529a929573401f83af8248f7ac8879dcc6cb953a378e9f8e93"
+    },
+    {
+      "path": "firmware/README.md",
+      "bytes": 9602,
+      "sha256": "28dfc9cf3fac887a5ce027b22480a5c1ce2a5979f118c1025527bf867155ab3a"
+    },
+    {
+      "path": "firmware/sdk.lock.json",
+      "bytes": 1673,
+      "sha256": "cc051dc2bc8d8e535e364d54365de3c3c0dfbd96075cd5f35940827dfd5936b8"
+    },
+    {
+      "path": "firmware/src/app.c",
+      "bytes": 517,
+      "sha256": "63e348ceb40396bfee844a635029da33ae2524515778431333bcdb4932d7a5d1"
+    },
+    {
+      "path": "firmware/src/radar_init.c",
+      "bytes": 1664,
+      "sha256": "5689bfeafb6a449a9e353a236d35730db4f37733645802d428bb00f16576d377"
+    },
+    {
+      "path": "firmware/src/radar_wire.c",
+      "bytes": 2713,
+      "sha256": "64eb1ed8f27bf72884f5d2edb8dbdb63fef80281ea5a2940beb54d7faafd5352"
+    },
+    {
+      "path": "firmware/target/br23/peripherals.c",
+      "bytes": 10608,
+      "sha256": "57a88c4b91d802d560d9ca4d93129a25e406626e023bbf17a93c44bc04032a66"
+    },
+    {
+      "path": "firmware/target/br23/sdk_bridge.h",
+      "bytes": 1954,
+      "sha256": "3b844babc1adae37404fd2dea605cefd312ddf5eb39548aad208967cb21a433d"
+    },
+    {
+      "path": "firmware/tests/fixtures/boot.bin",
+      "bytes": 31908,
+      "sha256": "87f6c63b81e65387c0b920ba2b2a08aa5208144e71386c05d3f2b4abf3c32f7f"
+    },
+    {
+      "path": "firmware/tests/fixtures/manifest.json",
+      "bytes": 1123,
+      "sha256": "be3e2a3ec5f0488702fa34890c9a2cdfb88a146345a211f21faf276eccb4ed90"
+    },
+    {
+      "path": "firmware/tests/fixtures/steady-chirp0.bin",
+      "bytes": 2056,
+      "sha256": "f62648d4e90b32d099ab45698b94204b31efe046f3eb68b237f8ff56f487385f"
+    },
+    {
+      "path": "firmware/tests/fixtures/steady-chirp1.bin",
+      "bytes": 2056,
+      "sha256": "eef8307bc208a5f28848644bb3b89812f0a41c092eb0a9ce78421c337de2d702"
+    },
+    {
+      "path": "firmware/tests/mock_sdk.c",
+      "bytes": 3938,
+      "sha256": "c6290b55d250e085065930ebef5c189a87337cdd8afd230c3c9e05f2e8ecd6c2"
+    },
+    {
+      "path": "firmware/tests/mock_sdk.h",
+      "bytes": 2705,
+      "sha256": "db4741a7ea4069382ca4ac49480d46e084e6817eaf0c85086ae838c9c27adb2e"
+    },
+    {
+      "path": "firmware/tests/test_peripherals.c",
+      "bytes": 8613,
+      "sha256": "41f782c5a3f45591ff4faaa8e6a84fda928245113f09d5530ccfa5768a388137"
+    },
+    {
+      "path": "firmware/tests/test_radar_init.c",
+      "bytes": 4256,
+      "sha256": "043d60cf552f193ccdd95d9cd8d8b30b1b5c0e8733848e43604217c65b93d828"
+    },
+    {
+      "path": "firmware/tests/test_radar_wire.c",
+      "bytes": 2969,
+      "sha256": "e36e58112d1cffc5ea34ccbeba186b39ec03deb3df50a6bf3fa40708272068a6"
+    },
+    {
+      "path": "firmware/tests/test_tools.py",
+      "bytes": 6932,
+      "sha256": "e9d1d5eaaf5df95f848ff947107efab8dba863c63a5efea1810f912ed0749b34"
+    },
+    {
+      "path": "firmware/toolchain.lock.json",
+      "bytes": 1114,
+      "sha256": "bb7db4a1d76402f8d2a5b5c38a1c3823735e0cca69762aa4ab4506e45098173d"
+    },
+    {
+      "path": "firmware/tools/analyze_uart_update_sdk.py",
+      "bytes": 5279,
+      "sha256": "2544f78ae0afb1951d15fb59ec2ae5fd38c4fd1143a97066a4141fd48a05842d"
+    },
+    {
+      "path": "firmware/tools/build_br23.py",
+      "bytes": 5934,
+      "sha256": "23ebb82d02cec5046551442c956e1e6108188842abab8b42973377f156ef9567"
+    },
+    {
+      "path": "firmware/tools/extract_fixtures.py",
+      "bytes": 1955,
+      "sha256": "b17d39a2cf67fa94bad8e57d99b5faf847bb395b1103b5b0d21fb143aadcbe95"
+    },
+    {
+      "path": "firmware/tools/generate_radar_config.py",
+      "bytes": 9005,
+      "sha256": "dbd72b9101987ea6231f78bf9c3179e3313ac02d6c73fe258251c3a7e9b58802"
+    },
+    {
+      "path": "firmware/tools/setup_sdk.py",
+      "bytes": 5236,
+      "sha256": "aa80c0a4fa0d4c1abd7dda58f4bcdca365a808ca37cb3026ab152d293ced137f"
+    },
+    {
+      "path": "firmware/tools/test_host.py",
+      "bytes": 1780,
+      "sha256": "3596c4687d9a9117b364e34d153935c78fe7bd6da2ffa414765631a548439de5"
+    },
+    {
+      "path": "oncstzcza54pd.ufw",
+      "bytes": 1018880,
+      "sha256": "a1b090ccb9aeaede130bec24d4414c09b5aa85ba81020f6ce123d1c9d6b4a277"
+    },
+    {
+      "path": "output/evb1122_analysis/comparison.json",
+      "bytes": 3601,
+      "sha256": "9f8bf8db3d24607816b726d5894aec2b6bd2e7dfaedecea8b5047b5bc6f8e03f"
+    },
+    {
+      "path": "output/evb1122_analysis/register_write_table.csv",
+      "bytes": 36603,
+      "sha256": "8354b782b02f9fd6f6d2f21831c7980a4d1b683f3ffbbff84b16061977bac08e"
+    },
+    {
+      "path": "output/evb1122_analysis/register_write_table.json",
+      "bytes": 68579,
+      "sha256": "b0be3f396dbf3620176e06babb06822d7210d528765b49cafccc884a66cf7233"
+    },
+    {
+      "path": "output/evb1122_analysis/register_write_table.md",
+      "bytes": 43042,
+      "sha256": "a0a25e65fd38b7479539bb5601a4082fe64f1fbb4eacc864b27911294c985268"
+    },
+    {
+      "path": "output/evb1122_analysis/report.txt",
+      "bytes": 3840,
+      "sha256": "776914ba920c7fc499064a60bda9195a058e3dbf49caf6037ca3308a4f57b872"
+    },
+    {
+      "path": "output/radar_init/boot_log_comparison.json",
+      "bytes": 370,
+      "sha256": "04d87193c3a7c2aabc4010a34bf2ed456e26a7d2294181b0b720a2a0d8afd535"
+    },
+    {
+      "path": "output/radar_init/manifest.json",
+      "bytes": 127070,
+      "sha256": "612f2995c3e1c243fc421dfa06613e01ef38305545f46c3634f3953fab294213"
+    },
+    {
+      "path": "output/radar_init/mode_1_rom.bin",
+      "bytes": 320,
+      "sha256": "e7a64440dcd2c8fb74fab45d31b0fd3d25499b4ee5aaf9f8ad2818d6c97ecd1b"
+    },
+    {
+      "path": "output/radar_init/mode_1_rom_wire_inferred.bin",
+      "bytes": 320,
+      "sha256": "4ff03f70fdc0db98c3738365673b87922432883f4eb1bb63814495098f96d9a8"
+    },
+    {
+      "path": "output/radar_init/mode_2_ram_initial.bin",
+      "bytes": 320,
+      "sha256": "ff0a3715d077a864283e1222cf6746d9736749644bf5b5a4eb1ebd1fe89c5ec5"
+    },
+    {
+      "path": "output/radar_init/mode_2_ram_initial_wire_inferred.bin",
+      "bytes": 320,
+      "sha256": "a6f67669bd405bae6fdf4601eae304ddef6eb63c41c88df7ed1ed6d56d11fa91"
+    },
+    {
+      "path": "output/radar_init/provenance.json",
+      "bytes": 1523,
+      "sha256": "4afb2d52d38aac16275b49a10f6b01e0e515c3d7c8ee412c52b4b14a20a41d6e"
+    },
+    {
+      "path": "output/radar_init/radar_init_data.h",
+      "bytes": 7241,
+      "sha256": "eb7737c7a9843f76c88436db63228e7827162b80a013165fdd0501a9c82e18c5"
+    },
+    {
+      "path": "output/radar_init/report.txt",
+      "bytes": 10922,
+      "sha256": "d3b3d2bb5fb03257506a295b605653232269e3a6298832e6817f5aef2928866a"
+    },
+    {
+      "path": "output/radar_init/v204_init_disassembly.asm",
+      "bytes": 14578,
+      "sha256": "0ca4a8afef59e116451649ea793ba584092c6515b544f4ea1b5b061f0a56ee56"
+    },
+    {
+      "path": "output/radar_init/v204_init_disassembly.json",
+      "bytes": 50663,
+      "sha256": "f6ee419d42e146f30ac1b04f7379ff11bcebb75a45e63a4edf61e8289f3f3716"
+    },
+    {
+      "path": "output/radar_init/v214_init_disassembly.asm",
+      "bytes": 11722,
+      "sha256": "382658ddcf3e4c9909c1ac1be8bc239b1899e3c4aabc02deb93e799cd203af49"
+    },
+    {
+      "path": "output/radar_init/v214_init_disassembly.json",
+      "bytes": 40532,
+      "sha256": "d264e216afb5563c34016f335009dcd1515048e00155dade4ad3222e450448f9"
+    },
+    {
+      "path": "output/uart_update_analysis/library_excerpts.txt",
+      "bytes": 1373,
+      "sha256": "708454518019a543aeb94e33c6fb387dffa885b21a96f5e3af7a01fb2a83f088"
+    },
+    {
+      "path": "output/uart_update_analysis/manifest.json",
+      "bytes": 14992,
+      "sha256": "0a0c40743ce447f68ce3a184e58309de188b26526a4afdf2ff0492b715b319f6"
+    },
+    {
+      "path": "output/uart_update_analysis/update_symbols.txt",
+      "bytes": 45851,
+      "sha256": "4180f62923dc93fb8c237aaeb4394652c831b885ede107372c41ad28ea34eec9"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/blimit.bin",
+      "bytes": 144,
+      "sha256": "7fa66ccc25b3596c66e1ae30b94c86ff2dc51b61db0a59f59e753de77d661dfc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/blimit.bin.strings.tsv",
+      "bytes": 17,
+      "sha256": "ea9b506d586f44e7bb2abc179c16d8808473cd4b64b25618764b46e30e7c6f5b"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash.bin",
+      "bytes": 196608,
+      "sha256": "c97d5176db75a5b717a21e5ed42ea1d6dd7f95d3a1cf957efd9644386fab87fa"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash.bin.strings.tsv",
+      "bytes": 15357,
+      "sha256": "69810c3cc5f96ec41054b4e53e57a67d35ed692b130407047dd02dd148d34007"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash2.bin",
+      "bytes": 192768,
+      "sha256": "0904d11faa6e2c1a0c78d36607bc12d398a0196a33125b4d41ee0977472b36e1"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash2.bin.strings.tsv",
+      "bytes": 15357,
+      "sha256": "09745b3d0fc5030db755d85e48d2b174c414710f80c6b4faaed32c261ef9c8c3"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash3.bin",
+      "bytes": 196608,
+      "sha256": "b94c07256ded99b6ac00b5cf265bfe6cd47b1869672f9023ac9a98e210732e81"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash3.bin.strings.tsv",
+      "bytes": 15357,
+      "sha256": "69810c3cc5f96ec41054b4e53e57a67d35ed692b130407047dd02dd148d34007"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash4.bin",
+      "bytes": 192768,
+      "sha256": "6ac146765e44847ffb84d1aeb16e05b50c7870ed0fe7af31d5349146520f0d9b"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/flash4.bin.strings.tsv",
+      "bytes": 15357,
+      "sha256": "09745b3d0fc5030db755d85e48d2b174c414710f80c6b4faaed32c261ef9c8c3"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/info.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/isd_config.ini",
+      "bytes": 662,
+      "sha256": "ba01f2331089e2b1b46dc4bc3e25d345ddc966a301788198a06e07d7dbe3a0e8"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/isd_config.ini.strings.tsv",
+      "bytes": 137,
+      "sha256": "9a8476c103ad5ff212bcf8d44f42467e25266e0540a703ca0ac69699418351e5"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/ota.bin",
+      "bytes": 255045,
+      "sha256": "9d4b9e1bbc735a8709b714c2b02954e312e131f3e5930a0c2ce7a03b1e0b8a56"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/ota.bin.strings.tsv",
+      "bytes": 15248,
+      "sha256": "ce2c432cb92a14871c70aba1b098c6af6bb6ce82f36c5366c0b4205446d2337c"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/script.ver",
+      "bytes": 27,
+      "sha256": "de435676b9e831ec7d0d209c812143111351cabe167e36acabe2e5d07ad695b0"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/tail.bin",
+      "bytes": 64,
+      "sha256": "a6206d3b1193b420ea1ae18d570acc801452facbabdbf4d5550856efa25f441e"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/components/tail.bin.strings.tsv",
+      "bytes": 33,
+      "sha256": "ee60209a1999d25f9e4386036ff4aa7ad18c794056f7d0688f494f08636f730e"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/decode_log.txt",
+      "bytes": 1522,
+      "sha256": "958012a1eb7828f04969f11bc5a00dedd7f9100a7b5f810609299bbfceac1679"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/decoded_flash.bin",
+      "bytes": 196608,
+      "sha256": "38f28e7846da6256be793ee6bf3f915df5adbd2970af9b0e0c32f3c9073ae456"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 34586,
+      "sha256": "5ab7e96e00634ed23085841d0e4c539b91e862c14eb8a0222025da65137235a4"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/files/app.bin",
+      "bytes": 182760,
+      "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/files/app.bin.strings.tsv",
+      "bytes": 33263,
+      "sha256": "b8f70ea4995b43b7a66a3ccbe4cafde0a0a3b15b7edaf677546fa8bca0a22706"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/info.json",
+      "bytes": 598,
+      "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/decode_log.txt",
+      "bytes": 1521,
+      "sha256": "9b98f927788b248e73173d59bf944fdb05a891ca4664460a7b638cd3d5958a4c"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/decoded_flash.bin",
+      "bytes": 192768,
+      "sha256": "ed9e4fa75d403ece2abafc61f5d5bb92b2974d73887b0bf687f54d8f44c0d0f4"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 34587,
+      "sha256": "93ab9f63d3625ed8cebbd2b550ecfe7053542c4a9c9621bf52f964f77f24be66"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/files/app.bin",
+      "bytes": 182760,
+      "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/files/app.bin.strings.tsv",
+      "bytes": 33263,
+      "sha256": "b8f70ea4995b43b7a66a3ccbe4cafde0a0a3b15b7edaf677546fa8bca0a22706"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/info.json",
+      "bytes": 598,
+      "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash2.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/decode_log.txt",
+      "bytes": 1522,
+      "sha256": "4d16c6876cbedaf64b88fde93edf5074eaeb2f50e2bb2caa6705ec09aeba1a08"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/decoded_flash.bin",
+      "bytes": 196608,
+      "sha256": "0a05a38d6951675e911ed4444d9a0bb039f13a6a652e611d9b0061c58c2ba903"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 34586,
+      "sha256": "5ab7e96e00634ed23085841d0e4c539b91e862c14eb8a0222025da65137235a4"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/files/app.bin",
+      "bytes": 182760,
+      "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/files/app.bin.strings.tsv",
+      "bytes": 33263,
+      "sha256": "b8f70ea4995b43b7a66a3ccbe4cafde0a0a3b15b7edaf677546fa8bca0a22706"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/info.json",
+      "bytes": 598,
+      "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash3.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/decode_log.txt",
+      "bytes": 1521,
+      "sha256": "7973570bd973c40eb69c27e8c596e826b4292381cfbabc72bc669f2a39b8014b"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/decoded_flash.bin",
+      "bytes": 192768,
+      "sha256": "2b18bf2d7a4893f505c59403c25f5c162132db74e8c0c73cbf18c305285251ea"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 34587,
+      "sha256": "93ab9f63d3625ed8cebbd2b550ecfe7053542c4a9c9621bf52f964f77f24be66"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/files/app.bin",
+      "bytes": 182760,
+      "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/files/app.bin.strings.tsv",
+      "bytes": 33263,
+      "sha256": "b8f70ea4995b43b7a66a3ccbe4cafde0a0a3b15b7edaf677546fa8bca0a22706"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/info.json",
+      "bytes": 598,
+      "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash4.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/ble_app_ota.bin",
+      "bytes": 59267,
+      "sha256": "995340716083fba0d00558caed0321128a5241b5fe0d49d203ec3ea0a4f640a9"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/ble_app_ota.bin.strings.tsv",
+      "bytes": 3680,
+      "sha256": "91f7ea551a30ceeda0a7a34a2aa02290a0483bd7da9def9460d6a5d34aec473f"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/ble_ota.bin",
+      "bytes": 42565,
+      "sha256": "68ed0c749d5630eea25da1bab8a2b2a7a5c0aac24fb841aaa6c1c96bfbd92216"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/ble_ota.bin.strings.tsv",
+      "bytes": 2735,
+      "sha256": "cd9bd463f8324257e8886e43fdc73644883acabaec5284e10fa8e66d1b22dc91"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/edr_ota2.bin",
+      "bytes": 36143,
+      "sha256": "53025a7cef51af7aed704201dbee43ee360714f5296275f83bf007797c3a7ed2"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/edr_ota2.bin.strings.tsv",
+      "bytes": 2247,
+      "sha256": "81b8ff154c6d522d57b1852bbffc7f7138b416d692dd62b292fd9fd7b87d2034"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/lcflash_ota.bin",
+      "bytes": 16335,
+      "sha256": "149a0a77d07e7584558e089e5b3b3dfa0e9fb21633f8f93b93ff1b108633c8fe"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/lcflash_ota.bin.strings.tsv",
+      "bytes": 812,
+      "sha256": "756249d262454575d3dd929308ca76ce1b932d372482668c66a2026834f0938c"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/nor_ota.bin",
+      "bytes": 16588,
+      "sha256": "4a8d6e15f2007f746aeec7f6fec8622a3c13fbc0840e6debb919182459528f74"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/nor_ota.bin.strings.tsv",
+      "bytes": 825,
+      "sha256": "704860d76418d5b43c6ac563bacd3f133177eac034accfe2da95fe6da2bb8759"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/sd_update2.bin",
+      "bytes": 22580,
+      "sha256": "8d1d4cf5d9ba8701fc7be4bace2d28198ca82a0d0a005999ccb3a171bf7c8d1b"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/sd_update2.bin.strings.tsv",
+      "bytes": 1159,
+      "sha256": "7ffc2132e9a78a347ef746a22adb924e276805827bb3db2845951fefae52fcff"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/uart_update.bin",
+      "bytes": 20040,
+      "sha256": "e66fd0001e2a97ec8406e7d38254d059a87cfb59ae55c492ff087cbe8d54bd10"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/uart_update.bin.strings.tsv",
+      "bytes": 1218,
+      "sha256": "30022d8c12d480ace9cee3fbd58d443c31b2b73cb113c123c5233cf656cd5363"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/uart_user.bin",
+      "bytes": 18212,
+      "sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/uart_user.bin.strings.tsv",
+      "bytes": 864,
+      "sha256": "16e431306d916db0e76384bd3fe089c6202d150ee11168bffcaacb3bcdf38faa"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/usb_update2.bin",
+      "bytes": 22727,
+      "sha256": "096eaef11593b81719421a43bb3bb4d8ffa8f014fd657a5e19f0135dc8198c25"
+    },
+    {
+      "path": "output/ufw_analysis/5o09fdkye1jo8/ota_loaders/usb_update2.bin.strings.tsv",
+      "bytes": 1102,
+      "sha256": "e617a16d304b7d36e0a2fb56e5881440fc8430d35d3c10a3cbe137486653e8c9"
+    },
+    {
+      "path": "output/ufw_analysis/application_comparison.json",
+      "bytes": 11430,
+      "sha256": "8365f812ad81c4e7b1d448df10ddce71445802c2567ed811f8e7d8adf0e15f3f"
+    },
+    {
+      "path": "output/ufw_analysis/manifest.json",
+      "bytes": 45744,
+      "sha256": "442cfb07ef1710fe29c7cb9017632d2c35e0a336beda6313ea9926d61dc1751a"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/blimit.bin",
+      "bytes": 144,
+      "sha256": "086ade9bf11199e393c29b5771d2fcb9871b1136fde3ff8855e13c680b7bd512"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/blimit.bin.strings.tsv",
+      "bytes": 17,
+      "sha256": "ea9b506d586f44e7bb2abc179c16d8808473cd4b64b25618764b46e30e7c6f5b"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash.bin",
+      "bytes": 192512,
+      "sha256": "faddb233625c7f69215f6ffdafe26f3ebe01cc24b8e36f7df05edbf476585fdc"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash.bin.strings.tsv",
+      "bytes": 14000,
+      "sha256": "99b3d22e95e964af4f8cdad609637f8b6873c8bd763c0c6e8a3e5276c94082e4"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash2.bin",
+      "bytes": 188416,
+      "sha256": "79732b0a75161eaf74bae0be08e27cb4ce66483a3e8907270fafa7d1aad0946c"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash2.bin.strings.tsv",
+      "bytes": 14000,
+      "sha256": "b3815c2e862ab73c70026e746e162f523309ae88f840545f7f979a5309d975e5"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash3.bin",
+      "bytes": 192512,
+      "sha256": "d92a9a197694892b9fd85ed5f12ed7be01d6f3cd028321f6176ae0756995a49d"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash3.bin.strings.tsv",
+      "bytes": 14000,
+      "sha256": "99b3d22e95e964af4f8cdad609637f8b6873c8bd763c0c6e8a3e5276c94082e4"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash4.bin",
+      "bytes": 188416,
+      "sha256": "b0a737433909c70bfc5837edcb1a4dd50738bc32f0f22e4841d33882f13fc6c4"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/flash4.bin.strings.tsv",
+      "bytes": 14000,
+      "sha256": "b3815c2e862ab73c70026e746e162f523309ae88f840545f7f979a5309d975e5"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/info.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/isd_config.ini",
+      "bytes": 659,
+      "sha256": "6cb4c635f509d11474adddef48146bc33a4df8706fe022ce4475fcc9fe5b32c4"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/isd_config.ini.strings.tsv",
+      "bytes": 49,
+      "sha256": "002da01cbf9f448cdce0309df46d8244506e806151f5208b65b7a275a3f2adcc"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/ota.bin",
+      "bytes": 255045,
+      "sha256": "9d4b9e1bbc735a8709b714c2b02954e312e131f3e5930a0c2ce7a03b1e0b8a56"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/ota.bin.strings.tsv",
+      "bytes": 15248,
+      "sha256": "ce2c432cb92a14871c70aba1b098c6af6bb6ce82f36c5366c0b4205446d2337c"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/script.ver",
+      "bytes": 27,
+      "sha256": "48ce0b28b7a494d54b44a76be0ae29697ceb23eb28a943ac9a9130b214651d6b"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/tail.bin",
+      "bytes": 64,
+      "sha256": "a6206d3b1193b420ea1ae18d570acc801452facbabdbf4d5550856efa25f441e"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/components/tail.bin.strings.tsv",
+      "bytes": 33,
+      "sha256": "ee60209a1999d25f9e4386036ff4aa7ad18c794056f7d0688f494f08636f730e"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/decode_log.txt",
+      "bytes": 1522,
+      "sha256": "7e8e9cee930a9b0afae15e28cc7dc2afb820bd63df08ee04a6a0d3efab81edf1"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/decoded_flash.bin",
+      "bytes": 192512,
+      "sha256": "ec55d674aabfddc744dd10584e1870458a43bc7663bcf7d392544d962f0a9a19"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 33367,
+      "sha256": "38245394e623edcc781ad1bef0079f95e125852a5ee650d3ec556420769a27a1"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/files/app.bin",
+      "bytes": 178308,
+      "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/files/app.bin.strings.tsv",
+      "bytes": 32044,
+      "sha256": "038bc521aa53561480f2a74b91f3cd24a71333fb66961ba9d3744c2f2d078fba"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/info.json",
+      "bytes": 598,
+      "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/decode_log.txt",
+      "bytes": 1521,
+      "sha256": "04d669ad640a3cb817c4acc461f693604ccda092713c97b459dad8ba6ba2e5b3"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/decoded_flash.bin",
+      "bytes": 188416,
+      "sha256": "cb393cb2389583ada878aef953aea0ab0c65e6e484e0fee1a1c89febca0e9eb6"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 33368,
+      "sha256": "0c65073a39b5aed9adb5c3a20fdb6bfb50184b285451fcb78e2f97107786ac62"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/files/app.bin",
+      "bytes": 178308,
+      "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/files/app.bin.strings.tsv",
+      "bytes": 32044,
+      "sha256": "038bc521aa53561480f2a74b91f3cd24a71333fb66961ba9d3744c2f2d078fba"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/info.json",
+      "bytes": 598,
+      "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash2.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/decode_log.txt",
+      "bytes": 1522,
+      "sha256": "05a630c12eada0dfadd501a9bdc0065ee85a21cebf5e2688ef4552299b68905d"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/decoded_flash.bin",
+      "bytes": 192512,
+      "sha256": "403a70d09f7e6f7f35d244d019cbe44c58c61d39297a228c6a6d7544e3a5cfb8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 33367,
+      "sha256": "38245394e623edcc781ad1bef0079f95e125852a5ee650d3ec556420769a27a1"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/files/app.bin",
+      "bytes": 178308,
+      "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/files/app.bin.strings.tsv",
+      "bytes": 32044,
+      "sha256": "038bc521aa53561480f2a74b91f3cd24a71333fb66961ba9d3744c2f2d078fba"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/info.json",
+      "bytes": 598,
+      "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash3.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/decode_log.txt",
+      "bytes": 1521,
+      "sha256": "c6f7dfe61812ac95d21722bb5b01d78da816445080eb3656aeafcf141db19e33"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/decoded_flash.bin",
+      "bytes": 188416,
+      "sha256": "5fdef69b346a679976f1d11be0ea1f9e0198af0dc9d6ee7d4bd9b7773eeef749"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/decoded_flash.bin.strings.tsv",
+      "bytes": 33368,
+      "sha256": "0c65073a39b5aed9adb5c3a20fdb6bfb50184b285451fcb78e2f97107786ac62"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/files/app.bin",
+      "bytes": 178308,
+      "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/files/app.bin.strings.tsv",
+      "bytes": 32044,
+      "sha256": "038bc521aa53561480f2a74b91f3cd24a71333fb66961ba9d3744c2f2d078fba"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/files/cfg_tool.bin",
+      "bytes": 916,
+      "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/files/cfg_tool.bin.strings.tsv",
+      "bytes": 442,
+      "sha256": "a5452cfe5a15f4f9a2e5ae08ba8c8b0c8d0827267ab7946048afb7c748732642"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/info.json",
+      "bytes": 598,
+      "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/top/isd_config.ini",
+      "bytes": 137,
+      "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/top/isd_config.ini.strings.tsv",
+      "bytes": 131,
+      "sha256": "34c3dd56cd4cb0071fa9a633de3a150ae1ff54425246b2761058ec95b8e308c3"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/top/uboot.boot",
+      "bytes": 8168,
+      "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash4.bin/top/uboot.boot.strings.tsv",
+      "bytes": 616,
+      "sha256": "af319c99c467d790688b3849fc971a701ca023b4371440e387279f53c3105375"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/ble_app_ota.bin",
+      "bytes": 59267,
+      "sha256": "995340716083fba0d00558caed0321128a5241b5fe0d49d203ec3ea0a4f640a9"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/ble_app_ota.bin.strings.tsv",
+      "bytes": 3680,
+      "sha256": "91f7ea551a30ceeda0a7a34a2aa02290a0483bd7da9def9460d6a5d34aec473f"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/ble_ota.bin",
+      "bytes": 42565,
+      "sha256": "68ed0c749d5630eea25da1bab8a2b2a7a5c0aac24fb841aaa6c1c96bfbd92216"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/ble_ota.bin.strings.tsv",
+      "bytes": 2735,
+      "sha256": "cd9bd463f8324257e8886e43fdc73644883acabaec5284e10fa8e66d1b22dc91"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/edr_ota2.bin",
+      "bytes": 36143,
+      "sha256": "53025a7cef51af7aed704201dbee43ee360714f5296275f83bf007797c3a7ed2"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/edr_ota2.bin.strings.tsv",
+      "bytes": 2247,
+      "sha256": "81b8ff154c6d522d57b1852bbffc7f7138b416d692dd62b292fd9fd7b87d2034"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/lcflash_ota.bin",
+      "bytes": 16335,
+      "sha256": "149a0a77d07e7584558e089e5b3b3dfa0e9fb21633f8f93b93ff1b108633c8fe"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/lcflash_ota.bin.strings.tsv",
+      "bytes": 812,
+      "sha256": "756249d262454575d3dd929308ca76ce1b932d372482668c66a2026834f0938c"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/nor_ota.bin",
+      "bytes": 16588,
+      "sha256": "4a8d6e15f2007f746aeec7f6fec8622a3c13fbc0840e6debb919182459528f74"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/nor_ota.bin.strings.tsv",
+      "bytes": 825,
+      "sha256": "704860d76418d5b43c6ac563bacd3f133177eac034accfe2da95fe6da2bb8759"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/sd_update2.bin",
+      "bytes": 22580,
+      "sha256": "8d1d4cf5d9ba8701fc7be4bace2d28198ca82a0d0a005999ccb3a171bf7c8d1b"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/sd_update2.bin.strings.tsv",
+      "bytes": 1159,
+      "sha256": "7ffc2132e9a78a347ef746a22adb924e276805827bb3db2845951fefae52fcff"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/uart_update.bin",
+      "bytes": 20040,
+      "sha256": "e66fd0001e2a97ec8406e7d38254d059a87cfb59ae55c492ff087cbe8d54bd10"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/uart_update.bin.strings.tsv",
+      "bytes": 1218,
+      "sha256": "30022d8c12d480ace9cee3fbd58d443c31b2b73cb113c123c5233cf656cd5363"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/uart_user.bin",
+      "bytes": 18212,
+      "sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/uart_user.bin.strings.tsv",
+      "bytes": 864,
+      "sha256": "16e431306d916db0e76384bd3fe089c6202d150ee11168bffcaacb3bcdf38faa"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/usb_update2.bin",
+      "bytes": 22727,
+      "sha256": "096eaef11593b81719421a43bb3bb4d8ffa8f014fd657a5e19f0135dc8198c25"
+    },
+    {
+      "path": "output/ufw_analysis/oncstzcza54pd/ota_loaders/usb_update2.bin.strings.tsv",
+      "bytes": 1102,
+      "sha256": "e617a16d304b7d36e0a2fb56e5881440fc8430d35d3c10a3cbe137486653e8c9"
+    },
+    {
+      "path": "output/ufw_analysis/report.txt",
+      "bytes": 9561,
+      "sha256": "847ace8449f481b02015b6499043c36b0a56d98f6a257c29dac0610118cab2c2"
+    },
+    {
+      "path": "tools/analyze_ufw.py",
+      "bytes": 14316,
+      "sha256": "242cc6dff26ae177ee000343526402ec2fc04793216fedd624266c70442b56e0"
+    },
+    {
+      "path": "tools/build_radar_register_table.py",
+      "bytes": 29998,
+      "sha256": "ed009239ed3c70a8fe50d91b9cbe42805a03e606514635936c9259bcce81f4f9"
+    },
+    {
+      "path": "tools/build_radar_register_workbook.mjs",
+      "bytes": 13793,
+      "sha256": "5d24c29bc3b7e0f4921c247bd77910fa2ef7a8542ff545bfbc57a9b71fc593a2"
+    },
+    {
+      "path": "tools/compare_evb1122_registers.py",
+      "bytes": 9667,
+      "sha256": "86e59fdb17866442e00c88ab4e1bec88c2048880e93b3eba4b5da90b60a66617"
+    },
+    {
+      "path": "tools/extract_radar_init.py",
+      "bytes": 25272,
+      "sha256": "d452f9b699846fa89bb88173a1c9cea7da127ce7ea5fee00d031daa68ee49691"
+    },
+    {
+      "path": "tools/replay_saleae_ld2450.py",
+      "bytes": 8140,
+      "sha256": "9d30e35179825cdd7d74255a130fc1a829299eeab05414aa34decac3edaa5518"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "method": "static table extraction, RAM initializer mapping, selected PI32v2 disassembly",
+  "processor_source": "https://github.com/virtualabs/ghidra-jieli",
+  "processor_source_commit": "8b7d50bef0dd15b1d56d668b75eb07d55b4cd92e",
+  "pypcode_version": "4.0.0",
+  "sleigh_compatibility_changes": [
+    "Empty display-string prefix before constructor concatenation",
+    "Omit variable repeat delay-slot semantic statement; disassembly only"
+  ],
+  "script_sha256": "d452f9b699846fa89bb88173a1c9cea7da127ce7ea5fee00d031daa68ee49691",
+  "wheel_sha256": "9e5ff5796d5b9c99a0bc93072a3ea22f0ddf52c9d80948e15f4f8ed7d2f3beba",
+  "patched_main_sha256": "984f79c5154a789fe57bc6fc9ef729d3beaed8532df46dd32ad5a6cc68db5549",
+  "patched_flow_sha256": "b82368aa08d952ba991f3045f7ba7376eb8df323ccd0a2e1b25a911963b4b5de",
+  "compiled_sla_sha256": "a6f3dec993e7c31f104b5c8619571f36f2629a1c282f587f4e98c86a4a37e6b0",
+  "disassembly": [
+    {
+      "version": "V2.04",
+      "regions": 9,
+      "instructions": 267,
+      "undecoded": 0,
+      "json": "v204_init_disassembly.json",
+      "asm": "v204_init_disassembly.asm",
+      "asm_sha256": "0ca4a8afef59e116451649ea793ba584092c6515b544f4ea1b5b061f0a56ee56"
+    },
+    {
+      "version": "V2.14",
+      "regions": 7,
+      "instructions": 215,
+      "undecoded": 0,
+      "json": "v214_init_disassembly.json",
+      "asm": "v214_init_disassembly.asm",
+      "asm_sha256": "382658ddcf3e4c9909c1ac1be8bc239b1899e3c4aabc02deb93e799cd203af49"
+    }
+  ]
+}

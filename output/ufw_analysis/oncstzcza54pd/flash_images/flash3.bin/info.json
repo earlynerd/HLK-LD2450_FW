@@ -1,0 +1,31 @@
+{
+  "format": "jl-new-fw",
+  "base-offset": 0,
+  "spl": {
+    "file": "top\\uboot.boot",
+    "compressed": false
+  },
+  "chip-key": 43023,
+  "entry-point": 31457568,
+  "app-files": [
+    "files\\app.bin",
+    "files\\cfg_tool.bin"
+  ],
+  "validated_inner_entry_headers": 11,
+  "regular_file_crc_checks": [
+    {
+      "name": "app.bin",
+      "size": 178308,
+      "expected": 45159,
+      "actual": 45159,
+      "valid": true
+    },
+    {
+      "name": "cfg_tool.bin",
+      "size": 916,
+      "expected": 21661,
+      "actual": 21661,
+      "valid": true
+    }
+  ]
+}

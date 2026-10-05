@@ -1,0 +1,13 @@
+{
+  "name": "mode2-no-idle-powerdown-candidate",
+  "base_profile": "mode_2_ram_initial",
+  "overrides": [
+    {
+      "sequence": 79,
+      "register": "0x41",
+      "expected": "0xC844",
+      "value": "0xC854",
+      "reason": "Candidate experiment: set bit 4 to disable automatic frame-idle power-down, assuming the ICL1122/S5KM312CL definition applies."
+    }
+  ]
+}

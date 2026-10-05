@@ -1,0 +1,26 @@
+# Decision Log
+
+Forward-facing, append-only record of architectural and behavioral decisions for this project. Search this file when structural history can affect the task; newer applicable decisions supersede conflicting older statements.
+
+When a decision is reversed or superseded, append a new entry rather than rewriting the old one.
+
+## 2026-10-03 — Start a BR23 firmware component from the observed interfaces
+
+- **Decision:** Target the likely AC695N/AC6956C using the pinned JieLi BR23 SDK and the RD-03D-derived pin map. Initialize dual receive-only SPI, I2C, module/debug UARTs, and power/bias GPIOs; keep radar power off at startup until configuration traffic is captured. Use direct SPI initialization because the stock driver configures PB1/RESET as an output. CS remains a separately observed input. Provide one-shot DMA and a portable DS RAW record decoder, retaining short boot I/Q as unvalidated.
+- **Why:** The schematic and captures support peripheral setup now, while register initialization, continuous acquisition, and tracking require further evidence. Separate the host-tested component from the SDK image-link and hardware validation stages.
+- **Supersedes:** (initial)
+- **Affects:** `firmware/`, internal interface reference, future radar boot/acquisition implementation.
+
+## 2026-10-04 — Build configurable radar initialization components
+
+- **Decision:** Generate firmware register profiles from the recovered stock tables plus guarded, one-based write-occurrence overrides. Preserve the 75/5 split and provide an explicit fail-fast I2C stage writer. Use the signed official toolchain unpacked into the project cache for target compilation; keep automatic radar startup disabled pending measured power/bias timing and application integration.
+- **Why:** Register experiments need reproducible custom builds, and repeated register addresses must retain their startup roles. The first bootable test application can use the logic analyzer for sample observation while application linking and a board-specific loading method are established.
+- **Supersedes:** The initial 2026-10-03 component scope now includes recovered/customizable register data and actual target component compilation; its power-off startup contract remains.
+- **Affects:** `firmware/` profile generation, init API, component builder, and register experiment workflow.
+
+## 2026-10-04 — Plan UART updates around the existing module UART
+
+- **Decision:** Use a project-owned, bounded UART update receiver over PA1 TX / PA0 RX and the vendor UFW staging engine, with `UART_UPDATA` selecting `uart_user.bin`. Keep the entry service in every replacement application and preserve it when radar startup fails. This records the integration design; the receiver is not yet implemented.
+- **Why:** The bundled protocol and library establish the route, while the example receiver has compile-guard, buffer, retry, and baud-state defects. Its separate low-level driver also directly claims UART1, conflicting with dynamic UART ownership.
+- **Supersedes:** (initial UART update design)
+- **Affects:** `firmware/docs/UART_UPDATE.md`, future application startup, UART ownership, and UFW packaging.

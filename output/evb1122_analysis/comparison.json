@@ -1,0 +1,71 @@
+{
+  "repository": "https://github.com/HQU-gxy/EVB1122_USBHS_Datatransfer",
+  "commit": "86b10850e55f5287a27018768c24b88345463bb3",
+  "source_sha256": {
+    "README.md": "dde88032016fd408227752ebc1a74b38a9c5863f668fc68b1baed2dabf13d7ea",
+    "Middleware/common/inc/banyan.h": "6e4f59727a98cf92d09d040d2d5f0d550ea956cfdf18e7f2496ae1ec5b10d074",
+    "Middleware/common/src/banyan.c": "f90615e462e8052d91a63b66b862bf40f65baaf13a61b278da1be00b89d0123e",
+    "Middleware/common/src/banyan_param.c": "7855e53cbeec7472ac6ce1d21cb78ec916af0d04ecc4bbc6c0f9d4141760463f",
+    "App/common/src/dataprocess.c": "13542dfc03db8d7bdb5cab0ccf340f0804f7be1764e3c90e69b598307b6bba57",
+    "App/common/src/cmdprocess.c": "01e26541aca47719312c5e0360269a0a538c4e582fba59148c106f5be83aadbc",
+    "App/common/src/gaincalibration.c": "c6873f95c442855b76b95e4b7db0e11ad417fff7f9a71a9807b4300a5e70e620",
+    "docs/DS10012RN_ICL1122_Rev.1.2_20230910.pdf": "7b29ee65afafa1257a8255b7fe5ab6f3c26ce1d231a8ed4ea7537e836bfe9b23",
+    "docs/20240304-UM10035P_EVB1122\u6ce2\u5f62\u914d\u7f6e\u4e0e\u6f14\u793aGUI\u7528\u6237\u624b\u518c_Rev.1.0_20240228.pdf": "306261aa38208d36e4202d6e49e784107d5a1e6e8cb2c5fbca23ffc31a4903b6"
+  },
+  "input_manifest_sha256": "612f2995c3e1c243fc421dfa06613e01ef38305545f46c3634f3953fab294213",
+  "evb_example_write_count": 79,
+  "profiles": {
+    "mode_1_rom": {
+      "exact_pairs_found_in_evb_example": 23,
+      "comparison_note": "Pair membership, not a positional or whole-profile match",
+      "candidate_decodes": {
+        "reg01_output_flags": {
+          "range_fft": false,
+          "doppler_fft": false,
+          "doppler_peak": false,
+          "ds_raw": true
+        },
+        "reg04_raw_selector": 3,
+        "raw_complex_samples": 512,
+        "reg06_rx_data_merge_bit13": false,
+        "rx_enable_code_from_reg01_reg66_reg6e": 3,
+        "reg47_low12_reg48_timing_code": 42000,
+        "reg55_reg56_step_code": 35,
+        "reg57_reg58_signed_step_code": -136
+      },
+      "incompatible_or_unverified": {
+        "icl1122_reg0d_chirp_accessor_result": 0,
+        "note": "Zero conflicts with our observed chirp frames; do not transfer this accessor blindly",
+        "timing_and_frequency_units": "Not established for S5KM312CL by this comparison",
+        "adc_reset_polarity": "SDK toggles reg 0x67 from 0x1E00 to 0x1E40; individual-bit semantics unverified"
+      }
+    },
+    "mode_2_ram_initial": {
+      "exact_pairs_found_in_evb_example": 20,
+      "comparison_note": "Pair membership, not a positional or whole-profile match",
+      "candidate_decodes": {
+        "reg01_output_flags": {
+          "range_fft": false,
+          "doppler_fft": false,
+          "doppler_peak": false,
+          "ds_raw": true
+        },
+        "reg04_raw_selector": 3,
+        "raw_complex_samples": 512,
+        "reg06_rx_data_merge_bit13": false,
+        "rx_enable_code_from_reg01_reg66_reg6e": 3,
+        "reg47_low12_reg48_timing_code": 84000,
+        "reg55_reg56_step_code": 17,
+        "reg57_reg58_signed_step_code": -17
+      },
+      "incompatible_or_unverified": {
+        "icl1122_reg0d_chirp_accessor_result": 0,
+        "note": "Zero conflicts with our observed chirp frames; do not transfer this accessor blindly",
+        "timing_and_frequency_units": "Not established for S5KM312CL by this comparison",
+        "adc_reset_polarity": "SDK toggles reg 0x67 from 0x1E00 to 0x1E40; individual-bit semantics unverified"
+      }
+    }
+  },
+  "hardware_validation": false,
+  "chip_identity_verified": false
+}

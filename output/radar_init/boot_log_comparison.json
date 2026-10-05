@@ -1,0 +1,7 @@
+{
+  "source_file": "C:\\Users\\mmsyl\\.codex\\attachments\\b5b6747d-36b9-4e73-a7da-c1b19cb52474\\Pasted text.txt",
+  "sha256": "9de1bf210a09997a27ec1fb20fa93b9bfb2fe7553b02f67afe2c316de02460c5",
+  "before_spi_i2c_success_count": 75,
+  "after_spi_i2c_success_count": 5,
+  "limitation": "Log does not include register/value pairs or reveal the selected profile."
+}

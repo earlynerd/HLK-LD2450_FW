@@ -1,0 +1,30 @@
+{
+  "name": "JieLi AC695N Soundbox SDK",
+  "release": "3.1.2",
+  "repository": "https://gitlab.zh-jieli.com/soundbox/novisualization/ac695n_soundbox_sdk",
+  "commit": "641e45dff1a8dc455fc6ccd688236fa59688b9ee",
+  "archive_url": "https://gitlab.zh-jieli.com/api/v4/projects/362/repository/archive.zip?sha=641e45dff1a8dc455fc6ccd688236fa59688b9ee",
+  "archive_size_bytes": 94018211,
+  "archive_sha256": "6de46a57b1fbd8067efcef88702db449c96e76a20ef166aa4acc881423126153",
+  "cpu": "br23",
+  "compiler_target": "pi32v2",
+  "compiler_cpu": "r3",
+  "verified_api_files": [
+    "cpu/br23/spi.c",
+    "cpu/br23/iic_hw.c",
+    "cpu/br23/uart_dev.c",
+    "include_lib/driver/cpu/br23/asm/br23.h",
+    "include_lib/driver/cpu/br23/asm/gpio.h",
+    "include_lib/driver/cpu/br23/asm/uart_dev.h"
+  ],
+  "verified_api_sha256": {
+    "cpu/br23/spi.c": "0296a6272de7ca48a618fdca6df80c339034ad9b12bbd661a29b4dd80ac76e03",
+    "cpu/br23/iic_hw.c": "058fe53c8fb91e7cda5d1aa6eede4e392edfa8976c3f0c14ba6de4940484b53d",
+    "cpu/br23/uart_dev.c": "3eebbe879e9d9b32f839ff549ec217c730ed158659e87dc7eb79996b79b94e75",
+    "include_lib/driver/cpu/br23/asm/br23.h": "fecfef40ba84ec2678e4a03a21922f0f87016e5245a6bdac9c32fe96a4790674",
+    "include_lib/driver/cpu/br23/asm/gpio.h": "1c5410b2592f652018b524e98ddcd7fc0d01a9fa00e957591ad89d208af12b75",
+    "include_lib/driver/cpu/br23/asm/uart_dev.h": "45fd2078630ed4e3f500e12a2864aab91829b3c0642544697f48e2e2d7a2a17c",
+    "Makefile": "d7ef427cde4809f4bafa882b0f53833a0315a4e5006984a216a49e590aac73b4",
+    "include_lib/driver/cpu/br23/asm/iic_hw.h": "fb3a47ac67a1f3ae5069425e15a7b20135c6b273f1bb447fc965255f3314db5e"
+  }
+}

@@ -1,0 +1,1381 @@
+offset_hex	text
+00000010	AC635N
+00000030	uboot.boot
+00000050	isd_config.ini
+00000070	app_dir_head
+00000090	key_mac
+00000283	B@"A0
+000002cf	r@3a1
+000002db	Th&A$
+00000540	A A! 
+000006c9	$D2E1C0
+000006dd	0D8E:C9
+000006e6	``0$L#M%K$
+000006f2	``00L=M>C-
+00000c3d	04`4'
+00000c7b	.!`1+
+00000d3f	C@ G 
+00000e66	PpA J 
+00000f8a	pPJ @
+00000fa4	AhCb;
+0000113c	Z K @
+00001168	R K @
+000012aa	@1A#B#
+00001386	`j`4A!
+00001555	`4!A>@
+00001585	(F E 
+000016eb	\9A<@
+00001863	\hAl@
+0000199a	A!B!0
+000019c0	A!B!0
+0000200f	RESET
+00002015	PSRAM
+0000201b	USBDP
+00002021	USBDM
+0000202e	PLL_SRC
+00002036	OSC_12M
+0000203e	UARTUPDATE
+00002058	app_dir_head
+00002065	app_dir_head2
+00002073	UART_UPDATE_CUSTOM
+000020af	2_3_0_0
+000020d5	RESET
+000020db	PB01_08_0
+000020e5	UPDATE_JUMP
+000020f6	EOFFSET
+00002103	BT_OFFSET
+00003010	app_area_head
+00003030	app.bin
+00003050	cfg_tool.bin
+000030bc	AUTO9
+000033e5	@``B!
+0000341f	W@!A!4
+00003428	A b`b
+000035d2	A A!a
+0000384a	sahCP
+00003a75	MPaWbQf
+00003c24	ddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeffffffffffffffffffffffffggggggggg
+00003eda	 ""$&%')+-/1257
+00004022	%K::A
+000040bd	`HaI`
+00004194	B`E `
+0000419f	@@!C!
+000041a5	AC B"
+000041d9	~@!F!
+000043a7	]A M?
+000044fe	@ G q
+000047ae	R*A S*
+0000482d	Oj'l'
+00005384	@&A B#C$
+000055d8	X.B&A
+00005bf4	A B @
+00005bfe	A.B @
+00005c70	F G P
+00005cda	Q`@ B 
+00005d2b	EE F 
+00005daa	T`A B
+00005f04	@ y`b
+00005f32	@ y`b
+00005f63	IhnI@
+0000607c	F`6E@
+000060a7	aA!C!P
+000060b8	d`hg`
+000061fa	G @ q
+00006275	5)C+B
+0000627f	a)E*D
+000062b3	4)C+B
+000062bd	a)E*D
+000063e1	`A$B B
+00006525	`i`1$
+000065ba	APxB0!
+00006641	eHd0"
+00006655	dHd0,
+00006685	`A B P
+0000669c	A$B P
+000066b7	0A&B P
+000066ec	kfA&B 
+0000672f	  `Jc
+000067ac	APxB0 
+0000680a	W`A#B F 
+000068f5	`@ B 
+000069fd	j(d0)
+00006a07	dhc0!
+00006a0d	chc0"
+00006a23	Kxoxn
+00006af5	gB C P
+00006b2e	B0A X
+00006b5b	%M%F D 
+00006cbd	A#b@!4
+00006e4a	T`A:@
+00006ed1	e0_qd1]P`B 
+00006ee0	P`qeB!
+00006ef9	g0Kqf1I
+00006f7e	qfB P
+00007000	G @ q
+0000712b	]E`5[
+00007158	LR^gP
+00007382	iA1ZiN
+000077c8	@ A Q
+00007f8c	@@A E 
+000080d9	!A B C#
+0000812b	!B C#A
+000081a4	F H>A
+0000820c	N!HaIb
+000082ba	B @$B
+000082fa	@%B S
+00008346	P`A1B 
+00008350	P`A2B 
+00008371	uuuukC
+000083a4	P`A$C 
+000083d2	P`A$C!
+00008567	!Q(C&
+00008588	"pA.$
+000085ec	G A P
+000086c6	i,HAL@
+000088ae	JK@`A)
+00008a85	IP`A!
+00008b98	@`A2B 
+00008bd0	$@@`A(
+00008be8	@`A2B 
+00008c10	A%B>C 
+00008dec	A B$@
+00008ef3	 @3B!
+00009027	 x0B 
+0000905d	`A2B!
+00009206	 ${M0
+00009230	Q0B P
+000092df	jP`A$C 
+00009334	P`A$C!
+000093de	x>B"C!
+00009417	!@!Q(C&P
+0000943c	xL0.B
+0000947e	^A_jZk\lP
+00009529	@@;B;
+0000956f	bP`A/
+00009578	h`yo5
+00009581	cP`A0
+0000958a	hgid5
+00009593	hhfie5
+00009716	``A&r
+000097a3	K``A!
+000097b0	A.C B
+00009827	DB C Q
+00009eae	z>C-`
+00009f70	z<[&@
+0000a08c	y0h6u}
+0000a145	PY?Mb4
+0000a243	:3r.O
+0000a64c	B D `
+0000a7e5	.B D 
+0000aa3d	0@ G 
+0000ab4f	&@ C!D 
+0000ad80	Je&Y@!
+0000ad90	R`heif
+0000aece	yC@#Q
+0000b0f2	@,A!Q
+0000b166	%$@ A
+0000b198	D2ACFo
+0000b323	OB D 
+0000b526	A&B!k<
+0000b554	$X%Wq
+0000b58f	PA j<P
+0000b847	Qa`!T
+0000b8ae	``A R
+0000ba30	RPA&B a
+0000bb3f	EA"B!E!
+0000bb51	 A!B!C 
+0000bcae	@ A$B D A
+0000be7b	aB C P
+0000bf16	A j8P
+0000c028	Lg@8A#b
+0000c087	a@$A C
+0000c0cb	@E$F M
+0000c3eb	3A D 
+0000c744	A$C5Q
+0000c770	A$C%A
+0000c7a0	A$C$@
+0000c811	!A#C 
+0000ca16	HbA*C"
+0000ca31	!A#C 
+0000cabe	HhG!P
+0000cace	HhG P
+0000cc11	@HbA3C!
+0000cc23	@HbA3C 
+0000cd9f	Y8E9D
+0000cdce	8F9AR
+0000cf85	(@(E t
+0000d12e	 $3`r
+0000d162	A"@"`
+0000d205	!@ A?C @
+0000d242	A$D$`
+0000d272	@$A C&
+0000d37c	@$A C*
+0000d38b	@pCA$`
+0000d3f7	`@ A$B 
+0000d4cd	a+c)bhb*d
+0000d4f0	@ A#J+D 
+0000d57c	E D#G 
+0000d5e2	yC}B$C
+0000d70b	......
+0000db09	NOC@ B9:
+0000db41	M.DG f
+0000db5d	V-D$`W
+0000dc0d	ICHz5
+0000dc42	IBHK1T
+0000dcab	ICHZ-t
+0000dd27	ICHz>C T
+0000dd48	XDXCYBZA
+0000dd65	NOC@ B9{?D 
+0000dd74	XCYBZA
+0000defe	A C R
+0000df12	A$E$B
+0000e693	Oqe`0
+0000e6a1	e@ A P
+0000e954	Um@$A C&
+0000e998	Um@$A C'
+0000ec0a	@$A C"
+0000f056	 0D Q
+0000f399	C@`A 
+0000f517	KH`Ia
+0000f563	fA D P
+0000fa21	bPfA R
+0000fc02	HCv`P
+0000fd78	{czDxd
+0000fef3	,A D 
+00010201	 XcpW
+0001027e	IgqNP
+0001064a	YgqJ@
+00010796	%G@ Q
+00010839	NV`Pb
+00010865	D``ac
+0001099f	,A D 
+000109d7	CA0B 
+00010c3d	PP`I`
+00010c90	zA@!A!
+00010c9a	A {BB!
+00010cc3	X`cpVhk
+00010d25	KpbA*
+00010e7b	`A$B D 
+00010e8b	`A%B E%
+00010ead	`E$A$B D 
+00010f05	`A"E"b
+00010f25	`A B 
+00010f47	`A#B 
+00010f77	`A#B 
+00011052	 pA&D&
+0001160a	PTA `
+00011752	A r<@
+000118ad	 ` y/
+0001199c	yJq`a
+00011a30	@ A"R
+00011a3a	@!A"R
+00011b39	S@:A B 
+00011c92	nhXH0
+00011cab	GH0A)
+00011cf0	P4Y1$
+00011e55	O@%B"C!
+00011e60	@%A B#C$D 
+00011e76	@6A B&C 
+00011f63	Ph/A 
+00011f91	t`4A"B!C 
+000120aa	@%A B#C'
+000120ba	X5A B#C 
+000120f8	X5A B#D 
+00012280	@:A B 
+00012289	_@:A!B 
+0001237b	!D+A"B.C9
+000123d6	_f@ A 
+00012b82	IDLE@!
+00012fbc	RdH4A$
+00012fe2	`APaA 
+00012fef	VH0A)
+00013009	GP4Y1
+000130d7	dH4I 
+000130f9	dH4A"
+0001311b	d@ E 
+00013529	aH4I 
+0001353e	 (P8A0
+00013589	9P8Q 
+000135b3	}P8A0
+00013698	A F @
+000136d2	H-A!E!
+000136e8	A G P
+00013725	VG`B#p
+00013750	@`B$H
+000137dc	 `X@0
+0001381d	GHAG 0
+00013899	4Ac@a
+000138b8	Bc@a#bB"
+000139c1	HCcAe@a3b
+00013a00	EbXCI@
+00013a2a	FbhCI@m
+00013a3c	A G P
+00013af4	BTCTRLER-@20221123-$c284473
+00013b14	UPDATE-@20221123-$330d72d
+00013b5a	@$A$B!C 
+00013b65	z@$A B!C!
+00013b76	@$A!B#
+00013bac	@$A B!C 
+00013cbc	6C+b%j
+00013f05	dG*G(
+00013f72	  0`H2q
+00013f8e	0`X$a
+00013f9e	  0`H2a
+00013fe8	@`@!Q
+00014002	 0@`H2Q
+00014012	@`H2A
+00014050	  0`H2
+0001407e	  0`H2
+000141ee	  0`0`
+000141f6	  F |8
+00014266	  0`H2
+000142ac	  0`H2
+000143ab	2@>B<
+00014516	mvA!@
+00014780	B C P
+000147be	@!A!Q
+000147f0	@"A!A
+0001492a	ctA @
+00014ab5	!@:A%B
+00014b46	h`B A-R
+00014cdc	A%B U
+00014d06	A#B C!
+00014d24	%+:LTZc
+00014ee0	A$j W
+0001502a	A-r!C 
+000150e2	@>B<G<
+0001527a	A%B v
+00015523	CP Y'B
+00015532	P Y'B
+0001553c	P Y'B
+00015548	P Y'B
+00015554	P Y'B
+0001555e	P Y'B
+000155bc	B C P
+00015730	 *!'?
+0001574c	 5!4?
+00015754	 .!-?
+0001575c	 ,!+?
+00015763	0 )!(?
+0001576c	 %!$?
+00015814	06& ?
+0001585b	$F B!
+000159a5	j'!p`
+00015a69	` 3!2?
+00015a72	 .",?
+00015a79	" 0#/?
+00015a83	3 *#)?
+00015a8a	10 ($'?
+00015ae2	2$'5?
+00015b3d	` 3!2?
+00015baa	A-$8?
+00015bb4	07' ?
+00015cdf	P .!-?
+00015cf8	 %"$?
+00015d54	"'#&?
+00015d5a	!#%*?
+00015d60	"0&)?
+00015d83	 ".#-?
+00015d8a	!#%(?
+00015de5	+RaC"  %
+00015f2d	$G @ 
+00016050	RA "?
+00016074	1>$+?
+0001608c	AE% ?
+000160aa	0g$*?
+000160b0	B 1f%)?
+000160bc	0"##?
+000160ee	QD%!?
+00016279	+RaC$
+000162c5	`da5a
+0001631e	@ C B!
+00016388	@ C B!
+000164ab	 @ A 
+000164b6	"`3`?
+000165a8	@"A$I
+000165c1	!@$A$C"
+000165d7	!@"A$C"
+000165f2	 @@"A"
+00016787	!@$A"C"
+000167b5	@@$A"C!
+000167c9	 @$A!S
+000167ed	!@$A"C$
+00016812	 D3`?
+00016833	!@$A$C$
+00016848	@$A$r
+00016857	!@$A$C$
+0001686c	@$A"C"
+00016880	@$A"b
+0001688f	@@$A"C$
+000168ef	A@ A!
+00016928	#?A W
+0001694c	(knNW
+00016b7e	@$A$C!
+00016bac	@$A$C$
+00016bc4	@P@$A$s
+00016bd7	!@$A$C$
+00016bf8	@$A$b
+00016c7e	ad0`?
+00016c84	bf5p?
+00016cc7	OA B!
+00016d32	Fh@!A
+00016e11	TB C P
+00016ed5	`B C P
+00016f1c	333??
+0001712c	BCV``
+00017140	@FVcUa?
+000171a0	b`S`?
+0001724c	Pfqf?
+00017254	Rgsg?
+00017928	@ I?E 
+00017aa4	5Oc`R`
+000182db	aC A!
+00018399	B8`pRW
+000183a5	 @!F!
+00018546	A G @
+000187b2	II@ q
+000187fc	IJ@!a
+000189a0	P B#C Q
+00018a44	@ B!q
+00018a87	H@#A"
+00018a97	I@$A"
+00018aa0	@!A!R
+00018b69	DY`XaZb_c
+00018b88	jc@+A"
+00018be7	n)A@!
+00018c07	M@ G 
+00018c44	HM0 0
+00018c63	 )B@"
+00018c7a	HM0 `
+00018cf1	AB @9A#
+00018d32	@9A#B 
+00018da8	@&A B 
+00018e60	A%B!P
+00018f02	@ A"B!
+0001914e	H0B$C 
+0001924c	DhA B
+0001929d	SvcA r(`
+000193e8	A#B!P
+000193f2	@ A"B 
+0001941a	@ A"B!
+00019448	@?A"C3
+000194a8	@?A"C3B
+0001961e	@ B1Q
+0001966e	@ B1A
+00019794	B&@#`
+00019833	O@'A 5
+00019a38	/#@4D
+00019ad2	.QA!P
+00019b27	@@+C!
+00019b40	.#@2C!
+00019e5c	@!A!b
+00019eee	B @%A#
+00019f36	`I@"A B 
+00019f5e	@$A"b
+0001a82e	G @!$
+0001ade7	\A R0
+0001ae32	[HA C)`
+0001ae4c	A!C!`
+0001af14	@)B!C Q
+0001b0f7	c@ D 
+0001b16e	gDHFP
+0001b233	DYCZD
+0001b417	@Ab"i
+0001b422	`4E` `'bj
+0001b473	IAbj@0`
+0001b48e	`$0`Z
+0001b4c2	`4 `'bZ
+0001b534	x%B&C!
+0001b579	U@ E 
+0001b62d	GJDA`
+0001b66a	x&C!A
+0001b72e	x(B$C!
+0001b79c	@ A Q
+0001ba0f	KIBHC
+0001bb28	 @@(B&
+0001bbec	[@\A>
+0001bc1a	6 @!A
+0001bd3e	6 @/A
+0001be2c	e[@"C
+0001becd	L@ A"B 5
+0001c0a7	a#`A 
+0001c0ef	IC`ID
+0001c19f	@@ A$
+0001c1b6	@&A B#C$
+0001c1de	';@&A B#C$
+0001c1ea	{7I@@"
+0001c227	Pd`B%A
+0001c311	GJDA`
+0001c487	0XCYB
+0001c53c	@#B!q
+0001c63c	@%A B 
+0001c650	@!B$A
+0001c693	KA B C!
+0001c83f	 @"C!
+0001c855	 @"C!
+0001c939	L@8A#
+0001cc3e	\nMJS
+0001ccf5	aCd@"
+0001cdb2	h`B A(R
+0001cedc	I!B!@
+0001cf46	@3A"b
+0001d112	A B P
+0001d122	p-A P
+0001d1e0	A D P
+0001d1fa	z#A P
+0001d21c	3*ZB`
+0001d23e	a%B!@
+0001d248	A)B!@
+0001d252	A.B!@
+0001d3a0	5`zAC A
+0001d5ec	`/@ a
+0001d5f4	z/@ a
+0001d616	K/@0Q
+0001d61e	e/@0Q
+0001d648	2/H Q
+0001d650	L/H Q
+0001d658	f/H Q
+0001d67a	7/H0A
+0001d682	Q/H0A
+0001de48	@2A B&4
+0001debe	ZB_Cp
+0001dec5	pYA[@
+0001dfe8	[(YAX@
+0001e096	Y@@!`
+0001e0fc	h*A B#C 9
+0001e231	$E F 
+0001e378	h"A&B!C!
+0001e38e	h!A&B!C!
+0001e3a4	h#A&B!C!
+0001e3cb	0@8A&B!
+0001e3d6	@8A!B 
+0001e3e0	@8A B 
+0001e4f5	%P,y?
+0001e4fd	%P-y?
+0001e505	%P.y?
+0001e50d	%P/y?
+0001e515	%P9Q7
+0001e527	PH4A$
+0001e52f	%H1A$
+0001e565	-` y/
+0001e56d	-@7y;
+0001e574	|-@"y7
+0001e57c	x-@:A B 
+0001e588	@:A!B 
+0001e59c	H3A'B!C 
+0001e5a6	H3A'B!C!
+0001e5b1	%@1y>
+0001e5b8	Z-h"A$B!C!
+0001e5da	b%@7y/
+0001e5e2	E-P8A 
+0001e5f7	DP9A 
+0001e5fe	P%H6A 
+0001e606	L%H7A"
+0001e60e	H%H8A1
+0001e616	D%H9A1
+0001e61e	@%H:I3
+0001e626	<%H;A#
+0001e67d	%P8Q=
+0001e685	%X2I 
+0001e68c	C%@"I 
+0001e694	?%@!A0
+0001e69c	;%H0y>
+0001e6a5	,H0A!
+0001e6ac	3%H0A"
+0001e6c4	 R@ Y?
+0001e6d9	KH1A$
+0001e6e1	$H4A!
+0001e6e9	%H4A$
+0001e6f7	$H4A!
+0001e703	KP4I4
+0001e70b	$H4A!
+0001e713	%H4A"
+0001e721	$H4A!
+0001e729	$h%A B(C 
+0001e735	$@$A!B#C 
+0001e741	$@$y>
+0001e749	,@!y7
+0001e75c	@0@%A$B"9
+0001e769	$@ a 
+0001e7e4	A&B!C!
+0001e828	A B!C!
+0001e83c	A!B!C!
+0001e852	A"B!C!
+0001e866	A#B!C!
+0001e86e	9$``0
+0001e949	94a@ a
+0001e9fe	I'@!A
+0001ee0b	!8C9B
+0001ee19	!8E9D
+0001eecc	A b G @
+0001eed8	X%J A
+0001ef71	cKF@"
+0001efa3	l@"C 
+0001efe3	VX&B&A
+0001eff1	qX&B&A
+0001effe	t`B&@
+0001f010	wVX&B&A
+0001f583	 0`H%
+0001f629	HA!B#
+0001f661	R@>B<
+0001f8c1	YH0A)
+0001f8e3	WP4Q$
+0001f987	c iD 
+0001fa16	t&P !
+0001fa20	D!H4I 
+0001faf1	D@"y/
+0001faf9	"@"A0
+0001fb1b	$@"y7
+0001fb23	"@$y>
+0001fb39	D@7A(
+0001fb47	D@1y>
+0001fbb7	`@6I$
+0001fbdd	D@6I 
+0001fc03	D@6A$
+0001fc39	*@!A(
+0001fc47	"@6A!
+0001fc56	@0@%A$B"4
+0001fc66	@%A$B"C!
+0001fcda	1#@"A(
+0001fcf1	D@1A!
+0001fd05	D@7y7
+0001fd5a	]|A `
+000200f2	#`A E 0
+00020139	cD C 
+00020163	GHOIN
+000201dc	RcA  
+000202a2	Id@ P
+00020375	!A C 
+000204de	. ic@0!
+00020552	A!D!`
+00020634	B0A!M
+00020864	D0A!`
+000209aa	3AA*T
+000209bc	3TA,T
+00020a19	!A B$C 
+00020a47	!A B$C 
+00020dc7	 A 0H
+00020def	TTTT-TTT1
+00020fd5	N(MA!0
+0002115e	J C Q
+0002119a	JKYSB
+0002125d	W@ A8
+0002148c	%3:>?
+000215bd	7D A 
+000216cb	TD G ~
+000216dd	 @!G!
+00021b0e	@ B s
+00021b6e	@ B q
+00021da7	`@ A @ 
+000220f8	U2l>?
+0002218e	O8v??
+00022482	F@B `
+00022a31	P@ A A 
+00022e89	`G F!
+00022fe5	$B C A 
+0002301a	@ A W
+000231fe	 M$Tc
+0002334e	D@B C 
+0002335b	QB C 
+000233b6	R@F H $
+000233ee	@ A P
+000233f6	@ A D
+000235ba	@ A E 
+00023638	B C  
+00023768	@KTTC 
+00023782	audio
+00023788	audio_mc_device
+00023798	audio_dec_init
+000237a7	tone_dec
+000237b0	audio_adc_demo
+000237c3	vm write mode err
+000237d5	vm write detect mode err
+000237ee	DoDefaultCfg>>
+000237fd	uartBand:%d
+0002380b	NoFin
+00023811	os_sem_create hlk_uart_sem:%d
+00023831	os_sem_create hlk_spi_sem:%d
+00023850	bt_test
+00023858	[Info]: [GATT_COMM]just_handle=%04x,type= %d
+00023888	[Info]: [GATT_COMM]mode_en:%d
+000238a9	GATT_CMD_RET_BUSY
+000238bb	GATT_CMD_PARAM_OVERFLOW
+000238d3	GATT_CMD_OPT_FAIL
+000238e5	GATT_BUFFER_FULL
+000238f6	GATT_BUFFER_ERROR
+00023908	GATT_CMD_PARAM_ERROR
+0002391d	GATT_CMD_STACK_NOT_RUN
+00023934	GATT_CMD_USE_CCC_FAIL
+0002394a	[Info]: [GATT_SERVER]connection_update_request: %04x: -%d-%d-%d-%d-
+0002399c	Coded
+000239a2	[Info]: [GATT_SERVER]server_work_st:%x->%x
+000239d0	[Info]: [GATT_SERVER]mode_en:%d
+000239f3	[Info]: [GATT_SERVER]update_tx:%x
+00023a18	rec resp:%x
+00023a25	send err -1 !!
+00023a34	### rcsp_ble_data_send %d
+00023a4f	JL_ble_status_callback==================== %d
+00023a7e	>>>rcsp_f_open
+00023a8e	>>>rcsp state err
+00023aa1	------------rcsp_ch_update_init
+00023ac2	send content_size:%x
+00023ad8	>>>rcsp_stop:%x, %x
+00023aed	get_update_flag:%x
+00023b01	ble addr:
+00023b0c	[Info]: [TEST-UPDATE]state:%x err:%x
+00023b34	state:%x err:%x
+00023b45	soft reset to update >>>
+00023b62	[Info]: [APP-UPDATE]ext_fill :
+00023b83	<Error>: [APP-UPDATE]ota addr err
+00023ba8	btencry
+00023bb0	dw_update
+00023bba	usb_msd
+00023bc2	spple_state_deal
+00023bd3	[BLE_TRANS]bt_connection_handle= %d
+00023bf9	[BLE_TRANS]BlueToothData_Send_ff03 len=%d
+00023c29	vm_write idx:%d, idx_adr:0x%x, idx_len:0x%x
+00023c56	---addr = 0x%x---
+00023c69	wkup_hold
+00023c77	<Error>: [SYSCFG]key_mac all 0
+00023c98	pvPortMalloc
+00023ca5	%s %d
+00023cac	vPortFree
+00023cbb	IDLE0
+00023cc1	sys_event
+00023ccb	alloc-er1: %x, %x, %x
+00023ce2	(null)
+00023ce9	[%02d:%02d:%02d.%03d]
+00023cff	(warn): 
+00023d08	(error): 
+00023d12	usr_systimer
+00023d1f	btstack_lowpwer_deal
+00023d39	22222
+00023d3f	att_err:%02x
+00023d4d	att_send need_size >= %d+%d+%d
+00023d6d	att disconn
+00023d79	pend_for_tx_bulk
+00023d8b	111214
+00023d92	=================update_param_len:%x %x
+00023dbb	btctrler
+00023dc4	H4_Controller
+00023dd2	link_layer
+00023ddd	1H222
+00023de3	1Hc08
+00023de9	1H11A2221
+00023df7	1H122
+00023e01	RETS = %08x 
+00023e10	[Debug]: [LBUF]lbuf misalgin : 0x%x / 0x%x
+00023e3d	<Error>: [LBUF]free-err: %x
+00023e5d	eq_online
+00023e71	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+00023eb0	dev reboot... ...
+00023ed0	>>>>>>>>>>>>>>>>>radar_app_init...
+00023f00	create hlk_uart_recv_task success
+00023f30	create hlk_spi_recv_task success
+00023f60	i2c_read_wait_ack timeout 1
+00023f80	i2c_read_wait_ack timeout 2
+00023fa0	i2c_read_wait_ack timeout 3
+00023fc0	i2c_wait_ack timeout 1
+00023fe0	i2c_wait_ack timeout2
+00024000	i2c_wait_ack timeout3
+00024020	i2c_wait_ack timeout4
+00024040	i2c_write success
+00024060	ac632n_uart_int
+00024080	uart_dev_open() success
+000240a0	uart_dev_open() fail
+000240c0	[make new rsp data]
+000240e0	rsp data overflow!!!
+00024100	------RCSP_BLE-----
+00024120	JL_rcsp_wait_resp_timeout
+00024140	JL_ble_data_recieve_resp
+00024160	JL_ble_data_no_resp
+00024180	JL_ble_cmd_no_resp
+000241a0	JL_ble_data_resp
+000241c0	JL_OPCODE_GET_TARGET_INFO
+000241e0	phone_platform == ANDROID
+00024200	phone_platform == APPLE_IOS
+00024220	phone_platform ERR
+00024240	ATTR_TYPE_PROTOCOL_VERSION
+00024260	ATTR_TYPE_SYS_INFO
+00024280	ATTR_TYPE_EDR_ADDR
+000242a0	ATTR_TYPE_FUNCTION_INFO
+000242c0	 ATTR_TEYP_BLE_ADDR
+000242e0	ATTR_TYPE_MD5_GAME_SUPPORT
+00024300	JL_OPCODE_SYS_INFO_GET
+00024320	COMMON_INFO_ATTR_EQ
+00024340	JL_OPCODE_SYS_INFO_SET
+00024360	COMMON_INFO_ATTR_FMTX
+00024380	BLE_ CON START DISCON
+000243a0	WAIT_FOR_SPP_DISCON
+000243c0	JL_rcsp_open_bt_scan
+000243e0	JL_rcsp_stop_bt_scan
+00024400	rcsp post msg argc err
+00024420	rcsp post msg err
+00024440	rcsp msg send end
+00024460	RCSP_MSG_UPDATE_EQ
+00024480	JL_auto_update_sys_info
+000244a0	RCSP_MSG_BT_SCAN err
+000244c0	JL_rcsp_update_bt_state
+000244e0	####  rcsp_exit_cb
+00024500	JL_OPCODE_GET_DEVICE_UPDATE_FILE_INFO_OFFSET
+00024530	JL_OPCODE_GET_DEVICE_UPDATE_FILE_INFO_OFFSET ERR
+00024570	JL_OPCODE_EXIT_UPDATE_MODE
+00024590	JL_OPCODE_ENTER_UPDATE_MODE
+000245b0	JL_OPCODE_SEND_FW_UPDATE_BLOCK
+000245d0	JL_OPCODE_GET_DEVICE_REFRESH_FW_STATUS
+00024600	JL_OPCODE_SET_DEVICE_REBOOT
+00024620	MSG_JL_GET_DEV_UPDATE_FILE_INFO_OFFSET
+00024650	MSG_JL_INQUIRE_DEVEICE_IF_CAN_UPDATE
+00024680	MSG_JL_DEV_DISCONNECT
+000246a0	>>>>>>>>>>>>>>>>>app_main...
+000246cc	------vm_defrag------
+000246f0	reverse vm data write err
+00024710	vm data write succ
+00024730	gap send conn param 2222
+00024750	ble test update exit
+00024770	vm_update_param write err
+00024fb2	H=u+{=
+00025086	$?V6'?
+000250a2	5?#:7?Bh9?;
+000250d2	M? zO?=MQ?I
+000250e6	V?SHX?j
+000250f2	[?S-]?
+000250fa	^?!F`?
+00025102	a?Z<c?Y
+00025166	{?(;|?
+000251d6	|?(;|?
+0002523a	d?Z<c?
+00025242	a?!F`?
+0002524a	^?S-]?
+00025256	Y?SHX?
+00025266	S?=MQ? zO?
+00025296	;?Bh9?#:7?
+000252b6	)?V6'?%
+0002538b	=u+{=.
+00025a80	Npass
+00025a8e	";Tn"<"
+00025aae	@>i7j>
+00025b5b	>i7j>
+00025b7b	<Tn"<b
+00025bf8	%02x 
+00025bfe	JLOTA
+00025c0a	PPINR
+00025c10	bredr
+00025c16	flash
+00025c1c	>>>%s
+00025c23	spp_le
+00025c2a	sdfile
+00025c31	len=0?
+00025c38	update
+00025c47	%%s, %x
+00025c50	vm_init
+00025c60	btstack
+00025c68	res.bin
+00025c70	12:52:42
+00025c79	ver_info
+00025c82	reset_io
+00025c8b	link_key
+00025c94	power_io
+00025c9d	10:57:05
+00025ca6	vm_reset
+00025caf	app_core
+00025cb8	rcsp_task
+00025cc2	vbat: %d
+00025ccc	hdl = %d
+00025cd6	VDDIO POR
+00025ce0	VDDIO LVD
+00025cea	SYS RESET
+00025cf4	cfg_head:
+00025cff	uart_sleep
+00025d0a	HLK-LD2450
+00025d15	_vm_defrag
+00025d20	SOFT RESET
+00025d2b	mnt/sdfile
+00025d36	LOADER.BIN
+00025d41	Nov 20 2025
+00025d74	BT_FUNCTION
+00025d80	FM_FUNCTION
+00025d8c	uart_f_read
+00025d98	Nov 24 2025
+00025da4	uart_update
+00025db0	bt_ble_init
+00025dbc	%s_%02X%02X
+00025dc8	bt_ble_exit
+00025e04	R4= %08x 
+00025e10	R5= %08x 
+00025e1c	R6= %08x 
+00025e28	R7= %08x 
+00025e34	tab_len:%d
+00025e4c	open %s succ
+00025e59	open %s fail
+00025e66	common info:
+00025e73	RTC_FUNCTION
+00025e80	power return
+00025e8d	SP = %08x 
+00025e9a	EXT_RESERVED
+00025ea7	end_addr:%x
+00025eb4	get link err
+00025ec1	wvdd_lev: %d
+00025ecf	spi_recv_task
+00025edd	pilot_lamp_io
+00025eeb	get item_data
+00025ef9	new rsp_data:
+00025f07	new adv_data:
+00025f15	ble_comm_init
+00025f23	ble_comm_exit
+00025f31	crc_c = 0x%x
+00025f3f	USP = %08x 
+00025f4d	SSP = %08x 
+00025f5b	RETI= %08x 
+00025f69	app_area_head
+00025f77	dev reboot...
+00025f86	uart_recv_task
+00025f95	file open fail
+00025fa4	SYS MASK : %x
+00025fb3	MUSIC_FUNCTION
+00025fc2	BLE_APP_UPDATE
+00025fd1	SPP_APP_UPDATA
+00025fe0	USB_HID_UPDATA
+00025fef	[BLE_TRANS]%s 
+00025ffe	--func = %s--
+0002600d	VM %d %% full
+0002601c	vm_crc = 0x%x
+0002602b	ble_exit over
+0002607b	+COMMON_FUNCTION
+0002608c	FMTXPoint = %d
+0002609c	LINEIN_FUNCTION
+000260ac	RCSP HID DISCON
+000260ec	spi clk_get=%d
+000260fc	sys clk_get=%d
+0002610c	[BLE_TRANS]%s
+0002613c	JL_recieve_resp
+0002614c	ble_profile_init
+0002615d	FUN config = %x
+0002616e	uart_update_init
+0002617f	trans_disconnect
+00026190	idle_read:%x %x
+000261a1	vm read not exist
+000261b3	vbat voltage=%d
+000261c5	UNKNOW GATT_ERROR
+000261d7	-need discon edr
+000261e9	trans_server_init
+000261fb	__btif_area_erase
+0002620d	le_support:%x %x
+0002621f	===callback:0x%x
+00026231	Set sensibility:%d
+00026244	FEATURE MASK : %x
+00026257	--vm_adr = 0x%x--
+0002626a	--vm_len = 0x%x--
+0002627d	vm erase len:0x%x
+00026290	vbg_adc_value = %d
+000262a4	Hold Cnt Time is %d
+000262b8	mnt/sdfile/app/exif
+000262cc	close Hw Name : %s
+000262e0	VM_LAST_ADR = 0x%x
+000262f4	warning_adr = 0x%x
+00026308	--vm_mode = 0x%x--
+0002631c	mnt/sdfile/app/btif
+00026330	btstack_exit enter
+00026344	btstack exit over 
+00026358	JL_recieve_callback
+0002636c	single bank update
+00026380	vbat_adc_value = %d
+00026395	ble_gatt_server_init
+000263aa	ble_gatt_server_exit
+000263bf	ble_get_scan_rsp_ptr
+000263d4	ble_get_adv_data_ptr
+000263e9	[Info]: [APP]%s,%s
+000263fe	btctrler exit over 
+00026413	find item %d name:%s
+00026429	hdl = %d is NOT used
+0002643f	vm_area_a adr = 0x%x
+00026455	vm_area_a len = 0x%x
+0002646b	vm_area_b adr = 0x%x
+00026481	vm_area_b len = 0x%x
+00026497	last file_addr:%x %x
+000264af	write flash error:%d
+000264c4	mnt/sdfile/res/md5.bin
+000264db	rcsp need buf size:%x
+000264f2	--vm_adr_ali = 0x%x--
+00026509	--vm_len_ali = 0x%x--
+00026520	le_config:%x %x %x %x
+00026537	cfg_name %s
+00026543	 cfg_len%x
+0002654f	>>>exif addr:%x len:%x
+00026567	JL_rcsp_update_cmd_resp
+00026598	VM_IDX_ADR(hdl) = 0x%x
+000265b0	VM_LAST_ADR = 0x%x     
+000265c8	vm_area_a magic = 0x%x
+000265e0	vm_area_b magic = 0x%x
+000265f8	vddio_vol %d (mv) %d %x
+00026611	Get_DetectModefromVM err
+0002662a	file read cfg head fail
+00026643	>>>write item:%x err:%x
+0002665c	[Info]: [GATT_COMM]%s
+00026675	ble_comm_set_config_name
+0002668e	JL_ble_cmd_resp op = %d
+000266a7	app_update_cfg:%d,%d,%d
+000266c0	enter_sys_soft_poweroff
+000266d9	bt_ble_before_start_init
+000266f2	[BLE_TRANS]ble_file: %s 
+0002670b	[Info]: [USER_CFG]mac:
+00026724	---VM_AREA_USING= %d---
+0002673d	---VM_LAST_ADR= 0x%x---
+00026756	--P3 Reset Source : 0x%x
+0002676f	stack_resume_fail!!!:%d
+00026788	mnt/sdfile/res/config.dat
+000267a2	ble_get_gatt_profile_data
+000267bc	[BLE_TRANS]rsp_data(%d): 
+000267d6	[BLE_TRANS]rcsp_read:%x
+000267f0	---VM_AREA_ADR = 0x%x---
+0002680a	[Info]: [BTIF]%s @ 0x%x
+00026824	btprofile: qfull: %d, %d
+0002683e	exif len less SECOTR_SiZE
+00026859	cfg_item:%d read error:%x
+00026874	[Info]: [GATT_SERVER]%s
+0002688f	update_regiest_recieve_cbk
+000268aa	spple_bt_hci_event_handler
+000268c5	[BLE_TRANS]
+000268d1	-ae01_rx(%d): 
+000268e0	[BLE_TRANS]
+000268ec	-ff03_rx(%d): 
+000268fb	[BLE_TRANS]
+00026907	-ae3b_rx(%d): 
+00026916	---VM_AREA_USINGE = %d---
+00026931	---VM_AREA_USING  = %d---
+0002694c	         setup_arch %s %s 
+00026968	factory flag get:%04x, %d
+00026984	factory flag set:%04x, %d
+000269a0	DATA_TRANSFER_CMD cmdData: 
+000269bc	read cfg item content fail
+000269d8	[Info]: [GATT_COMM]%s,%d
+000269f4	JL_rcsp_event_handler = %d
+00026a10	***rsp_data overflow!!!!!!
+00026a2c	[Info]: [BOARD]board_init
+00026a48	mnt/sdfile/app/cfg_tool.bin
+00026a64	UART->BLE
+00026a81	[Info]: [GATT_COMM]%s end
+00026a9e	ble_gatt_server_profile_init
+00026abb	[Info]: [APP]run app>>> %s
+00026ad8	app_var.poweroff_tone_v: %d
+00026af5	[Info]: [USER_CFG]lrc cfg:
+00026b12	no send func err: 0x%x 0x%x
+00026b2f	file read cfg item head fail
+00026b4d	----0x%x   0x%x   0x%x  0x%x
+00026b6b	ret_code->stu:%d err_code:%d
+00026b89	[BLE_TRANS]con_latency = %d
+00026ba7	[BLE_TRANS]cnn_timeout = %d
+00026bc5	bv:%d, bl:%d , check_vbat:%d
+00026be3	vm_write:VM_USER_BAND Err,%d
+00026c02	__gatt_server_just_new_dev_adv
+00026c21	[Info]: [TEST-UPDATE]msg:%x
+00026c40	[BLE_TRANS]peer_address_info: 
+00026c5f	[BLE_TRANS]con_interval = %d
+00026c7e	[BLE_TRANS]att_value_len= %d
+00026ce0	MSG_JL_ENTER_UPDATE_MODE:%x %x
+00026d00	[Info]: [SPP_AND_LE]----%s %d
+00026d20	[BLE_TRANS]trans_adv_data(%d): 
+00026d40	[Info]: [COMM_BLE]TEST_BOX:%d
+00026d80	VM_USER_AREA_FILTER_CFG Err,%d
+00026da1	read file req_len:%x ret_len:%x
+00026dc2	[BLE_TRANS]update_latency = %d
+00026de3	[BLE_TRANS]update_timeout = %d
+00026e04	[Info]: [BOARD]Power init : %s
+00026e25	<Error>: [CFG BIN]open %s fail
+00026e46	ble_err_s:wlen=%d,err=%d,len=%d
+00026e67	[Info]: [GATT_COMM]ble_file: %s
+00026e89	[Info]: [GATT_SERVER]adv_en:%d
+00026eab	[Info]: [GATT_SERVER]error: %s
+00026ecd	***trans_adv_data overflow!!!!!!
+00026eef	[BLE_TRANS]update_interval = %d
+00026f11	[Debug]: [USER_CFG]read rf err
+00026f33	[Info]: [USER_CFG]rf config:%d
+00026f55	data err !!,func = %s, line = %d
+00026f77	[Info]: [GATT_SERVER]Tx PHY: %s
+00026f9a	[Info]: [GATT_SERVER]Rx PHY: %s
+00026fbd	[Info]: [SPP_AND_LE]app_file: %s
+00026fe0	[BLE_TRANS]resume_all_ccc_enable
+00027028	[Info]: [GATT_SERVER]new_dev_adv
+0002704c	[Info]: [TEST-UPDATE]wait discon
+00027070	[BLE_TRANS]adv_setup_init fail!!!
+00027094	[BLE_TRANS]connection_handle:%04x
+000270b8	[BLE_TRANS]bt_get_local_name(): %s 
+000270dc	[Info]: [COMM_BLE]STATUS_INIT_OK
+00027124	<Error>: [BTIF]check item %d err!
+00027148	<Error>: [SPI]invalid spi baudrate
+0002716d	[Info]: [TEST-UPDATE]close ble hw
+00027192	[Info]: [COMM_BLE]---ble's address
+000271b7	[Info]: [COMM_BLE]===btstack_exit
+000271dc	[Info]: [APP_POWER][Noraml power]
+00027201	[Debug]: [SDFILE]sdfile mount succ
+00027226	VM_USER_AREA_FILTER_CFG read err:%d
+0002724c	[Info]: [UART_UPDATE]unkown cmd...
+00027272	>>>APP V%d.%02d,%02d%02d%02d%02d >>>
+00027298	[BLE_TRANS]
+000272a4	------read gap_name: %s
+000272be	[Info]: [USER_CFG]read bt name err
+000272e4	[Info]: [USER_CFG]auto_off_time:%d
+0002730a	[Info]: [SDFILE]disk capacity %d KB
+00027330	[Info]: [GATT_COMM]error handle:%04x
+00027357	[Info]: [GATT_SERVER]DIRECT_ADV TO!
+0002737e	[Info]: [GATT_SERVER]remoter reject
+000273a5	[Info]: [GATT_SERVER]dev_doing,%02x
+000273cc	[Info]: [SPP_AND_LE]APP_STA_DESTROY
+000273f3	[BLE_TRANS]------write ccc:%04x,%02x
+0002741a	[Info]: [USER_CFG]bt name config:%s
+00027441	[Info]: [BOARD]charge...select LDO15
+00027468	[Info]: [SDFILE]VM size: 0x%x @ 0x%x
+0002748f	[Info]: [GATT_COMM]err_connection:%d
+000274b7	[Info]: [GATT_COMM]ble name(%d): %s 
+000274df	[Info]: [GATT_SERVER]remoter accept 
+00027507	[Info]: [UART_UPDATE]uart_f_read err
+0002752f	spple_bt_connction_status_event_handler
+00027557	[BLE_TRANS]
+00027563	------write ccc:%04x,%02x
+0002757f	[BLE_TRANS]BLE->UART
+000275a7	[Info]: [COMM_BLE]clear_test_box_flag
+000275cf	VM_AREA_ADR(VM_AREA_USING)= 0x%x       
+000275f7	buf_size not enough!!!,need_size >= %d
+00027620	~~~~~~~~~~~~~ chip id %x ~~~~~~~~~~~~~
+00027648	[Info]: [GATT_COMM]gatt_config: %d,%d
+00027671	[Info]: [SPP_AND_LE]set_soft_poweroff
+0002769a	[Info]: [USER_CFG]>>>init mac addr!!!
+000276c3	=================Version===============
+000276ec	=======================================
+00027715	[Debug]: [SPI]spi clock source freq %lu
+0002773f	vm_write:VM_USER_AREA_FILTER_CFG Err,%d
+00027769	>>>>>>>>>>>>>>>>> radar ver:V%d.%02d ...
+00027793	[Info]: [GATT_SERVER]conn_latency = %d
+000277bd	[Info]: [GATT_SERVER]conn_timeout = %d
+000277e7	[Info]: [APP-UPDATE]succ report stored
+00027811	[Info]: [SPP_AND_LE]----%s reason %x %x
+0002783b	[Debug]: [SDFILE]sdfile mount failed!!!
+00027865	reserve_saddr:0x%x  loader_area_len:0x%x
+0002788f	[Info]: [GATT_SERVER]conn_interval = %d
+000278ba	[Info]: [GATT_SERVER]conn_handle = %04x
+000278e5	vm_update_param.ota_addr:0x%x   type:0x%x
+00027910	<Error>: [GATT_COMM]cfg_name overflow!!!
+00027968	[Info]: [UART_UPDATE]CMD_UART_UPDATE_END
+00027994	[Info]: [UART_UPDATE]CMD_UART_UPDATE_LEN
+000279c0	[Info]: [UART_UPDATE]CMD_UART_KEEP_ALIVE
+000279ec	[Info]: [SPP_AND_LE]app_key_evnet: %d,%d
+00027a18	[BLE_TRANS]con_handle= %02x, ATT MTU = %u
+00027a44	[BLE_TRANS]server_state: handle=%02x,%02x
+00027a70	[Info]: [GATT_SERVER]no idle dev to do!!!
+00027a9d	[Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+00027aca	[Info]: [SPP_AND_LE]>>>test to disconnect
+00027af7	[BLE_TRANS]conn_param update_complete:%04x
+00027b24	[BLE_TRANS]
+00027b30	------write ff04 ccc:%04x,%02x
+00027b51	<Error>: [SDFILE]sdfile get_vm_addr err!!!
+00027b7e	[Info]: [GATT_COMM]mtu_size= %d,set fail!!!
+00027bac	<Error>: [GATT_COMM]att_send_fail: %d!!!,%s
+00027bda	[Info]: [GATT_SERVER]TX_Octets:%d, Time:%d
+00027c08	[Info]: [GATT_SERVER]RX_Octets:%d, Time:%d
+00027c36	JL_OPCODE_INQUIRE_DEVICE_IF_CAN_UPDATE:%x %x
+00027c64	[Info]: [UART_UPDATE]CMD_UART_UPDATE_START
+00027c92	[Info]: [UART_UPDATE]CMD_UART_UPDATE_READY
+00027cc0	[BLE_TRANS]connection_handle:%04x, rssi= %d
+00027cee	<Error>: [SDFILE]file head crc err,addr=%x
+00027d1c	<Error>: [SDFILE]sdfile not support part %s
+00027d4a	[Info]: [GATT_COMM]>>>send disconnect= %04x
+00027d79	[Info]: [GATT_SERVER]CONNECTION FAIL!!! %0x
+00027da8	[Info]: [GATT_SERVER]-update_rsp:%04x, %02x
+00027dd7	[Debug]: [SDFILE]Open 0x%x, [%s] Fail! (>_<)
+00027e06	[Info]: [APP-UPDATE]type:%x state:%x code:%x
+00027e36	[Info]: [APP_POWER]POWER_LOW TO SOFT_POWEROFF
+00027e66	[Info]: [GATT_CLIENT]interval error,reject!!!
+00027e97	[Info]: [GATT_COMM]att malloc size=%d fail!!!
+00027ec8	<Error>: [TEST-UPDATE]bt save conn info fail!
+00027ef9	[Info]: [UART_UPDATE]MSG_UART_UPDATE_READ_RSP
+00027f2a	[Info]: [UART_UPDATE]unkown msg..............
+00027f5b	[BLE_TRANS]disconnect_handle:%04x,reason= %02x
+00027f8c	[Info]: [GATT_COMM]btstack_config: %d-%d-%d-%d
+00027fbe	[Info]: [GATT_SERVER]conn_update_interval = %d
+00027ff0	[Info]: [GATT_SERVER]conn_update_latency  = %d
+00028022	[Info]: [GATT_SERVER]conn_update_timeout  = %d
+00028054	[Info]: [GATT_SERVER]connection_update busy!!!
+00028086	[Info]: [TEST-UPDATE]testbox msg handle reg:%x
+000280b8	[Info]: [UART_UPDATE]MSG_UART_UPDATE_START_RSP
+000280ea	[Info]: [UART_UPDATE]MSG_UART_UPDATE_ALIVE_RSP
+0002811c	local_sendbuf_size not enough!!!,need_size >= %d
+0002814e	[Info]: [GATT_SERVER]Encryption fail!!!,%d,%04x
+00028181	[Info]: [GATT_COMM]>>>busy,wait disconnect= %04x
+000281b5	[Info]: [GATT_SERVER]conn_update_handle   = %04x
+000281e9	[BLE_TRANS]BLE
+0002821d	<Error>: [GATT_COMM]gatt_control_block is null!!!
+00028252	<Error>: [GATT_COMM]param:%04x, %04x, %02x,len= %d
+00028287	>>>loader_len:0x%x res_area_len:0x%x total_len:0x%x
+000282bc	[Info]: [GATT_CLIENT]interval_1250 error,reject!!!
+000282f2	[Info]: [GATT_SERVER]---HCI_EVENT_VENDOR_REMOTE_TEST
+0002832a	[Info]: [GATT_COMM]HCI_EVENT_VENDOR_REMOTE_TEST: %d,%d
+00028364	[Info]: [GATT_SERVER]APP HCI_SUBEVENT_LE_PHY_UPDATE %s
+0002839e	[Info]: [USER_CFG]warning_tone_v:%d poweroff_tone_v:%d
+000283d8	[Info]: [APP_POWER]
+000283ec	**Low Power,Please Charge Soon!!!**
+00028413	err: MSG_JL_ENTER_UPDATE_MODE too few argument, argc is %d
+0002848c	[Info]: [GATT_SERVER]handle= %02x, ATT_MTU= %u,payload= %u
+000284ca	[Info]: [GATT_SERVER]HCI_EVENT_ENCRYPTION_CHANGE= %d, %04x
+00028508	[Info]: [SPP_AND_LE]=======================================
+00028546	[Info]: [SPP_AND_LE]-----------spp_and_le demo-------------
+00028584	[Info]: [GATT_SERVER]APP HCI_SUBEVENT_LE_DATA_LENGTH_CHANGE
+000285c3	[BLE_TRANS]ENCRYPTION_CHANGE:handle=%04x,state=%d,process =%d 
+00028602	[Info]: [APP_POWER]power on low power , enter softpoweroff!
+00028783	?[Info]: [GATT_COMM]HCI_EVENT_ENCRYPTION_CHANGE= %d,handle= %04x
+000287c7	[BLE_TRANS]INDICATION_COMPLETE:con_handle= %04x,att_handle= %04x
+0002880a	[Info]: [APP_POWER]
+0002881e	*******Low Power,enter softpoweroff********
+0002884d	[Info]: [APP-UPDATE]<--------update_result_deal=0x%x %x--------->
+00028892	[BLE_TRANS]write_callback,conn_handle =%04x, handle =%04x,size =%d
+000288d7	[BLE_TRANS]read_callback,conn_handle =%04x, handle=%04x,buffer=%08x
+0002891d	err: MSG_JL_INQUIRE_DEVEICE_IF_CAN_UPDATE too few argument, argc is %d
+00028965	err: MSG_JL_GET_DEV_UPDATE_FILE_INFO_OFFSET too few argument, argc is %d
+00028a00	[Info]: [GATT_SERVER]ATT_INDICATION_COMPLETE:con_handle= %04x,att_handle= %04x
+00028aa8	[Info]: [GATT_SERVER]HCI_SUBEVENT_LE_CONNECTION_COMPLETE:conn_handle= %04x,rssi= %d
+00028aff	[Info]: [GATT_SERVER]HCI_EVENT_DISCONNECTION_COMPLETE:conn_handle= %04x, reason= %02x
+00028b58	H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\spp_and_le\board\br23\board_ac635n_demo.c
+00028bbb	H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\spp_and_le\examples\trans_data\ble_trans.c
+00028daf	BH:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\spp_and_le\examples\trans_data\app_spp_and_le.c
+00028e19	H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\common\third_party_profile\jieli\gatt_common\le_gatt_common.c
+00028f0e	[Info]: [GATT_CLIENT]slave request conn_update:
+00028f3e	-conn_handle= %04x
+00028f51	-interval_min= %d,
+00028f64	-interval_max= %d,
+00028f77	-latency= %d,
+00028f85	-timeout= %d
+0002909b	1h!"3
+00029253	]@!A!B
+000292b1	Zedr_ota2.bin
+000292c3	Zsd_update2.bin
+000292d5	Zsd_update2.bin
+000292e7	Zble_app_ota.bin
+000292f9	Zspp_app_ota.bin
+0002930b	Zusb_update2.bin
+0002931d	Zble_ota.bin
+0002932f	Zuart_user.bin
+00029341	Znor_ota.bin
+00029353	Zusb_hid_ota.bin
+00029367	app_dir_head
+00029374	ota.bin
+000293c4	cfg_tool.bin
+000293d1	flash.bin
+000293db	flash2.bin
+00029485	 R C 
+00029496	y`F!A
+000295f2	F B%@
+00029747	b``F 
+0002990e	H J C 
+00029a50	J L `
+00029bd9	P%XA B
+00029c03	` C@!B
+00029e11	b@ J 
+00029e27	 J C q
+0002a10f	&B C 
+0002a11f	DA!B @
+0002a223	JA Z(@
+0002a27c	_!@$A
+0002a31f	I@"A B0
+0002a328	@"A B1
+0002a39e	qY@ D 
+0002a450	p"@$q
+0002a4c5	G@"A B0Q
+0002a4fa	@%A C A
+0002a508	@ C D A
+0002a61d	`Bb3c
+0002a631	b@ J O a
+0002a63e	CbJ a
+0002a6a1	1@)A B$
+0002a6ac	@&A B#C'
+0002a6b6	@)A B$C 
+0002a6c2	@&A B#C 
+0002ab68	@K@mp
+0002ab90	@I@np
+0002ac22	@cCb1
+0002ae3b	]Pj@gh
+0002b0bb	]Pj@gh
+0002b0c2	,@Pa0
+0002b0f7	]PjQa1
+0002b331	]Pj@gh
+0002b406	JA@!A!2
+0002b428	@!F!Q
+0002b438	@"F"Q
+0002b451	I@bG 
+0002b7ee	h A$B!C!
+0002b9e4	@^@ U
+0002ba62	@N@ U
+0002ba8d	(4BPg@ 
+0002bc44	A B!C!
+0002bd16	  @ #
+0002c26b	pF @%
+0002c919	H@3A 
+0002c9b5	`h/y?
+0002ca17	AA(H2
+0002ca26	X3X2A0
+0002ca53	LH4A!E!
+0002ca6d	S@`@!a
+0002cbff	iA%B 
+0002d623	`pWF 
+0002d7e6	0`D p
+0002d975	bBa@ 
+0002d989	BBaG 
+0002d9b9	IQnRj
+0002dc46	A C F @
+0002de7f	c@i Q
+0002df5a	A C D P
+0002e0bf	02cG 
+0002e1d0	tVpU@
+0002e3a3	 x?A B D Q
+0002e3fb	 A B D 
+0002e407	HB C P
+0002e613	"F%@$
+0002f230	%s %d
+0002f237	xQueueGenericCreateStatic
+0002f251	xQueueGenericSend
+0002f263	xQueueGiveMutexRecursive
+0002f27c	xQueueTakeMutexRecursive
+0002f295	xQueueGenericReceive
+0002f2aa	xQueueGenericSendFromISR
+0002f2c3	xQueueGiveFromISR
+0002f2d5	xQueueReceiveFromISR
+0002f2ea	uxQueueMessagesWaiting
+0002f301	vQueueDelete
+0002f30e	uxQueueMessagesSet
+0002f321	%s %d
+0002f328	vTaskDelete
+0002f334	prvDeleteTCB
+0002f341	xTaskResumeAll
+0002f350	xTaskIncrementTick
+0002f363	vTaskFindHightestTask
+0002f379	IDLE0
+0002f37f	vTaskStartScheduler
+0002f393	pcTaskGetName
+0002f3a1	xTaskGetHandle
+0002f3b0	vTaskStepTick
+0002f3be	vTaskPlaceOnEventList
+0002f3d4	xTaskRemoveFromEventList
+0002f3ed	xTaskCheckForTimeOut
+0002f402	xTaskPriorityDisinherit
+0002f94c	JL_BT(BLE)
+0002fa05	+JL_app_debug
+0002fb8b	AC695X_1
+0002fbac	AC695X_2
+0002fbcd	AC695X_3
+0002fbee	AC695X_4
+0002fc0f	AC695X_5
+0002fc30	AC695X_6
+0002fc51	AC695X_7
+0002fc72	AC695X_8
+0002fc93	AC695X_9
+0002fcb4	AC695X_10
+0002fcd5	AC695X_11
+0002fcf6	AC695X_12
+0002fd17	AC695X_13
+0002fd38	AC695X_14
+0002fd59	AC695X_15
+0002fd7a	AC695X_16
+0002fd9b	AC695X_17
+0002fdbc	AC695X_18
+0002fddd	AC695X_19
+0002fdfe	AC695X_20
+0002fe38	?333?ff
+0002fe40	?333?

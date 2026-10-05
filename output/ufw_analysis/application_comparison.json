@@ -1,0 +1,365 @@
+{
+  "applications": [
+    {
+      "package": "oncstzcza54pd",
+      "application": "output\\ufw_analysis\\oncstzcza54pd\\flash_images\\flash.bin\\files\\app.bin",
+      "size": 178308,
+      "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5",
+      "selected_strings": [
+        {
+          "offset": 67940,
+          "offset_hex": "0x10964",
+          "text": "BTCTRLER-@20221123-$c284473"
+        },
+        {
+          "offset": 67972,
+          "offset_hex": "0x10984",
+          "text": "UPDATE-@20221123-$330d72d"
+        },
+        {
+          "offset": 129772,
+          "offset_hex": "0x1faec",
+          "text": "os_sem_create hlk_uart_sem:%d"
+        },
+        {
+          "offset": 129804,
+          "offset_hex": "0x1fb0c",
+          "text": "os_sem_create hlk_spi_sem:%d"
+        },
+        {
+          "offset": 131408,
+          "offset_hex": "0x20150",
+          "text": ">>>>>>>>>>>>>>>>>radar_app_init..."
+        },
+        {
+          "offset": 131456,
+          "offset_hex": "0x20180",
+          "text": "create hlk_uart_recv_task success"
+        },
+        {
+          "offset": 131504,
+          "offset_hex": "0x201b0",
+          "text": "create hlk_spi_recv_task success"
+        },
+        {
+          "offset": 131776,
+          "offset_hex": "0x202c0",
+          "text": "i2c_write success"
+        },
+        {
+          "offset": 138893,
+          "offset_hex": "0x21e8d",
+          "text": "#cidx er"
+        },
+        {
+          "offset": 139200,
+          "offset_hex": "0x21fc0",
+          "text": "Oct 19 2023"
+        },
+        {
+          "offset": 140178,
+          "offset_hex": "0x22392",
+          "text": "hlk_spi_recv_task"
+        },
+        {
+          "offset": 140304,
+          "offset_hex": "0x22410",
+          "text": "hlk_uart_recv_task"
+        },
+        {
+          "offset": 145483,
+          "offset_hex": "0x2384b",
+          "text": ">>>>>>>>>>>>>>>>> radar ver:V%d.%02d ..."
+        },
+        {
+          "offset": 150145,
+          "offset_hex": "0x24a81",
+          "text": "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\spp_and_le\\board\\br23\\board_ac635n_demo.c"
+        },
+        {
+          "offset": 150253,
+          "offset_hex": "0x24aed",
+          "text": "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\ble_trans.c"
+        },
+        {
+          "offset": 150362,
+          "offset_hex": "0x24b5a",
+          "text": "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\app_spp_and_le.c"
+        },
+        {
+          "offset": 150603,
+          "offset_hex": "0x24c4b",
+          "text": "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\common\\third_party_profile\\jieli\\gatt_common\\le_gatt_common.c"
+        }
+      ]
+    },
+    {
+      "package": "5o09fdkye1jo8",
+      "application": "output\\ufw_analysis\\5o09fdkye1jo8\\flash_images\\flash.bin\\files\\app.bin",
+      "size": 182760,
+      "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc",
+      "selected_strings": [
+        {
+          "offset": 68052,
+          "offset_hex": "0x109d4",
+          "text": "BTCTRLER-@20221123-$c284473"
+        },
+        {
+          "offset": 68084,
+          "offset_hex": "0x109f4",
+          "text": "UPDATE-@20221123-$330d72d"
+        },
+        {
+          "offset": 132849,
+          "offset_hex": "0x206f1",
+          "text": "os_sem_create hlk_uart_sem:%d"
+        },
+        {
+          "offset": 132881,
+          "offset_hex": "0x20711",
+          "text": "os_sem_create hlk_spi_sem:%d"
+        },
+        {
+          "offset": 134576,
+          "offset_hex": "0x20db0",
+          "text": ">>>>>>>>>>>>>>>>>radar_app_init..."
+        },
+        {
+          "offset": 134624,
+          "offset_hex": "0x20de0",
+          "text": "create hlk_uart_recv_task success"
+        },
+        {
+          "offset": 134672,
+          "offset_hex": "0x20e10",
+          "text": "create hlk_spi_recv_task success"
+        },
+        {
+          "offset": 134944,
+          "offset_hex": "0x20f20",
+          "text": "i2c_write success"
+        },
+        {
+          "offset": 142369,
+          "offset_hex": "0x22c21",
+          "text": "Nov 20 2025"
+        },
+        {
+          "offset": 142456,
+          "offset_hex": "0x22c78",
+          "text": "Nov 24 2025"
+        },
+        {
+          "offset": 142468,
+          "offset_hex": "0x22c84",
+          "text": "uart_update"
+        },
+        {
+          "offset": 143438,
+          "offset_hex": "0x2304e",
+          "text": "uart_update_init"
+        },
+        {
+          "offset": 143633,
+          "offset_hex": "0x23111",
+          "text": "Set sensibility:%d"
+        },
+        {
+          "offset": 143748,
+          "offset_hex": "0x23184",
+          "text": "Hold Cnt Time is %d"
+        },
+        {
+          "offset": 145536,
+          "offset_hex": "0x23880",
+          "text": "DATA_TRANSFER_CMD cmdData: "
+        },
+        {
+          "offset": 145732,
+          "offset_hex": "0x23944",
+          "text": "UART->BLE"
+        },
+        {
+          "offset": 147756,
+          "offset_hex": "0x2412c",
+          "text": "[Info]: [UART_UPDATE]unkown cmd..."
+        },
+        {
+          "offset": 148455,
+          "offset_hex": "0x243e7",
+          "text": "[Info]: [UART_UPDATE]uart_f_read err"
+        },
+        {
+          "offset": 148575,
+          "offset_hex": "0x2445f",
+          "text": "[BLE_TRANS]BLE->UART"
+        },
+        {
+          "offset": 149065,
+          "offset_hex": "0x24649",
+          "text": ">>>>>>>>>>>>>>>>> radar ver:V%d.%02d ..."
+        },
+        {
+          "offset": 149576,
+          "offset_hex": "0x24848",
+          "text": "[Info]: [UART_UPDATE]CMD_UART_UPDATE_END"
+        },
+        {
+          "offset": 149620,
+          "offset_hex": "0x24874",
+          "text": "[Info]: [UART_UPDATE]CMD_UART_UPDATE_LEN"
+        },
+        {
+          "offset": 149664,
+          "offset_hex": "0x248a0",
+          "text": "[Info]: [UART_UPDATE]CMD_UART_KEEP_ALIVE"
+        },
+        {
+          "offset": 149885,
+          "offset_hex": "0x2497d",
+          "text": "[Info]: [UART_UPDATE]CMD_UART_UPDATE_READ"
+        },
+        {
+          "offset": 150340,
+          "offset_hex": "0x24b44",
+          "text": "[Info]: [UART_UPDATE]CMD_UART_UPDATE_START"
+        },
+        {
+          "offset": 150386,
+          "offset_hex": "0x24b72",
+          "text": "[Info]: [UART_UPDATE]CMD_UART_UPDATE_READY"
+        },
+        {
+          "offset": 151001,
+          "offset_hex": "0x24dd9",
+          "text": "[Info]: [UART_UPDATE]MSG_UART_UPDATE_READ_RSP"
+        },
+        {
+          "offset": 151050,
+          "offset_hex": "0x24e0a",
+          "text": "[Info]: [UART_UPDATE]unkown msg.............."
+        },
+        {
+          "offset": 151448,
+          "offset_hex": "0x24f98",
+          "text": "[Info]: [UART_UPDATE]MSG_UART_UPDATE_START_RSP"
+        },
+        {
+          "offset": 151498,
+          "offset_hex": "0x24fca",
+          "text": "[Info]: [UART_UPDATE]MSG_UART_UPDATE_ALIVE_RSP"
+        },
+        {
+          "offset": 154168,
+          "offset_hex": "0x25a38",
+          "text": "H:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\spp_and_le\\board\\br23\\board_ac635n_demo.c"
+        },
+        {
+          "offset": 154267,
+          "offset_hex": "0x25a9b",
+          "text": "H:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\ble_trans.c"
+        },
+        {
+          "offset": 154767,
+          "offset_hex": "0x25c8f",
+          "text": "BH:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\app_spp_and_le.c"
+        },
+        {
+          "offset": 154873,
+          "offset_hex": "0x25cf9",
+          "text": "H:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\common\\third_party_profile\\jieli\\gatt_common\\le_gatt_common.c"
+        }
+      ]
+    }
+  ],
+  "unique_strings": {
+    "only_left": [
+      "G:\\ProductInfo\\",
+      "[BLE_TRANS]-loop send2",
+      "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\common\\third_party_profile\\jieli\\gatt_common\\le_gatt_common.c",
+      "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\spp_and_le\\board\\br23\\board_ac635n_demo.c",
+      "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\app_spp_and_le.c",
+      "\\LD2450 1T2R\\obj\\cur_obj\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\ble_trans.c",
+      "hlk_spi_recv_task",
+      "hlk_uart_recv_task"
+    ],
+    "only_right": [
+      "------write ff04 ccc:%04x,%02x",
+      "BH:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\app_spp_and_le.c",
+      "DATA_TRANSFER_CMD cmdData: ",
+      "DoDefaultCfg>>",
+      "H:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\common\\third_party_profile\\jieli\\gatt_common\\le_gatt_common.c",
+      "H:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\spp_and_le\\board\\br23\\board_ac635n_demo.c",
+      "H:\\HLK_Project\\2450\\git\\ld2450-1t2r-\\fw-AC63_BT_SDK\\apps\\spp_and_le\\examples\\trans_data\\ble_trans.c",
+      "Hold Cnt Time is %d",
+      "Set sensibility:%d",
+      "UART->BLE",
+      "VM_USER_AREA_FILTER_CFG Err,%d",
+      "[BLE_TRANS]BLE",
+      "[BLE_TRANS]BLE->UART",
+      "[BLE_TRANS]BlueToothData_Send_ff03 len=%d",
+      "[Info]: [UART_UPDATE]CMD_UART_KEEP_ALIVE",
+      "[Info]: [UART_UPDATE]CMD_UART_UPDATE_END",
+      "[Info]: [UART_UPDATE]CMD_UART_UPDATE_LEN",
+      "[Info]: [UART_UPDATE]CMD_UART_UPDATE_READ",
+      "[Info]: [UART_UPDATE]CMD_UART_UPDATE_READY",
+      "[Info]: [UART_UPDATE]CMD_UART_UPDATE_START",
+      "[Info]: [UART_UPDATE]MSG_UART_UPDATE_ALIVE_RSP",
+      "[Info]: [UART_UPDATE]MSG_UART_UPDATE_READ_RSP",
+      "[Info]: [UART_UPDATE]MSG_UART_UPDATE_START_RSP",
+      "[Info]: [UART_UPDATE]uart_f_read err",
+      "[Info]: [UART_UPDATE]unkown cmd...",
+      "[Info]: [UART_UPDATE]unkown msg..............",
+      "soft reset to update >>>",
+      "spi_recv_task",
+      "uart_f_read",
+      "uart_recv_task",
+      "uart_sleep",
+      "uart_update",
+      "uart_update_init",
+      "write flash error:%d"
+    ]
+  },
+  "bootloader_configuration": [
+    {
+      "key": "SPI",
+      "raw_hex": "325f335f305f30",
+      "value": "2_3_0_0"
+    },
+    {
+      "key": "UTTX",
+      "raw_hex": "50413035",
+      "value": "PA05"
+    },
+    {
+      "key": "UTBD",
+      "raw_hex": "40420f00",
+      "value": 1000000
+    },
+    {
+      "key": "UTRX",
+      "raw_hex": "50423035",
+      "value": "PB05"
+    },
+    {
+      "key": "RESET",
+      "raw_hex": "504230315f30385f30",
+      "value": "PB01_08_0"
+    },
+    {
+      "key": "UPDATE_JUMP",
+      "raw_hex": "00000000",
+      "value": 0
+    },
+    {
+      "key": "EOFFSET",
+      "raw_hex": "00000000",
+      "value": 0
+    },
+    {
+      "key": "BT_OFFSET",
+      "raw_hex": "00000000",
+      "value": 0
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+HLK-LD2450 UFW package analysis
+Analysis date: 2026-10-04
+
+Result
+------
+Both public packages were unpacked successfully. Main application binaries are
+available as ordinary, descrambled files. Each package contains four flash-image
+variants; all four yield an identical app.bin within that package. The newer
+transparent-transmission application is 4,452 bytes larger than the standard
+application. The second-stage bootloader, embedded bootloader configuration,
+cfg_tool.bin and the entire OTA loader bundle are identical across the releases.
+
+This is static file analysis. No firmware was installed, executed or flashed.
+
+Inputs and identity
+-------------------
+Standard package: oncstzcza54pd.ufw
+Catalogue version: LD2450 V2.04(23101915)
+Size: 1,018,880 bytes
+SHA-256: a1b090ccb9aeaede130bec24d4414c09b5aa85ba81020f6ce123d1c9d6b4a277
+Source: https://h.hlktech.com/Uploads/otagujian/oncstzcza54pd.ufw
+
+Transparent package: 5o09fdkye1jo8.ufw
+Catalogue version: LD2450 V2.14.(25112412)
+Size: 1,035,776 bytes
+SHA-256: b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093
+Source: https://h.hlktech.com/Uploads/otagujian/5o09fdkye1jo8.ufw
+
+Both source hashes were checked again after extraction. Originals are unchanged.
+
+Outer container
+---------------
+The 64-byte UFW header and ten 80-byte entry descriptors use JieLi's fixed-key
+ENC scrambling. Descrambling with 0xffff produces a valid header CRC16 and the
+chip identifier AC635N. The CRC16 of the stored entry table is also valid in
+both packages. AC635N is a package/SDK identifier; this does not independently
+identify the physical chip's precise marketing part number.
+
+Entry             V2.04 bytes   V2.14 bytes   Identical between releases?
+flash.bin             192512        196608   No
+info.log                   0             0   Yes (empty)
+isd_config.ini           659           662   No (outer metadata)
+ota.bin               255045        255045   Yes
+script.ver                27            27   No
+flash2.bin            188416        192768   No
+flash3.bin            192512        196608   No
+flash4.bin            188416        192768   No
+blimit.bin               144           144   No
+tail.bin                  64            64   Yes
+
+Payload CRC16 checks pass for all four flash images, ota.bin and tail.bin in
+each package. The stored CRC conventions for outer isd_config.ini, script.ver
+and blimit.bin remain unresolved: neither the raw bytes nor the simple
+fixed-key descrambling matches their descriptor CRC. Those auxiliary entries
+have not been independently integrity-validated; their storage/CRC conventions
+need further decoding. Main application integrity was checked separately.
+
+Flash images and application extraction
+--------------------------------------
+All eight flash-image variants successfully decode as the JieLi new firmware
+format. Their entry headers pass CRC16 validation. The encoded chip key in the
+inner isd_config.ini is recoverable and resolves to 0xa80f in both releases.
+Application entry address recorded by the image: 0x01e00120.
+
+Canonical applications, relative to this report's directory:
+oncstzcza54pd/flash_images/flash.bin/files/app.bin
+  Size: 178,308 bytes; payload CRC16: 0xb067 (matches its file descriptor)
+  SHA-256: a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5
+5o09fdkye1jo8/flash_images/flash.bin/files/app.bin
+  Size: 182,760 bytes; payload CRC16: 0xd19a (matches its file descriptor)
+  SHA-256: af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc
+
+Each flash variant also yields:
+  top/uboot.boot: 8,168 bytes
+  top/isd_config.ini: 137 bytes
+  files/cfg_tool.bin: 916 bytes; payload CRC16 also validated
+
+Those three files are byte-identical across all eight images. Differences
+between flash variants are in layout metadata: flash.bin/flash3.bin use an
+application-area base of 0x3000 and block alignment 16; flash2.bin/flash4.bin
+use base 0x2200 and alignment 1. flash3.bin/flash4.bin also have a different
+PRCT-region offset. The runtime rules selecting a variant are not decoded.
+Four packaged variants do not imply four different applications run on a unit.
+
+Links to the observed boot output
+--------------------------------
+The standard application contains these strings at app.bin file offsets:
+  0x20150  radar_app_init diagnostic
+  0x20180  create hlk_uart_recv_task success
+  0x201b0  create hlk_spi_recv_task success
+  0x202c0  i2c_write success
+  0x21e8d  #cidx er
+  0x21ebe  15:14:54
+  0x21fc0  Oct 19 2023
+  0x2337e  APP version diagnostic format
+  0x2384b  radar version diagnostic format
+
+It also contains VM_USER_AREA_FILTER_CFG read/write error diagnostics and the
+source-path suffix:
+  fw-AC63_BT_SDK/apps/spp_and_le/board/br23/board_ac635n_demo.c
+
+The build date/time and diagnostic strings match the user's boot capture. The
+path specifically ties this application to the AC63 Bluetooth SDK's BR23
+spp_and_le application. This is a closer source-family anchor than treating
+the existing Soundbox SDK checkout as the vendor application's exact source.
+The meaning and call site of #cidx er have not been established. The literal
+is absent from the V2.14 application, which does not prove that its triggering
+condition was fixed.
+
+What changes in the transparent application
+------------------------------------------
+The newer application retains radar initialization, the SPI receive task,
+I2C-write diagnostics and HLK-LD2450 identification. It includes Nov 20 2025
+and Nov 24 2025 date strings. Both applications retain the same library build
+markers BTCTRLER-@20221123-$c284473 and UPDATE-@20221123-$330d72d.
+
+Notable strings added in V2.14 include:
+  UART->BLE
+  [BLE_TRANS]BLE->UART
+  [BLE_TRANS]BlueToothData_Send_ff03 len=%d
+  ------write ff04 ccc:%04x,%02x
+  DATA_TRANSFER_CMD cmdData:
+  uart_update_init
+  CMD_UART_UPDATE_START / READ / LEN / END / READY / KEEP_ALIVE
+  Set sensibility:%d
+  Hold Cnt Time is %d
+  DoDefaultCfg>>
+
+These are consistent with the server's transparent-transmission description
+and show additional UART-update and configuration diagnostics. Strings alone
+do not establish the command framing, characteristic UUIDs, sensitivity
+semantics, or what raw radar data can be exported. The control flow remains
+to be analyzed.
+
+OTA bundle
+----------
+ota.bin is byte-identical between releases. Its first payload offset, 0x120,
+delimits nine 32-byte descriptors. Every descriptor and every loader payload
+passes CRC16 validation. Extracted files are in each package's ota_loaders/:
+  ble_app_ota.bin     59,267 bytes
+  edr_ota2.bin        36,143 bytes
+  uart_update.bin    20,040 bytes
+  ble_ota.bin        42,565 bytes
+  sd_update2.bin     22,580 bytes
+  usb_update2.bin    22,727 bytes
+  nor_ota.bin        16,588 bytes
+  lcflash_ota.bin    16,335 bytes
+  uart_user.bin      18,212 bytes
+
+There are also 300 bytes beyond the final loader's described payload. These
+remain unparsed and are preserved in components/ota.bin.
+
+The presence of these generic loader files does not demonstrate that every
+listed update transport is physically wired or enabled on the LD2450 board.
+
+Bootloader configuration
+------------------------
+The inner configuration is identical between releases and specifies:
+  SPI: 2_3_0_0
+  UTTX: PA05
+  UTRX: PB05
+  UTBD: 1,000,000
+  RESET: PB01_08_0
+  UPDATE_JUMP, EOFFSET, BT_OFFSET: zero
+
+These are packaged bootloader/programming settings. They do not establish
+the running application's UART pin configuration or supersede the measured
+PA9 debug output. In particular, the matching 1 Mbaud value does not prove
+that PA05 and PA9 are the same signal.
+
+Useful next analysis targets
+----------------------------
+The application is available for instruction-level work. The most useful
+targets are references to radar_app_init and i2c_write success to recover the
+radar startup register sequence; the SPI receive task to follow packet and
+I/Q handling; and the V2.14 BLE/UART forwarding paths to recover their exact
+transport format. This container-analysis pass did not recover register sequences,
+tracking algorithms or a validated patch.
+
+Follow-up initialization recovery (2026-10-04): output/radar_init/report.txt
+documents two ordered 80-write radar I2C profiles recovered from these images.
+Both profiles match between V2.04 and V2.14, and both use the 75-before-SPI / 5-after
+startup grouping seen in the UART log. One resides in ROM; the other is copied
+from the image into RAM and can be changed at runtime. tools/extract_radar_init.py
+reproduces the extraction. Register semantics and physical timing remain pending.
+
+Reproduction and provenance
+---------------------------
+From the project root: python tools/analyze_ufw.py
+Source decoder: https://github.com/kagaimiq/jl-misctools
+Pinned downloaded revision: 0a5b12db0ef38f3042acffbe2452730a37fd2405
+Format reference: https://kagaimiq.github.io/jielie/datafmt/newfw.html
+
+The tool loads reviewed decoder definitions without running its CLI. It uses
+stdlib CRC16, validates extraction names and file bounds, permits repeatable
+directory creation, and adds application/configuration payload checks. The
+downloaded source remains in tmp/ufw_analysis/jl-misctools with its license.
+
+manifest.json records input/output hashes, container entries, extracted loader
+metadata, decoder provenance, inner CRC results and component comparisons.
+application_comparison.json records selected strings and application offsets.
+Each extracted binary also has an adjacent .strings.tsv. Per-image decoding
+logs, info.json and decoded_flash.bin retain the layout evidence.

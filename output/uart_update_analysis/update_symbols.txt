@@ -1,0 +1,329 @@
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:encrypt_api.c.o: -------- T decode_data_by_user_key
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:encrypt_api.c.o:          U doe
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T bt_f_open
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T bt_f_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T bt_f_seek
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T bt_f_send_update_len
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T bt_f_stop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- d bt_file_offset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- d bt_offset_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- d bt_read_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- d bt_seek_type
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o:          U bt_updata_clr_flag
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o:          U bt_updata_control
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o:          U bt_updata_get_flag
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- t bt_updata_handle
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T bt_update_set_offset_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- d g_bt_read_len
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T lmp_ch_update_exit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- T lmp_ch_update_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- D lmp_ch_update_op
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- D lmp_ch_update_resume_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o: -------- d lmp_ch_update_sleep_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o:          U lmp_update_exit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o:          U lmp_update_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:lmp_ch_update.c.o:          U reg_revic_buf_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d ble_ch_update_resume_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d ble_ch_update_sleep_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- T ble_f_open
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- T ble_f_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- T ble_f_seek
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- T ble_f_send_update_len
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- T ble_f_stop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- D ble_ll_ch_update_op
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o:          U ble_rx_update_handle_register
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- T ble_test_update_exit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- t ble_test_update_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- t ble_updata_control
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- t ble_updata_handle
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d ble_update_ctrl.0
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d ble_update_ctrl.1
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d ble_update_ctrl.2
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d ble_update_ctrl.3
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d bt_file_offset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d bt_res_update_flag
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o: -------- d bt_seek_type
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:ble_ll_ch_update.c.o:          U ll_update_send_data_handle
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o:          U fclose
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o:          U fopen
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o:          U fread
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o:          U fseek
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o:          U puts
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- D strg_ch_update_op
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- t strg_f_open
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- t strg_f_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- T strg_f_seek
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- T strg_f_stop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- d strg_update.0
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- d strg_update.1
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- T strg_update_set_file_path
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:storage_dev_update.c.o: -------- T strg_update_set_file_path_and_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U CRC16
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d JL_APP_CODE0_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d JL_BT_CFG_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d JL_FLASH2_BIN_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d JL_FLASH_BIN_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d JL_OTA_LOADER_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d JL_RESERVED_VM_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U boot_addr_offset_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U boot_addr_offset_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U boot_info_get_sfc_base_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T calc_crc16_with_init_val
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t check_buf_is_all_0xff
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U clr_wdt
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t crc16
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d curr_loader_file_head
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U decode_data_by_user_key
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T dual_bank_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t flash_encryption_key_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U flash_erase_by_blcok_n_sector
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t flash_parts_update_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t flash_product_id_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T flash_write_and_erase_simultaneously_param_set
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U free
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d fw_flash_bin_head
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d fw_flash_bin_num
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d g_update_err_code
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U get_app_code_file_head
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U get_chip_id
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U get_current_run_code_index
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U jl_file_head_valid_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T loader_download_api_register
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t loader_download_process
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t loader_info_record_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- D loader_write_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U local_flash_op_check_align_mode
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U local_flash_op_get_app_start_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U local_irq_disable
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U local_irq_enable
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U log_print
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U log_tag_const_e_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U log_tag_const_i_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U malloc
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U memcmp
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_ioctl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_loader_start
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_origin_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_update_close
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T norflash_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_update_verify
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U norflash_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U os_sem_create
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U os_sem_pend
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U os_sem_post
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U os_time_dly
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t ota_loader_head_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d p_update_ctrl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d p_update_op
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d p_update_tws_op
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d p_user_chip_update
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t part_update_encrypt_key_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U printf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U printf_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U put_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U puts
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T register_loader_write_handler
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T register_user_chip_update_handle
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U sfc_erase
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U sfc_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U sfc_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T single_bank_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U strcmp
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U strlen
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U support_ota_tws_same_time_new
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T tws_sync_update_api_register
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d ufw_flash_file_match_api.match_file_prefix
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d ufw_flash_file_match_api.match_file_suffix
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t ufw_head_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t ufw_vm_info_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_check_resume
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d update_check_sem
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_check_sleep
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_data_all_verify
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T update_file_verify
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T update_get_err_code
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d update_loader_match_tab
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_notify_content_size
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_open
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U update_parm_set_and_get_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- d update_part_tab_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_resource_apply
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_resource_release
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_stop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T update_target_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- T update_tws_api_register
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_user_chip_get_len
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_user_chip_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o: -------- t update_user_chip_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U vm_update_defrag
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:download_loop.c.o:          U zalloc
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- t active_update_task
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T app_active_update_task_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T app_update_loader_downloader_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T ble_test_update_loader_download_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T bt_lmp_update_loader_download_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T classic_update_task_exist_flag_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U dual_bank_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U free
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U loader_download_api_register
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U log_print
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U log_tag_const_e_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U log_tag_const_i_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- t loop_state_cbk
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U malloc
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U norflash_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U os_sem_create
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U os_sem_pend
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U os_sem_post
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- d p_update_param
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U puts
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U single_bank_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T storage_update_loader_download_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T storage_update_loader_download_init_with_file_hdl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U support_dual_bank_update_en
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U support_norflash_update_en
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U support_vm_data_keep
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U task_create
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U task_kill
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U update_get_err_code
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T update_module_close
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- T update_module_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- t update_thread_resume
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o: -------- t update_thread_sleep
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:update_main.c.o:          U vm_update_recover
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U CRC16
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- d JL_APP_CODE0_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- d JL_APP_CODE1_FILE_NAME
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T __jl_fs_get_align_unit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T __jl_fs_sector_align
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T boot_addr_offset_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T boot_addr_offset_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- d boot_addr_tab
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U boot_info_get_sfc_base_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U clr_wdt
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U config_asser
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U cpu_assert_debug
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U decode_data_by_user_key
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T flash_erase_by_blcok_n_sector
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T flash_erase_by_first_unit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U flash_write_and_erase_simultaneously_param_set
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T get_app_code_file_head
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T get_current_run_code_index
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T jl_file_head_valid_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- d lc_boot_offset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- d lc_sector_align_mode
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T local_flash_op_check_align_mode
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T local_flash_op_get_app_start_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U log_print
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U log_tag_const_e_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U log_tag_const_i_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U memcmp
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U norflash_ioctl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U norflash_origin_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U norflash_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U norflash_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U os_time_dly
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U p33_soft_reset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U printf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U printf_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U puts
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U sfc_erase
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T sfc_flash_read_with_boot_offset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T sfc_flash_write_with_boot_offset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U sfc_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U sfc_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U support_vm_data_keep
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U vm_backup_for_update
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o:          U vm_defrag_for_update
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:flash_fs_api.c.o: -------- T vm_update_defrag
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U CRC16
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U __jl_fs_get_align_unit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U __jl_fs_sector_align
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- t app_dir_header_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U boot_addr_offset_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U boot_addr_offset_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U boot_info_get_sfc_base_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U calc_crc16_with_init_val
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U clr_wdt
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- t crc16_with_init_val
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U decode_data_by_user_key
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_passive_update_exit
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_passive_update_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- t dual_bank_passive_update_loop
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_update_allow_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_update_burn_boot_info
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_update_exist_flag_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_update_verify
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_update_verify_without_crc
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bank_update_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T dual_bnak_update_resource_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T flash_data_crc_calc_common
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U flash_erase_by_blcok_n_sector
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T flash_read_data_by_user_key
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T flash_run_app_info_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T flash_update_clr_boot_info
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U free
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U get_app_code_file_head
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U get_chip_id
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U get_current_run_code_index
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T get_dual_bank_passive_update_max_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- T get_target_udate_addr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U jl_file_head_valid_check
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- t jl_fs_crc16
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U local_flash_op_check_align_mode
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U local_irq_disable
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U local_irq_enable
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U log_print
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U log_tag_const_e_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U log_tag_const_i_UPDATE
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U malloc
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U memcmp
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U norflash_origin_read
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U norflash_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- d ori_app_dir_head
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U os_sem_create
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U os_sem_pend
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U os_sem_post
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U os_taskq_pend
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U os_taskq_post_type
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U os_time_dly
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- d p_dual_bank_ctrl
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U printf_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U puts
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U sfc_erase
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U sfc_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U task_create
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U task_kill
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o: -------- t update_target_update_info_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:dual_bank_passive_update.c.o:          U wdt_clear
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d baudrate
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U clk_get
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U config_asser
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U cpu_assert_debug
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_output_channle
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_set_die
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_set_direction
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_set_hd
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_set_output_value
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_set_pull_down
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_set_pull_up
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U gpio_uart_rx_input
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U p33_soft_reset
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d packet_flag
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U printf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o:          U request_irq
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d rx_cnt
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- T uart_close
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- T uart_close_deal
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d uart_dma_buf
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- T uart_hw_init
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- t uart_isr
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d uart_one_io_mode
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d uart_ot_cnt
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- T uart_set_dir
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d uart_update_isr_callback
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- T uart_update_set_baud
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- T uart_update_write
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:uart_update_driver.c.o: -------- d update_cfg
+C:\Users\mmsyl\Documents\HLK-LD2450\firmware\.cache\sdk\include_lib\liba\br23\update.a:version.z.o: 00000000 T lib_update_version

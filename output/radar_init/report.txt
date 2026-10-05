@@ -1,0 +1,194 @@
+LD2450 RADAR INITIALIZATION DATA RECOVERY
+=========================================
+
+Recovered TWO ordered 80-write profiles from BOTH applications.
+Each profile is identical between normal V2.04 and transparent V2.14.
+The profiles differ in 18 values; their register order is identical.
+
+The fixed ROM profile is selected for mode byte 1. The second profile
+is initialized into RAM and selected for mode byte 2. Compiled initial
+mode is 2 in both images; stored configuration can override it. These
+labels refer to the binary's internal selector, not a proven mapping
+to user-facing single/multiple-target or Bluetooth mode settings.
+
+Both call paths split startup into 75 writes, SPI receive setup, then
+5 writes. The user's V2.04 UART boot log has exactly this grouping.
+The log omits register values and cannot identify which profile ran.
+
+RECORD AND WIRE FORMAT
+----------------------
+Each binary record is: register byte, zero padding, uint16 little endian.
+The writer takes r0=0x40, r1=register, r2=value, emits START, address,
+register, value high byte, value low byte, ACK checks and STOP.
+0x40 is the write address byte for 7-bit I2C device address 0x20.
+Example record 40 00 07 42 means reg 0x40 = 0x4207; inferred bus bytes
+are 40 40 42 07. Byte order is supported by the writer's rev8 and shifts.
+Wire bytes remain a static interpretation, awaiting an I2C capture.
+
+SOURCE LOCATIONS (file offsets in extracted app.bin)
+---------------------------------------------------
+V2.04 / oncstzcza54pd.ufw
+  application SHA256: a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5
+  mode 1 ROM: offset 0x21A24, address 0x01E21B44
+  mode 2 initial data: offset 0x2B594
+  .data copy: file 0x274B0 -> RAM 0, size 0x43AC
+  mode 2 table RAM address: 0x40E4
+  selector RAM address: 0x42B1, initial value 2
+  I2C word writer: file 0x10F7C
+  first 75 writer: file 0x1B5A6
+  SPI setup: file 0x1B7C6
+  final 5 writer: file 0x1B900
+
+V2.14 / 5o09fdkye1jo8.ufw
+  application SHA256: af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc
+  mode 1 ROM: offset 0x22684, address 0x01E227A4
+  mode 2 initial data: offset 0x2C6E8
+  .data copy: file 0x285C4 -> RAM 0, size 0x43FC
+  mode 2 table RAM address: 0x4124
+  selector RAM address: 0x42F1, initial value 2
+  I2C word writer: file 0x10FEC
+  first 75 writer: file 0x11368
+  SPI setup: file 0x1163C
+  final 5 writer: file 0x11758
+
+CONTROL-FLOW EVIDENCE
+---------------------
+First loop: r4=0, table pointer in r5, record stride 4; stops at r4=0x12C
+(300 bytes = 75 records). Mode 1 uses ROM; other modes use RAM.
+Last loop: mode 2 uses RAM starting at entry 75, stopping at a zero
+register sentinel. Other modes use ROM offsets 300..316 (five records).
+The recovered arrays both have 80 nonzero registers and a zero sentinel.
+The RAM profile is initialized by the entry-point copy at offsets
+0x62..0x7C: destination 0, source .data, size / 4, word load/store loop.
+Thus the second table is part of the image, not a guess from live RAM.
+
+The mode byte can be loaded from a stored one-byte setting (record
+0x19 in V2.04). The app's register-write command path can modify matching
+entries in the RAM table; the export preserves its initial image values.
+These observations do not recover the module's current stored settings.
+
+The post-SPI function sets PC3/bias high, then calls the same busy-wait
+helper used for bit-banged I2C with argument 1000. The helper runs a
+NOP/decrement/branch loop. This is a loop count, not a proven time unit.
+Do not interpret it as 1000 us or 1000 ms without clock/cycle validation.
+
+ORDERED TABLES (retain repeated writes and the stage boundary)
+------------------------------------------------------------
+Seq Stage     Reg   Mode 1 value  Mode 2 initial  Mode 2 inferred bus bytes
+  1 pre_spi   0x40  0x4207        0x4207          40 40 42 07
+  2 pre_spi   0x41  0x0004        0x0004          40 41 00 04
+  3 pre_spi   0x09  0xE901        0xE901          40 09 E9 01
+  4 pre_spi   0x01  0x0000        0x0000          40 01 00 00
+  5 pre_spi   0x67  0x0000        0x0000          40 67 00 00
+  6 pre_spi   0x72  0x0650        0x0650          40 72 06 50
+  7 pre_spi   0x42  0x0003        0x0003          40 42 00 03
+  8 pre_spi   0x43  0x72D0        0xA980          40 43 A9 80
+  9 pre_spi   0x44  0x0020        0x0040          40 44 00 40
+ 10 pre_spi   0x45  0x0000        0x0000          40 45 00 00
+ 11 pre_spi   0x46  0x0FA0        0x0FA0          40 46 0F A0
+ 12 pre_spi   0x47  0x1000        0x1001          40 47 10 01
+ 13 pre_spi   0x48  0xA410        0x4820          40 48 48 20
+ 14 pre_spi   0x49  0x2000        0x2001          40 49 20 01
+ 15 pre_spi   0x4A  0x2AF8        0x4820          40 4A 48 20
+ 16 pre_spi   0x4B  0x0002        0x0001          40 4B 00 01
+ 17 pre_spi   0x4C  0x9428        0x09A0          40 4C 09 A0
+ 18 pre_spi   0x4D  0x0000        0x0000          40 4D 00 00
+ 19 pre_spi   0x4E  0x0001        0x0001          40 4E 00 01
+ 20 pre_spi   0x4F  0x0000        0x0006          40 4F 00 06
+ 21 pre_spi   0x50  0x4E20        0xB6C0          40 50 B6 C0
+ 22 pre_spi   0x51  0x0030        0x001E          40 51 00 1E
+ 23 pre_spi   0x52  0xD400        0x8480          40 52 84 80
+ 24 pre_spi   0x53  0x0A02        0x0A02          40 53 0A 02
+ 25 pre_spi   0x54  0xAAAB        0xAAAB          40 54 AA AB
+ 26 pre_spi   0x55  0x0000        0x0000          40 55 00 00
+ 27 pre_spi   0x56  0x0023        0x0011          40 56 00 11
+ 28 pre_spi   0x57  0xFFFF        0xFFFF          40 57 FF FF
+ 29 pre_spi   0x58  0xFF78        0xFFEF          40 58 FF EF
+ 30 pre_spi   0x59  0x0000        0x0000          40 59 00 00
+ 31 pre_spi   0x5A  0x0000        0x0000          40 5A 00 00
+ 32 pre_spi   0x5B  0x0022        0x0022          40 5B 00 22
+ 33 pre_spi   0x5C  0x0022        0x0022          40 5C 00 22
+ 34 pre_spi   0x5D  0x1919        0x1919          40 5D 19 19
+ 35 pre_spi   0x5E  0xFF00        0xFF00          40 5E FF 00
+ 36 pre_spi   0x61  0x0021        0x0021          40 61 00 21
+ 37 pre_spi   0x62  0x0021        0x0021          40 62 00 21
+ 38 pre_spi   0x63  0x0021        0x0021          40 63 00 21
+ 39 pre_spi   0x64  0x0021        0x0021          40 64 00 21
+ 40 pre_spi   0x6E  0xC3FC        0xC3FC          40 6E C3 FC
+ 41 pre_spi   0x66  0x0F00        0x0F00          40 66 0F 00
+ 42 pre_spi   0x6C  0x9990        0x9990          40 6C 99 90
+ 43 pre_spi   0x6D  0x9580        0x9580          40 6D 95 80
+ 44 pre_spi   0x70  0x26A0        0x26A0          40 70 26 A0
+ 45 pre_spi   0x76  0x0021        0x0021          40 76 00 21
+ 46 pre_spi   0x02  0x003C        0x103C          40 02 10 3C
+ 47 pre_spi   0x04  0x030C        0x030C          40 04 03 0C
+ 48 pre_spi   0x09  0x6901        0x6901          40 09 69 01
+ 49 pre_spi   0x0A  0x0200        0x4200          40 0A 42 00
+ 50 pre_spi   0x0B  0xC03C        0xC03C          40 0B C0 3C
+ 51 pre_spi   0x05  0x0010        0x0010          40 05 00 10
+ 52 pre_spi   0x06  0x0122        0x0122          40 06 01 22
+ 53 pre_spi   0x07  0x01B2        0x01B2          40 07 01 B2
+ 54 pre_spi   0x08  0x001C        0x001C          40 08 00 1C
+ 55 pre_spi   0x0D  0x2000        0x1000          40 0D 10 00
+ 56 pre_spi   0x0E  0x2000        0x4000          40 0E 40 00
+ 57 pre_spi   0x14  0x5A03        0x5A03          40 14 5A 03
+ 58 pre_spi   0x15  0x1708        0x1708          40 15 17 08
+ 59 pre_spi   0x17  0x0210        0x0210          40 17 02 10
+ 60 pre_spi   0x20  0x0000        0x0000          40 20 00 00
+ 61 pre_spi   0x21  0x0000        0x0000          40 21 00 00
+ 62 pre_spi   0x22  0x0000        0x0000          40 22 00 00
+ 63 pre_spi   0x23  0x1DDC        0x1DDC          40 23 1D DC
+ 64 pre_spi   0x24  0x1D5E        0x1D5E          40 24 1D 5E
+ 65 pre_spi   0x25  0x1CE2        0x1CE2          40 25 1C E2
+ 66 pre_spi   0x26  0x1C64        0x1C64          40 26 1C 64
+ 67 pre_spi   0x27  0x17D0        0x17D0          40 27 17 D0
+ 68 pre_spi   0x28  0x16D4        0x16D4          40 28 16 D4
+ 69 pre_spi   0x29  0x15DC        0x15DC          40 29 15 DC
+ 70 pre_spi   0x2A  0x15DC        0x15DC          40 2A 15 DC
+ 71 pre_spi   0x2B  0x15DC        0x15DC          40 2B 15 DC
+ 72 pre_spi   0x2C  0x15DC        0x15DC          40 2C 15 DC
+ 73 pre_spi   0x2D  0x15DC        0x15DC          40 2D 15 DC
+ 74 pre_spi   0x2E  0x15DC        0x15DC          40 2E 15 DC
+ 75 pre_spi   0x2F  0x15DC        0x15DC          40 2F 15 DC
+--- SPI receive initialization occurs here ---
+ 76 post_spi  0x72  0x0653        0x0653          40 72 06 53
+ 77 post_spi  0x67  0x1E40        0x1E40          40 67 1E 40
+ 78 post_spi  0x01  0x8222        0x8222          40 01 82 22
+ 79 post_spi  0x41  0xC844        0xC844          40 41 C8 44
+ 80 post_spi  0x40  0x0207        0x0207          40 40 02 07
+
+LIMITS
+------
+Register names/bit meanings have not been recovered from a full chip
+programming manual. The last five writes are proven to follow SPI setup;
+describing individual bits as start/enable is still a hypothesis.
+The full reset, power, bias and delay contract is not yet validated.
+No target firmware was built, patched, flashed or tested on hardware.
+The existing firmware startup gate is unchanged.
+
+REPRODUCTION
+------------
+From the project root: python tools/extract_radar_init.py
+This verifies exact original and application hashes, boot copy operands,
+table references, both table hashes, record shape, sentinel and counts.
+For the retained local decoder: python tools/extract_radar_init.py --disassemble
+To regenerate compatible SLEIGH: add --prepare-spec before --disassemble.
+Processor definitions: https://github.com/virtualabs/ghidra-jieli
+Pinned revision: 8b7d50bef0dd15b1d56d668b75eb07d55b4cd92e
+Pypcode 4.0.0 cp313 Windows wheel is retained under tmp/pi32_analysis/wheels.
+Two compatibility edits add an empty display-string prefix to constructor
+concatenations and omit the variable repeat delay-slot semantic statement.
+The decoder is incomplete; selected proof ranges decoded without gaps.
+A gap-free decode does not validate every displayed register operand or
+parallel-instruction semantic; the raw instruction bytes are retained.
+No emulation or general correctness claim is made for its instruction semantics.
+
+FILES
+-----
+manifest.json: source offsets, hashes, entries, inferred wire bytes and method.
+radar_init_data.h: both typed C arrays, without a bus driver.
+mode_1_rom.bin / mode_2_ram_initial.bin: exact 320-byte source tables.
+mode_1_rom_wire_inferred.bin / mode_2_ram_initial_wire_inferred.bin:
+  ordered 4-byte transactions, omitting START/STOP/ACK and timing.
+v204_init_disassembly.* / v214_init_disassembly.*: selected instruction evidence.
+provenance.json: source-definition and local adapter hashes.

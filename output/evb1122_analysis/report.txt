@@ -1,0 +1,70 @@
+EVB1122 SDK COMPARISON WITH LD2450 INIT DATA
+==========================================
+
+Repository: https://github.com/HQU-gxy/EVB1122_USBHS_Datatransfer
+Pinned commit: 86b10850e55f5287a27018768c24b88345463bb3
+
+This unofficial repository supplies a useful PARTIAL register vocabulary.
+Its README says the author lacks the full register map and has not tested
+the program on real hardware. The claimed ICL1122/S5KM312CL equivalence
+is the author's belief, not a manufacturer-confirmed identity.
+
+The ICL1122 datasheet in docs is manufacturer-authored. It documents DS RAW
+output but does not contain a full address/bit-field register map. The GUI
+manual describes exporting register lists, without exposing a full map.
+
+CANDIDATE FIELD DECODES (both recovered LD2450 profiles)
+-----------------------------------------------------
+0x01 = 0x8222: bit 1 is DS RAW; range FFT bit 2, Doppler FFT bit 12 and
+Doppler-peak bit 4 are clear. Source: banyan.h:39,52-55; banyan.c:195-214.
+0x04 = 0x030C: raw selector bits 10:8 = 3, mapped to 512 complex samples.
+Source: banyan.h:40,47,50; banyan.c:21-27,127-139.
+These interpretations agree with our observed 512-I/Q-pair DS RAW packets.
+This is supporting evidence; the transferred fields await a hardware check.
+
+0x06 = 0x0122: bit 13 clear, so the SDK's merged RX-data mode is off.
+Source: banyan.h:42; dataprocess.c:737-744.
+0x66 = 0x0F00 and 0x6E = 0xC3FC, with reg 0x01 auto mask 0x180 clear:
+the SDK's RX selection helper returns 3 (both receivers selected).
+Source: banyan.h:57-58; banyan.c:94-116. This does not prove that both
+physical output lanes were captured or are active on the LD2450 PCB.
+
+WAVEFORM AND ADC LEADS
+----------------------
+gaincalibration.c:88-119 combines low 12 bits of 0x47 with 0x48 as a
+timing code, and combines 0x55/0x56 and 0x57/0x58 as waveform step words.
+Applied to our two profiles:
+  mode_1_rom: timing code 42000, up step 35, signed down step -136
+  mode_2_ram_initial: timing code 84000, up step 17, signed down step -17
+Timing code doubles, while step magnitudes decrease. Actual duration,
+sweep bandwidth and conversion units are not established by this comparison.
+The signed down-step value is our two's-complement interpretation of the
+stored 32-bit word; its physical meaning remains a candidate.
+cmdprocess.c:84-97 labels its 0x67=0x1E00 -> 0x1E40 sequence as an ADC
+reset during frame idle. Our final write is also 0x67=0x1E40, making this
+a useful functional lead without proving each bit's meaning or polarity.
+
+LIMITS AND COUNTEREXAMPLES
+-------------------------
+banyan.h's banyanET section maps chirp count to 0x0D. Its accessor reads
+the low nine bits. Both LD2450 values produce zero using that accessor,
+so this cannot be adopted as the LD2450 chirp-count interpretation.
+The repo's data-format selector is register 0x31, absent from our tables.
+Radar_GetDfftRoiEnable() tests the address constant 0x32 as a bit mask,
+despite a separate BIT(13) enable definition. Treat that helper as suspect.
+These differences and code issues require selective transfer of meanings.
+
+TABLE COMPARISON
+----------------
+EVB default InitRegList contains 79 writes before its sentinel.
+mode_1_rom: 23 of 80 register/value pairs occur somewhere in the EVB example list.
+mode_2_ram_initial: 20 of 80 register/value pairs occur somewhere in the EVB example list.
+This is not a positional match or a claim that its configuration fits our PCB.
+
+REPRODUCTION
+------------
+python tools/compare_evb1122_registers.py
+comparison.json retains source hashes, exact comparison counts and candidate decodes.
+The repository is retained under tmp/evb1122_analysis/repository.
+No downloaded executable, build script or firmware was run.
+No production firmware or original extraction outputs were changed.

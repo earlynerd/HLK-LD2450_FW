@@ -1,0 +1,39 @@
+{
+  "source": "radar_powerup.csv",
+  "source_sha256": "0a6d19e5329865a709f2bf306d8ff629fc72ddf868dd70e82c65f492be3ea1b4",
+  "lane": "CSV miso / RX2",
+  "files": [
+    {
+      "file": "boot.bin",
+      "bytes": 31908,
+      "sha256": "87f6c63b81e65387c0b920ba2b2a08aa5208144e71386c05d3f2b4abf3c32f7f",
+      "csv_lines_including_header": [
+        13
+      ],
+      "start_s": "2.073313048",
+      "description": "32 boot records; first 31 have no normal trailer"
+    },
+    {
+      "file": "steady-chirp0.bin",
+      "bytes": 2056,
+      "sha256": "f62648d4e90b32d099ab45698b94204b31efe046f3eb68b237f8ff56f487385f",
+      "csv_lines_including_header": [
+        14,
+        15
+      ],
+      "start_s": "2.164346896",
+      "description": "512 pairs; checksum 0x07E6"
+    },
+    {
+      "file": "steady-chirp1.bin",
+      "bytes": 2056,
+      "sha256": "eef8307bc208a5f28848644bb3b89812f0a41c092eb0a9ce78421c337de2d702",
+      "csv_lines_including_header": [
+        16,
+        17
+      ],
+      "start_s": "2.16554674",
+      "description": "512 pairs; checksum 0xD99D"
+    }
+  ]
+}

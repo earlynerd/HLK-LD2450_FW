@@ -1,0 +1,20 @@
+{
+  "name": "JieLi Windows toolchain",
+  "version": "2.5.2",
+  "source_page": "https://doc.zh-jieli.com/Tools/zh-cn/other_info/index.html",
+  "installer_url": "https://jl-update.oss-cn-shenzhen.aliyuncs.com/2.5.2.exe",
+  "installer_sha256": "1ec78e3315a5987d4e82ecd002536c84240e5c832b1875beff7ce55450124ee5",
+  "installer_authenticode_status": "Valid",
+  "installer_signer": "ZhuHai JieLi Technology Co.,Ltd",
+  "local_bin": ".cache/toolchain/extracted-2.5.2/C$/JL/pi32/bin",
+  "tool_files_sha256": {
+    "bin/clang.exe": "0ae79bfb1e79018a12f401050674b6ddc90c202bf81a07832e37a73c3a447c25",
+    "bin/llvm-ar.exe": "0b436f8d2ab4f5750fe70ac0b9c6e0028b8188cd3ef0eb29413b967a002dd822",
+    "bin/pi32v2-lto-wrapper.exe": "ff78492bbc19f0f2a1751319e332fdcba43a368319685d58da6c5e15e16f9bb7"
+  },
+  "extraction_tool": "innoextract 1.9",
+  "extraction_tool_url": "https://constexpr.org/innoextract/files/innoextract-1.9-windows.zip",
+  "extraction_archive_sha256": "6989342c9b026a00a72a38f23b62a8e6a22cc5de69805cf47d68ac2fec993065",
+  "installer_executed": false,
+  "system_installation_changed": false
+}

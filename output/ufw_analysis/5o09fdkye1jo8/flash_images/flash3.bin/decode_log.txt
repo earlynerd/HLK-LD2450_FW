@@ -1,0 +1,22 @@
+Firmware base is at @0
+  Burner size....: 544
+  VID............: b'0.01'
+  Flash size.....: $03F000
+  FS version.....: 2
+  Block alignment: 16
+  Special option.: $00
+  PID............: b'AC635N\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
+(top) <JLFS Entry @00000020 - 095C @000000A0/000000A0 (      8168/      8168) - 00/00 / 0 -- "uboot.boot">
+(top) <JLFS Entry @00000040 - F3E2 @00002088/00002088 (       137/       137) - 02/FF / 0 -- "isd_config.ini">
+Firmware chipkey from isd_config.ini: A80F
+(top) <JLFS Entry @00000060 - 00FF @00003000/00003000 (4294967295/4294967295) - 81/FF / 0 -- "app_dir_head">
+(top) <JLFS Entry @00000080 - FFFF @0003F000/0003F000 (      4096/      4096) - 12/01 / 65535 -- "key_mac">
+Using chipkey: $A80F
+(App Area Head) <JLFS Entry @00003000 - 54AD @01E00120/00003020 (    183964/    183932) - 83/FF / 1 -- "app_area_head">
+Entry point address: 0x1E00120
+(App) <JLFS Entry @00003020 - D19A @00000120/00003120 (    182760/    182760) - 82/FF / 0 -- "app.bin">
+(App) <JLFS Entry @00003040 - 549D @0002CB08/0002FB08 (       916/       916) - 82/FF / 0 -- "cfg_tool.bin">
+(App) <JLFS Entry @00003060 - FFFF @00031000/00034000 (     49152/     49152) - 12/81 / 0 -- "VM">
+(App) <JLFS Entry @00003080 - FFFF @00001000/00004000 (    196608/    196608) - 92/82 / 0 -- "PRCT">
+(App) <JLFS Entry @000030A0 - FFFF @0003D000/00040000 (      4096/      4096) - 92/81 / 0 -- "BTIF">
+(App) <JLFS Entry @000030C0 - FFFF @0003E000/00041000 (      4096/      4096) - 92/81 / 1 -- "EXIF">

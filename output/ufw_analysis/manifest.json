@@ -1,0 +1,1296 @@
+{
+  "tool_source": "https://github.com/kagaimiq/jl-misctools",
+  "tool_commit": "0a5b12db0ef38f3042acffbe2452730a37fd2405",
+  "decoder_sha256": "2daf8da2aba6e19981f55e8c6d221ff102c987fe31677056a5bf49c41601103a",
+  "decoder_adaptations": [
+    "load definitions without upstream CLI",
+    "stdlib CRC16 adapter",
+    "validated extraction names and file bounds",
+    "repeatable directory creation",
+    "validate inner app/config data CRCs"
+  ],
+  "packages": [
+    {
+      "source": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\oncstzcza54pd.ufw",
+      "size": 1018880,
+      "sha256": "a1b090ccb9aeaede130bec24d4414c09b5aa85ba81020f6ce123d1c9d6b4a277",
+      "chip": "AC635N",
+      "header_crc_valid": true,
+      "entry_table_crc_valid": true,
+      "entry_count": 10,
+      "header_unknown16": 4,
+      "header_unknown32": 512,
+      "entries": [
+        {
+          "name": "flash.bin",
+          "type": 0,
+          "index": 0,
+          "offset": 1024,
+          "size": 192512,
+          "padded_size": 192512,
+          "expected_crc16": 61346,
+          "raw_crc16": 61346,
+          "raw_crc_valid": true,
+          "sha256": "faddb233625c7f69215f6ffdafe26f3ebe01cc24b8e36f7df05edbf476585fdc",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 178308,
+                "expected": 45159,
+                "actual": 45159,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "info.log",
+          "type": 2,
+          "index": 1,
+          "offset": 193536,
+          "size": 0,
+          "padded_size": 0,
+          "expected_crc16": 0,
+          "raw_crc16": 0,
+          "raw_crc_valid": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": true
+        },
+        {
+          "name": "isd_config.ini",
+          "type": 52,
+          "index": 2,
+          "offset": 193536,
+          "size": 659,
+          "padded_size": 672,
+          "expected_crc16": 1954,
+          "raw_crc16": 39333,
+          "raw_crc_valid": false,
+          "sha256": "6cb4c635f509d11474adddef48146bc33a4df8706fe022ce4475fcc9fe5b32c4",
+          "extra": "00000000a0020000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        },
+        {
+          "name": "ota.bin",
+          "type": 100,
+          "index": 3,
+          "offset": 194208,
+          "size": 255045,
+          "padded_size": 255072,
+          "expected_crc16": 57132,
+          "raw_crc16": 57132,
+          "raw_crc_valid": true,
+          "sha256": "9d4b9e1bbc735a8709b714c2b02954e312e131f3e5930a0c2ce7a03b1e0b8a56",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "ota_loaders": [
+            {
+              "name": "ble_app_ota.bin",
+              "offset": 288,
+              "size": 59267,
+              "flags": 65,
+              "index": 0,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "995340716083fba0d00558caed0321128a5241b5fe0d49d203ec3ea0a4f640a9"
+            },
+            {
+              "name": "edr_ota2.bin",
+              "offset": 59555,
+              "size": 36143,
+              "flags": 65,
+              "index": 1,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "53025a7cef51af7aed704201dbee43ee360714f5296275f83bf007797c3a7ed2"
+            },
+            {
+              "name": "uart_update.bin",
+              "offset": 95698,
+              "size": 20040,
+              "flags": 1,
+              "index": 2,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "e66fd0001e2a97ec8406e7d38254d059a87cfb59ae55c492ff087cbe8d54bd10"
+            },
+            {
+              "name": "ble_ota.bin",
+              "offset": 115738,
+              "size": 42565,
+              "flags": 65,
+              "index": 3,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "68ed0c749d5630eea25da1bab8a2b2a7a5c0aac24fb841aaa6c1c96bfbd92216"
+            },
+            {
+              "name": "sd_update2.bin",
+              "offset": 158303,
+              "size": 22580,
+              "flags": 65,
+              "index": 4,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "8d1d4cf5d9ba8701fc7be4bace2d28198ca82a0d0a005999ccb3a171bf7c8d1b"
+            },
+            {
+              "name": "usb_update2.bin",
+              "offset": 180883,
+              "size": 22727,
+              "flags": 65,
+              "index": 5,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "096eaef11593b81719421a43bb3bb4d8ffa8f014fd657a5e19f0135dc8198c25"
+            },
+            {
+              "name": "nor_ota.bin",
+              "offset": 203610,
+              "size": 16588,
+              "flags": 65,
+              "index": 6,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "4a8d6e15f2007f746aeec7f6fec8622a3c13fbc0840e6debb919182459528f74"
+            },
+            {
+              "name": "lcflash_ota.bin",
+              "offset": 220198,
+              "size": 16335,
+              "flags": 65,
+              "index": 7,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "149a0a77d07e7584558e089e5b3b3dfa0e9fb21633f8f93b93ff1b108633c8fe"
+            },
+            {
+              "name": "uart_user.bin",
+              "offset": 236533,
+              "size": 18212,
+              "flags": 65,
+              "index": 8,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e"
+            }
+          ]
+        },
+        {
+          "name": "script.ver",
+          "type": 251,
+          "index": 4,
+          "offset": 449280,
+          "size": 27,
+          "padded_size": 32,
+          "expected_crc16": 6272,
+          "raw_crc16": 26595,
+          "raw_crc_valid": false,
+          "sha256": "48ce0b28b7a494d54b44a76be0ae29697ceb23eb28a943ac9a9130b214651d6b",
+          "extra": "0000000020000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        },
+        {
+          "name": "flash2.bin",
+          "type": 32,
+          "index": 5,
+          "offset": 449312,
+          "size": 188416,
+          "padded_size": 188416,
+          "expected_crc16": 42756,
+          "raw_crc16": 42756,
+          "raw_crc_valid": true,
+          "sha256": "79732b0a75161eaf74bae0be08e27cb4ce66483a3e8907270fafa7d1aad0946c",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 178308,
+                "expected": 45159,
+                "actual": 45159,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "flash3.bin",
+          "type": 33,
+          "index": 6,
+          "offset": 637728,
+          "size": 192512,
+          "padded_size": 192512,
+          "expected_crc16": 3155,
+          "raw_crc16": 3155,
+          "raw_crc_valid": true,
+          "sha256": "d92a9a197694892b9fd85ed5f12ed7be01d6f3cd028321f6176ae0756995a49d",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 178308,
+                "expected": 45159,
+                "actual": 45159,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "flash4.bin",
+          "type": 34,
+          "index": 7,
+          "offset": 830240,
+          "size": 188416,
+          "padded_size": 188416,
+          "expected_crc16": 56411,
+          "raw_crc16": 56411,
+          "raw_crc_valid": true,
+          "sha256": "b0a737433909c70bfc5837edcb1a4dd50738bc32f0f22e4841d33882f13fc6c4",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 178308,
+                "expected": 45159,
+                "actual": 45159,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "blimit.bin",
+          "type": 161,
+          "index": 8,
+          "offset": 1018656,
+          "size": 144,
+          "padded_size": 160,
+          "expected_crc16": 5116,
+          "raw_crc16": 53832,
+          "raw_crc_valid": false,
+          "sha256": "086ade9bf11199e393c29b5771d2fcb9871b1136fde3ff8855e13c680b7bd512",
+          "extra": "00000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        },
+        {
+          "name": "tail.bin",
+          "type": 255,
+          "index": 9,
+          "offset": 1018816,
+          "size": 64,
+          "padded_size": 64,
+          "expected_crc16": 28352,
+          "raw_crc16": 28352,
+          "raw_crc_valid": true,
+          "sha256": "a6206d3b1193b420ea1ae18d570acc801452facbabdbf4d5550856efa25f441e",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        }
+      ],
+      "extracted_files": [
+        {
+          "path": "components\\blimit.bin",
+          "size": 144,
+          "sha256": "086ade9bf11199e393c29b5771d2fcb9871b1136fde3ff8855e13c680b7bd512"
+        },
+        {
+          "path": "components\\flash.bin",
+          "size": 192512,
+          "sha256": "faddb233625c7f69215f6ffdafe26f3ebe01cc24b8e36f7df05edbf476585fdc"
+        },
+        {
+          "path": "components\\flash2.bin",
+          "size": 188416,
+          "sha256": "79732b0a75161eaf74bae0be08e27cb4ce66483a3e8907270fafa7d1aad0946c"
+        },
+        {
+          "path": "components\\flash3.bin",
+          "size": 192512,
+          "sha256": "d92a9a197694892b9fd85ed5f12ed7be01d6f3cd028321f6176ae0756995a49d"
+        },
+        {
+          "path": "components\\flash4.bin",
+          "size": 188416,
+          "sha256": "b0a737433909c70bfc5837edcb1a4dd50738bc32f0f22e4841d33882f13fc6c4"
+        },
+        {
+          "path": "components\\info.log",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "components\\isd_config.ini",
+          "size": 659,
+          "sha256": "6cb4c635f509d11474adddef48146bc33a4df8706fe022ce4475fcc9fe5b32c4"
+        },
+        {
+          "path": "components\\ota.bin",
+          "size": 255045,
+          "sha256": "9d4b9e1bbc735a8709b714c2b02954e312e131f3e5930a0c2ce7a03b1e0b8a56"
+        },
+        {
+          "path": "components\\script.ver",
+          "size": 27,
+          "sha256": "48ce0b28b7a494d54b44a76be0ae29697ceb23eb28a943ac9a9130b214651d6b"
+        },
+        {
+          "path": "components\\tail.bin",
+          "size": 64,
+          "sha256": "a6206d3b1193b420ea1ae18d570acc801452facbabdbf4d5550856efa25f441e"
+        },
+        {
+          "path": "flash_images\\flash.bin\\decode_log.txt",
+          "size": 1522,
+          "sha256": "7e8e9cee930a9b0afae15e28cc7dc2afb820bd63df08ee04a6a0d3efab81edf1"
+        },
+        {
+          "path": "flash_images\\flash.bin\\decoded_flash.bin",
+          "size": 192512,
+          "sha256": "ec55d674aabfddc744dd10584e1870458a43bc7663bcf7d392544d962f0a9a19"
+        },
+        {
+          "path": "flash_images\\flash.bin\\files\\app.bin",
+          "size": 178308,
+          "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+        },
+        {
+          "path": "flash_images\\flash.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash.bin\\info.json",
+          "size": 598,
+          "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+        },
+        {
+          "path": "flash_images\\flash.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\decode_log.txt",
+          "size": 1521,
+          "sha256": "04d669ad640a3cb817c4acc461f693604ccda092713c97b459dad8ba6ba2e5b3"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\decoded_flash.bin",
+          "size": 188416,
+          "sha256": "cb393cb2389583ada878aef953aea0ab0c65e6e484e0fee1a1c89febca0e9eb6"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\files\\app.bin",
+          "size": 178308,
+          "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\info.json",
+          "size": 598,
+          "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\decode_log.txt",
+          "size": 1522,
+          "sha256": "05a630c12eada0dfadd501a9bdc0065ee85a21cebf5e2688ef4552299b68905d"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\decoded_flash.bin",
+          "size": 192512,
+          "sha256": "403a70d09f7e6f7f35d244d019cbe44c58c61d39297a228c6a6d7544e3a5cfb8"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\files\\app.bin",
+          "size": 178308,
+          "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\info.json",
+          "size": 598,
+          "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\decode_log.txt",
+          "size": 1521,
+          "sha256": "c6f7dfe61812ac95d21722bb5b01d78da816445080eb3656aeafcf141db19e33"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\decoded_flash.bin",
+          "size": 188416,
+          "sha256": "5fdef69b346a679976f1d11be0ea1f9e0198af0dc9d6ee7d4bd9b7773eeef749"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\files\\app.bin",
+          "size": 178308,
+          "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\info.json",
+          "size": 598,
+          "sha256": "733781ac47b0a79a4451009b2a3dda3b153fa46dcc554b64559818d4ff24b7d8"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "ota_loaders\\ble_app_ota.bin",
+          "size": 59267,
+          "sha256": "995340716083fba0d00558caed0321128a5241b5fe0d49d203ec3ea0a4f640a9"
+        },
+        {
+          "path": "ota_loaders\\ble_ota.bin",
+          "size": 42565,
+          "sha256": "68ed0c749d5630eea25da1bab8a2b2a7a5c0aac24fb841aaa6c1c96bfbd92216"
+        },
+        {
+          "path": "ota_loaders\\edr_ota2.bin",
+          "size": 36143,
+          "sha256": "53025a7cef51af7aed704201dbee43ee360714f5296275f83bf007797c3a7ed2"
+        },
+        {
+          "path": "ota_loaders\\lcflash_ota.bin",
+          "size": 16335,
+          "sha256": "149a0a77d07e7584558e089e5b3b3dfa0e9fb21633f8f93b93ff1b108633c8fe"
+        },
+        {
+          "path": "ota_loaders\\nor_ota.bin",
+          "size": 16588,
+          "sha256": "4a8d6e15f2007f746aeec7f6fec8622a3c13fbc0840e6debb919182459528f74"
+        },
+        {
+          "path": "ota_loaders\\sd_update2.bin",
+          "size": 22580,
+          "sha256": "8d1d4cf5d9ba8701fc7be4bace2d28198ca82a0d0a005999ccb3a171bf7c8d1b"
+        },
+        {
+          "path": "ota_loaders\\uart_update.bin",
+          "size": 20040,
+          "sha256": "e66fd0001e2a97ec8406e7d38254d059a87cfb59ae55c492ff087cbe8d54bd10"
+        },
+        {
+          "path": "ota_loaders\\uart_user.bin",
+          "size": 18212,
+          "sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e"
+        },
+        {
+          "path": "ota_loaders\\usb_update2.bin",
+          "size": 22727,
+          "sha256": "096eaef11593b81719421a43bb3bb4d8ffa8f014fd657a5e19f0135dc8198c25"
+        }
+      ]
+    },
+    {
+      "source": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\5o09fdkye1jo8.ufw",
+      "size": 1035776,
+      "sha256": "b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093",
+      "chip": "AC635N",
+      "header_crc_valid": true,
+      "entry_table_crc_valid": true,
+      "entry_count": 10,
+      "header_unknown16": 4,
+      "header_unknown32": 512,
+      "entries": [
+        {
+          "name": "flash.bin",
+          "type": 0,
+          "index": 0,
+          "offset": 1024,
+          "size": 196608,
+          "padded_size": 196608,
+          "expected_crc16": 50300,
+          "raw_crc16": 50300,
+          "raw_crc_valid": true,
+          "sha256": "c97d5176db75a5b717a21e5ed42ea1d6dd7f95d3a1cf957efd9644386fab87fa",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 182760,
+                "expected": 53658,
+                "actual": 53658,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "info.log",
+          "type": 2,
+          "index": 1,
+          "offset": 197632,
+          "size": 0,
+          "padded_size": 0,
+          "expected_crc16": 0,
+          "raw_crc16": 0,
+          "raw_crc_valid": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": true
+        },
+        {
+          "name": "isd_config.ini",
+          "type": 52,
+          "index": 2,
+          "offset": 197632,
+          "size": 662,
+          "padded_size": 672,
+          "expected_crc16": 48716,
+          "raw_crc16": 55125,
+          "raw_crc_valid": false,
+          "sha256": "ba01f2331089e2b1b46dc4bc3e25d345ddc966a301788198a06e07d7dbe3a0e8",
+          "extra": "00000000a0020000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        },
+        {
+          "name": "ota.bin",
+          "type": 100,
+          "index": 3,
+          "offset": 198304,
+          "size": 255045,
+          "padded_size": 255072,
+          "expected_crc16": 57132,
+          "raw_crc16": 57132,
+          "raw_crc_valid": true,
+          "sha256": "9d4b9e1bbc735a8709b714c2b02954e312e131f3e5930a0c2ce7a03b1e0b8a56",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "ota_loaders": [
+            {
+              "name": "ble_app_ota.bin",
+              "offset": 288,
+              "size": 59267,
+              "flags": 65,
+              "index": 0,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "995340716083fba0d00558caed0321128a5241b5fe0d49d203ec3ea0a4f640a9"
+            },
+            {
+              "name": "edr_ota2.bin",
+              "offset": 59555,
+              "size": 36143,
+              "flags": 65,
+              "index": 1,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "53025a7cef51af7aed704201dbee43ee360714f5296275f83bf007797c3a7ed2"
+            },
+            {
+              "name": "uart_update.bin",
+              "offset": 95698,
+              "size": 20040,
+              "flags": 1,
+              "index": 2,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "e66fd0001e2a97ec8406e7d38254d059a87cfb59ae55c492ff087cbe8d54bd10"
+            },
+            {
+              "name": "ble_ota.bin",
+              "offset": 115738,
+              "size": 42565,
+              "flags": 65,
+              "index": 3,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "68ed0c749d5630eea25da1bab8a2b2a7a5c0aac24fb841aaa6c1c96bfbd92216"
+            },
+            {
+              "name": "sd_update2.bin",
+              "offset": 158303,
+              "size": 22580,
+              "flags": 65,
+              "index": 4,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "8d1d4cf5d9ba8701fc7be4bace2d28198ca82a0d0a005999ccb3a171bf7c8d1b"
+            },
+            {
+              "name": "usb_update2.bin",
+              "offset": 180883,
+              "size": 22727,
+              "flags": 65,
+              "index": 5,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "096eaef11593b81719421a43bb3bb4d8ffa8f014fd657a5e19f0135dc8198c25"
+            },
+            {
+              "name": "nor_ota.bin",
+              "offset": 203610,
+              "size": 16588,
+              "flags": 65,
+              "index": 6,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "4a8d6e15f2007f746aeec7f6fec8622a3c13fbc0840e6debb919182459528f74"
+            },
+            {
+              "name": "lcflash_ota.bin",
+              "offset": 220198,
+              "size": 16335,
+              "flags": 65,
+              "index": 7,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "149a0a77d07e7584558e089e5b3b3dfa0e9fb21633f8f93b93ff1b108633c8fe"
+            },
+            {
+              "name": "uart_user.bin",
+              "offset": 236533,
+              "size": 18212,
+              "flags": 65,
+              "index": 8,
+              "header_crc_valid": true,
+              "data_crc_valid": true,
+              "sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e"
+            }
+          ]
+        },
+        {
+          "name": "script.ver",
+          "type": 251,
+          "index": 4,
+          "offset": 453376,
+          "size": 27,
+          "padded_size": 32,
+          "expected_crc16": 6272,
+          "raw_crc16": 33508,
+          "raw_crc_valid": false,
+          "sha256": "de435676b9e831ec7d0d209c812143111351cabe167e36acabe2e5d07ad695b0",
+          "extra": "0000000020000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        },
+        {
+          "name": "flash2.bin",
+          "type": 32,
+          "index": 5,
+          "offset": 453408,
+          "size": 192768,
+          "padded_size": 192768,
+          "expected_crc16": 41257,
+          "raw_crc16": 41257,
+          "raw_crc_valid": true,
+          "sha256": "0904d11faa6e2c1a0c78d36607bc12d398a0196a33125b4d41ee0977472b36e1",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 182760,
+                "expected": 53658,
+                "actual": 53658,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "flash3.bin",
+          "type": 33,
+          "index": 6,
+          "offset": 646176,
+          "size": 196608,
+          "padded_size": 196608,
+          "expected_crc16": 10032,
+          "raw_crc16": 10032,
+          "raw_crc_valid": true,
+          "sha256": "b94c07256ded99b6ac00b5cf265bfe6cd47b1869672f9023ac9a98e210732e81",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 182760,
+                "expected": 53658,
+                "actual": 53658,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "flash4.bin",
+          "type": 34,
+          "index": 7,
+          "offset": 842784,
+          "size": 192768,
+          "padded_size": 192768,
+          "expected_crc16": 33951,
+          "raw_crc16": 33951,
+          "raw_crc_valid": true,
+          "sha256": "6ac146765e44847ffb84d1aeb16e05b50c7870ed0fe7af31d5349146520f0d9b",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false,
+          "inner_decode_complete": true,
+          "inner_info": {
+            "format": "jl-new-fw",
+            "base-offset": 0,
+            "spl": {
+              "file": "top\\uboot.boot",
+              "compressed": false
+            },
+            "chip-key": 43023,
+            "entry-point": 31457568,
+            "app-files": [
+              "files\\app.bin",
+              "files\\cfg_tool.bin"
+            ],
+            "validated_inner_entry_headers": 11,
+            "regular_file_crc_checks": [
+              {
+                "name": "app.bin",
+                "size": 182760,
+                "expected": 53658,
+                "actual": 53658,
+                "valid": true
+              },
+              {
+                "name": "cfg_tool.bin",
+                "size": 916,
+                "expected": 21661,
+                "actual": 21661,
+                "valid": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "blimit.bin",
+          "type": 161,
+          "index": 8,
+          "offset": 1035552,
+          "size": 144,
+          "padded_size": 160,
+          "expected_crc16": 54530,
+          "raw_crc16": 583,
+          "raw_crc_valid": false,
+          "sha256": "7fa66ccc25b3596c66e1ae30b94c86ff2dc51b61db0a59f59e753de77d661dfc",
+          "extra": "00000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        },
+        {
+          "name": "tail.bin",
+          "type": 255,
+          "index": 9,
+          "offset": 1035712,
+          "size": 64,
+          "padded_size": 64,
+          "expected_crc16": 28352,
+          "raw_crc16": 28352,
+          "raw_crc_valid": true,
+          "sha256": "a6206d3b1193b420ea1ae18d570acc801452facbabdbf4d5550856efa25f441e",
+          "extra": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "descrambled_crc_valid": false
+        }
+      ],
+      "extracted_files": [
+        {
+          "path": "components\\blimit.bin",
+          "size": 144,
+          "sha256": "7fa66ccc25b3596c66e1ae30b94c86ff2dc51b61db0a59f59e753de77d661dfc"
+        },
+        {
+          "path": "components\\flash.bin",
+          "size": 196608,
+          "sha256": "c97d5176db75a5b717a21e5ed42ea1d6dd7f95d3a1cf957efd9644386fab87fa"
+        },
+        {
+          "path": "components\\flash2.bin",
+          "size": 192768,
+          "sha256": "0904d11faa6e2c1a0c78d36607bc12d398a0196a33125b4d41ee0977472b36e1"
+        },
+        {
+          "path": "components\\flash3.bin",
+          "size": 196608,
+          "sha256": "b94c07256ded99b6ac00b5cf265bfe6cd47b1869672f9023ac9a98e210732e81"
+        },
+        {
+          "path": "components\\flash4.bin",
+          "size": 192768,
+          "sha256": "6ac146765e44847ffb84d1aeb16e05b50c7870ed0fe7af31d5349146520f0d9b"
+        },
+        {
+          "path": "components\\info.log",
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "components\\isd_config.ini",
+          "size": 662,
+          "sha256": "ba01f2331089e2b1b46dc4bc3e25d345ddc966a301788198a06e07d7dbe3a0e8"
+        },
+        {
+          "path": "components\\ota.bin",
+          "size": 255045,
+          "sha256": "9d4b9e1bbc735a8709b714c2b02954e312e131f3e5930a0c2ce7a03b1e0b8a56"
+        },
+        {
+          "path": "components\\script.ver",
+          "size": 27,
+          "sha256": "de435676b9e831ec7d0d209c812143111351cabe167e36acabe2e5d07ad695b0"
+        },
+        {
+          "path": "components\\tail.bin",
+          "size": 64,
+          "sha256": "a6206d3b1193b420ea1ae18d570acc801452facbabdbf4d5550856efa25f441e"
+        },
+        {
+          "path": "flash_images\\flash.bin\\decode_log.txt",
+          "size": 1522,
+          "sha256": "958012a1eb7828f04969f11bc5a00dedd7f9100a7b5f810609299bbfceac1679"
+        },
+        {
+          "path": "flash_images\\flash.bin\\decoded_flash.bin",
+          "size": 196608,
+          "sha256": "38f28e7846da6256be793ee6bf3f915df5adbd2970af9b0e0c32f3c9073ae456"
+        },
+        {
+          "path": "flash_images\\flash.bin\\files\\app.bin",
+          "size": 182760,
+          "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+        },
+        {
+          "path": "flash_images\\flash.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash.bin\\info.json",
+          "size": 598,
+          "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+        },
+        {
+          "path": "flash_images\\flash.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\decode_log.txt",
+          "size": 1521,
+          "sha256": "9b98f927788b248e73173d59bf944fdb05a891ca4664460a7b638cd3d5958a4c"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\decoded_flash.bin",
+          "size": 192768,
+          "sha256": "ed9e4fa75d403ece2abafc61f5d5bb92b2974d73887b0bf687f54d8f44c0d0f4"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\files\\app.bin",
+          "size": 182760,
+          "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\info.json",
+          "size": 598,
+          "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash2.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\decode_log.txt",
+          "size": 1522,
+          "sha256": "4d16c6876cbedaf64b88fde93edf5074eaeb2f50e2bb2caa6705ec09aeba1a08"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\decoded_flash.bin",
+          "size": 196608,
+          "sha256": "0a05a38d6951675e911ed4444d9a0bb039f13a6a652e611d9b0061c58c2ba903"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\files\\app.bin",
+          "size": 182760,
+          "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\info.json",
+          "size": 598,
+          "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash3.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\decode_log.txt",
+          "size": 1521,
+          "sha256": "7973570bd973c40eb69c27e8c596e826b4292381cfbabc72bc669f2a39b8014b"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\decoded_flash.bin",
+          "size": 192768,
+          "sha256": "2b18bf2d7a4893f505c59403c25f5c162132db74e8c0c73cbf18c305285251ea"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\files\\app.bin",
+          "size": 182760,
+          "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\files\\cfg_tool.bin",
+          "size": 916,
+          "sha256": "21334ccee5588a3e72bd871ce0cc3eb2ad3c333f79927842279855fed87f1ec8"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\info.json",
+          "size": 598,
+          "sha256": "25653ffd759f3c3be5c4af03b9ece5b73600e4631544e124951c26a5e8de14aa"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\top\\isd_config.ini",
+          "size": 137,
+          "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc"
+        },
+        {
+          "path": "flash_images\\flash4.bin\\top\\uboot.boot",
+          "size": 8168,
+          "sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30"
+        },
+        {
+          "path": "ota_loaders\\ble_app_ota.bin",
+          "size": 59267,
+          "sha256": "995340716083fba0d00558caed0321128a5241b5fe0d49d203ec3ea0a4f640a9"
+        },
+        {
+          "path": "ota_loaders\\ble_ota.bin",
+          "size": 42565,
+          "sha256": "68ed0c749d5630eea25da1bab8a2b2a7a5c0aac24fb841aaa6c1c96bfbd92216"
+        },
+        {
+          "path": "ota_loaders\\edr_ota2.bin",
+          "size": 36143,
+          "sha256": "53025a7cef51af7aed704201dbee43ee360714f5296275f83bf007797c3a7ed2"
+        },
+        {
+          "path": "ota_loaders\\lcflash_ota.bin",
+          "size": 16335,
+          "sha256": "149a0a77d07e7584558e089e5b3b3dfa0e9fb21633f8f93b93ff1b108633c8fe"
+        },
+        {
+          "path": "ota_loaders\\nor_ota.bin",
+          "size": 16588,
+          "sha256": "4a8d6e15f2007f746aeec7f6fec8622a3c13fbc0840e6debb919182459528f74"
+        },
+        {
+          "path": "ota_loaders\\sd_update2.bin",
+          "size": 22580,
+          "sha256": "8d1d4cf5d9ba8701fc7be4bace2d28198ca82a0d0a005999ccb3a171bf7c8d1b"
+        },
+        {
+          "path": "ota_loaders\\uart_update.bin",
+          "size": 20040,
+          "sha256": "e66fd0001e2a97ec8406e7d38254d059a87cfb59ae55c492ff087cbe8d54bd10"
+        },
+        {
+          "path": "ota_loaders\\uart_user.bin",
+          "size": 18212,
+          "sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e"
+        },
+        {
+          "path": "ota_loaders\\usb_update2.bin",
+          "size": 22727,
+          "sha256": "096eaef11593b81719421a43bb3bb4d8ffa8f014fd657a5e19f0135dc8198c25"
+        }
+      ]
+    }
+  ],
+  "comparison": [
+    {
+      "name": "flash.bin",
+      "identical": false,
+      "left_size": 192512,
+      "right_size": 196608
+    },
+    {
+      "name": "info.log",
+      "identical": true,
+      "left_size": 0,
+      "right_size": 0
+    },
+    {
+      "name": "isd_config.ini",
+      "identical": false,
+      "left_size": 659,
+      "right_size": 662
+    },
+    {
+      "name": "ota.bin",
+      "identical": true,
+      "left_size": 255045,
+      "right_size": 255045
+    },
+    {
+      "name": "script.ver",
+      "identical": false,
+      "left_size": 27,
+      "right_size": 27
+    },
+    {
+      "name": "flash2.bin",
+      "identical": false,
+      "left_size": 188416,
+      "right_size": 192768
+    },
+    {
+      "name": "flash3.bin",
+      "identical": false,
+      "left_size": 192512,
+      "right_size": 196608
+    },
+    {
+      "name": "flash4.bin",
+      "identical": false,
+      "left_size": 188416,
+      "right_size": 192768
+    },
+    {
+      "name": "blimit.bin",
+      "identical": false,
+      "left_size": 144,
+      "right_size": 144
+    },
+    {
+      "name": "tail.bin",
+      "identical": true,
+      "left_size": 64,
+      "right_size": 64
+    }
+  ]
+}

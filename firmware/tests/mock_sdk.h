@@ -44,6 +44,7 @@ struct uart_platform_data_t {
 typedef struct {
     void (*write)(const uint8_t *, uint32_t);
     uint32_t (*read)(uint8_t *, uint32_t, uint32_t);
+    void (*set_baud)(uint32_t);
 } uart_bus_t;
 const uart_bus_t *uart_dev_open(const struct uart_platform_data_t *);
 uint32_t uart_dev_close(uart_bus_t *);

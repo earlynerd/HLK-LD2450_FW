@@ -28,7 +28,7 @@ def main():
         configure += ["-A", "x64"]
     commands = [configure, [cmake, "--build", str(args.build_dir), "--config", "Debug"],
                 [ctest, "--test-dir", str(args.build_dir), "-C", "Debug", "--output-on-failure"],
-                [sys.executable, "-m", "unittest", "discover", "-s", str(ROOT / "tests"), "-p", "test_tools.py", "-v"]]
+                [sys.executable, "-m", "unittest", "discover", "-s", str(ROOT / "tests"), "-p", "test_*.py", "-v"]]
     for command in commands:
         subprocess.run(command, env=env, check=True)
 

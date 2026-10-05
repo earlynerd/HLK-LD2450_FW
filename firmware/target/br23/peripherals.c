@@ -4,7 +4,7 @@
 
 #define RADAR_POWER_PIN IO_PORTC_02 /* PW_CTL: low turns Q1 on. */
 #define RADAR_BIAS_PIN  IO_PORTC_03 /* REXT_CTL: high turns Q2 on. */
-#define UART_BUFFER_SIZE 512u
+#define UART_BUFFER_SIZE 1024u
 
 #ifdef _MSC_VER
 #define ALIGNED4 __declspec(align(4))
@@ -297,6 +297,14 @@ int ld2450_module_uart_read(uint8_t *data, size_t size, uint32_t timeout)
         return LD2450_BAD_ARGUMENT;
     }
     return (int)module_uart->read(data, (uint32_t)size, timeout);
+}
+
+int ld2450_module_uart_set_baud(uint32_t baud)
+{
+    if (!status.initialized || !module_uart) return LD2450_NOT_READY;
+    if (baud < 9600u || baud > 1000000u) return LD2450_BAD_ARGUMENT;
+    module_uart->set_baud(baud);
+    return LD2450_OK;
 }
 
 int ld2450_debug_write(const char *message)

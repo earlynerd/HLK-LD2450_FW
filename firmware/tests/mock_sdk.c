@@ -89,7 +89,9 @@ static uint32_t uart_read(uint8_t *p, uint32_t n, uint32_t timeout)
     if (n > mock_uart_rx_size) { n = (uint32_t)mock_uart_rx_size; }
     memcpy(p, mock_uart_rx, n); mock_uart_rx_size = 0; return n;
 }
-static uart_bus_t uart_bus[2] = {{uart_write0, uart_read}, {uart_write1, uart_read}};
+static void set_module_baud(uint32_t baud) { mock_uart_config[0].baud = baud; }
+static void set_debug_baud(uint32_t baud) { mock_uart_config[1].baud = baud; }
+static uart_bus_t uart_bus[2] = {{uart_write0, uart_read, set_module_baud}, {uart_write1, uart_read, set_debug_baud}};
 const uart_bus_t *uart_dev_open(const struct uart_platform_data_t *cfg)
 {
     unsigned i = mock_uart_open_count++;

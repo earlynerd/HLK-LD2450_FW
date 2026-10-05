@@ -5,13 +5,15 @@ An incremental C firmware component for the likely **JieLi AC695N / AC6956C
 [hardware reference](../docs/radar_ic_and_internal_interfaces.md) records the
 evidence and unresolved details. This first version initializes the known
 peripherals and provides APIs for the recovered radar register profiles and
-data handling. It builds as a PI32V2/r3 SDK component, rather than a complete
-bootable replacement image. The [register experiment workflow](docs/REGISTER_EXPERIMENTS.md)
-describes customizable profiles, target builds, and remaining image/loading work.
+data handling. It now links a minimal PI32V2/r3 application and packages UFW
+images. The [image guide](docs/IMAGE_BUILD.md) gives reproducible commands and
+the [register experiment workflow](docs/REGISTER_EXPERIMENTS.md) describes
+customizable profiles and the remaining radar startup work.
 The [UART update investigation](docs/UART_UPDATE.md) establishes the SDK's
 `UART_UPDATA` -> `uart_user.bin` path, protocol, integration points, and vendor
 example defects. Its ABI probe compiles for BR23; the application update
-receiver and complete image remain to be implemented.
+receiver and complete image builder are implemented. Boot and hardware update
+behavior remain unverified.
 
 ## Implemented
 
@@ -20,7 +22,7 @@ receiver and complete image remain to be implemented.
 | Radar RX1 | PB2 data, PB0 clock, PB3 CS observation | SPI1 group A, slave, mode 0, 8-bit, receive only; one-shot DMA |
 | Radar RX2 | PB8 data, PB9 clock, PB11 CS observation | SPI2 group A, same configuration; independent DMA buffer |
 | Radar control | PC4 SCL, PC5 SDA | Hardware I2C master, nominal 100 kHz; raw write/read/repeated-start transactions with deadlines and NACK handling |
-| Module UART | PA1 TX, PA0 RX | 256000 baud, SDK UART driver, 512-byte RX ring; configurable pin swap |
+| Module UART | PA1 TX, PA0 RX | 256000 baud, SDK UART driver, 1024-byte RX ring; configurable pin swap |
 | Debug UART | PA9 TX | 115200 baud, configurable/optional |
 | Radar power | PC2 `PW_CTL` | Low enables power; initialized high/off |
 | Radar bias gate | PC3 `REXT_CTL` | High enables bias ground path; initialized low/off |
@@ -144,7 +146,7 @@ creates `firmware/build/br23/libld2450.a`. Link it into a BR23 SDK application
 and invoke `ld2450_app_start()` from that application's task. The SDK supplies
 startup, clocks, RTOS, interrupt tables, timer tick, watchdog service, UART
 runtime, and linker/flash layout. Their module-specific configuration and a
-complete image link remain the next integration step. Ordinary ARM GCC or
+complete image link are supplied by `tools/build_image.py`. Ordinary ARM GCC or
 desktop Clang cannot generate code for this MCU.
 
 Do not run plain `make` in the cached SDK: its stock `all` target runs a device
@@ -162,12 +164,12 @@ Confirm it before selecting the final SDK clock configuration.
 
 ## Current validation and next evidence
 
-On 2026-10-04 the baseline and customized profiles passed the MSVC host build,
-three CTest suites, and seven tooling tests. Both profiles also compiled with
-the real JieLi PI32V2/r3 compiler against the pinned SDK to produce
-`libld2450.a`. SDK API hashes and local compiler/archiver hashes were checked.
-**No complete application link, firmware packaging, flashing, or bench
-validation has occurred.**
+On 2026-10-04 the host build passed five CTest suites and twelve Python tests.
+The baseline and customized profiles link with the real JieLi PI32V2/r3
+compiler and package into UFW images. Tests include the actual UART adapter
+with modeled SDK/device I/O, failure/retry behavior, and byte-identical stock
+packaging roundtrips. An independent decoder accepts all four custom flash
+variants. **No device flashing, boot test, or bench validation has occurred.**
 
 The [capture plan](docs/CAPTURE_PLAN.md) focuses next on I2C initialization,
 both SPI data lanes, CS timing, and power/bias control. Keep new captures as

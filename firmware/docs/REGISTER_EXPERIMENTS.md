@@ -18,8 +18,9 @@ transport to the PC.
   hashes, configuration hash, table hash, and exact changes.
 - `ld2450_radar_apply_init_stage()` writes register/MSB/LSB to seven-bit address
   0x20. It stops on the first bus error and reports the failed source sequence.
-- The baseline and example experiment pass three CTest suites and seven Python
-  tests. Both compile as **PI32V2/r3 components against the actual pinned SDK**.
+- The baseline and example experiment compile and link as **PI32V2/r3 applications
+  against the actual pinned SDK**, and package as complete UFW images. See
+  [IMAGE_BUILD.md](IMAGE_BUILD.md) for the current five CTest/twelve Python checks.
 
 `libld2450.a` is an SDK component, not a bootable or flashable image.
 `ld2450_app_start()` still initializes peripherals with radar power off.
@@ -88,11 +89,11 @@ defaults to the conventional `C:/JL/pi32/bin`; `--toolchain` selects another
 installation. The compiler package and extracted files remain local cache
 inputs. No system installation or global PATH change was made.
 
-## Remaining application integration
+## Remaining radar application integration
 
-1. Link an LD2450-specific SDK application with startup, clocks, RTOS, timer,
-   watchdog service, and the correct flash/boot configuration. Replace stock
-   soundbox board initialization so it does not drive radar-owned pins.
+1. The minimal UART recovery image now links startup, clocks, RTOS, timer and
+   watchdog service, with stock soundbox board initialization excluded. Confirm
+   its clock/flash assumptions on the actual module.
 2. First boot a console/heartbeat application with radar power off. Establish
    that the image can be loaded, boots, and can be replaced by stock firmware.
 3. Incorporate the measured supply/bias order and settling delays. Apply
@@ -105,8 +106,8 @@ inputs. No system installation or global PATH change was made.
    results. Add runtime profile commands after the baseline boot path works.
 
 The MCU oscillator/clock settings and the physical loading path still need
-verification on this board. No complete application link, firmware packaging,
-device flashing, or bench validation has occurred.
+verification on this board. Application linking and firmware packaging now
+work; device flashing and bench validation have not occurred.
 
 ## Loading paths to establish
 
@@ -117,15 +118,16 @@ device flashing, or bench validation has occurred.
 | Existing Hi-Link Bluetooth OTA | APK and stock packages identify an existing update route and retained OTA loaders. | Local modified-image delivery, package acceptance rules, and restoration behavior are not established. |
 
 The stock SDK's `download.bat` performs device writes and can format regions;
-our component builder invokes only compile/archive commands. A complete
-image pipeline should expose linking, packaging, and device loading as
-separate operations with explicit board/flash configuration.
+our component builder invokes only compile/archive commands. The complete
+`build_image.py` pipeline adds linking and offline packaging; device loading
+is a separate explicit command with a named serial port.
 
 Changing tables in a copy of the stock application is also a possible first
 experiment route. It would preserve its existing boot and acquisition code,
-but needs reconstruction of inner file CRCs/scrambling and all four UFW flash
-variants, plus verification that the update path accepts the result. The
-current generator does not patch or repack stock firmware.
+but still needs verification that the device update path accepts the result.
+The new packager reconstructs the CRCs/scrambling and updates all four flash
+variants; it replaces a complete app.bin rather than editing instructions in
+the stock application. The register generator itself remains data-only.
 
 Sources checked on 2026-10-04:
 

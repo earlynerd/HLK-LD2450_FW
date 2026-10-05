@@ -15,7 +15,23 @@
     "cpu/br23/uart_dev.c",
     "include_lib/driver/cpu/br23/asm/br23.h",
     "include_lib/driver/cpu/br23/asm/gpio.h",
-    "include_lib/driver/cpu/br23/asm/uart_dev.h"
+    "include_lib/driver/cpu/br23/asm/uart_dev.h",
+    "Makefile",
+    "include_lib/driver/cpu/br23/asm/iic_hw.h",
+    "cpu/br23/setup.c",
+    "cpu/br23/charge.c",
+    "cpu/br23/pwm_led.c",
+    "cpu/br23/sdk_ld.c",
+    "cpu/br23/maskrom_stubs.ld",
+    "cpu/br23/sdk_used_list.c",
+    "include_lib/update/update.h",
+    "include_lib/update/update_loader_download.h",
+    "apps/soundbox/log_config/lib_system_config.c",
+    "apps/soundbox/log_config/lib_driver_config.c",
+    "apps/soundbox/log_config/lib_update_config.c",
+    "include_lib/liba/br23/cpu.a",
+    "include_lib/liba/br23/system.a",
+    "include_lib/liba/br23/update.a"
   ],
   "verified_api_sha256": {
     "cpu/br23/spi.c": "0296a6272de7ca48a618fdca6df80c339034ad9b12bbd661a29b4dd80ac76e03",
@@ -25,6 +41,20 @@
     "include_lib/driver/cpu/br23/asm/gpio.h": "1c5410b2592f652018b524e98ddcd7fc0d01a9fa00e957591ad89d208af12b75",
     "include_lib/driver/cpu/br23/asm/uart_dev.h": "45fd2078630ed4e3f500e12a2864aab91829b3c0642544697f48e2e2d7a2a17c",
     "Makefile": "d7ef427cde4809f4bafa882b0f53833a0315a4e5006984a216a49e590aac73b4",
-    "include_lib/driver/cpu/br23/asm/iic_hw.h": "fb3a47ac67a1f3ae5069425e15a7b20135c6b273f1bb447fc965255f3314db5e"
+    "include_lib/driver/cpu/br23/asm/iic_hw.h": "fb3a47ac67a1f3ae5069425e15a7b20135c6b273f1bb447fc965255f3314db5e",
+    "cpu/br23/setup.c": "78ef48ee8a22d126e7e53a69084e67edd35e5e06569c0449a4977cc1d0b12fa9",
+    "cpu/br23/charge.c": "de2b816ec98e0a5f65c71ab100b26d0d7778df3881d1e0b66652fe9659c4450a",
+    "cpu/br23/pwm_led.c": "a29a95b2620f8d6b7db56f42ad4660758c12ee45d1a3a06c6d12d3b9aa2923e8",
+    "cpu/br23/sdk_ld.c": "6e38fcdf96b4fd420ea0b34dd50425e2efff87ca5ae8da7f957e80858f924c11",
+    "cpu/br23/maskrom_stubs.ld": "0d89bcd558f728bed7ca06b87c0a8b158d314d96e9190944ab127fdb88a90b92",
+    "cpu/br23/sdk_used_list.c": "d1fc89197505c34f16b4f9c80cc1afe8c4f10d54f3200724b3052b4c8e8365f1",
+    "include_lib/update/update.h": "54436dbb8b155990b2a3d7e394fdc8f67d6535b50feb80da1d2f4e6dd76c3e8b",
+    "include_lib/update/update_loader_download.h": "1ba2ab35a84e4526e81f50365e1dd373d27c912adbc3d26a0266b96059f1244e",
+    "apps/soundbox/log_config/lib_system_config.c": "6f574b6a0e4ad92cc87b6fbd235cf0f2f26879b467976cb646c5603d91d627b8",
+    "apps/soundbox/log_config/lib_driver_config.c": "58ef6f8e192978f63d7b82a5184933b2c93c4d9d15201528f353e54c430f9faa",
+    "apps/soundbox/log_config/lib_update_config.c": "c3a9bf62aaff12a054d67d1103eb7906504faae6a4fd7e1866d3f8c15dbc4f00",
+    "include_lib/liba/br23/cpu.a": "775c9b7cd3e78eebaca31dd443e1c0a993a60669e4b701713539de30486cb2e0",
+    "include_lib/liba/br23/system.a": "c1b7971954c7a8b8c5997c4fdf9fab954be301393d382bb5c04243ed8e2b24bc",
+    "include_lib/liba/br23/update.a": "53de665a95ef50659c4e132bed2bb35fa6adfecb5e5638d68c824d1c1c620e9a"
   }
 }

@@ -61,8 +61,8 @@ are unrelated to the radar's big-endian sample stream.
 Opcode `06` is present in the SDK header and both example sources; the PDF
 shows an entry notification but does not define its bytes. The master example
 also recognizes status `0x80` as loader-download completion; the PDF's status
-table omits this value. A future PC host must accommodate the actual loader
-behavior and remain available across the reset between stages.
+table omits this value. Our PC peer remains available across the reset between stages; actual loader
+behavior still needs a transaction capture.
 
 The stock example and archived UART driver begin at **9600 baud**. The PDF
 illustrates 9600 entry, a 10,000-baud loader-staging phase, and a later negotiated
@@ -72,72 +72,50 @@ setting and any product-specific entry wrapper still need a capture or tool
 analysis. For our own application/host pair we can choose a documented entry
 rate, but must keep the negotiated baud consistent through the loader handoff.
 
-## Proposed integration in our application
+## Implemented integration in our application
 
-Use a project-owned receiver over the existing module UART, with the vendor
-update engine handling UFW verification and loader staging. Keep the cached
-SDK unmodified. Implement the receiver under our own feature flag; leave the
-two conflicting vendor UART example sources disabled. The protocol is known
-well enough to implement without depending on the Ai-Thinker executable.
+See [IMAGE_BUILD.md](IMAGE_BUILD.md) for complete build and transfer commands.
+`target/br23/image/uart_loader.c` implements the project-owned receiver over
+PA1 TX / PA0 RX. The conflicting vendor examples remain disabled. Our
+application calls `update_module_init` before any session and uses
+`UART_UPDATA` with the real vendor UFW verification/staging engine. The linked
+configuration includes `UPDATE_APP_EN`.
 
-1. **Initialize the update runtime.** Retain the `app_update_init` initcall and
-   common state handler from `apps/common/update/update.c`, or an explicitly
-   audited board adaptation of them. This calls `update_module_init` and
-   retains `UPDATE_CH_SUCESS_REPORT` for the subsequent handoff. Calling
-   `app_active_update_task_init` before this initialization dereferences an
-   uninitialized library control pointer. Retain the RTOS `update` task entry.
-   Remove unrelated audio/UI/test-box dependencies in the board adaptation.
-   Include `UPDATE_APP_EN` in `config_update_mode`: the header explicitly
-   includes user UART updating under this bit. `UPDATE_UART_EN` alone is not
-   the documented configuration for this route.
-2. **Give the transport one owner.** Use PA1 TX / PA0 RX through our existing
-   `module_uart`. Pause normal reports and radar acquisition on accepted entry;
-   disable both SPI DMA engines and turn off radar power/bias. Keep PA9 debug
-   output separate. Add a baud-change operation to our peripheral API and use
-   a bounded stream parser; a 1024-byte RX ring is a practical first size
-   because a reply containing 512 data bytes occupies 527 wire bytes, larger
-   than our current 512-byte ring. Define task ownership explicitly: a UART
-   service task receives and validates responses while the update task waits
-   on a semaphore. Do not let both tasks read the same UART stream.
-3. **Implement `update_op_api_t`.** `ch_init` stores the library's resume/sleep
-   callbacks; `f_open` resets the UFW offset; `f_read` requests bytes at that
-   offset with bounded retries; `f_seek` changes it; `f_stop` sends status;
-   `notify_update_content_size` supplies progress; `ch_exit` releases session
-   state. Validate data into a separate response buffer before waking the
-   waiting reader. Chunk reads to a supported size and never report bytes
-   that were not received. Verify the library's failure/short-read contract
-   while implementing the adapter.
-4. **Start the engine after negotiation.** Pass a persistent callback table in
-   `update_mode_info_t` with `.type = UART_UPDATA`, `.task_en = 1`, and the
-   application state callback to `app_active_update_task_init`. Check its
-   return value and reject duplicate sessions. The library copies the mode
-   structure, but the callback table and transport state must remain alive.
-5. **Handoff after verified success.** Require a valid success report and
-   successful `UPDATE_CH_EXIT` status. Fill `UPDATA_UART` with TX, RX, the
-   actual handoff baud and timeout; copy it into `UPDATA_PARM.parm_priv`.
-   Call `update_mode_api_v2(UART_UPDATA, fill_parameters, reset_callback)`.
-   Keep the vendor's common success-report handling, which supplies the
-   loader address and flash-record writer. Complete UART acknowledgments
-   and peripheral shutdown before the v2 call: its common handler disables
-   interrupts before invoking the reset callback. The v2 path does not call
-   `update_close_hw`, so merely registering a driver-close hook is insufficient.
-6. **Keep entry available on subsequent boots.** Initialize the UART update
-   service even if radar initialization fails. Include it in every custom
-   firmware build. Test the full cycle twice: stock/custom entry -> custom A
-   -> custom B, with a version banner proving each application booted.
+The adapter uses synchronous engine operation (`task_en=0`) in `app_core`.
+That task alone reads UART; no queued frame can race a second UART reader.
+The SDK resume/sleep hooks are unnecessary because our callback performs its
+own bounded blocking reads. RX has a 1024-byte ring and TX has a separate
+frame buffer. `f_read` splits requests into 512-byte chunks, verifies CRC,
+echoed offset/count and exact length, retries four times and returns zero
+without advancing the file offset if a chunk cannot be obtained.
 
-The target-compiled ABI assertions confirm `UPDATA_UART` is **16 bytes**,
-despite its stale “12 bytes” source comment; `UPDATA_PARM` is 80 bytes with
-`USE_SDFILE_NEW=1`. Use the SDK types and `sizeof`, not a hand-written packed
-record derived from comments. The SDK linker also reserves the update RAM
-region; preserve that reservation and its startup behavior in the full image.
+The receiver accepts READY at 256000 baud, negotiates START, and retains that
+actual baud through the handoff. After the success report and a successful
+EXIT, it sends/acknowledges STOP `0x80`. The adapter implements the audited
+record construction used by `update_mode_api_v2`: type, magic, loader address,
+UART parameters and CRC. It additionally zeroes the whole 112-byte record
+and checks the library writer's byte status (zero success) before resetting.
+The vendor v2 helper itself ignores that writer result.
+
+The target compiler checks `UPDATA_UART == 16` and `UPDATA_PARM == 80` bytes.
+The reserved 128-byte update RAM begins at `0x2ff80`, with the record at
+`+8`, leaving 120 available bytes. The application preserves the SDK linker
+reservation, copies 112 bytes, and resets only after peripheral shutdown.
+Entry is included in every image built here. Aborted sessions return to
+256000 baud. Radar startup is not attempted, so it cannot block the service;
+a failure to initialize the basic MCU peripherals currently resets the MCU.
+
+A Python PC peer implements our entry protocol and serves both stages. Its
+behavior, the adapter, framing and failure paths are host-tested. The vendor
+engine and stock `uart_user.bin` have not been run in these tests, and actual
+boot, loader acceptance and repeated device updates remain bench work.
 
 ## Why the shipped example needs repair
 
 | Finding in pinned SDK | Consequence / required handling |
 | --- | --- |
 | `uart_update.c:10` and `uart_update_master.c:2` both select MASTER | Selecting SLAVE excludes both; selecting MASTER includes conflicting implementations. The bundled guide explicitly calls `uart_update.c` the slave. |
-| `update.c:513-514` references `sava_uart_update_param` for SLAVE | Declaration exists, but no definition was found in SDK source or `update.a`. Resolve this legacy path if adopting the vendor macro; the proposed custom adapter uses the v2 route with vendor examples disabled. |
+| `update.c:513-514` references `sava_uart_update_param` for SLAVE | Declaration exists, but no definition was found in SDK source or `update.a`. Resolve this legacy path if adopting the vendor macro; our adapter constructs the v2-format record with vendor examples disabled. |
 | `uart_data_decode` accepts unchecked packet lengths | It can write beyond its frame buffer or read missing arguments. Enforce frame and per-command bounds before copying or dispatching. |
 | `uart_dev_receive_data` returns requested length after all retries fail | It can falsely advance the UFW offset. Return a real failure and preserve offset instead. |
 | Read response copy uses received frame length without bounding it to the requested length | Validate echoed offset, echoed count, actual payload size, and destination capacity together. |

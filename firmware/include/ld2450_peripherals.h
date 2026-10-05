@@ -59,6 +59,7 @@ int ld2450_i2c_transfer(uint8_t address, const uint8_t *tx, size_t tx_size,
                        uint8_t *rx, size_t rx_size, uint32_t timeout_ms);
 int ld2450_module_uart_write(const uint8_t *data, size_t size);
 int ld2450_module_uart_read(uint8_t *data, size_t size, uint32_t timeout_ms);
+int ld2450_module_uart_set_baud(uint32_t baud);
 int ld2450_debug_write(const char *message);
 
 /* SDK application entry hook. Returns CONFIG_CAPTURE_REQUIRED after

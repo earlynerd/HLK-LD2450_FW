@@ -47,7 +47,7 @@ static void test_initialization(void)
     }
     CHECK(mock_iic.BAUD == 119); CHECK(mock_iic.CON0 & LD_I2C_ENABLE);
     CHECK(mock_uart_config[0].tx_pin == 1 && mock_uart_config[0].rx_pin == 0);
-    CHECK(mock_uart_config[0].baud == 256000 && mock_uart_config[0].rx_cbuf_size == 512);
+    CHECK(mock_uart_config[0].baud == 256000 && mock_uart_config[0].rx_cbuf_size == 1024);
     CHECK(((uintptr_t)mock_uart_config[0].rx_cbuf & 3) == 0);
     CHECK(mock_uart_config[1].tx_pin == 9 && mock_uart_config[1].rx_pin == 255);
     CHECK(ld2450_peripherals_init(&cfg) == LD2450_BUSY);
@@ -153,7 +153,13 @@ static void test_uart_and_startup(void)
     CHECK(ld2450_module_uart_read(rx, 4, 10) == 2 && rx[0] == 0xaa && rx[1] == 0x55);
     CHECK(ld2450_module_uart_write(NULL, 1) == LD2450_BAD_ARGUMENT);
     CHECK(ld2450_module_uart_read(rx, 513, 10) == LD2450_BAD_ARGUMENT);
+    CHECK(ld2450_module_uart_set_baud(1000000) == LD2450_OK);
+    CHECK(mock_uart_config[0].baud == 1000000);
+    CHECK(ld2450_module_uart_set_baud(9599) == LD2450_BAD_ARGUMENT);
+    CHECK(ld2450_module_uart_set_baud(1000001) == LD2450_BAD_ARGUMENT);
+    CHECK(mock_uart_config[0].baud == 1000000);
     ld2450_peripherals_deinit();
+    CHECK(ld2450_module_uart_set_baud(256000) == LD2450_NOT_READY);
     CHECK(ld2450_module_uart_write(tx, 2) == LD2450_NOT_READY);
 }
 

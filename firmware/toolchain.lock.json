@@ -10,7 +10,11 @@
   "tool_files_sha256": {
     "bin/clang.exe": "0ae79bfb1e79018a12f401050674b6ddc90c202bf81a07832e37a73c3a447c25",
     "bin/llvm-ar.exe": "0b436f8d2ab4f5750fe70ac0b9c6e0028b8188cd3ef0eb29413b967a002dd822",
-    "bin/pi32v2-lto-wrapper.exe": "ff78492bbc19f0f2a1751319e332fdcba43a368319685d58da6c5e15e16f9bb7"
+    "bin/pi32v2-lto-wrapper.exe": "ff78492bbc19f0f2a1751319e332fdcba43a368319685d58da6c5e15e16f9bb7",
+    "bin/pi32v2-ld.exe": "c06dede1b64d7381a86eeec44500b97392aff191e1694afdfb3bb97b20bbbb3b",
+    "pi32v2-lib/r3/libc.a": "5571a8e13d060d64ae4b3f4646c242de32668ac41a9acfd06fb94cd30f66ffff",
+    "pi32v2-lib/r3/libm.a": "a1cf76362ec872be97a7b7ba3152819fcb0828198ef0490011e0ed7cee60c280",
+    "pi32v2-lib/r3/libcompiler-rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf"
   },
   "extraction_tool": "innoextract 1.9",
   "extraction_tool_url": "https://constexpr.org/innoextract/files/innoextract-1.9-windows.zip",

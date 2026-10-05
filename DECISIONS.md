@@ -24,3 +24,10 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Why:** The bundled protocol and library establish the route, while the example receiver has compile-guard, buffer, retry, and baud-state defects. Its separate low-level driver also directly claims UART1, conflicting with dynamic UART ownership.
 - **Supersedes:** (initial UART update design)
 - **Affects:** `firmware/docs/UART_UPDATE.md`, future application startup, UART ownership, and UFW packaging.
+
+## 2026-10-04 — Link a UART recovery application and package stock-layout UFWs
+
+- **Decision:** Run a bounded custom UART receiver synchronously in `app_core`, using the vendor update engine and preserved `uart_user.bin`. Require successful staging, STOP acknowledgement and verified handoff-record persistence before reset. Link the minimal SDK startup at the stock `0x1E00120` entry, retain the selected register table, and keep radar supply/bias off. Package all four flash variants using a SHA-pinned stock UFW and fixed application slots; keep building separate from the explicit-port PC uploader.
+- **Why:** This supplies reproducible complete images and a repeatable-update entry service without importing conflicting soundbox UART or board initializers. One UART owner avoids queued-frame races. Stock-template packaging preserves the known bootloader/layout while byte-identical no-op roundtrips and an independent decoder check its transforms. The clock default and all physical loader/boot behavior still require bench verification.
+- **Supersedes:** The UART implementation-pending status above and the earlier component-only build scope. Automatic radar startup remains pending captured supply/bias timing.
+- **Affects:** `firmware/target/br23/image/`, UART protocol/PC peer, compiler setup, image builder/packager, and `firmware/docs/IMAGE_BUILD.md`.

@@ -22,8 +22,8 @@ def default_toolchain():
 def toolchain_provenance(toolchain):
     toolchain = toolchain.resolve()
     lock = json.loads((ROOT / "toolchain.lock.json").read_text(encoding="utf-8-sig"))
-    if toolchain != (ROOT / lock["local_bin"]).resolve():
-        return {"bin": str(toolchain), "matches_project_lock": False}
+    if not toolchain.is_dir():
+        return {"bin": str(toolchain), "matches_project_lock": False, "available": False}
     for name, expected in lock["tool_files_sha256"].items():
         actual = hashlib.sha256((toolchain.parent / name).read_bytes()).hexdigest()
         if actual != expected:

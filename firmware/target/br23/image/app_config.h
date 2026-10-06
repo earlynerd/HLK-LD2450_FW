@@ -3,10 +3,14 @@
 #include "asm/clock_define.h"
 #define CONFIG_FLASH_SIZE (256 * 1024)
 #define LIB_DEBUG 1
+/* The linked full logger requires setup.c's log_early_init(), including its
+ * RTOS mutex. Lite mode omits that initialization. */
+#define CONFIG_DEBUG_ENABLE
 #define CONFIG_DEBUG_LIB(x) (x)
 #define TCFG_CLOCK_SYS_SRC SYS_CLOCK_INPUT_PLL_BT_OSC
 #define TCFG_CLOCK_OSC_HZ 24000000
-#define TCFG_CLOCK_SYS_HZ 24000000
+/* Stock V2.14 reports sys=240 MHz; the PLL reference remains 24 MHz. */
+#define TCFG_CLOCK_SYS_HZ 240000000
 #define TCFG_CLOCK_MODE CLOCK_MODE_ADAPTIVE
 #define TCFG_LOWPOWER_POWER_SEL PWR_LDO15
 #define AUDIO_OUTPUT_WAY 0

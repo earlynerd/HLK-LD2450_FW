@@ -29,6 +29,7 @@ struct ld2450_status {
     uint8_t dma_armed_mask;
     uint8_t radar_bias_enabled;
     uint8_t spi_ready;
+    uint8_t radar_io_ready;
 };
 
 struct ld2450_spi_completion {
@@ -40,6 +41,10 @@ struct ld2450_spi_completion {
 
 struct ld2450_config ld2450_default_config(void);
 int ld2450_peripherals_init(const struct ld2450_config *config);
+/* peripherals_init can add radar I/O to an existing UART-only setup. In that
+ * case UART baud/pins/buffers are preserved; only radar settings are applied. */
+/* UART-only initialization for hello-world/updater; no I2C or SPI setup. */
+int ld2450_uart_init(const struct ld2450_config *config);
 void ld2450_peripherals_deinit(void);
 struct ld2450_status ld2450_get_status(void);
 

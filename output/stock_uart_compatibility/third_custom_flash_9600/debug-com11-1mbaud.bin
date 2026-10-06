@@ -1,0 +1,6 @@
+[00:01:13.460][Info]: [UART_UPDATE]CMD_UART_UPDATE_READY
+
+
+AA 55 01 00 01 A5 82 
+[00:01:30.186]bv:335, bl:2 , check_vbat:0
+[00:01:30.195]bv:335, bl:2 , check_vbat:0

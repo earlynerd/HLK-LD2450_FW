@@ -1,0 +1,15 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-logfix\\update-two-wire.ufw",
+  "image_sha256": "1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a",
+  "entry": "stock",
+  "result": "device reported final success",
+  "version_hex": "00 01 14 02 12 24 11 25",
+  "pa9_bytes": 5517,
+  "postflash_bytes": 630,
+  "heartbeat_count": 15,
+  "elapsed_seconds": 28.505,
+  "read_requests": 419,
+  "complete": true,
+  "loader_staged": false,
+  "device_error": null
+}

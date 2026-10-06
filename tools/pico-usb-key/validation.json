@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-05",
+  "target": "Raspberry Pi Pico W / RP2040 (rpipicow)",
+  "platform_commit": "aa70b802be8851668053d4f09734e4089fe41932",
+  "arduino_pico_commit": "0643904164d16e2599e5c6e95f0eea5c9d6297d4",
+  "build_command": "pio run -c platformio.local.ini",
+  "build_dependency_resolution": "local symlinks to checkouts at the pinned commits; PlatformIO package label differs from Git HEAD",
+  "source_sha256": {
+    "platformio.ini": "ec4c08adaceeffa55e87b76ca8e9e7910fb32a8e47b1714a739d4958668a6f12",
+    "src/main.cpp": "1e858784dc5d96a1c41b6afa17865f00243b2be477207ea765b9624b8ee7b380",
+    "include/key_logic.h": "501462f1ede561a3108a205e48c25f3fbd9bd40015509f7f244ab59e75f7d73c",
+    "tests/check_waveform.py": "c6ccb27586f9c03e77907733b8f3b9eb1dca1986ebe60eea906bf0d410d50c3c",
+    "tests/test_logic.cpp": "6274f44626b1880f4eb42d7ba59eaf370716a3f9526bc44bc00e646c2a6caa99",
+    "tests/CMakeLists.txt": "cf683513a5e18c29afb1befac604410a5f2365c4aae089b828801f7a245dc873"
+  },
+  "uf2_sha256": "6cbe9dbd7104e1ea9c1c15fb8cc8934d03159a3b773a718fe6f06781b77df539",
+  "uf2_bytes": 686080,
+  "validation": {
+    "target_build": "passed",
+    "elf_pio_waveform": "passed: key bit order/50 kHz; calibration period1000us/low10us",
+    "native_ack_tests": "passed: startup settling/timeout/high interval, ACK threshold, broken intervals, timer wrap"
+  },
+  "hardware_flashed": false,
+  "br23_boot_entry_verified": false,
+  "artifact": "build/pico-w-usb-key.uf2"
+}

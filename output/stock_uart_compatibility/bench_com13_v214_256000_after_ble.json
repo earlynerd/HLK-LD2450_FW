@@ -1,0 +1,580 @@
+{
+  "port": "COM13",
+  "baud": 256000,
+  "image_bytes_sent": 0,
+  "trace": [
+    {
+      "seconds": 9e-06,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 04 00 ff 00 01 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.007383,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.007416,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.007427,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.007436,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.007446,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "08"
+    },
+    {
+      "seconds": 0.007457,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007467,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "ff"
+    },
+    {
+      "seconds": 0.007481,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007489,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007497,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007507,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007516,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007524,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "40"
+    },
+    {
+      "seconds": 0.007533,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007541,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.007561,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.007568,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.007575,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007583,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 a0 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.012605,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "aa"
+    },
+    {
+      "seconds": 0.012622,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "ff"
+    },
+    {
+      "seconds": 0.012631,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.012638,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012647,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "0b"
+    },
+    {
+      "seconds": 0.012655,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.012662,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "6f"
+    },
+    {
+      "seconds": 0.012671,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "81"
+    },
+    {
+      "seconds": 0.01268,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012687,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012695,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "68"
+    },
+    {
+      "seconds": 0.012703,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.012711,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012726,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012733,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012741,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012748,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012755,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012762,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012771,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012778,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012785,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012792,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012799,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012806,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012818,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012824,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.012833,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.01284,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "55"
+    },
+    {
+      "seconds": 0.012854,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "cc"
+    },
+    {
+      "seconds": 0.014847,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.014858,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.014865,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.014872,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.01488,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "0c"
+    },
+    {
+      "seconds": 0.014887,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014895,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "a0"
+    },
+    {
+      "seconds": 0.014902,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.014909,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014917,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014924,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014931,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.014943,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "14"
+    },
+    {
+      "seconds": 0.01495,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.014957,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "12"
+    },
+    {
+      "seconds": 0.014966,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "24"
+    },
+    {
+      "seconds": 0.014977,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "11"
+    },
+    {
+      "seconds": 0.014984,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "25"
+    },
+    {
+      "seconds": 0.014991,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.014998,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.015005,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.015015,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.015031,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 b2 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.021915,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.02194,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.021949,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.021957,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.021966,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.021973,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.021981,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "b2"
+    },
+    {
+      "seconds": 0.021989,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.021995,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.022008,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.022016,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.022023,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.02203,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.022037,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.022049,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "aa 55 01 00 06 42 f2"
+    },
+    {
+      "seconds": 0.02961,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "aa"
+    },
+    {
+      "seconds": 0.029639,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "55"
+    },
+    {
+      "seconds": 0.029651,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.02966,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.029671,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.029681,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "a5"
+    },
+    {
+      "seconds": 0.029692,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "82"
+    }
+  ],
+  "result": "updater START observed; not acknowledged",
+  "version_hex": "00 01 14 02 12 24 11 25",
+  "start_hex": "01"
+}

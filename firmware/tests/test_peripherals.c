@@ -83,6 +83,18 @@ static void test_initialization(void)
     CHECK(ld2450_peripherals_init(&cfg) == LD2450_OK);
     CHECK(mock_uart_open_count == 1 && mock_uart_config[0].tx_pin == 0 && mock_uart_config[0].rx_pin == 1);
     CHECK(ld2450_debug_write("test") == LD2450_NOT_READY);
+
+    /* 240 MHz CPU bring-up caps LSB at 48 MHz for the 8-bit IIC divider.
+     * The unmodified SDK's 60 MHz LSB must fail rather than wrap 299 to 43. */
+    reset(); cfg = ld2450_default_config(); mock_clock = 48000000;
+    CHECK(ld2450_peripherals_init(&cfg) == LD2450_OK);
+    CHECK(mock_iic.BAUD == 239);
+    reset(); mock_clock = 51200000;
+    CHECK(ld2450_peripherals_init(&cfg) == LD2450_OK);
+    CHECK(mock_iic.BAUD == 255);
+    reset(); mock_clock = 60000000;
+    CHECK(ld2450_peripherals_init(&cfg) == LD2450_CLOCK_RANGE);
+    CHECK(mock_uart_open_count == 0 && mock_gpio[34].output_calls == 0);
 }
 
 static void test_dma(void)
@@ -113,6 +125,35 @@ static void test_dma(void)
     CHECK(ld2450_radar_power(0) == LD2450_OK);
     CHECK(!mock_spi[0].CNT && !ld2450_get_status().dma_armed_mask);
     CHECK(!mock_gpio[17].output_calls && !mock_gpio[26].output_calls);
+}
+
+static void test_uart_only(void)
+{
+    struct ld2450_config cfg = ld2450_default_config();
+    unsigned p;
+    reset();
+    /* A clock unusable for I2C must not prevent hello-world or updates. */
+    mock_clock = 60000000;
+    mock_iomap.CON1 = 0xa5a5a5a5;
+    CHECK(ld2450_uart_init(&cfg) == LD2450_OK);
+    CHECK(ld2450_get_status().initialized && !ld2450_get_status().radar_io_ready);
+    CHECK(ld2450_debug_write("Hello world!") == LD2450_OK);
+    CHECK(ld2450_module_uart_set_baud(1000000) == LD2450_OK);
+    CHECK(ld2450_radar_power(0) == LD2450_OK); /* Update preparation. */
+    CHECK(ld2450_radar_power(1) == LD2450_NOT_READY);
+    CHECK(ld2450_radar_bias(0) == LD2450_NOT_READY);
+    CHECK(ld2450_spi_prepare() == LD2450_NOT_READY);
+    CHECK(ld2450_uart_init(&cfg) == LD2450_BUSY);
+    ld2450_peripherals_deinit();
+    CHECK(mock_uart_close_count == 2);
+    CHECK(!mock_iic.CON0 && !mock_iic.BAUD && !mock_i2c_event_count);
+    CHECK(!mock_spi[0].CON && !mock_spi[1].CON);
+    CHECK(mock_iomap.CON1 == 0xa5a5a5a5);
+    for (p = 0; p < 64; ++p) CHECK(!mock_gpio[p].output_calls);
+
+    reset(); mock_uart_fail_on = 1;
+    CHECK(ld2450_uart_init(&cfg) == LD2450_UART_UNAVAILABLE);
+    CHECK(!ld2450_get_status().initialized && !mock_gpio[34].output_calls);
 }
 
 static void test_i2c(void)
@@ -177,6 +218,19 @@ static void test_radar_startup_order_and_failures(void)
 {
     size_t n;
     uint8_t byte = 0x55;
+    struct ld2450_config cfg = ld2450_default_config();
+    reset();
+    CHECK(ld2450_uart_init(&cfg) == LD2450_OK);
+    mock_uart_rx[0] = 0x42; mock_uart_rx_size = 1;
+    CHECK(ld2450_app_start() == LD2450_OK);
+    CHECK(mock_uart_open_count == 2 && !mock_uart_close_count);
+    CHECK(ld2450_module_uart_read(&byte, 1, 10) == 1 && byte == 0x42);
+    reset(); mock_clock = 60000000;
+    CHECK(ld2450_uart_init(&cfg) == LD2450_OK);
+    CHECK(ld2450_app_start() == LD2450_CLOCK_RANGE);
+    CHECK(ld2450_get_status().initialized && !ld2450_get_status().radar_io_ready);
+    CHECK(!mock_uart_close_count && !mock_i2c_event_count);
+    CHECK(ld2450_module_uart_write(&byte, 1) == LD2450_OK);
     reset();
     CHECK(ld2450_app_start() == LD2450_OK);
     CHECK(mock_i2c_event_count == 400);
@@ -231,7 +285,7 @@ static void test_radar_startup_order_and_failures(void)
 
 int main(void)
 {
-    test_initialization(); test_dma(); test_i2c(); test_uart_and_startup(); test_radar_startup_order_and_failures();
+    test_initialization(); test_dma(); test_uart_only(); test_i2c(); test_uart_and_startup(); test_radar_startup_order_and_failures();
     puts("Validated pin ownership, mode/baud setup, rollback, dual DMA, I2C deadlines/recovery, UART, and startup status.");
     return 0;
 }

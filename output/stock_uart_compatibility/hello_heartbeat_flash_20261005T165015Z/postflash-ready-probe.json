@@ -1,0 +1,8 @@
+{
+  "baud": 256000,
+  "ready_sent": 4,
+  "received_bytes": 0,
+  "packets": [],
+  "start_acknowledged": false,
+  "image_bytes_sent": 0
+}

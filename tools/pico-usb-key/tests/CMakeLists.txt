@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.20)
+project(pico_key_logic LANGUAGES CXX)
+enable_testing()
+add_executable(test_logic test_logic.cpp)
+target_include_directories(test_logic PRIVATE ../include)
+target_compile_features(test_logic PRIVATE cxx_std_11)
+add_test(NAME ack_intervals COMMAND test_logic)

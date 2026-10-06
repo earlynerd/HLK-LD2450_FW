@@ -1,0 +1,130 @@
+{
+  "image_linked": true,
+  "device_flashed": false,
+  "toolchain": {
+    "bin": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\bin",
+    "matches_project_lock": true,
+    "version": "2.5.2",
+    "installer_sha256": "1ec78e3315a5987d4e82ecd002536c84240e5c832b1875beff7ce55450124ee5",
+    "tool_files_sha256": {
+      "bin/clang.exe": "0ae79bfb1e79018a12f401050674b6ddc90c202bf81a07832e37a73c3a447c25",
+      "bin/llvm-ar.exe": "0b436f8d2ab4f5750fe70ac0b9c6e0028b8188cd3ef0eb29413b967a002dd822",
+      "bin/pi32v2-lto-wrapper.exe": "ff78492bbc19f0f2a1751319e332fdcba43a368319685d58da6c5e15e16f9bb7",
+      "bin/pi32v2-ld.exe": "c06dede1b64d7381a86eeec44500b97392aff191e1694afdfb3bb97b20bbbb3b",
+      "pi32v2-lib/r3/libc.a": "5571a8e13d060d64ae4b3f4646c242de32668ac41a9acfd06fb94cd30f66ffff",
+      "pi32v2-lib/r3/libm.a": "a1cf76362ec872be97a7b7ba3152819fcb0828198ef0490011e0ed7cee60c280",
+      "pi32v2-lib/r3/libcompiler-rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf"
+    }
+  },
+  "profile": {
+    "name": "hello-world-with-uart-updater"
+  },
+  "package": {
+    "template_sha256": "b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093",
+    "ufw_sha256": "305320e81aa311d5e57fffd288478d74df6a631c2c40810ba52bbf822b7c52f6",
+    "ufw_bytes": 1035776,
+    "application_sha256": "288ec6858752f4ef6c5eaddfaaac7693e691c86c997295ab15fa5eb0f068d184",
+    "application_bytes": 81160,
+    "entry_point": "0x1e00120",
+    "changed_flash_variants": [
+      {
+        "name": "flash.bin",
+        "app_bytes": 81160,
+        "slot_bytes": 182760,
+        "app_sha256": "288ec6858752f4ef6c5eaddfaaac7693e691c86c997295ab15fa5eb0f068d184"
+      },
+      {
+        "name": "flash2.bin",
+        "app_bytes": 81160,
+        "slot_bytes": 182760,
+        "app_sha256": "288ec6858752f4ef6c5eaddfaaac7693e691c86c997295ab15fa5eb0f068d184"
+      },
+      {
+        "name": "flash3.bin",
+        "app_bytes": 81160,
+        "slot_bytes": 182760,
+        "app_sha256": "288ec6858752f4ef6c5eaddfaaac7693e691c86c997295ab15fa5eb0f068d184"
+      },
+      {
+        "name": "flash4.bin",
+        "app_bytes": 81160,
+        "slot_bytes": 182760,
+        "app_sha256": "288ec6858752f4ef6c5eaddfaaac7693e691c86c997295ab15fa5eb0f068d184"
+      }
+    ],
+    "non_flash_components_preserved": true,
+    "crc_roundtrip_verified": true,
+    "device_flashed": false,
+    "bench_validated": false
+  },
+  "sdk_commit": "641e45dff1a8dc455fc6ccd688236fa59688b9ee",
+  "application": "hello",
+  "startup_audit": {
+    "entry": "0x1e00120",
+    "startup_immediates_checked": 13,
+    "ram_sections_nonoverlapping": true,
+    "flat_text_and_data_verified": true,
+    "board_power_after_platform_init": true,
+    "ram0_heap_bytes": 157088,
+    "ram1_heap_bytes": 11648,
+    "device_execution_verified": false
+  },
+  "runtime_audit": {
+    "logger_init_before_clock_dump": true,
+    "logger_mutex_constructor_linked": true,
+    "logger_buffer_allocation_linked": true,
+    "setup_before_application_tasks_and_scheduler": true,
+    "device_execution_verified": false
+  },
+  "radar_table_retained": false,
+  "source_and_link_inputs_sha256": {
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\apps\\soundbox\\log_config\\lib_driver_config.c": "58ef6f8e192978f63d7b82a5184933b2c93c4d9d15201528f353e54c430f9faa",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\apps\\soundbox\\log_config\\lib_system_config.c": "6f574b6a0e4ad92cc87b6fbd235cf0f2f26879b467976cb646c5603d91d627b8",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\apps\\soundbox\\log_config\\lib_update_config.c": "c3a9bf62aaff12a054d67d1103eb7906504faae6a4fd7e1866d3f8c15dbc4f00",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\charge.c": "de2b816ec98e0a5f65c71ab100b26d0d7778df3881d1e0b66652fe9659c4450a",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\maskrom_stubs.ld": "0d89bcd558f728bed7ca06b87c0a8b158d314d96e9190944ab127fdb88a90b92",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\pwm_led.c": "a29a95b2620f8d6b7db56f42ad4660758c12ee45d1a3a06c6d12d3b9aa2923e8",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\sdk_ld.c": "6e38fcdf96b4fd420ea0b34dd50425e2efff87ca5ae8da7f957e80858f924c11",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\sdk_used_list.c": "d1fc89197505c34f16b4f9c80cc1afe8c4f10d54f3200724b3052b4c8e8365f1",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\setup.c": "78ef48ee8a22d126e7e53a69084e67edd35e5e06569c0449a4977cc1d0b12fa9",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\uart_dev.c": "3eebbe879e9d9b32f839ff549ec217c730ed158659e87dc7eb79996b79b94e75",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\include_lib\\liba\\br23\\cpu.a": "775c9b7cd3e78eebaca31dd443e1c0a993a60669e4b701713539de30486cb2e0",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\include_lib\\liba\\br23\\system.a": "c1b7971954c7a8b8c5997c4fdf9fab954be301393d382bb5c04243ed8e2b24bc",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\include_lib\\liba\\br23\\update.a": "53de665a95ef50659c4e132bed2bb35fa6adfecb5e5638d68c824d1c1c620e9a",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\Makefile": "d7ef427cde4809f4bafa882b0f53833a0315a4e5006984a216a49e590aac73b4",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\bin\\llvm-objdump.exe": "18c3c29205781c115a12ebc56ed2fdf0d55a95a694778ccce78b48979f1faa86",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libc.a": "5571a8e13d060d64ae4b3f4646c242de32668ac41a9acfd06fb94cd30f66ffff",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcompiler-rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcompiler_rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply.a": "c8b06245432626815fbcc7c386486a79cd23d6e45930cafefddf6ffe5c920db6",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply_f.a": "a6792453ec5610520691720cc720485328ec1d8d65e5f3211923c9743306361e",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply_fll.a": "6dfc4e884d1594004b27cfb601c1a23c81780d976b3a08d1d474cb4da5be5fe0",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply_ll.a": "6368f9f1ae69749d9aad9b9ec021d1406def11220eee0f3423f0f8c1a37f5580",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libg.a": "e496ae9a5000ca59972eb1a4b2bb6ab31be500deb6ac8bae1b88f342f0e1d7ea",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libm.a": "a1cf76362ec872be97a7b7ba3152819fcb0828198ef0490011e0ed7cee60c280",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\config\\radar_baseline_mode2.json": "e57a49ba0ab0c240cbe38583a5828f7e9446f92a84ac60cef47f7ea622d2d0f2",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\ld2450_peripherals.h": "6d16e59d99fc06437cd779b471296c85364660e32f34a213f5c5b43ab74127e1",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\ld2450_radar_init.h": "a291755ac60fbf7a0abd3711b6893403902968257e4a6d2b1834ed4b148d29e1",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\radar_wire.h": "39e9b76afed201529a929573401f83af8248f7ac8879dcc6cb953a378e9f8e93",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\uart_update_protocol.h": "f0b445f821608dbce2dd17d24b061f178ee4435b881a78a192c4400ed8ab240f",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\sdk.lock.json": "cdefd9bd04b7c4a571628fde669f0a60bf702724a0fe754367182556e00dcd19",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\src\\uart_update_protocol.c": "a48f05f41f6a8b1a985d2e217bcd9f2c7faf13b148b32a479d38425a551fa827",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\app_config.h": "4267695f8f6856fadef8b7a5bd263fa474bf445ec48810df30ef902f66af5162",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\board.c": "4e8328257d4ceb0ea29f630c558c1550669312c0fbf982fe844349e69cce89cf",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\bringup.c": "c199453d5766377b27b746051937ac0c8a753a4ece31e8698c3a91cd50918cd6",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\config.c": "b7aa115e0f85907e871ec9b4a8b214cedf30782e21616238dccab04b41b0376d",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\console.c": "dc4751b879787d40455b64e537d83d361d55f28924c8a69921111ea00f7c1351",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\main.c": "b92194e282080a3ae796b90d3d0ac6c9c52d20c301b887cf5ef240a17f44d45c",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\uart_loader.c": "79ef6906be0ccf7cca95ff01998ae7f4b0dc54ee853cb509f106ee086f2cd1b8",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\peripherals.c": "98d2c103125a82178f6ca986c55456db3f61d13118ab495b637284bc2ca313ac",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\sdk_bridge.h": "3b844babc1adae37404fd2dea605cefd312ddf5eb39548aad208967cb21a433d",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\toolchain.lock.json": "3624bcc6d76627a0fbd3dafccb03093d126ba53292f4b16559343d13c8585892",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\audit_image.py": "d8f449c01f4b83009c3121c574bf4978522a6ebc976f21a880f668b9668c6139",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\audit_runtime.py": "5901d0b691bddd7e22ffb60e9d01631c119b9db6ab8a14177ad383d18827c51c",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\build_br23.py": "2d4590bea6df67f2df18acc816eb5c7b6ee32684c19f6f419ebf8a9c3a57d435",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\build_image.py": "960297237f766c8531dd2c32d84ef71708678352499188d01c8c4ff137df05bf",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\generate_radar_config.py": "dbd72b9101987ea6231f78bf9c3179e3313ac02d6c73fe258251c3a7e9b58802",
+    "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\package_ufw.py": "58f00992a66431b65e61b3fb069c2945db727f06eab5949a3552107cedbcebf8"
+  },
+  "elf_sha256": "e93a83d572ddc5797217575d927550948d36bfeb2db7f6c0d1be77911b55cf21"
+}

@@ -1,0 +1,2 @@
+Linked 82360 application bytes; packaged C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\radar-logfix\update.ufw
+All four flash variants verified; no device operation performed.

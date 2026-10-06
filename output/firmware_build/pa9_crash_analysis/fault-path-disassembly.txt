@@ -1,0 +1,157 @@
+log_output_lock:
+ 1e00de2:    c0 ff 44 4b 00 00 	r0 = 19268 <log_mutex : 4b44 >
+ 1e00de8:    41 20             	r1 = 0
+ 1e00dea:    d0 ea 9f 0b       	goto 2103102 <fm_begin+0x1EF2B0 : 200252c >
+
+
+log_output_unlock:
+ 1e00dd8:    c0 ff 44 4b 00 00 	r0 = 19268 <log_mutex : 4b44 >
+ 1e00dde:    d0 ea 75 0b       	goto 2103018 <fm_begin+0x1EF250 : 20024cc >
+
+
+log_print:
+ 1e00e30:    63 04             	[--sp] = {r3}
+ 1e00e32:    76 04             	[--sp] = {rets, r6-r4}
+ 1e00e34:    e2 9f             	sp += -4
+ 1e00e36:    24 16             	r4 = r2
+ 1e00e38:    05 16             	r5 = r0
+ 1e00e3a:    85 fd 37 00       	ifs (r5 < 0) goto 110 <log_print+0x7C : 1e00eac >
+ 1e00e3e:    88 94             	r0 = sp + 20
+ 1e00e40:    80 20             	[sp] = r0
+ 1e00e42:    61 8f             	call -98 <log_output_lock : 1e00de2 >
+ 1e00e44:    46 20             	r6 = 0
+ 1e00e46:    04 84             	goto 8 <log_print+0x20 : 1e00e50 >
+ 1e00e48:    08 17             	r0 = r0.b0 (s)
+ 1e00e4a:    bf ea 6f fd       	call -1314 <tws_sync_channel_end : 1e0092c >
+ 1e00e4e:    c6 21             	r6 += 1
+ 1e00e50:    d8 ee 40 06       	r0 = b[r4+r6] (u)
+ 1e00e54:    00 f8 f8 15       	if (r0 == 10) goto -16 <log_print+0x18 : 1e00e48 >
+ 1e00e58:    00 f8 f6 1b       	if (r0 == 13) goto -20 <log_print+0x18 : 1e00e48 >
+ 1e00e5c:    10 46             	if (r0 == 0) goto 76 <log_print+0x7A : 1e00eaa >
+ 1e00e5e:    64 18             	r4 += r6
+ 1e00e60:    05 fd 0c 06       	ifs (r5 >= 3) goto 24 <log_print+0x4C : 1e00e7c >
+ 1e00e64:    bf ea 5a ff       	call -332 <log_print_time : 1e00d1c >
+ 1e00e68:    80 d4             	r1_r0 = 0  #
+ 1e00e6a:    03 20             		 r3 = [sp]
+ 1e00e6c:    42 16             	r2 = r4
+ 1e00e6e:    bf ea 25 fe       	call -950 <print : 1e00abc >
+ 1e00e72:    04 9b             	goto 54 <log_print+0x7A : 1e00eaa >
+ 1e00e74:    40 2a             	r0 = 10
+ 1e00e76:    bf ea 59 fd       	call -1358 <tws_sync_channel_end : 1e0092c >
+ 1e00e7a:    c6 21             	r6 += 1
+ 1e00e7c:    86 fe fa 01       	ifs (r6 <= 0) goto -12 <log_print+0x44 : 1e00e74 >
+ 1e00e80:    c0 ff f8 cf e0 01 	r0 = 31510520 <default_otp_info+0x3C : 1e0cff8 >
+ 1e00e86:    d8 ec 0a 55       	r5 = [r0+r5<<2]
+ 1e00e8a:    bf ea 47 ff       	call -370 <log_print_time : 1e00d1c >
+ 1e00e8e:    04 83             	goto 6 <log_print+0x66 : 1e00e96 >
+ 1e00e90:    08 17             	r0 = r0.b0 (s)
+ 1e00e92:    bf ea 4b fd       	call -1386 <tws_sync_channel_end : 1e0092c >
+ 1e00e96:    50 07             	r0 = b[r5++=1] (u)
+ 1e00e98:    f0 5b             	if (r0 != 0) goto -10 <log_print+0x60 : 1e00e90 >
+ 1e00e9a:    80 d4             	r1_r0 = 0  #
+ 1e00e9c:    03 20             		 r3 = [sp]
+ 1e00e9e:    42 16             	r2 = r4
+ 1e00ea0:    bf ea 0c fe       	call -1000 <print : 1e00abc >
+ 1e00ea4:    40 2a             	r0 = 10
+ 1e00ea6:    bf ea 41 fd       	call -1406 <tws_sync_channel_end : 1e0092c >
+ 1e00eaa:    41 96             	call -212 <log_output_unlock : 1e00dd8 >
+ 1e00eac:    02 81             	sp += 4
+ 1e00eae:    36 04             	{rets, r6-r4} = [sp++]
+ 1e00eb0:    02 81             	sp += 4
+ 1e00eb2:    80 00             	rts
+
+
+os_mutex_pend:
+    252c:    77 04             	[--sp] = {rets, r7-r4}
+    252e:    12 16             	r2 = r1
+    2530:    04 16             	r4 = r0
+    2532:    64 e0 00 03       	r0 = rets
+    2536:    c6 ff 7c 50 00 00 	r6 = 20604 <mutex_rets_addr : 507c >
+    253c:    e0 60             	[r6+0] = r0
+    253e:    bf ea 0e fa       	call -3044 <cpu_in_irq : 195e >
+    2542:    80 43             	if (r0 != 0) goto 6 <os_mutex_pend+0x1E : 254a >
+    2544:    bf ea 0f fa       	call -3042 <cpu_irq_disabled : 1966 >
+    2548:    00 44             	if (r0 == 0) goto 8 <os_mutex_pend+0x26 : 2552 >
+    254a:    40 ea 00 60       	[r6+0] = 0x0
+    254e:    40 23             	r0 = 3
+    2550:    57 04             	{pc, r7-r4} = [sp++]
+    2552:    15 3f             	r5 = -1
+    2554:    02 41             	if (r2 == 0) goto 2 <os_mutex_pend+0x2C : 2558 >
+    2556:    25 16             	r5 = r2
+    2558:    14 43             	if (r4 == 0) goto 70 <os_mutex_pend+0x74 : 25a0 >
+    255a:    bf ea bb f6       	call -4746 <local_irq_disable : 12d4 >
+    255e:    20 00             	csync
+    2560:    43 61             	r3 = [r4+4] 
+    2562:    bf ea 11 fa       	call -3038 <xTaskGetCurrentTaskHandle : 1988 >
+    2566:    00 e8 0f 30       	if (r3 == r0) goto 30 <os_mutex_pend+0x5C : 2588 >
+    256a:    bf ea f1 f6       	call -4638 <local_irq_enable : 1350 >
+    256e:    41 20             	r1 = 0
+    2570:    43 20             	r3 = 0
+    2572:    47 20             	r7 = 0
+    2574:    40 16             	r0 = r4
+    2576:    52 16             	r2 = r5
+    2578:    bf ea ee fa       	call -2596 <xQueueGenericReceive : 1b58 >
+    257c:    01 16             	r1 = r0
+    257e:    bf ea a9 f6       	call -4782 <local_irq_disable : 12d4 >
+    2582:    20 00             	csync
+    2584:    81 42             	if (r1 != 0) goto 4 <os_mutex_pend+0x5E : 258a >
+    2586:    04 84             	goto 8 <os_mutex_pend+0x64 : 2590 >
+    2588:    41 21             	r1 = 1
+    258a:    c3 eb 01 40       	[r4+12] += 1
+    258e:    17 16             	r7 = r1
+    2590:    bf ea de f6       	call -4676 <local_irq_enable : 1350 >
+    2594:    40 20             	r0 = 0
+    2596:    e0 60             	[r6+0] = r0
+    2598:    b7 e8 01 00       	if (r7 != 1) {
+    259c:    40 2b             		r0 = 11
+                               	}
+    259e:    57 04             	{pc, r7-r4} = [sp++]
+    25a0:    c0 ff 47 33 00 00 	r0 = 13127 <system_data_start+0x166 : 3346 >
+    25a6:    41 e0 65 02       	r1 = 613 <spi_writebyte+0xA : 264 >
+    25aa:    51 96             	call -148 <vAssertCalled.706 : 2518 >
+    25ac:    f7 9f             	goto -2 <os_mutex_pend+0x80 : 25ac >
+
+
+vTaskPlaceOnEventList:
+    2064:    74 04             	[--sp] = {rets, r4}
+    2066:    14 16             	r4 = r1
+    2068:    02 16             	r2 = r0
+    206a:    02 52             	if (r2 == 0) goto 36 <vTaskPlaceOnEventList+0x2C : 2090 >
+    206c:    bf ea 32 f9       	call -3484 <local_irq_disable : 12d4 >
+    2070:    20 00             	csync
+    2072:    c0 ff cc 33 00 00 	r0 = 13260 <CurrentTCB : 33cc >
+    2078:    03 60             	r3 = [r0+0] 
+    207a:    bf ea 69 f9       	call -3374 <local_irq_enable : 1350 >
+    207e:    01 e1 28 30       	r1 = r3 + 40
+    2082:    20 16             	r0 = r2
+    2084:    bf ea c9 fc       	call -1646 <vListInsert : 1a1a >
+    2088:    41 21             	r1 = 1
+    208a:    40 16             	r0 = r4
+    208c:    34 04             	{rets, r4} = [sp++]
+    208e:    66 9a             	goto -1612 <prvAddCurrentTaskToDelayedList : 1a44 >
+    2090:    c0 ff 9f 32 00 00 	r0 = 12959 <system_data_start+0xBE : 329e >
+    2096:    41 e0 eb 0a       	r1 = 2795 <norflash_erase+0x86 : aea >
+    209a:    80 ea da 00       	call 436 <vAssertCalled : 2252 >
+    209e:    f7 9f             	goto -2 <vTaskPlaceOnEventList+0x3A : 209e >
+
+
+vListInsert:
+    1a1a:    75 04             	[--sp] = {rets, r5, r4}
+    1a1c:    14 60             	r4 = [r1+0] 
+    1a1e:    74 f8 07 fe       	if (r4 == -1) goto 14 <vListInsert+0x16 : 1a30 >
+    1a22:    0b 88             	r3 = r0 + 8
+    1a24:    32 16             	r2 = r3
+    1a26:    23 61             	r3 = [r2+4] 
+    1a28:    35 60             	r5 = [r3+0] 
+    1a2a:    84 ec fb 51       	if (r5 <= r4) goto -10 <vListInsert+0xA : 1a24 >
+    1a2e:    04 82             	goto 4 <vListInsert+0x1A : 1a34 >
+    1a30:    02 64             	r2 = [r0+16] 
+    1a32:    23 61             	r3 = [r2+4] 
+    1a34:    93 61             	[r1+4] = r3
+    1a36:    b1 62             	[r3+8] = r1
+    1a38:    92 62             	[r1+8] = r2
+    1a3a:    a1 61             	[r2+4] = r1
+    1a3c:    90 64             	[r1+16] = r0
+    1a3e:    c0 eb 01 00       	[r0+0] += 1
+    1a42:    55 04             	{pc, r5, r4} = [sp++]
+

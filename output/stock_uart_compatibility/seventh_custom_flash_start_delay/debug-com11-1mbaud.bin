@@ -1,0 +1,462 @@
+[00:06:40.835][Info]: [UART_UPDATE]CMD_UART_UPDATE_READY
+
+
+AA 55 01 00 01 A5 82 
+[00:06:40.853][Info]: [UART_UPDATE]CMD_UART_UPDATE_START
+
+[00:06:40.854][Info]: [UART_UPDATE]MSG_UART_UPDATE_START_RSP
+
+[00:06:40.855][Info]: [APP-UPDATE]type:5a04 state:1 code:0
+
+[00:06:40.856]single bank update
+[00:06:40.856]uart_f_read
+AA 55 09 00 02 00 00 00 00 00 02 00 00 25 2F 
+[00:06:40.884][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:40.885]uart_f_read
+AA 55 09 00 02 00 02 00 00 00 02 00 00 C6 4F 
+[00:06:40.913][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:40.914]tab_len:4
+[00:06:40.914]uart_f_read
+AA 55 09 00 02 00 04 00 00 00 02 00 00 E3 EE 
+[00:06:40.942][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:40.943]uart_f_read
+AA 55 09 00 02 00 04 00 00 00 02 00 00 E3 EE 
+[00:06:40.971][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:40.972]uart_f_read
+AA 55 09 00 02 00 34 00 00 00 02 00 00 6E B7 
+[00:06:41.000][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.001]uart_f_read
+AA 55 09 00 02 00 04 00 00 20 00 00 00 CD B7 
+[00:06:41.010][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.011]uart_f_read
+AA 55 09 00 02 00 04 00 00 00 02 00 00 E3 EE 
+[00:06:41.039][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.040]uart_f_read
+AA 55 09 00 02 00 34 00 00 20 00 00 00 40 EE 
+[00:06:41.049][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.050]uart_f_read
+AA 55 09 00 02 A0 06 03 00 00 02 00 00 09 C6 
+[00:06:41.078][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.079]VM_LAST_ADR = 0x32080     
+[00:06:41.079]VM_AREA_ADR(VM_AREA_USING)= 0x32000       
+[00:06:41.080]warning_adr = 0x1999
+[00:06:41.080]VM 1 % full
+[00:06:41.081]>>>loader_len:0x46a1 res_area_len:0x100 total_len:0x5000
+[00:06:41.082]vm erase len:0x1000
+
+55 AA AA 55 42 16 10 00 02 42 19 10 00 02 7E 5D 
+D0 01 00 00 F5 FF 0D 00 78 00 78 00 FF FF 11 00 
+03 00 81 00 01 00 02 03 02 02 02 00 01 04 DF 0E 
+1A 40 00 80 25 00 00 31 1B 20 00 01 00 C9 1E C0 
+01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 3D 00 13 1F 20 
+00 25 00 00 20 10 00 00 8F 21 40 00 07 04 13 02 
+A6 1A 40 00 00 C2 01 00 C3 1A 40 00 00 E8 03 00 
+[00:06:41.094]vm data write succ
+[00:06:41.100]reserve_saddr:0x3cf00  loader_area_len:0x5000
+[00:06:41.100]vm_update_param.ota_addr:0x38000   type:0x5a04
+[00:06:41.100]uart_f_read
+AA 55 09 00 02 95 A2 06 00 00 02 00 00 A3 8F 
+[00:06:41.128][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.130]uart_f_read
+AA 55 09 00 02 95 A4 06 00 00 02 00 00 86 2E 
+[00:06:41.158][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.160]uart_f_read
+AA 55 09 00 02 95 A6 06 00 00 02 00 00 65 4E 
+[00:06:41.188][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.190]uart_f_read
+AA 55 09 00 02 95 A8 06 00 00 02 00 00 ED 7C 
+[00:06:41.218][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.220]uart_f_read
+AA 55 09 00 02 95 AA 06 00 00 02 00 00 0E 1C 
+[00:06:41.248][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.250]uart_f_read
+AA 55 09 00 02 95 AC 06 00 00 02 00 00 2B BD 
+[00:06:41.278][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.280]uart_f_read
+AA 55 09 00 02 95 AE 06 00 00 02 00 00 C8 DD 
+[00:06:41.308][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.310]uart_f_read
+AA 55 09 00 02 95 B0 06 00 00 02 00 00 3B D8 
+[00:06:41.338][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.340]uart_f_read
+AA 55 09 00 02 95 B2 06 00 00 02 00 00 D8 B8 
+[00:06:41.368][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.370]uart_f_read
+AA 55 09 00 02 95 B4 06 00 00 02 00 00 FD 19 
+[00:06:41.398][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.400]uart_f_read
+AA 55 09 00 02 95 B6 06 00 00 02 00 00 1E 79 
+[00:06:41.428][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.430]uart_f_read
+AA 55 09 00 02 95 B8 06 00 00 02 00 00 96 4B 
+[00:06:41.458][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.460]uart_f_read
+AA 55 09 00 02 95 BA 06 00 00 02 00 00 75 2B 
+[00:06:41.488][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.490]uart_f_read
+AA 55 09 00 02 95 BC 06 00 00 02 00 00 50 8A 
+[00:06:41.518][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.520]uart_f_read
+AA 55 09 00 02 95 BE 06 00 00 02 00 00 B3 EA 
+[00:06:41.548][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.550]uart_f_read
+AA 55 09 00 02 95 C0 06 00 00 02 00 00 5A 5C 
+[00:06:41.578][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.580]uart_f_read
+AA 55 09 00 02 95 C2 06 00 00 02 00 00 B9 3C 
+[00:06:41.608][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.610]uart_f_read
+AA 55 09 00 02 95 C4 06 00 00 02 00 00 9C 9D 
+[00:06:41.638][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.640]uart_f_read
+AA 55 09 00 02 95 C6 06 00 00 02 00 00 7F FD 
+[00:06:41.668][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.670]uart_f_read
+AA 55 09 00 02 95 C8 06 00 00 02 00 00 F7 CF 
+[00:06:41.698][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.700]uart_f_read
+AA 55 09 00 02 95 CA 06 00 00 02 00 00 14 AF 
+[00:06:41.728][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.730]uart_f_read
+AA 55 09 00 02 95 CC 06 00 00 02 00 00 31 0E 
+[00:06:41.758][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.760]uart_f_read
+AA 55 09 00 02 95 CE 06 00 00 02 00 00 D2 6E 
+[00:06:41.788][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.790]uart_f_read
+AA 55 09 00 02 95 D0 06 00 00 02 00 00 21 6B 
+[00:06:41.818][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.820]uart_f_read
+AA 55 09 00 02 95 D2 06 00 00 02 00 00 C2 0B 
+[00:06:41.848][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.850]uart_f_read
+AA 55 09 00 02 95 D4 06 00 00 02 00 00 E7 AA 
+[00:06:41.878][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.880]uart_f_read
+AA 55 09 00 02 95 D6 06 00 00 02 00 00 04 CA 
+[00:06:41.908][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.910]uart_f_read
+AA 55 09 00 02 95 D8 06 00 00 02 00 00 8C F8 
+[00:06:41.938][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.940]uart_f_read
+AA 55 09 00 02 95 DA 06 00 00 02 00 00 6F 98 
+[00:06:41.968][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:41.970]uart_f_read
+AA 55 09 00 02 95 DC 06 00 00 02 00 00 4A 39 
+[00:06:41.998][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.000]uart_f_read
+AA 55 09 00 02 95 DE 06 00 00 02 00 00 A9 59 
+[00:06:42.028][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.030]uart_f_read
+AA 55 09 00 02 95 E0 06 00 00 02 00 00 AC 32 
+[00:06:42.058][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.060]uart_f_read
+AA 55 09 00 02 95 E2 06 00 00 02 00 00 4F 52 
+[00:06:42.088][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.090]uart_f_read
+AA 55 09 00 02 95 E4 06 00 00 02 00 00 6A F3 
+[00:06:42.118][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.120]uart_f_read
+AA 55 09 00 02 95 E6 06 00 00 02 00 00 89 93 
+[00:06:42.148][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.150]uart_f_read
+AA 55 09 00 02 95 E8 06 00 21 00 00 00 9B 8E 
+[00:06:42.159][Info]: [UART_UPDATE]CMD_UART_UPDATE_READ
+
+[00:06:42.162][Info]: [APP-UPDATE]type:5a04 state:2 code:206324
+
+[00:06:42.163][Info]: [APP-UPDATE]succ report stored
+
+[00:06:42.164]state:38000 err:0
+[00:06:42.164][Info]: [APP-UPDATE]type:5a04 state:3 code:2063e4
+
+[00:06:42.165]state:0 err:0
+[00:06:42.165][Info]: [APP-UPDATE]ext_fill :
+
+01 01 00 
+[00:06:42.166]soft reset to update >>þ 
+[00:00:00.100]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[00:00:00.100]         setup_arch Nov 20 2025 12:52:42 
+
+[00:00:00.101]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[00:00:00.102]~~~~~~~~~~~~~ chip id 6 ~~~~~~~~~~~~~
+[00:00:00.102]--P3 Reset Source : 0x40
+[00:00:00.103]SOFT RESET
+[00:00:00.110]=================Version===============
+[00:00:00.110]BTCTRLER-@20221123-$c284473
+[00:00:00.111]UPDATE-@20221123-$330d72d
+[00:00:00.111]=======================================
+[00:00:00.112][Info]: [SDFILE]VM size: 0xd000 @ 0x30000
+[00:00:00.113][Info]: [SDFILE]disk capacity 1024 KB
+[00:00:00.113]last file_addr:3000 2ce9c
+[00:00:00.114]end_addr:30000
+
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+[00:00:00.115][Debug]: [SDFILE]sdfile mount succ
+[00:00:00.115]--func = vm_init--
+[00:00:00.116]--vm_adr = 0x30000--
+[00:00:00.116]--vm_len = 0x4000--
+[00:00:00.117]--vm_mode = 0x0--
+[00:00:00.117]--vm_adr_ali = 0x30000--
+[00:00:00.117]--vm_len_ali = 0x4000--
+[00:00:00.118]--vm_mode = 0x0--
+[00:00:00.118]vm_area_a adr = 0x30000
+[00:00:00.119]vm_area_a len = 0x2000
+[00:00:00.119]vm_area_b adr = 0x32000
+[00:00:00.119]vm_area_b len = 0x2000
+[00:00:00.120]vm_area_a magic = 0xffffffff
+[00:00:00.120]vm_area_b magic = 0x55aaaa55
+[00:00:00.121]---VM_AREA_USING  = 1---
+[00:00:00.122]vm_crc = 0xff
+[00:00:00.123]crc_c = 0x1f
+[00:00:00.123]---VM_LAST_ADR= 0x32080---
+[00:00:00.124]VM_LAST_ADR = 0x32080     
+[00:00:00.124]VM_AREA_ADR(VM_AREA_USING)= 0x32000       
+[00:00:00.125]warning_adr = 0x1999
+[00:00:00.125]VM 1 % full
+[00:00:00.126][Info]: [BOARD]Power init : H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\spp_and_le\board\br23\board_ac635n_demo.c
+[00:00:00.129]>>>uart_update_init
+[00:00:00.156]wvdd_lev: 5
+[00:00:00.160]vbat_adc_value = 283
+[00:00:00.162]vbg_adc_value = 407
+[00:00:00.163][Info]: [USER_CFG]bt name config:AC695X_1
+
+[00:00:00.163][Info]: [USER_CFG]rf config:10
+
+[00:00:00.164][Info]: [USER_CFG]warning_tone_v:340 poweroff_tone_v:330
+
+[00:00:00.165][Info]: [USER_CFG]auto_off_time:0
+
+[00:00:00.165][Info]: [USER_CFG]mac:
+
+AE 15 1C 4E 0F 4B 
+[00:00:00.166][Info]: [USER_CFG]lrc cfg:
+
+E0 01 90 01 E0 01 8C 00 01 
+[00:00:00.167][Info]: [BOARD]board_init
+[00:00:00.167][Info]: [TEST-UPDATE]testbox msg handle reg:1e18e1e
+
+[00:00:00.168]app_update_cfg:0,0,1
+[00:00:00.169][Info]: [APP-UPDATE]<--------update_result_deal=0x5a04 5a04--------->
+
+[00:00:00.170]=================update_param_len:908 404
+[00:00:00.170]enter_sys_soft_poweroff
+[00:00:00.171]>>>>>>>>>>>>>>>>>app_main...
+[00:00:00.171]>>>APP V2.14,25112412 >>>
+[00:00:00.172]vbat: 332
+[00:00:00.172]vbat: 332
+[00:00:00.172]vbat: 332
+[00:00:00.172]vbat: 332
+[00:00:00.173]vbat: 332
+[00:00:00.173]vbat: 332
+[00:00:00.173]vbat: 332
+[00:00:00.174]vbat: 332
+[00:00:00.174]vbat: 332
+[00:00:00.174]vbat: 332
+[00:00:00.174]vbat: 332
+[00:00:00.175][Info]: [APP]run app>>> spp_le
+[00:00:00.175][Info]: [APP]Nov 24 2025,10:57:05
+[00:00:00.176]spi clk_get=60000000
+[00:00:00.176]sys clk_get=240000000
+[00:00:00.177][Info]: [SPP_AND_LE]=======================================
+[00:00:00.177][Info]: [SPP_AND_LE]-----------spp_and_le demo-------------
+[00:00:00.178][Info]: [SPP_AND_LE]=======================================
+[00:00:00.179][Info]: [SPP_AND_LE]app_file: H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\spp_and_le\examples\trans_data\app_spp_and_le.c
+[00:00:00.180][Info]: [COMM_BLE]---ble's address
+
+2E FD 86 4E 0F 4B 
+[00:00:00.180][BLE_TRANS]bt_ble_before_start_init 
+[00:00:00.181][Info]: [GATT_COMM]ble_comm_init,878
+
+[00:00:00.181][Info]: [GATT_COMM]ble_file: H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\common\third_party_profile\jieli\gatt_common\le_gatt_common.c
+[00:00:00.183][Info]: [GATT_COMM]gatt_config: 1,0
+
+[00:00:00.184][Info]: [GATT_COMM]btstack_config: 1-0-1-0
+
+[00:00:00.184][Info]: [GATT_SERVER]ble_gatt_server_init
+
+[00:00:00.185][Info]: [GATT_COMM]ble_comm_init end
+
+[00:00:00.186]le_support:2 1
+[00:00:00.186]bv:332, bl:2 , check_vbat:0
+[00:00:00.187]le_config:1 1 0 0
+[00:00:00.196]bv:332, bl:2 , check_vbat:0
+[00:00:00.400][Debug]: [LBUF]lbuf misalgin : 0x2107cc / 0x826
+[00:00:00.401][Info]: [GATT_COMM]ble_profile_init
+
+[00:00:00.401][Info]: [GATT_SERVER]ble_gatt_server_profile_init
+
+[00:00:00.402]att_send need_size >= 6+1+188
+[00:00:00.403][Info]: [GATT_COMM]ble_profile_init end
+
+[00:00:00.403]>>>>>>>>>>>>>>>>>radar_app_init...
+[00:00:00.404]>>>>>>>>>>>>>>>>> radar ver:V1.03 ...
+[00:00:00.451]ac632n_uart_int
+[00:00:00.452]uart_dev_open() success
+[00:00:00.453]i2c_write success
+[00:00:00.453]i2c_write success
+[00:00:00.454]i2c_write success
+[00:00:00.455]i2c_write success
+[00:00:00.455]i2c_write success
+[00:00:00.456]i2c_write success
+[00:00:00.457]i2c_write success
+[00:00:00.457]i2c_write success
+[00:00:00.458]i2c_write success
+[00:00:00.459]i2c_write success
+[00:00:00.460]i2c_write success
+[00:00:00.460]i2c_write success
+[00:00:00.461]i2c_write success
+[00:00:00.462]i2c_write success
+[00:00:00.462]i2c_write success
+[00:00:00.463]i2c_write success
+[00:00:00.464]i2c_write success
+[00:00:00.464]i2c_write success
+[00:00:00.465]i2c_write success
+[00:00:00.466]i2c_write success
+[00:00:00.466]i2c_write success
+[00:00:00.467]i2c_write success
+[00:00:00.468]i2c_write success
+[00:00:00.468]i2c_write success
+[00:00:00.469]i2c_write success
+[00:00:00.470]i2c_write success
+[00:00:00.470]i2c_write success
+[00:00:00.471]i2c_write success
+[00:00:00.472]i2c_write success
+[00:00:00.472]i2c_write success
+[00:00:00.473]i2c_write success
+[00:00:00.474]i2c_write success
+[00:00:00.475]i2c_write success
+[00:00:00.475]i2c_write success
+[00:00:00.476]i2c_write success
+[00:00:00.477]i2c_write success
+[00:00:00.477]i2c_write success
+[00:00:00.478]i2c_write success
+[00:00:00.479]i2c_write success
+[00:00:00.479]i2c_write success
+[00:00:00.480]i2c_write success
+[00:00:00.481]i2c_write success
+[00:00:00.481]i2c_write success
+[00:00:00.482]i2c_write success
+[00:00:00.483]i2c_write success
+[00:00:00.483]i2c_write success
+[00:00:00.484]i2c_write success
+[00:00:00.485]i2c_write success
+[00:00:00.485]i2c_write success
+[00:00:00.486]i2c_write success
+[00:00:00.487]i2c_write success
+[00:00:00.487]i2c_write success
+[00:00:00.488]i2c_write success
+[00:00:00.489]i2c_write success
+[00:00:00.490]i2c_write success
+[00:00:00.490]i2c_write success
+[00:00:00.491]i2c_write success
+[00:00:00.492]i2c_write success
+[00:00:00.492]i2c_write success
+[00:00:00.493]i2c_write success
+[00:00:00.494]i2c_write success
+[00:00:00.494]i2c_write success
+[00:00:00.495]i2c_write success
+[00:00:00.496]i2c_write success
+[00:00:00.496]i2c_write success
+[00:00:00.497]i2c_write success
+[00:00:00.498]i2c_write success
+[00:00:00.498]i2c_write success
+[00:00:00.499]i2c_write success
+[00:00:00.500]i2c_write success
+[00:00:00.500]i2c_write success
+[00:00:00.501]i2c_write success
+[00:00:00.502]i2c_write success
+[00:00:00.502]i2c_write success
+[00:00:00.503]i2c_write success
+[00:00:00.504][Debug]: [SPI]spi clock source freq 60000000
+[00:00:00.504][Debug]: [SPI]spi clock source freq 60000000
+[00:00:00.505]i2c_write success
+[00:00:00.506]i2c_write success
+[00:00:00.507]i2c_write success
+[00:00:00.507]i2c_write success
+[00:00:00.508]i2c_write success
+[00:00:00.508]uartBand:256000
+[00:00:00.509]spi clk_get=60000000
+[00:00:00.509]sys clk_get=240000000
+[00:00:00.510]create hlk_spi_recv_task success
+[00:00:00.510]os_sem_create hlk_spi_sem:0
+[00:00:00.511]create hlk_uart_recv_task success
+[00:00:00.511]os_sem_create hlk_uart_sem:0
+[00:00:00.514][Info]: [SPP_AND_LE]----spple_bt_connction_status_event_handler 3
+[00:00:00.516][Info]: [COMM_BLE]STATUS_INIT_OK
+
+[00:00:00.517][BLE_TRANS]bt_ble_init
+ 
+[00:00:00.518][BLE_TRANS]ble_file: H:\HLK_Project\2450\git\ld2450-1t2r-\fw-AC63_BT_SDK\apps\spp_and_le\examples\trans_data\ble_trans.c 
+[00:00:00.522][Info]: [GATT_COMM]ble_comm_set_config_name
+
+[00:00:00.523][Info]: [GATT_COMM]ble name(15): HLK-LD2450_FD2E 
+
+[00:00:00.524][BLE_TRANS]bt_get_local_name(): HLK-LD2450_FD2E 
+[00:00:00.526][BLE_TRANS]trans_server_init 
+[00:00:00.528][BLE_TRANS]trans_adv_data(24): 
+02 01 06 03 03 30 AF 10 FF 00 01 14 02 12 24 11 
+25 00 4B 0F 4E 86 FD 2E 
+[00:00:00.530][BLE_TRANS]rsp_data(17): 
+10 09 48 4C 4B 2D 4C 44 32 34 35 30 5F 46 44 32 
+45 
+[00:00:00.533][Info]: [GATT_COMM]mode_en:1
+
+[00:00:00.534][Info]: [GATT_SERVER]mode_en:1
+
+[00:00:00.535][Info]: [GATT_SERVER]__gatt_server_just_new_dev_adv
+
+[00:00:00.537]get_update_flag:0
+[00:00:00.538][Info]: [GATT_SERVER]new_dev_adv
+
+[00:00:00.540][Info]: [GATT_SERVER]adv_en:1
+
+[00:00:00.541][Info]: [GATT_SERVER]server_work_st:1->20
+
+[00:00:00.542][BLE_TRANS]server_state: handle=00,20
+ 

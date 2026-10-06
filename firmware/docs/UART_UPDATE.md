@@ -1,17 +1,20 @@
 # UART update integration investigation
 
-Status: 2026-10-04. Our application receiver, complete image builder and PC
-uploader are implemented and host-tested. Stock-to-custom serial installation
-and physical stock restoration are not yet verified. The
+Status: 2026-10-05. Stock V2.14 to custom hello, power-cycle boot, and replacement
+with a different custom hello build are bench-verified at 256000 baud. Stock
+restoration remains untested. Current artifacts, the new unflashed recovery
+window, and evidence are in [IMAGE_BUILD.md](IMAGE_BUILD.md). The
 [stock compatibility investigation](../../output/stock_uart_compatibility/report.md)
 finds a 0xB2 entry wrapper in V2.14 that is absent from the V2.04 command
 dispatcher. The host now implements that wrapper and a no-image entry probe.
-START negotiation and handoff still require hardware verification.
+START negotiation and handoff were exercised in the successful bench updates.
 
 Bench update: COM13 running V2.14 successfully acknowledged FF/A0/B2 and
 returned updater START on 2026-10-04. Its UART was running at **9600 baud**
-after the user's BLE update. Use `--baud 9600` for the probe and
-`--initial-baud 9600` for the uploader on that unit. This validates entry only;
+after the user's BLE update. The user subsequently set 256000 through BLE,
+and FF/A0/B2 plus START also succeeded at that rate. Use the current configured
+rate: `--baud` for the probe, `--initial-baud` for the uploader. The defaults
+now match the unit again. This validates entry only;
 no START response or image data was sent. See the compatibility report for
 raw exchanges, the initial baud mismatch, and a corrupted first ACK.
 
@@ -20,7 +23,7 @@ raw exchanges, the initial baud mismatch, and a corrupted first ACK.
 
 The intended route for V2.04 owners is to install the stock V2.14 transparent
 firmware with the existing BLE updater, then use the module UART for the first
-custom image. This is an experimental route, not a completed flashing test.
+custom image. The V2.14-to-custom hello step has now completed on hardware.
 The user has accepted the one-time BLE prerequisite. Every custom image keeps
 our UART entry service, so subsequent updates use `--entry custom` (the default).
 
@@ -41,7 +44,7 @@ configuration (`FE`). Its default module rate is 256000; `--baud` overrides it.
 The transfer command, when flashing is deliberately authorized, is:
 
 ```powershell
-python firmware/tools/uart_upload.py firmware/build/image/update.ufw --port COM7 --entry stock-b2
+python firmware/tools/uart_upload.py firmware/build/hello-repeat/update-two-wire.ufw --port COM7 --entry stock-b2 --initial-baud 256000 --baud 256000
 ```
 
 It requires successful configuration, version, and B2 acknowledgements before
@@ -208,3 +211,13 @@ corroborates loader staging in VM space for single-bank updating. Its
 [UART integration instructions](https://doc.zh-jieli.com/AC63/zh-cn/master/module_demo/ota/ota_use.html)
 describe role and pin selection, but concern the AC63 documentation family;
 the pinned BR23 sources and library are the concrete implementation evidence.
+
+
+## Loader programming bench result
+
+The [2026-10-04 bench record](UART_LOADER_BENCH.md) supersedes the earlier
+loader-handoff-unverified status. Stock V2.14 at 256000 can stage a loader,
+which completes custom-image programming after two targeted fixes: PA1 TX
+selection and clearing UART1 CON1. The patcher checks the exact original
+loader hash and all packaging CRCs. Successful programming has been observed;
+the custom application's boot and repeated UART updating have not.

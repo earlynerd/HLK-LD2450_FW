@@ -1,0 +1,12 @@
+{
+  "image_sha256": "689d37b86a26be8d209dfcdda033b530c08f2e27d949528784fc1e65cc98ed4f",
+  "port": "COM13",
+  "initial_baud": 256000,
+  "result": "device reported final success",
+  "stock_version_hex": "00 01 14 02 12 24 11 25",
+  "read_requests": 419,
+  "loader_staged": false,
+  "complete": true,
+  "device_error": null,
+  "elapsed_seconds": 21.352
+}

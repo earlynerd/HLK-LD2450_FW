@@ -184,12 +184,12 @@ static void state_changed(update_mode_info_t *info, u32 state, void *priv)
     }
 }
 void ld2450_uart_loader_init(void) { update_module_init(state_changed); }
-void ld2450_uart_loader_poll(void)
+int ld2450_uart_loader_poll(void)
 {
     size_t n = receive(20);
     unsigned attempt;
     uint8_t start[1] = {1};
-    if (n != 1 || parser.frame[4] != 6) return;
+    if (n != 1 || parser.frame[4] != 6) return 0;
     ld2450_radar_power(0);
     for (attempt = 0; attempt < 6; ++attempt) {
         uint32_t proposed;
@@ -212,4 +212,5 @@ void ld2450_uart_loader_poll(void)
     baud = ENTRY_BAUD;
     ld2450_module_uart_set_baud(baud);
     parser.used = 0;
+    return 1; /* Valid READY, including an aborted or failed transaction. */
 }

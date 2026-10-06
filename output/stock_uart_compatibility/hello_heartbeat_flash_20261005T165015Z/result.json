@@ -1,0 +1,16 @@
+{
+  "image": "firmware\\build\\hello-heartbeat\\update-two-wire.ufw",
+  "image_sha256": "1b215c1abf083cb50897cc8a53241ea85dbc8d2d5bc7bef58496e78def57cbee",
+  "port": "COM13",
+  "baud": 256000,
+  "debug_pa9_connected": "not confirmed",
+  "result": "device reported final success",
+  "version_hex": "00 01 14 02 12 24 11 25",
+  "read_requests": 419,
+  "complete": true,
+  "device_error": null,
+  "loader_staged": false,
+  "postflash_bytes": 0,
+  "heartbeat_count": 0,
+  "elapsed_seconds": 25.742
+}

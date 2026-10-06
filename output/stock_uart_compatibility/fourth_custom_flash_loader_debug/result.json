@@ -1,0 +1,11 @@
+{
+  "image_sha256": "eacb4d81bfe249967c159b94150689de7e71769d8d9d13b199317c12e6aabd6b",
+  "port": "COM13",
+  "initial_baud": 256000,
+  "result": "TimeoutError: No valid device command before deadline",
+  "read_requests": 45,
+  "loader_staged": false,
+  "complete": false,
+  "device_error": null,
+  "elapsed_seconds": 41.661
+}

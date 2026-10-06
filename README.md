@@ -13,11 +13,16 @@ Start with the [image build and loading guide](firmware/docs/IMAGE_BUILD.md),
 
 The project links a minimal BR23 UART recovery application and packages it
 into `.ufw` images using either pinned stock firmware as a layout template.
-The application contains our UART receiver and register profile, and uses the
-vendor update engine and preserved `uart_user.bin` for the flash-writing stage.
-Startup applies the selected radar profile with the recovered 75-write / SPI /
-REXT / five-write ordering. Images are target-built and host-verified, but have
-not been flashed or boot-tested on a module.
+The application uses our UART receiver, the vendor update engine and a patched
+`uart_user.bin` for the flash-writing stage. Stock V2.14 to custom hello,
+power-cycle boot, and replacement with a different custom hello build are
+bench-verified at 256000 baud. The exact working image is preserved in
+[`firmware/releases/hello-verified-20261005`](firmware/releases/hello-verified-20261005/README.md).
+
+Current source adds a three-second boot recovery window before application work;
+that change is built and host-tested but not yet flashed. The radar profile uses
+the recovered 75-write / SPI / REXT / five-write ordering; its hardware operation
+and restoration to stock firmware remain unverified.
 
 ## Initial snapshot
 
@@ -51,3 +56,12 @@ The image builder writes `firmware/build/image/update.ufw`, the ELF/map,
 application binary, commands and hash manifests. It never accesses a device.
 Build caches and generated images are ignored by Git. See the image guide for
 custom profiles, the experimental PC uploader and first-boot checks.
+
+## Pico USB recovery entry helper
+
+[`tools/pico-usb-key`](tools/pico-usb-key/README.md) is an Arduino-Pico / PlatformIO
+project that sends the USB entry key, tries both clock/data mappings, detects
+an ACK-shaped response and supplies calibration edges before a manual cable
+swap. It uses GP10/D+ and GP11/D- with removable external pull-ups supplied by GP12. A Pico W UF2
+has been built and software-tested; BR23 boot entry remains unverified. This
+helper does not flash the radar or forward USB traffic.

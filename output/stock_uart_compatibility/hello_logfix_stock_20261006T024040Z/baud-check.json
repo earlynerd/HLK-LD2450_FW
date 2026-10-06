@@ -1,0 +1,17 @@
+[
+  {
+    "baud": 9600,
+    "error": "No ACK for command 0xff",
+    "received_bytes": 33
+  },
+  {
+    "baud": 115200,
+    "error": "No ACK for command 0xff",
+    "received_bytes": 0
+  },
+  {
+    "baud": 256000,
+    "error": "No ACK for command 0xff",
+    "received_bytes": 0
+  }
+]

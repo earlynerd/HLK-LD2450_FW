@@ -1,0 +1,75 @@
+{
+  "0x2088": [
+    [
+      "vTaskPlaceOnEventList",
+      "0x2064",
+      60,
+      "0x24"
+    ]
+  ],
+  "0x207e": [
+    [
+      "vTaskPlaceOnEventList",
+      "0x2064",
+      60,
+      "0x1a"
+    ]
+  ],
+  "0x1a1a": [
+    [
+      "vListInsert",
+      "0x1a1a",
+      42,
+      "0x0"
+    ]
+  ],
+  "0x1a34": [
+    [
+      "vListInsert",
+      "0x1a1a",
+      42,
+      "0x1a"
+    ]
+  ],
+  "0x1e02f84": [
+    [
+      "sys_event_task",
+      "0x1e02eaa",
+      522,
+      "0xda"
+    ]
+  ],
+  "0x1e00e44": [
+    [
+      "log_print",
+      "0x1e00e30",
+      132,
+      "0x14"
+    ]
+  ],
+  "0x1e031b6": [
+    [
+      "task_create",
+      "0x1e03162",
+      118,
+      "0x54"
+    ]
+  ],
+  "0x1e0328a": [
+    [
+      "app_task_init",
+      "0x1e03276",
+      168,
+      "0x14"
+    ]
+  ],
+  "0x1e03322": [
+    [
+      "app_task_handler",
+      "0x1e0331e",
+      22,
+      "0x4"
+    ]
+  ],
+  "0x1e0b5ec": []
+}

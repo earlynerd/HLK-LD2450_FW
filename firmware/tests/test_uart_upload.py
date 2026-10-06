@@ -56,7 +56,9 @@ class HostPeerTests(unittest.TestCase):
         class Port:
             baudrate=9600
             def __init__(self):
-                self.rx=bytearray(); self.writes=[]; self.starts=0; self.reads=0
+                # An idle hello can already be buffered when READY is sent.
+                self.rx=bytearray(b'HLK-LD2450_FW: hello; UART updater ready\r\n')
+                self.writes=[]; self.starts=0; self.reads=0
             def write(self,data):
                 self.writes.append((self.baudrate,data))
                 payload=Parser().feed(data)[0]

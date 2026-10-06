@@ -1,0 +1,8 @@
+{"seconds": 0.001598, "kind": "tx", "baud": 256000, "size": 14, "prefix": "fd fc fb fa 04 00 ff 00 01 00 04 03 02 01", "sha256": "11f9e656570294be1e2fdd490c9f4d62a709fc7951682ed250ff28f92d9d7045"}
+{"seconds": 0.009166, "kind": "tx", "baud": 256000, "size": 12, "prefix": "fd fc fb fa 02 00 a0 00 04 03 02 01", "sha256": "99222ed40cb6c38a8779e2fdc84ff9f6ce9d9a76e9a05759735b20e94a158c69"}
+{"seconds": 0.016775, "kind": "tx", "baud": 256000, "size": 12, "prefix": "fd fc fb fa 02 00 b2 00 04 03 02 01", "sha256": "458c46eb7d671ecb04e6e38e31bcb740c221e45b12546119c8807ae71e73846b"}
+{"seconds": 0.023863, "kind": "tx", "baud": 256000, "size": 7, "prefix": "aa 55 01 00 06 42 f2", "sha256": "95b42028fa67c898386a312cf3f2e349541a9b3a7b269b971ee8b78049b90329"}
+{"seconds": 0.031953, "kind": "device_command", "payload": "01"}
+{"seconds": 0.032003, "kind": "tx", "baud": 256000, "size": 11, "prefix": "aa 55 05 00 01 80 25 00 00 f4 17", "sha256": "7e00510ab9d8df1159baaaa1e453c4188f5ca199455480bbecbb93af9f1fd0cd"}
+{"seconds": 0.032076, "kind": "baud", "value": 9600}
+{"seconds": 20.082743, "kind": "error", "error": "TimeoutError: No valid device command before deadline"}

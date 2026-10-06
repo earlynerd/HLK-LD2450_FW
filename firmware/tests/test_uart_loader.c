@@ -104,6 +104,11 @@ static void session(void)
 int main(void)
 {
     UPDATA_UART parameters;
+    fresh(); CHECK(ld2450_uart_loader_poll() == 0);
+    { u8 wrong=7; queue(&wrong,1); CHECK(ld2450_uart_loader_poll() == 0); }
+    fresh(); desired_baud=1000001;
+    { u8 ready=6; queue(&ready,1); CHECK(ld2450_uart_loader_poll() == 1); }
+    CHECK(!engine_calls && !resets);
     fresh(); bad_first=1; desired_baud=1000000; session();
     CHECK(reads==3 && writes==1 && resets==1 && stops==1 && engine_calls==1);
     CHECK(!memcmp(mock_update_ram,saved,sizeof(saved)) && mock_update_ram[112]==0xa5);

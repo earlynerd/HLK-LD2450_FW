@@ -1,0 +1,31 @@
+{
+  "repository": "https://api.github.com/repos/Jieli-Tech/fw-AC63_BT_SDK/",
+  "commit": "fdc018de81629e21e594d677cf05f87d288be0f0",
+  "files": [
+    {
+      "path": "apps/spp_and_le/board/br23/board_ac635n_demo.c",
+      "url": "https://raw.githubusercontent.com/Jieli-Tech/fw-AC63_BT_SDK/fdc018de81629e21e594d677cf05f87d288be0f0/apps/spp_and_le/board/br23/board_ac635n_demo.c",
+      "sha256": "a7259037606fa2d3babbd466546f0842f23ac0d0d83246596e106ef2036c3512"
+    },
+    {
+      "path": "apps/spp_and_le/board/br23/board_ac635n_demo_cfg.h",
+      "url": "https://raw.githubusercontent.com/Jieli-Tech/fw-AC63_BT_SDK/fdc018de81629e21e594d677cf05f87d288be0f0/apps/spp_and_le/board/br23/board_ac635n_demo_cfg.h",
+      "sha256": "b45e7ba275e5dd4eba56d91b0a726afdcc38a8c8734fb970dcbf6f47ccae7e95"
+    },
+    {
+      "path": "apps/spp_and_le/app_main.c",
+      "url": "https://raw.githubusercontent.com/Jieli-Tech/fw-AC63_BT_SDK/fdc018de81629e21e594d677cf05f87d288be0f0/apps/spp_and_le/app_main.c",
+      "sha256": "b8b5753f547cd1fe8e0d7d30e477509a174654a78c3e8dd5c06c267c072c4620"
+    },
+    {
+      "path": "cpu/br23/setup.c",
+      "url": "https://raw.githubusercontent.com/Jieli-Tech/fw-AC63_BT_SDK/fdc018de81629e21e594d677cf05f87d288be0f0/cpu/br23/setup.c",
+      "sha256": "05cf9f8e63eeef6b70e39bbc15d489e6b97d14279cf81dfd78191777455bb557"
+    },
+    {
+      "path": "cpu/br23/uart_dev.c",
+      "url": "https://raw.githubusercontent.com/Jieli-Tech/fw-AC63_BT_SDK/fdc018de81629e21e594d677cf05f87d288be0f0/cpu/br23/uart_dev.c",
+      "sha256": "d99980a3368f6896f2a0b7fea0be1e6e8861d8ad096f3500e3d3a83e0f8e5d63"
+    }
+  ]
+}

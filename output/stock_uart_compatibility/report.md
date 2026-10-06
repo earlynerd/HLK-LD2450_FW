@@ -118,3 +118,25 @@ The earlier configuration-only control captured 23 target-frame headers in
 headers in 2 seconds after FE. Its firmware version was not queried, and the
 user subsequently reported an overlapping BLE update, so the control's
 `v204` filename must not be treated as verified firmware identity.
+
+## Entry retest after setting 256000 through BLE
+
+The user explicitly changed the module baud to 256000 using Bluetooth.
+The unchanged no-image probe then received successful FF, A0 and B2 replies
+and CRC-valid START at 256000 on COM13. Version remained V2.14. Raw traffic is
+in `bench_com13_v214_256000_after_ble.json`. No START response or image bytes
+were sent. The earlier 9600 result was the unit's previous configured rate,
+not a requirement of B2 entry. Use the current configured rate for entry;
+after this BLE change the probe/uploader defaults match the unit again.
+
+
+## Complete UART programming with a corrected vendor loader
+
+See [the loader bench record](../../firmware/docs/UART_LOADER_BENCH.md).
+Unmodified staging consistently returned to stock with device error. A PA1 TX
+patch exposed the second-stage START; clearing UART1 CON1 allowed the complete
+419-read transaction and final `03 00`. The programmed UFW SHA-256 is
+`689d37b86a26be8d209dfcdda033b530c08f2e27d949528784fc1e65cc98ed4f`.
+Custom boot is unresolved: no PA9 banner or postflash READY response was
+observed. A power-cycle capture is pending. Do not equate the successful
+loader status with application or radar validation.

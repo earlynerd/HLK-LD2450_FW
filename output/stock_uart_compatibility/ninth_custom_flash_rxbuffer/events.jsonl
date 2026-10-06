@@ -1,0 +1,109 @@
+{"seconds": 0.00216, "kind": "tx", "baud": 256000, "size": 14, "prefix": "fd fc fb fa 04 00 ff 00 01 00 04 03 02 01", "sha256": "11f9e656570294be1e2fdd490c9f4d62a709fc7951682ed250ff28f92d9d7045"}
+{"seconds": 0.009683, "kind": "tx", "baud": 256000, "size": 12, "prefix": "fd fc fb fa 02 00 a0 00 04 03 02 01", "sha256": "99222ed40cb6c38a8779e2fdc84ff9f6ce9d9a76e9a05759735b20e94a158c69"}
+{"seconds": 0.017226, "kind": "tx", "baud": 256000, "size": 12, "prefix": "fd fc fb fa 02 00 b2 00 04 03 02 01", "sha256": "458c46eb7d671ecb04e6e38e31bcb740c221e45b12546119c8807ae71e73846b"}
+{"seconds": 0.024393, "kind": "tx", "baud": 256000, "size": 7, "prefix": "aa 55 01 00 06 42 f2", "sha256": "95b42028fa67c898386a312cf3f2e349541a9b3a7b269b971ee8b78049b90329"}
+{"seconds": 0.032515, "kind": "device_command", "payload": "01"}
+{"seconds": 0.032568, "kind": "tx", "baud": 256000, "size": 11, "prefix": "aa 55 05 00 01 00 e8 03 00 39 fb", "sha256": "472b6a6edfd8731ba1cccd94bd067e672f5e144ce7a41548999db24b7be654f6"}
+{"seconds": 0.043303, "kind": "device_command", "payload": "02 00 00 00 00 00 02 00 00"}
+{"seconds": 0.043346, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 00 00 00 00 00 02 00 00 c3 6e ef", "sha256": "0c756ad3be755f1c1b46ad76bf579e46bfbb62ada7683f0342cc5e18db4d97da"}
+{"seconds": 0.072147, "kind": "device_command", "payload": "02 00 02 00 00 00 02 00 00"}
+{"seconds": 0.072185, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 00 02 00 00 00 02 00 00 10 20 40", "sha256": "80f4098179d978b261da5258a1282639dc5c1b325ff413afe8bef7cb54b5b580"}
+{"seconds": 0.101635, "kind": "device_command", "payload": "02 00 04 00 00 00 02 00 00"}
+{"seconds": 0.101688, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 00 04 00 00 00 02 00 00 ce c8 bf", "sha256": "755102c1dc7196089d09ed4ff2cb491e4a38db07b997a1481a326dda9bcc0bb6"}
+{"seconds": 0.130591, "kind": "device_command", "payload": "02 00 04 00 00 00 02 00 00"}
+{"seconds": 0.130642, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 00 04 00 00 00 02 00 00 ce c8 bf", "sha256": "755102c1dc7196089d09ed4ff2cb491e4a38db07b997a1481a326dda9bcc0bb6"}
+{"seconds": 0.159582, "kind": "device_command", "payload": "02 00 34 00 00 00 02 00 00"}
+{"seconds": 0.15962, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 00 34 00 00 00 02 00 00 d8 2c 86", "sha256": "b08953198048f415c7492456a7df7f5e35a819cea7f0f98b3689e4219cdd0d28"}
+{"seconds": 0.188449, "kind": "device_command", "payload": "02 00 04 00 00 20 00 00 00"}
+{"seconds": 0.188486, "kind": "tx", "baud": 256000, "size": 47, "prefix": "aa 55 29 00 02 00 04 00 00 20 00 00 00 ce c8 bf", "sha256": "49b3abff7529b91b34c76c0fbd4a97f91311ff38576ed3a12bfffbefaa923ab8"}
+{"seconds": 0.198815, "kind": "device_command", "payload": "02 00 04 00 00 00 02 00 00"}
+{"seconds": 0.198857, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 00 04 00 00 00 02 00 00 ce c8 bf", "sha256": "755102c1dc7196089d09ed4ff2cb491e4a38db07b997a1481a326dda9bcc0bb6"}
+{"seconds": 0.228082, "kind": "device_command", "payload": "02 00 34 00 00 20 00 00 00"}
+{"seconds": 0.228114, "kind": "tx", "baud": 256000, "size": 47, "prefix": "aa 55 29 00 02 00 34 00 00 20 00 00 00 d8 2c 86", "sha256": "a11bad5fb8508afc8701e5fb3c2b1f0b89a386ca06bb94eb303c7149605ca859"}
+{"seconds": 0.238278, "kind": "device_command", "payload": "02 a0 06 03 00 00 02 00 00"}
+{"seconds": 0.238311, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 a0 06 03 00 00 02 00 00 3e 93 ad", "sha256": "1062b156e8b129f46341e576d799dc521cc45f496c6afbd37003d1ec8bc087f2"}
+{"seconds": 0.280777, "kind": "device_command", "payload": "02 95 a2 06 00 00 02 00 00"}
+{"seconds": 0.280811, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 a2 06 00 00 02 00 00 fb d4 b8", "sha256": "954cbf52c6ea01790bd4f851909a909bf65164e6e877ed35715fa4f83785a5ac"}
+{"seconds": 0.313015, "kind": "device_command", "payload": "02 95 a4 06 00 00 02 00 00"}
+{"seconds": 0.313049, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 a4 06 00 00 02 00 00 00 14 00", "sha256": "3ca6bc4a051a8bc14e39b241f6ea37b83a05b0e9fc4b13d219a1d7e26c39cba3"}
+{"seconds": 0.344929, "kind": "device_command", "payload": "02 95 a6 06 00 00 02 00 00"}
+{"seconds": 0.344972, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 a6 06 00 00 02 00 00 0e 30 e1", "sha256": "cf10887139d86c06095d3ebaacf18cf531021c002e3deb223f261b088eeaa34f"}
+{"seconds": 0.377447, "kind": "device_command", "payload": "02 95 a8 06 00 00 02 00 00"}
+{"seconds": 0.3775, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 a8 06 00 00 02 00 00 66 98 74", "sha256": "c3cdea511ad0891bce6a5562dd38d766a98a6ffc5baff35aac723bf06d7d7a32"}
+{"seconds": 0.409653, "kind": "device_command", "payload": "02 95 aa 06 00 00 02 00 00"}
+{"seconds": 0.409691, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 aa 06 00 00 02 00 00 88 ea 11", "sha256": "7b136451745823840f287edd14e5d56c2467c5c5f9e57bd981615c91252ae2e3"}
+{"seconds": 0.441718, "kind": "device_command", "payload": "02 95 ac 06 00 00 02 00 00"}
+{"seconds": 0.441781, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 ac 06 00 00 02 00 00 85 05 ec", "sha256": "6449e09d7cc75e0ac1c4c3a87dfada207263d8a7f0940393964b355399840fb9"}
+{"seconds": 0.474009, "kind": "device_command", "payload": "02 95 ae 06 00 00 02 00 00"}
+{"seconds": 0.474047, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 ae 06 00 00 02 00 00 20 b4 08", "sha256": "8bdae99a2efefffd214edacaaa38087dd469e5fa4119411bc50bdae75485a2a0"}
+{"seconds": 0.506439, "kind": "device_command", "payload": "02 95 b0 06 00 00 02 00 00"}
+{"seconds": 0.506474, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 b0 06 00 00 02 00 00 30 f1 f0", "sha256": "85963a2a4cb9341e3ca5049a98bad7fa5e86d6ef2c21a194e1b64dcd96d6b389"}
+{"seconds": 0.539624, "kind": "device_command", "payload": "02 95 b2 06 00 00 02 00 00"}
+{"seconds": 0.539657, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 b2 06 00 00 02 00 00 31 e7 f7", "sha256": "bd549eb3cf53c69112f9cebd549e60d183bc158cf04c75e6870e038b32a34c94"}
+{"seconds": 0.571816, "kind": "device_command", "payload": "02 95 b4 06 00 00 02 00 00"}
+{"seconds": 0.571855, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 b4 06 00 00 02 00 00 81 31 f4", "sha256": "b371080c14b9615c87772f83ff64622657baf3a3ba8a0a58e99ae844acf644ae"}
+{"seconds": 0.60428, "kind": "device_command", "payload": "02 95 b6 06 00 00 02 00 00"}
+{"seconds": 0.604313, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 b6 06 00 00 02 00 00 ea bc f8", "sha256": "1e8b5dc78c97b33453872e69620a5b094c28f5faa6f8eed369faf44996ac523f"}
+{"seconds": 0.636559, "kind": "device_command", "payload": "02 95 b8 06 00 00 02 00 00"}
+{"seconds": 0.636592, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 b8 06 00 00 02 00 00 c0 ff 60", "sha256": "d569776cd34ec30d264e5600f94e9fee3fa2ee9692e04dc30ad00d27ff711a25"}
+{"seconds": 0.66876, "kind": "device_command", "payload": "02 95 ba 06 00 00 02 00 00"}
+{"seconds": 0.668797, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 ba 06 00 00 02 00 00 24 c0 24", "sha256": "55bf8edd6f9bea5992358e329b3b5c25e33db10cc9d0519224954615ec78f8e0"}
+{"seconds": 0.701093, "kind": "device_command", "payload": "02 95 bc 06 00 00 02 00 00"}
+{"seconds": 0.701129, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 bc 06 00 00 02 00 00 50 06 00", "sha256": "e286677de54032022b906db85e9cb185ffed37ffd212e004c8c33cbff4f209a8"}
+{"seconds": 0.733417, "kind": "device_command", "payload": "02 95 be 06 00 00 02 00 00"}
+{"seconds": 0.733452, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 be 06 00 00 02 00 00 3b c4 d4", "sha256": "3effce194519d6bf3c685644d924be6593d3bf0eb3dfdb6b32d745533223cd33"}
+{"seconds": 0.765967, "kind": "device_command", "payload": "02 95 c0 06 00 00 02 00 00"}
+{"seconds": 0.766011, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 c0 06 00 00 02 00 00 10 48 61", "sha256": "7351b12feea86549b78eda1bfe03ce38f4404eca1bdf5147ee17f9221e4dd658"}
+{"seconds": 0.799072, "kind": "device_command", "payload": "02 95 c2 06 00 00 02 00 00"}
+{"seconds": 0.799126, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 c2 06 00 00 02 00 00 01 9e 0c", "sha256": "004bba9b2b0515c531b39c11bcd0dd555accd39921eb28783d729b1d4ff0e5e3"}
+{"seconds": 0.831309, "kind": "device_command", "payload": "02 95 c4 06 00 00 02 00 00"}
+{"seconds": 0.831346, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 c4 06 00 00 02 00 00 ca ff 74", "sha256": "fb42a3a61252c4893d86d9a5f2ceea5b708224409fffc43c4afe96aa7d24f784"}
+{"seconds": 0.863595, "kind": "device_command", "payload": "02 95 c6 06 00 00 02 00 00"}
+{"seconds": 0.863639, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 c6 06 00 00 02 00 00 43 00 e1", "sha256": "576ce61ab59194a614dbe2abc5977b2ccafd4604640421c520a8b6638d91eb26"}
+{"seconds": 0.89584, "kind": "device_command", "payload": "02 95 c8 06 00 00 02 00 00"}
+{"seconds": 0.895884, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 c8 06 00 00 02 00 00 50 ee 00", "sha256": "32059e21931c5fd264902bea4a1efd1834278821a8211bac53fcffdcc6136f01"}
+{"seconds": 0.927885, "kind": "device_command", "payload": "02 95 ca 06 00 00 02 00 00"}
+{"seconds": 0.927929, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 ca 06 00 00 02 00 00 9d 42 2f", "sha256": "c4a13b27c0a393c102d59969c67532d3c6adebef996737ee00a5aad042fc7cdd"}
+{"seconds": 0.959932, "kind": "device_command", "payload": "02 95 cc 06 00 00 02 00 00"}
+{"seconds": 0.959993, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 cc 06 00 00 02 00 00 71 b2 60", "sha256": "fdcc8d5cd96a931b776bc18e4b0cd2cd8a805cafefc689e529354899fa5d59d1"}
+{"seconds": 0.992058, "kind": "device_command", "payload": "02 95 ce 06 00 00 02 00 00"}
+{"seconds": 0.992123, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 ce 06 00 00 02 00 00 e8 ec 10", "sha256": "c704ab11846c46defd2ac5fcba63552034ec4b9da0f9e88a3eaa344673059c69"}
+{"seconds": 1.024483, "kind": "device_command", "payload": "02 95 d0 06 00 00 02 00 00"}
+{"seconds": 1.024543, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 d0 06 00 00 02 00 00 18 da 1c", "sha256": "f5e49111bb3b2ec256201cfbe494e172956d4ddce95225ad8a930892b7da0af2"}
+{"seconds": 1.058024, "kind": "device_command", "payload": "02 95 d2 06 00 00 02 00 00"}
+{"seconds": 1.05809, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 d2 06 00 00 02 00 00 28 02 41", "sha256": "fda8844083a31c1cf529e9567e28c0955e98b6cf84ed05681b6bf6858efa8035"}
+{"seconds": 1.09028, "kind": "device_command", "payload": "02 95 d4 06 00 00 02 00 00"}
+{"seconds": 1.090319, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 d4 06 00 00 02 00 00 fc 21 00", "sha256": "fb208d85eb5391f8fc387a9bddfc4bdc04d9039dc35eb182d2ecd0ecdd6df90b"}
+{"seconds": 1.122651, "kind": "device_command", "payload": "02 95 d6 06 00 00 02 00 00"}
+{"seconds": 1.122711, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 d6 06 00 00 02 00 00 1a 00 20", "sha256": "5f66a786405bc1056f6cdcc8133b532e9d33537534d5d10a705cf659ee5657b1"}
+{"seconds": 1.154983, "kind": "device_command", "payload": "02 95 d8 06 00 00 02 00 00"}
+{"seconds": 1.15504, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 d8 06 00 00 02 00 00 00 84 3e", "sha256": "64eb2baf3f2c384bef26b019ff6750942a99671123a4ae9c81ed72cfa6e486bb"}
+{"seconds": 1.187217, "kind": "device_command", "payload": "02 95 da 06 00 00 02 00 00"}
+{"seconds": 1.187285, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 da 06 00 00 02 00 00 c0 f9 20", "sha256": "4a07a12be06bc0bb999db0e2699387ff9ebed1d6627339043fa460b1cb39d836"}
+{"seconds": 1.219489, "kind": "device_command", "payload": "02 95 dc 06 00 00 02 00 00"}
+{"seconds": 1.219548, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 dc 06 00 00 02 00 00 23 a8 9c", "sha256": "4469599930f4edda55b235d418c290b24e3a7c6e8d4792dedfa4b920205ea913"}
+{"seconds": 1.251798, "kind": "device_command", "payload": "02 95 de 06 00 00 02 00 00"}
+{"seconds": 1.251854, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 de 06 00 00 02 00 00 9c 89 98", "sha256": "edfe9c0acae8da1f48942f43bfe1cdc65ba1ecdee9b296d13b4d26061b15eb38"}
+{"seconds": 1.284291, "kind": "device_command", "payload": "02 95 e0 06 00 00 02 00 00"}
+{"seconds": 1.284327, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 e0 06 00 00 02 00 00 b4 50 18", "sha256": "edb73c3548d1f6b351d83d00f897fc4cfb9d346c7fd9fd8394a0f14c13af3599"}
+{"seconds": 1.316819, "kind": "device_command", "payload": "02 95 e2 06 00 00 02 00 00"}
+{"seconds": 1.316853, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 e2 06 00 00 02 00 00 83 16 61", "sha256": "cc9eb6622edc879c166f448b334396510b75608442a1fe3ffa8d49059387ffbd"}
+{"seconds": 1.349037, "kind": "device_command", "payload": "02 95 e4 06 00 00 02 00 00"}
+{"seconds": 1.349074, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 e4 06 00 00 02 00 00 10 e9 19", "sha256": "ee8c669bee210f4537cb41c71e7ef52bb4bd1b6cd7fc3f4a8dcbf75a27512e7b"}
+{"seconds": 1.381163, "kind": "device_command", "payload": "02 95 e6 06 00 00 02 00 00"}
+{"seconds": 1.381209, "kind": "tx", "baud": 256000, "size": 527, "prefix": "aa 55 09 02 02 95 e6 06 00 00 02 00 00 41 20 30", "sha256": "5c1202ddf35d8e2f2d1d25b9b24cd175b6d0f8d8146d872c57976b2c38dc92c5"}
+{"seconds": 1.413441, "kind": "device_command", "payload": "02 95 e8 06 00 23 00 00 00"}
+{"seconds": 1.413477, "kind": "tx", "baud": 256000, "size": 50, "prefix": "aa 55 2c 00 02 95 e8 06 00 23 00 00 00 6f 2f 2a", "sha256": "3570cf5ec7b341aa81a212c0604ca0bc28358bd22f62922d262a2a8cbee18397"}
+{"seconds": 1.502843, "kind": "device_command", "payload": "01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"}
+{"seconds": 1.502877, "kind": "rx_dma_buffer", "words": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"seconds": 1.502912, "kind": "tx", "baud": 256000, "size": 11, "prefix": "aa 55 05 00 01 00 e8 03 00 39 fb", "sha256": "472b6a6edfd8731ba1cccd94bd067e672f5e144ce7a41548999db24b7be654f6"}
+{"seconds": 1.723276, "kind": "device_command", "payload": "01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"}
+{"seconds": 1.723318, "kind": "rx_dma_buffer", "words": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"seconds": 1.723364, "kind": "tx", "baud": 256000, "size": 11, "prefix": "aa 55 05 00 01 00 e8 03 00 39 fb", "sha256": "472b6a6edfd8731ba1cccd94bd067e672f5e144ce7a41548999db24b7be654f6"}
+{"seconds": 1.943557, "kind": "device_command", "payload": "01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"}
+{"seconds": 1.9436, "kind": "rx_dma_buffer", "words": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"seconds": 1.943642, "kind": "tx", "baud": 256000, "size": 11, "prefix": "aa 55 05 00 01 00 e8 03 00 39 fb", "sha256": "472b6a6edfd8731ba1cccd94bd067e672f5e144ce7a41548999db24b7be654f6"}
+{"seconds": 2.163496, "kind": "device_command", "payload": "01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"}
+{"seconds": 2.163541, "kind": "rx_dma_buffer", "words": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
+{"seconds": 2.163583, "kind": "tx", "baud": 256000, "size": 11, "prefix": "aa 55 05 00 01 00 e8 03 00 39 fb", "sha256": "472b6a6edfd8731ba1cccd94bd067e672f5e144ce7a41548999db24b7be654f6"}
+{"seconds": 22.191548, "kind": "error", "error": "TimeoutError: No valid device command before deadline"}

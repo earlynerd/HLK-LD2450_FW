@@ -1,0 +1,15 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-repeat\\update-two-wire.ufw",
+  "image_sha256": "05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb",
+  "entry": "custom",
+  "result": "device reported final success",
+  "pa9_bytes": 8776,
+  "postflash_bytes": 504,
+  "heartbeat_count": 12,
+  "elapsed_seconds": 25.851,
+  "read_requests": 417,
+  "complete": true,
+  "loader_staged": true,
+  "device_error": null,
+  "reported_size": 184320
+}

@@ -1,0 +1,91 @@
+{
+  "bench_date_pacific": "2026-10-05",
+  "stock_to_custom_boot": true,
+  "user_confirmed_power_cycle_boot": true,
+  "different_custom_application_installed": true,
+  "radar_tested": false,
+  "stock_restore_tested": false,
+  "runs": [
+    {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-logfix\\update-two-wire.ufw",
+      "image_sha256": "1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a",
+      "entry": "stock",
+      "result": "device reported final success",
+      "version_hex": "00 01 14 02 12 24 11 25",
+      "pa9_bytes": 5517,
+      "postflash_bytes": 630,
+      "heartbeat_count": 15,
+      "elapsed_seconds": 28.505,
+      "read_requests": 419,
+      "complete": true,
+      "loader_staged": false,
+      "device_error": null,
+      "evidence_directory": "output\\stock_uart_compatibility\\hello_logfix_stock_20261006T024407Z",
+      "boot_banners": [
+        "setup_arch Oct  5 2026 10:17:33 "
+      ],
+      "reported_sizes": [
+        184320
+      ]
+    },
+    {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-logfix\\update-two-wire.ufw",
+      "image_sha256": "1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a",
+      "entry": "capture",
+      "result": "capture complete",
+      "pa9_bytes": 5617,
+      "postflash_bytes": 3613,
+      "heartbeat_count": 86,
+      "elapsed_seconds": 90.125,
+      "evidence_directory": "output\\stock_uart_compatibility\\hello_logfix_capture_20261006T024444Z",
+      "boot_banners": [
+        "setup_arch Oct  5 2026 10:17:33 "
+      ]
+    },
+    {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-logfix\\update-two-wire.ufw",
+      "image_sha256": "1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a",
+      "entry": "custom",
+      "result": "device reported final success",
+      "pa9_bytes": 8776,
+      "postflash_bytes": 504,
+      "heartbeat_count": 12,
+      "elapsed_seconds": 16.217,
+      "read_requests": 50,
+      "complete": true,
+      "loader_staged": true,
+      "device_error": null,
+      "evidence_directory": "output\\stock_uart_compatibility\\hello_logfix_custom_20261006T024621Z",
+      "boot_banners": [
+        "setup_arch Oct  5 2026 10:17:33 "
+      ],
+      "reported_sizes": [
+        17953,
+        0
+      ]
+    },
+    {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-repeat\\update-two-wire.ufw",
+      "image_sha256": "05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb",
+      "entry": "custom",
+      "result": "device reported final success",
+      "pa9_bytes": 8776,
+      "postflash_bytes": 504,
+      "heartbeat_count": 12,
+      "elapsed_seconds": 25.851,
+      "read_requests": 417,
+      "complete": true,
+      "loader_staged": true,
+      "device_error": null,
+      "reported_size": 184320,
+      "evidence_directory": "output\\stock_uart_compatibility\\hello_logfix_custom_20261006T024728Z",
+      "boot_banners": [
+        "setup_arch Oct  5 2026 19:47:06 "
+      ],
+      "reported_sizes": [
+        17953,
+        184320
+      ]
+    }
+  ]
+}

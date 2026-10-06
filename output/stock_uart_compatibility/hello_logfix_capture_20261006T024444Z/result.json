@@ -1,0 +1,10 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\hello-logfix\\update-two-wire.ufw",
+  "image_sha256": "1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a",
+  "entry": "capture",
+  "result": "capture complete",
+  "pa9_bytes": 5617,
+  "postflash_bytes": 3613,
+  "heartbeat_count": 86,
+  "elapsed_seconds": 90.125
+}

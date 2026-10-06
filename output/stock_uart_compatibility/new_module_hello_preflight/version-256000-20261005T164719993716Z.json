@@ -1,0 +1,351 @@
+{
+  "port": "COM13",
+  "baud": 256000,
+  "firmware_bytes_sent": 0,
+  "version_hex": "00 01 14 02 12 24 11 25",
+  "cleanup": "configuration ended",
+  "trace": [
+    {
+      "seconds": 9e-06,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 04 00 ff 00 01 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.007454,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.007493,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.007503,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.00751,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.007519,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "08"
+    },
+    {
+      "seconds": 0.007526,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007534,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "ff"
+    },
+    {
+      "seconds": 0.007541,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007548,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007559,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007566,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007573,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.00758,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "40"
+    },
+    {
+      "seconds": 0.007586,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.007592,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.007599,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.007605,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.007612,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.007619,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 a0 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.014804,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.014834,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.014843,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.014849,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.014857,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "0c"
+    },
+    {
+      "seconds": 0.014864,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014876,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "a0"
+    },
+    {
+      "seconds": 0.014883,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.014891,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014898,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014905,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.014914,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.014921,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "14"
+    },
+    {
+      "seconds": 0.014929,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.014936,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "12"
+    },
+    {
+      "seconds": 0.014942,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "24"
+    },
+    {
+      "seconds": 0.014949,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "11"
+    },
+    {
+      "seconds": 0.014955,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "25"
+    },
+    {
+      "seconds": 0.014962,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.014969,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.014975,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.014982,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.01499,
+      "direction": "tx",
+      "baud": 256000,
+      "hex": "fd fc fb fa 02 00 fe 00 04 03 02 01"
+    },
+    {
+      "seconds": 0.022032,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fd"
+    },
+    {
+      "seconds": 0.022058,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fc"
+    },
+    {
+      "seconds": 0.022067,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fb"
+    },
+    {
+      "seconds": 0.022073,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fa"
+    },
+    {
+      "seconds": 0.02208,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.022087,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.022095,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "fe"
+    },
+    {
+      "seconds": 0.022102,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    },
+    {
+      "seconds": 0.022108,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.022115,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "00"
+    },
+    {
+      "seconds": 0.022122,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "04"
+    },
+    {
+      "seconds": 0.022129,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "03"
+    },
+    {
+      "seconds": 0.022135,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "02"
+    },
+    {
+      "seconds": 0.022141,
+      "direction": "rx",
+      "baud": 256000,
+      "hex": "01"
+    }
+  ]
+}

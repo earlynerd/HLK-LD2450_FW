@@ -17,6 +17,9 @@
 static struct ld2450_status status;
 static const uart_bus_t *module_uart;
 static const uart_bus_t *debug_uart;
+#ifdef LD2450_EARLY_CONSOLE
+extern const uart_bus_t *ld2450_console_bus(uint32_t baud);
+#endif
 static ALIGNED4 uint8_t uart_rx[UART_BUFFER_SIZE];
 static void *dma_buffer[2];
 static size_t dma_size[2];
@@ -62,14 +65,13 @@ struct ld2450_config ld2450_default_config(void)
 int ld2450_peripherals_init(const struct ld2450_config *cfg)
 {
     uint32_t clock, divisor;
-    struct uart_platform_data_t uart;
     if (!cfg || !cfg->i2c_hz || !cfg->module_uart_baud ||
         cfg->module_uart_baud > 0xffffffu ||
         (cfg->enable_debug_uart && (!cfg->debug_uart_baud ||
                                    cfg->debug_uart_baud > 0xffffffu))) {
         return LD2450_BAD_ARGUMENT;
     }
-    if (status.initialized) { return LD2450_BUSY; }
+    if (status.radar_io_ready) { return LD2450_BUSY; }
     clock = clk_get("lsb");
     if (cfg->i2c_hz > clock / 2u) { return LD2450_CLOCK_RANGE; }
     divisor = clock / (2u * cfg->i2c_hz) - 1u;
@@ -101,6 +103,20 @@ int ld2450_peripherals_init(const struct ld2450_config *cfg)
     JL_IIC->CON0 = LD_I2C_FILTER | LD_I2C_CLEAR_PENDING | LD_I2C_CLEAR_END;
     JL_IIC->CON1 |= (1u << 14); /* Clear START pending. */
     JL_IIC->CON0 |= LD_I2C_ENABLE;
+    status.radar_io_ready = 1;
+    /* Preserve the recovery UART, RX buffer and its baud/pin settings. */
+    return status.initialized ? LD2450_OK : ld2450_uart_init(cfg);
+}
+
+int ld2450_uart_init(const struct ld2450_config *cfg)
+{
+    struct uart_platform_data_t uart;
+    if (!cfg || !cfg->module_uart_baud || cfg->module_uart_baud > 0xffffffu ||
+        (cfg->enable_debug_uart && (!cfg->debug_uart_baud ||
+                                   cfg->debug_uart_baud > 0xffffffu))) {
+        return LD2450_BAD_ARGUMENT;
+    }
+    if (status.initialized) { return LD2450_BUSY; }
 
     /* SDK UART driver supports arbitrary GPIO remapping. Start with the
      * module schematic's PA1=TX / PA0=RX; the option can swap after probing. */
@@ -118,11 +134,15 @@ int ld2450_peripherals_init(const struct ld2450_config *cfg)
         return LD2450_UART_UNAVAILABLE;
     }
     if (cfg->enable_debug_uart) {
+#ifdef LD2450_EARLY_CONSOLE
+        debug_uart = ld2450_console_bus(cfg->debug_uart_baud);
+#else
         memset(&uart, 0, sizeof(uart));
         uart.tx_pin = IO_PORTA_09;
         uart.rx_pin = (uint8_t)-1;
         uart.baud = cfg->debug_uart_baud;
         debug_uart = uart_dev_open(&uart);
+#endif
         if (!debug_uart) {
             ld2450_peripherals_deinit();
             return LD2450_UART_UNAVAILABLE;
@@ -134,14 +154,18 @@ int ld2450_peripherals_init(const struct ld2450_config *cfg)
 
 void ld2450_peripherals_deinit(void)
 {
-    control_pin(RADAR_POWER_PIN, 1);
-    control_pin(RADAR_BIAS_PIN, 0);
-    JL_SPI1->CON = 0;
-    JL_SPI2->CON = 0;
-    JL_SPI1->CNT = 0;
-    JL_SPI2->CNT = 0;
-    JL_IIC->CON0 = 0;
+    if (status.radar_io_ready) {
+        control_pin(RADAR_POWER_PIN, 1);
+        control_pin(RADAR_BIAS_PIN, 0);
+        JL_SPI1->CON = 0;
+        JL_SPI2->CON = 0;
+        JL_SPI1->CNT = 0;
+        JL_SPI2->CNT = 0;
+        JL_IIC->CON0 = 0;
+    }
+#ifndef LD2450_EARLY_CONSOLE
     if (debug_uart) { uart_dev_close((uart_bus_t *)debug_uart); }
+#endif
     if (module_uart) { uart_dev_close((uart_bus_t *)module_uart); }
     module_uart = NULL;
     debug_uart = NULL;
@@ -158,6 +182,9 @@ struct ld2450_status ld2450_get_status(void)
 int ld2450_radar_power(uint8_t enabled)
 {
     if (!status.initialized) { return LD2450_NOT_READY; }
+    if (!status.radar_io_ready) {
+        return enabled ? LD2450_NOT_READY : LD2450_OK;
+    }
     if (enabled) {
         control_pin(RADAR_POWER_PIN, 0);
     } else {
@@ -177,7 +204,7 @@ int ld2450_radar_power(uint8_t enabled)
 
 int ld2450_radar_bias(uint8_t enabled)
 {
-    if (!status.initialized || (enabled && !status.radar_powered)) {
+    if (!status.initialized || !status.radar_io_ready || (enabled && !status.radar_powered)) {
         return LD2450_NOT_READY;
     }
     control_pin(RADAR_BIAS_PIN, enabled != 0);
@@ -187,7 +214,7 @@ int ld2450_radar_bias(uint8_t enabled)
 
 int ld2450_spi_prepare(void)
 {
-    if (!status.initialized) { return LD2450_NOT_READY; }
+    if (!status.initialized || !status.radar_io_ready) { return LD2450_NOT_READY; }
     if (status.dma_armed_mask) { return LD2450_BUSY; }
     spi_receiver_init(JL_SPI1);
     spi_receiver_init(JL_SPI2);

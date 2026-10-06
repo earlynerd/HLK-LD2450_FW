@@ -1,0 +1,6 @@
+{
+  "port": "COM11",
+  "baud": 115200,
+  "bytes": 12609,
+  "elapsed_seconds": 120.051
+}

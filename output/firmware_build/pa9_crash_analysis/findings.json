@@ -1,0 +1,21 @@
+{
+  "flashed": {
+    "setup_calls_log_early_init": false,
+    "extra_flags": []
+  },
+  "full_debug_proposal": {
+    "setup_calls_log_early_init": true,
+    "extra_flags": [
+      "-DCONFIG_DEBUG_ENABLE"
+    ]
+  },
+  "captured": {
+    "mutex_address": "0x4b44",
+    "event_list_address": "0x4b68",
+    "event_list_offset": 36,
+    "r3_null": true,
+    "error": "cpu_write_data_over_limit",
+    "log_early_init_present_in_elf": false,
+    "image_sha256": "1b215c1abf083cb50897cc8a53241ea85dbc8d2d5bc7bef58496e78def57cbee"
+  }
+}

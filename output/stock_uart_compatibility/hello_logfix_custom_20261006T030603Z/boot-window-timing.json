@@ -1,0 +1,8 @@
+{
+  "marker_receive_times_seconds": {
+    "window": 12.235292,
+    "application": 15.236367
+  },
+  "window_to_application_seconds": 3.001075,
+  "method": "Host receive timestamps at completion of each PA9 marker; includes serial/USB buffering"
+}

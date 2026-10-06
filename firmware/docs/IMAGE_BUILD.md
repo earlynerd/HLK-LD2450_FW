@@ -119,7 +119,7 @@ reached app_main and the UART updater, and emitted 15 COM13 heartbeats in the
 cycle. The corrected radar image remains unflashed. The first failed-boot
 artifact remains in `build/image`.
 
-The current candidate is **`build/hello-logfix/update-two-wire.ufw`**, which
+The first successful hello candidate was **`build/hello-logfix/update-two-wire.ufw`**, which
 retains the module-UART heartbeat and enables full SDK logging initialization.
 It passes the startup and runtime dependency audits and has booted on hardware.
 Its final SHA256 is
@@ -137,7 +137,7 @@ Rebuilding the same source as **`build/hello-repeat/update-two-wire.ufw`** chang
 the embedded setup timestamp from `10:17:33` to `19:47:06` on Oct 5 2026.
 That image was installed through the custom updater at 256000 baud: 417 reads,
 184320 reported update bytes, final success, the new timestamp on PA9 and
-12 COM13 heartbeats in the following 12 seconds. It is the image now installed;
+12 COM13 heartbeats in the following 12 seconds. It was installed at that stage;
 SHA256 `05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb`.
 Evidence: `output/stock_uart_compatibility/hello_logfix_custom_20261006T024728Z/`.
 Stock restoration and radar-profile operation remain untested.
@@ -188,11 +188,24 @@ power-cycle the module within its 20-second initial timeout. The uploader sends
 READY every second until START. No terminal keystroke or precise timing is needed.
 Do not send a READY probe during the window unless intending to stay in recovery.
 
-New, **unflashed** images are `build/hello-recovery/update-two-wire.ufw` and
-`build/radar-recovery/update-two-wire.ufw`. Six native suites (including actual
-app_main with simulated time/updater) and 31 Python tests pass. Both target builds
-pass startup/runtime audits; on-target recovery-window timing remains unverified.
-The installed image is still the bench-verified `hello-repeat` described above.
+On 2026-10-05, `build/hello-recovery/update-two-wire.ufw` was installed successfully.
+PA9 receive timestamps measured 3.001075 seconds from the recovery-window banner
+to the hello-start banner (host/USB timing, not a precision target measurement).
+On a user-confirmed power cycle, one valid READY caused six unanswered START
+attempts, then the recovery-latched banner after 4.237 seconds. Eight additional
+seconds produced no application-start banner or COM13 heartbeat. No firmware
+bytes were sent during that intentional handshake failure.
+
+Without resetting, a new upload from this latched state installed a same-source
+rebuild with a different embedded timestamp: 417 reads, 184320 reported update
+bytes, final success, new PA9 timestamp `Oct 5 2026 20:06:25`, and 11 heartbeats
+in the subsequent 12-second observation (which includes part of the boot window).
+The installed image is **`build/hello-recovery-retry/update-two-wire.ufw`**,
+SHA256 `5d77b20852c17a659cd5b83f8b2cd025720250c7e86475bbf3ab73f9d844283e`.
+See `output/firmware_build/recovery_hardware_validation_20261005.json` for all
+capture paths, build provenance and limits. Radar-recovery remains unflashed.
+Six native suites and 31 Python tests passed before the bench test; both target
+profiles pass startup/runtime audits. No firmware source changes were needed.
 
 With the radar profile, `target/br23/image/main.c` invokes `ld2450_app_start()`
 from `app_core`, after the shared early console and board power setup:
@@ -247,7 +260,7 @@ divider within its eight-bit register (239 at 48 MHz). The SDK's default
 60 MHz LSB at this CPU rate would require 299 and fail our range check before
 UART initialization. `build_image.py` renames only the SDK setup entry point
 so the wrapper can run without editing vendor sources. This clock revision
-has been built offline, not flashed. See [the bring-up audit](BRINGUP_AUDIT.md).
+has booted in the verified hello builds. See [the bring-up audit](BRINGUP_AUDIT.md).
 `CONFIG_FLASH_SIZE` is a 256 KiB linker budget, not a measurement of physical
 flash capacity: the stock log reports 1024 KiB. The package still preserves
 the stock flash layout and enforces its smaller application slot independently.
@@ -275,7 +288,8 @@ unresolved fields for stock and custom containers.
 
 This is a fixed-layout image builder for these templates, not a general UFW
 authoring tool. The physical loader accepted and reported programming success for
-the baseline with the two-wire patches; application boot remains unverified. Stock product identifiers remain those of the template.
+the baseline with the two-wire patches; subsequent hello builds also booted and
+accepted repeat updates. Stock product identifiers remain those of the template.
 
 ## UART transfer and current bench status
 

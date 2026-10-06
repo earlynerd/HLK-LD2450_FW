@@ -1,0 +1,11 @@
+{
+  "firmware_bytes_sent": 0,
+  "result": "passed",
+  "start_requests": 6,
+  "probe_sent": true,
+  "latched": true,
+  "seconds_to_latch": 4.237,
+  "observation_after_latch": 8.006,
+  "application_started": false,
+  "heartbeat_after_probe": 0
+}

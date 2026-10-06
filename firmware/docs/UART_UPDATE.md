@@ -2,7 +2,7 @@
 
 Status: 2026-10-05. Stock V2.14 to custom hello, power-cycle boot, and replacement
 with a different custom hello build are bench-verified at 256000 baud. Stock
-restoration remains untested. Current artifacts, the new unflashed recovery
+restoration remains untested. Current artifacts, the bench-verified recovery
 window, and evidence are in [IMAGE_BUILD.md](IMAGE_BUILD.md). The
 [stock compatibility investigation](../../output/stock_uart_compatibility/report.md)
 finds a 0xB2 entry wrapper in V2.14 that is absent from the V2.04 command

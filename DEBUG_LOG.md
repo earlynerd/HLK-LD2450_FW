@@ -98,3 +98,14 @@
 - **Remaining limits:** Flash-length, VM/CRC and missing cfg_tool.bin diagnostics persist; storage correctness remains unverified. Radar profile and stock restoration were not tested. Both ports released.
 - **Class:** missing-runtime-initialization
 - **Recently-touched?** Yes; runtime fix physically verified on this module.
+
+
+## 2026-10-05 - Boot recovery window and failed-handshake retry verified
+
+- **Observation:** hello-recovery booted with 3.001075 s between PA9 recovery-window and hello-start markers. After a user power cycle, a READY-only probe received six START attempts; the app latched recovery after 4.237 s and remained there for another 8.006 s without starting hello or emitting a heartbeat.
+- **Verification:** Without reset, a distinct same-source recovery build installed with 417 reads and 184320 reported update bytes. New timestamp 20:06:25 appeared on PA9; 11 heartbeats followed in the 12-second observation. Both serial ports released.
+- **Fix:** No additional firmware changes required. The committed pre-application gate and recovery latch behaved as intended on this hello module.
+- **Evidence:** output/firmware_build/recovery_hardware_validation_20261005.json links raw captures, protocol events, image hashes and build provenance.
+- **Limits:** This exercises a failed START handshake, not interrupted flash programming or a deliberately crashing application. Radar remains off and untested; SDK startup faults precede this gate.
+- **Class:** recovery-entry-validation
+- **Recently-touched?** Yes; three-second gate and latch added immediately before this bench test.

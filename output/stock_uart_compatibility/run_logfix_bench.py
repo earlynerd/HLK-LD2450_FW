@@ -18,7 +18,7 @@ from package_ufw import container
 p = argparse.ArgumentParser()
 p.add_argument('--entry', choices=['stock', 'custom', 'capture'], required=True)
 p.add_argument('--seconds', type=float, default=20)
-p.add_argument('--image-build', choices=['hello-logfix', 'hello-repeat'], default='hello-logfix')
+p.add_argument('--image-build', choices=['hello-logfix', 'hello-repeat', 'hello-recovery', 'hello-recovery-retry'], default='hello-logfix')
 a = p.parse_args()
 out = ROOT / 'output/stock_uart_compatibility' / ('hello_logfix_' + a.entry + '_' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
 out.mkdir(parents=True)
@@ -26,7 +26,9 @@ image = ROOT / 'firmware/build' / a.image_build / 'update-two-wire.ufw'
 raw = image.read_bytes()
 sha = hashlib.sha256(raw).hexdigest()
 assert sha == {'hello-logfix': '1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a',
-               'hello-repeat': '05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb'}[a.image_build]
+               'hello-repeat': '05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb',
+               'hello-recovery': '5e35b716bc94cd174042c467632767a81c8197d3e10f87ea562fbcafa71391d0',
+               'hello-recovery-retry': '5d77b20852c17a659cd5b83f8b2cd025720250c7e86475bbf3ab73f9d844283e'}[a.image_build]
 container(raw)
 report = dict(image=str(image), image_sha256=sha, entry=a.entry, result='starting')
 start = time.monotonic()

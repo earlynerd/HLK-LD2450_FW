@@ -19,8 +19,9 @@ power-cycle boot, and replacement with a different custom hello build are
 bench-verified at 256000 baud. The exact working image is preserved in
 [`firmware/releases/hello-verified-20261005`](firmware/releases/hello-verified-20261005/README.md).
 
-Current source adds a three-second boot recovery window before application work;
-that change is built and host-tested but not yet flashed. The radar profile uses
+The three-second boot recovery window is bench-verified: failed handshake entry
+holds off the application, and retrying from recovery replaces it successfully.
+The radar profile uses
 the recovered 75-write / SPI / REXT / five-write ordering; its hardware operation
 and restoration to stock firmware remain unverified.
 

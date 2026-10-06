@@ -14,8 +14,9 @@ The [UART update investigation](docs/UART_UPDATE.md) establishes the SDK's
 example defects. Its ABI probe compiles for BR23; the application update
 receiver and complete image builder are implemented. Stock V2.14 to custom hello,
 power-cycle boot, and custom-to-custom replacement are bench-verified with two
-[loader patches](docs/UART_LOADER_BENCH.md). Current source adds an unflashed,
-host-tested boot recovery window. Radar operation and stock restoration remain
+[loader patches](docs/UART_LOADER_BENCH.md). The boot recovery window, failed
+handshake latch and subsequent update retry are also bench-verified in hello.
+Radar operation and stock restoration remain
 unverified; see [the image guide](docs/IMAGE_BUILD.md) for exact artifacts.
 
 ## Implemented

@@ -1,0 +1,266 @@
+{
+  "recorded_date": "2026-10-07",
+  "note": "These local recordings and working arrays are intentionally excluded from Git. Hashes identify the files retained on the original workstation; this manifest is not a backup. Per-frame exports are also ignored and can be regenerated from the corresponding stream recording. Small diagnostic logs, summary reports, release artifacts and firmware fixtures remain versioned.",
+  "files": [
+    {
+      "path": "output/live_radar/20261006-170325-capture-6750b5/stream.ldf",
+      "bytes": 59505092,
+      "sha256": "ab35ef509e78f9753e31755e7738e1bd973df2da7400ff436289e07bd672e1e0"
+    },
+    {
+      "path": "output/live_radar/20261006-173642-capture-3fc19b/stream.ldf",
+      "bytes": 50612581,
+      "sha256": "6aff4c53b47ce5f600b93b7c9c2d4236d69f24c7becaf7e019278bdd3a58e09b"
+    },
+    {
+      "path": "output/live_radar/20261006-175804-capture-a2a17a/stream.ldf",
+      "bytes": 126215608,
+      "sha256": "1c37d068b232587bb56935da3e0b227bbb79255d24d122c42975ebeb1682cfde"
+    },
+    {
+      "path": "output/live_radar/20261006-182335-capture-16da54/stream.ldf",
+      "bytes": 470837028,
+      "sha256": "9828b2301472a30a97fc1982b8a645c21b6c932427e2146ffeecc9c49f605d12"
+    },
+    {
+      "path": "output/radar_analysis/usb_20261006/working_arrays.npz",
+      "bytes": 83526628,
+      "sha256": "1581874595a60184d4aa7ffe18be0317080cd0739decc035d24f90ccc02afb99"
+    },
+    {
+      "path": "output/stream_bench/explicit_dtr/high.ldf",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/stream_bench/explicit_dtr/low.ldf",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/stream_bench/raw16_motion_report/stream.ldf",
+      "bytes": 2798752,
+      "sha256": "743e03f503156319f489412b33757b2e5349a3eb505a202fd24d3fc570288176"
+    },
+    {
+      "path": "output/stream_bench/spur_half_slope_capture/stream.ldf",
+      "bytes": 5103696,
+      "sha256": "11adf98089e860a418da509ba5d17761f60e423c7e6e58ca3977e4d76e622f04"
+    },
+    {
+      "path": "output/stream_bench/spur_interval1_capture/stream.ldf",
+      "bytes": 5107196,
+      "sha256": "f17cd5d8d1e0922f1385c1279ba82ed721391fb9b0ae159d3a64e82befdd2c4d"
+    },
+    {
+      "path": "output/stream_bench/spur_interval2_baseline/stream.ldf",
+      "bytes": 5980160,
+      "sha256": "07fe8491408cdcb21220c503f3fe8c150aafda4f4b496aa656d53f006666d254"
+    },
+    {
+      "path": "output/stream_bench/spur_interval2_return/stream.ldf",
+      "bytes": 4128400,
+      "sha256": "ab50a6af30a4fdcb1b14fa170c5b141cb278e6238ac1489f8bf835f46b2db959"
+    },
+    {
+      "path": "output/stream_bench/usb_80k_capture/stream.ldf",
+      "bytes": 5832966,
+      "sha256": "c1c574865f5b367f1003b6bfb8c314c11ea08736e7d0054f78b42bc9fd108eb5"
+    },
+    {
+      "path": "output/stream_bench/usb_80k_decoded/stream.ldf",
+      "bytes": 5832966,
+      "sha256": "c1c574865f5b367f1003b6bfb8c314c11ea08736e7d0054f78b42bc9fd108eb5"
+    },
+    {
+      "path": "output/stream_bench/usb_88k_long_capture/stream.ldf",
+      "bytes": 797899,
+      "sha256": "c8492e59e69cbcaaa3f944cd73ff9e3a490898fe1f2214fbb11a5d59514f01ed"
+    },
+    {
+      "path": "output/stream_bench/usb_88k_long_decoded/stream.ldf",
+      "bytes": 797899,
+      "sha256": "c8492e59e69cbcaaa3f944cd73ff9e3a490898fe1f2214fbb11a5d59514f01ed"
+    },
+    {
+      "path": "output/stream_bench/usb_88k_stopped/stream.ldf",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/stream_bench/usb_block_cache_capture/stream.ldf",
+      "bytes": 28654,
+      "sha256": "5ce02f83bffe1cdb4f16a3ac742baa9c5762697fb63cf5ad3ac342d5178968c5"
+    },
+    {
+      "path": "output/stream_bench/usb_budget_guard_capture/stream.ldf",
+      "bytes": 20402188,
+      "sha256": "e9b07f50ca88c55dd95973bd54beb71e268a6209cb0e7304a705a19224b7be01"
+    },
+    {
+      "path": "output/stream_bench/usb_budget_guard_decoded/stream.ldf",
+      "bytes": 20402188,
+      "sha256": "e9b07f50ca88c55dd95973bd54beb71e268a6209cb0e7304a705a19224b7be01"
+    },
+    {
+      "path": "output/stream_bench/usb_budget_guard_reopen_capture/stream.ldf",
+      "bytes": 3477504,
+      "sha256": "170e6d17c458f2d090f41dc9a8458ec6ba582d0c90b0668a6204761c0b112bda"
+    },
+    {
+      "path": "output/stream_bench/usb_budget_guard_reopen_decoded/stream.ldf",
+      "bytes": 3477504,
+      "sha256": "170e6d17c458f2d090f41dc9a8458ec6ba582d0c90b0668a6204761c0b112bda"
+    },
+    {
+      "path": "output/stream_bench/usb_budget_guard_stall_capture/stream.ldf",
+      "bytes": 3522560,
+      "sha256": "ba0df8a4affd9f35e764c3c044c6c4d7a252c90dc3345a2fea093dea4c08e925"
+    },
+    {
+      "path": "output/stream_bench/usb_budget_guard_stall_decoded/stream.ldf",
+      "bytes": 3522560,
+      "sha256": "ba0df8a4affd9f35e764c3c044c6c4d7a252c90dc3345a2fea093dea4c08e925"
+    },
+    {
+      "path": "output/stream_bench/usb_byte_packer_capture/stream.ldf",
+      "bytes": 6332,
+      "sha256": "f3d3bb81111d9328baba94a89f485e27b0e9ee9122dfbdb801491eb3a0d38437"
+    },
+    {
+      "path": "output/stream_bench/usb_com30_first/stream.ldf",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "output/stream_bench/usb_crc4_capture/stream.ldf",
+      "bytes": 40276,
+      "sha256": "ef0b3225d21d2684afff14992309d9c7afb771ea1e948ec65128ee386e19821a"
+    },
+    {
+      "path": "output/stream_bench/usb_diagnostics_capture/stream.ldf",
+      "bytes": 4314,
+      "sha256": "1817c8e79c01ef37f878960d675636927e400b4017203a9c671d3fee1bbbb4cb"
+    },
+    {
+      "path": "output/stream_bench/usb_diagnostics_decoded/stream.ldf",
+      "bytes": 4314,
+      "sha256": "1817c8e79c01ef37f878960d675636927e400b4017203a9c671d3fee1bbbb4cb"
+    },
+    {
+      "path": "output/stream_bench/usb_dispatch_o2_capture/stream.ldf",
+      "bytes": 35440,
+      "sha256": "6a3985a13305b8ee36ab56a747967c294ab2322ef83080d5b2302dc4799dc53a"
+    },
+    {
+      "path": "output/stream_bench/usb_fast_crc_capture/stream.ldf",
+      "bytes": 6484,
+      "sha256": "ee5151b929ce0d54c7b7684aac82f47f3c42dde2efbd142aa24f5eeda38c0ded"
+    },
+    {
+      "path": "output/stream_bench/usb_irq_raw_capture/stream.ldf",
+      "bytes": 7434240,
+      "sha256": "298bd9afa287c6b2c87dd58803f75ba56277e869122d57ca96c715c388cb9c8b"
+    },
+    {
+      "path": "output/stream_bench/usb_irq_raw_decoded/stream.ldf",
+      "bytes": 7434240,
+      "sha256": "298bd9afa287c6b2c87dd58803f75ba56277e869122d57ca96c715c388cb9c8b"
+    },
+    {
+      "path": "output/stream_bench/usb_irq_stream_capture/stream.ldf",
+      "bytes": 24494,
+      "sha256": "c63ab727802a3737092949b4aa93a1272ef8fd7eea693570fd0cd61955921b67"
+    },
+    {
+      "path": "output/stream_bench/usb_irq_stream_decoded/stream.ldf",
+      "bytes": 24494,
+      "sha256": "c63ab727802a3737092949b4aa93a1272ef8fd7eea693570fd0cd61955921b67"
+    },
+    {
+      "path": "output/stream_bench/usb_kernels_capture/stream.ldf",
+      "bytes": 13816,
+      "sha256": "6ff38936daf6517d5dc179253f009b42be8f4676854c320406a96d24bf1a83bc"
+    },
+    {
+      "path": "output/stream_bench/usb_optimized_final_live_capture/stream.ldf",
+      "bytes": 3469312,
+      "sha256": "4a796a5a8a4f88be88bfbf2b05933509f3816a7c0431a0da655e058466634367"
+    },
+    {
+      "path": "output/stream_bench/usb_optimized_final_live_decoded/stream.ldf",
+      "bytes": 3469312,
+      "sha256": "4a796a5a8a4f88be88bfbf2b05933509f3816a7c0431a0da655e058466634367"
+    },
+    {
+      "path": "output/stream_bench/usb_optimized_raw_final_capture/stream.ldf",
+      "bytes": 7901184,
+      "sha256": "ac04e104eb2f698c488ba40e1a7829361235be20d45e67583ab31f28b6c48fb3"
+    },
+    {
+      "path": "output/stream_bench/usb_optimized_raw_final_decoded/stream.ldf",
+      "bytes": 7901184,
+      "sha256": "ac04e104eb2f698c488ba40e1a7829361235be20d45e67583ab31f28b6c48fb3"
+    },
+    {
+      "path": "output/stream_bench/usb_ram_codec_capture/stream.ldf",
+      "bytes": 22548,
+      "sha256": "42b8d2263715536e9b0aa7ef9d17b8ef07d5f9814f9747c8444f9b347792f32a"
+    },
+    {
+      "path": "output/stream_bench/usb_ram_crc_capture/stream.ldf",
+      "bytes": 854628,
+      "sha256": "e7b21588b8a67840149bb58fcc0001d98730d96b272a0b4c136efe655d0dd8fe"
+    },
+    {
+      "path": "output/stream_bench/usb_ram_crc_decoded/stream.ldf",
+      "bytes": 854628,
+      "sha256": "e7b21588b8a67840149bb58fcc0001d98730d96b272a0b4c136efe655d0dd8fe"
+    },
+    {
+      "path": "output/stream_bench/usb_raw_bench_capture/stream.ldf",
+      "bytes": 7294976,
+      "sha256": "88d9875451a0b35e7fb560df70df536efb49d8b47fff81f63841738a7fe59ea0"
+    },
+    {
+      "path": "output/stream_bench/usb_raw_bench_decoded/stream.ldf",
+      "bytes": 7294976,
+      "sha256": "88d9875451a0b35e7fb560df70df536efb49d8b47fff81f63841738a7fe59ea0"
+    },
+    {
+      "path": "output/stream_bench/usb_raw_reopen/stream.ldf",
+      "bytes": 2949120,
+      "sha256": "82502f911d1307c3c2d5e2cc43c24c5063a14ded1c22dd7082b7aea9401d45dd"
+    },
+    {
+      "path": "output/stream_bench/usb_raw_reopen_decoded/stream.ldf",
+      "bytes": 2949120,
+      "sha256": "82502f911d1307c3c2d5e2cc43c24c5063a14ded1c22dd7082b7aea9401d45dd"
+    },
+    {
+      "path": "output/stream_bench/usb_raw_stall/stream.ldf",
+      "bytes": 2961408,
+      "sha256": "3c7f47aec1bcd0ee2fc12b476bca0fdbaf6950ccc4a669d9eb014dc1a18b60f4"
+    },
+    {
+      "path": "output/stream_bench/usb_raw_stall_decoded/stream.ldf",
+      "bytes": 2961408,
+      "sha256": "3c7f47aec1bcd0ee2fc12b476bca0fdbaf6950ccc4a669d9eb014dc1a18b60f4"
+    },
+    {
+      "path": "output/stream_bench/usb_speed_capture/stream.ldf",
+      "bytes": 16535,
+      "sha256": "256e3b2847f33da6a5c76fc985bae2b2d94a487fcabd1481daa83af22cd28719"
+    },
+    {
+      "path": "output/stream_bench/usb_timing_capture/stream.ldf",
+      "bytes": 25376,
+      "sha256": "5a59472c80c4d9619708bc8d0bac869266e3d52a6b29aefde167cf52d2282961"
+    },
+    {
+      "path": "output/stream_bench/usb_validate_once_capture/stream.ldf",
+      "bytes": 2501092,
+      "sha256": "7df20160921db383a46da29c8e3448dbe64af4ec95f88a3e45e0038fee04787a"
+    }
+  ]
+}

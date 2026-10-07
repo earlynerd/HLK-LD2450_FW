@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_ram_crc_capture\\stream.ldf",
+  "complete_frames": 0,
+  "rejected_frames": 17,
+  "protocol_errors": 0,
+  "parser_errors": 0,
+  "discarded_bytes": 0,
+  "received_bytes": 854628,
+  "stream_sha256": "e7b21588b8a67840149bb58fcc0001d98730d96b272a0b4c136efe655d0dd8fe"
+}

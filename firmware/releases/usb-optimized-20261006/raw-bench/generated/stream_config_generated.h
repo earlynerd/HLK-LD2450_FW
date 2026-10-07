@@ -1,0 +1,2 @@
+#define LD_STREAM_QUEUE_BYTES 90112u
+static const unsigned char ld_stream_config_hash[32] = {234,227,128,183,171,190,101,217,63,141,91,150,176,61,233,56,66,220,232,59,88,127,32,205,137,226,125,192,112,236,36,117};

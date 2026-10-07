@@ -9,6 +9,16 @@ Start with the [image build and loading guide](firmware/docs/IMAGE_BUILD.md),
 [UART update investigation](firmware/docs/UART_UPDATE.md), and the
 [hardware evidence](docs/radar_ic_and_internal_interfaces.md).
 
+The [radar processing and data export plan](DSP_plan.md) tracks the next
+milestones, acceptance evidence, resource budgets, and session handoff.
+The [lossless frame stream application](firmware/docs/FRAME_STREAM.md) integrates
+continuous dual-SPI acquisition, a bounded lossless codec, native USB CDC, and
+a Python receiver. The current experiment exports raw 16-chirp windows from both
+receivers through native CDC on COM30, avoiding the scene-dependent compression
+cost that limited the earlier 64-chirp stream during movement. Whole-frame skips
+bound the export rate. See the stream guide for the exact image, validation,
+capture tradeoffs, and earlier 64-chirp/USB benchmark evidence.
+
 ## Current state
 
 The project links a minimal BR23 UART recovery application and packages it
@@ -21,9 +31,12 @@ bench-verified at 256000 baud. The exact working image is preserved in
 
 The three-second boot recovery window is bench-verified: failed handshake entry
 holds off the application, and retrying from recovery replaces it successfully.
-The radar profile uses
-the recovered 75-write / SPI / REXT / five-write ordering; its hardware operation
-and restoration to stock firmware remain unverified.
+The radar profile uses the recovered 75-write / SPI / REXT / five-write ordering.
+The MCU reports all 80 writes ACKed on hardware, and updater entry after radar
+initialization is verified. A bounded on-device SPI capture has now recovered
+distinct RX0/RX1 streams with checksum-valid 512-pair I/Q records on both lanes.
+Continuous acquisition now has an initial bench pass; RF calibration and
+restoration to stock remain unverified.
 
 ## Initial snapshot
 
@@ -43,6 +56,14 @@ labelled cross-chip hypothesis, not a manufacturer register specification.
 Phone Bluetooth archives, unrelated upstream application files, large raw
 logic-analyzer captures, and personal attachments are not part of this repo.
 Captured binary test fixtures retain their source hashes and sample provenance.
+
+## Live radar viewer
+
+Run `./tools/start_radar_viewer.ps1` to open the local live I/Q, spectrum,
+waterfall and exploratory Doppler workspace. It supports native USB with DTR,
+saved-stream replay, background subtraction and raw recording. See
+[the viewer guide](docs/LIVE_RADAR_VIEWER.md) for controls, calibration limits,
+and the processing-stage extension interface.
 
 ## Checks
 

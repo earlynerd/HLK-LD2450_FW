@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_optimized_final_live_capture\\stream.ldf",
+  "complete_frames": 27,
+  "rejected_frames": 1,
+  "protocol_errors": 0,
+  "parser_errors": 1,
+  "discarded_bytes": 906,
+  "received_bytes": 3469312,
+  "stream_sha256": "4a796a5a8a4f88be88bfbf2b05933509f3816a7c0431a0da655e058466634367"
+}

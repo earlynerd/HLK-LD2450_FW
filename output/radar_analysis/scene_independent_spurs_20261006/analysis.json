@@ -1,0 +1,69 @@
+{
+  "frame_id": 6508,
+  "config": "cdc8522d33c2f58d79aa41877b7922b895f21d554bc8203d4c872c3f34b5b5f5",
+  "settings": {
+    "remove_dc": false,
+    "window": "hann",
+    "remove_static": true
+  },
+  "reference": 949,
+  "note": "Calculated from raw IQ, no background subtraction; Hann window. Single snapshot, not proof of spur origin.",
+  "peaks": [
+    {
+      "bin": 74,
+      "period_samples": 6.918918918918919,
+      "rx1": {
+        "positive_db": 4.98,
+        "negative_db": 8.85,
+        "I_db": 6.72,
+        "Q_db": -1.47,
+        "IQ_phase_deg": 139.5
+      },
+      "rx2": {
+        "positive_db": 1.33,
+        "negative_db": 2.34,
+        "I_db": 1.39,
+        "Q_db": -8.02,
+        "IQ_phase_deg": 166.7
+      }
+    },
+    {
+      "bin": 173,
+      "period_samples": 2.959537572254335,
+      "rx1": {
+        "positive_db": 10.58,
+        "negative_db": 10.34,
+        "I_db": 9.04,
+        "Q_db": 4.94,
+        "IQ_phase_deg": -178.2
+      },
+      "rx2": {
+        "positive_db": 5.47,
+        "negative_db": 4.91,
+        "I_db": 4.14,
+        "Q_db": -1.43,
+        "IQ_phase_deg": -175.1
+      }
+    },
+    {
+      "bin": 219,
+      "period_samples": 2.3378995433789953,
+      "rx1": {
+        "positive_db": 23.55,
+        "negative_db": 23.49,
+        "I_db": 22.19,
+        "Q_db": 17.74,
+        "IQ_phase_deg": -179.5
+      },
+      "rx2": {
+        "positive_db": 17.25,
+        "negative_db": 17.84,
+        "I_db": 16.82,
+        "Q_db": 9.5,
+        "IQ_phase_deg": 174.7
+      }
+    }
+  ],
+  "user_observation": "Marked peaks stay at the same bins when radar is aimed elsewhere; appear independent of scene.",
+  "status": "Unresolved: scene-independent fixed features, origin not established."
+}

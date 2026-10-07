@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-06",
+  "scope": "Portable codec and queued producer plus host receiver; no streaming application integration",
+  "host_validation": {
+    "ctest_suites_passed": 9,
+    "interop_tests_within_ctest": 12,
+    "existing_python_tests_passed": 34,
+    "log": "output/firmware_build/frame_stream_host_tests_20261006.txt"
+  },
+  "codec_capture_validation": {
+    "raw_bytes": 65792,
+    "encoded_bytes_excluding_transport_envelope": 35332,
+    "fraction_of_raw": 0.5370257782101168,
+    "byte_exact": true,
+    "scope": "16 startup chirps per lane, not a complete frame"
+  },
+  "complete_frame_validation": "Synthetic paired 64-chirp C producer to Python receiver; both lane binaries exactly equal input",
+  "component_build": {
+    "target_built": true,
+    "image_linked": false,
+    "device_flashed": false,
+    "archive_sha256": "320229a416fec047e8118fe0ee4543642cdb8213c1cfe4b09fd5ad4bb93a8b4f",
+    "manifest": "firmware/build/stream-component/build-result.json"
+  },
+  "baseline": {
+    "archive": "firmware\\build\\baseline-before-stream-20261006\\baseline.zip",
+    "sha256": "c6877225654e608a018543b15066b098796cce3d20cf3859ec58a8680bafc411",
+    "modified_existing_snapshot_files": [
+      "firmware/tools/build_br23.py",
+      "DSP_plan.md",
+      "DECISIONS.md",
+      "README.md",
+      "firmware/CMakeLists.txt"
+    ],
+    "all_other_snapshot_files_unchanged": true
+  },
+  "not_validated": [
+    "USB adapter integration/enumeration/throughput/stalls",
+    "Continuous SPI acquisition/frame synchronization",
+    "Target codec execution timing",
+    "Runtime RAM/heap/stack usage",
+    "Physical complete-frame capture"
+  ],
+  "source_sha256": {
+    "firmware/include/ld2450_stream.h": "c6aa89dd9a02d6143ee653d77c826512b2a06c0ec2ab4b3ef774a7ff0cb2b170",
+    "firmware/src/stream.c": "0415ead82afef8153ec5ed533daa9cb44385ac6aa83e52d486803a0b8bcdd9ad",
+    "firmware/tools/frame_stream.py": "f395f94048da9252f30b6fc7a557305caf7db5cb4bb24dac44db80a2c7e596e4",
+    "firmware/tests/test_stream.c": "099fd5ff31413080e2437f44ca4d8fe71decbe176db9790befb5dd70d98b4d45",
+    "firmware/tests/stream_interop.py": "18a0e12859a3d0a13c692cdb831b7d8aca415f06f72b3aa0baaa525e9cf1cc69",
+    "firmware/CMakeLists.txt": "d29deda942715908ffd5c497a74d09fd96e8a99b6312d98b21874ba782215e33",
+    "firmware/tools/build_br23.py": "701c8d733b05cd1a770489131eff4644d43e40d8834bc6889aa0acb9294a2e78",
+    "firmware/tests/fixtures/dual_lane_startup/lane0.bin": "1346cf2b00803edf296587ab5c18263ee0ae77caaeb8f097f65f004e16e6c0d7",
+    "firmware/tests/fixtures/dual_lane_startup/lane1.bin": "8715a0085c45e63233afb0b710d359c9b95382b2e8319c396609ce00fc6272fc"
+  }
+}

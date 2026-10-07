@@ -1,0 +1,16 @@
+{
+  "application": "stream",
+  "table_sha256": "ff0a3715d077a864283e1222cf6746d9736749644bf5b5a4eb1ebd1fe89c5ec5",
+  "pairs": 512,
+  "chirps": 16,
+  "receivers": 2,
+  "codec": "LDF1-block32-v1",
+  "queue_bytes": 90112,
+  "dma_slots_per_lane": 4,
+  "dma_bytes": 2056,
+  "usb_transport": "cdc-irq-ring-v1",
+  "usb_tx_queue_bytes": 4096,
+  "encoding_policy": "raw-only-live-prefix16",
+  "acquisition_chirps": 64,
+  "first_chirp": 0
+}

@@ -116,7 +116,7 @@ setup, so failures earlier than that can still be silent.
 The corrected hello-world image was flashed from stock V2.14 on 2026-10-05,
 reached app_main and the UART updater, and emitted 15 COM13 heartbeats in the
 15-second postflash observation. It also booted after a user-confirmed power
-cycle. The corrected radar image remains unflashed. The first failed-boot
+cycle. Radar bring-up subsequently passed the initialization check below. The first failed-boot
 artifact remains in `build/image`.
 
 The first successful hello candidate was **`build/hello-logfix/update-two-wire.ufw`**, which
@@ -140,7 +140,7 @@ That image was installed through the custom updater at 256000 baud: 417 reads,
 12 COM13 heartbeats in the following 12 seconds. It was installed at that stage;
 SHA256 `05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb`.
 Evidence: `output/stock_uart_compatibility/hello_logfix_custom_20261006T024728Z/`.
-Stock restoration and radar-profile operation remain untested.
+Stock restoration remains untested; radar initialization results are recorded below.
 Full debug mode also makes SDK assertions flush diagnostics and halt instead
 of immediately resetting.
 
@@ -200,12 +200,97 @@ Without resetting, a new upload from this latched state installed a same-source
 rebuild with a different embedded timestamp: 417 reads, 184320 reported update
 bytes, final success, new PA9 timestamp `Oct 5 2026 20:06:25`, and 11 heartbeats
 in the subsequent 12-second observation (which includes part of the boot window).
-The installed image is **`build/hello-recovery-retry/update-two-wire.ufw`**,
+The installed image at that stage was **`build/hello-recovery-retry/update-two-wire.ufw`**,
 SHA256 `5d77b20852c17a659cd5b83f8b2cd025720250c7e86475bbf3ab73f9d844283e`.
 See `output/firmware_build/recovery_hardware_validation_20261005.json` for all
 capture paths, build provenance and limits. Radar-recovery remains unflashed.
 Six native suites and 31 Python tests passed before the bench test; both target
 profiles pass startup/runtime audits. No firmware source changes were needed.
+
+### Radar initialization bench result
+
+On 2026-10-05 (Pacific), **`build/radar-bringup/update-two-wire.ufw`** was flashed
+through the working custom updater: 417 reads, 184320 reported update bytes,
+final success. This was the radar initialization image; SHA256
+`1f7e69f8d5630fcee9ea50b9d242ba95990b40aeeb5fa132e21c500bc35c7e56`.
+After the recovery window, PA9 reported `stock-mode2-baseline`, all 80 writes
+ACKed at I2C address 0x20, SPI configured, bias enabled and DMA not armed.
+
+Updater entry from that initialized radar state also succeeded. The identical
+image trial made 50 reads and reported zero application update bytes, then
+rebooted into a second successful 80-write initialization. This verifies updater
+entry/handoff/return after radar startup, not a second application rewrite.
+No logic-analyzer capture was available; acknowledgments are MCU driver reports.
+SPI clocks, actual sample reception and RF performance are not yet validated.
+COM13 is intentionally idle outside updates in the radar profile (no hello
+heartbeat); PA9 carries initialization diagnostics. Radar supply/bias are left
+enabled after successful init. Both host serial ports were released.
+
+Diagnostics identify the failed stage, error, count of acknowledged writes and,
+for a failed table transaction, its one-based write index, register and value.
+No prints were added inside the SPI/REXT/final-write transition. Radar failures
+still power it down and leave UART updating available. Six native suites and
+31 Python tests pass; the target build and package passed existing audits.
+Evidence: `output/firmware_build/radar_bringup_hardware_validation_20261005.json`.
+
+### Bounded dual-lane capture
+
+Build with `--application capture --out firmware/build/spi-capture`, then patch
+its UFW using `patch_stock_uart_loader.py` as above. The separate capture profile
+retains the boot recovery gate and the 80-write baseline. It arms two aligned
+32896-byte DMA buffers (16 complete 2056-byte records each) after SPI setup and
+before REXT enable. Completion of both
+lanes or a two-second deadline stops the radar/DMA before any buffer is dumped.
+An updater request or radar init failure cancels the capture. Module UART output
+uses CAPTURE BEGIN/END records and offset-labelled 32-byte hexadecimal DATA
+lines; each header reports whether that lane completed. A timed-out buffer is
+preserved in full with its A5 prefill; no inferred partial byte count is claimed.
+
+On 2026-10-05, the capture image completed both lanes, each with three contiguous
+2056-byte checksum-valid DS RAW records and a partial fourth. Each complete record
+contains 512 signed big-endian I/Q pairs. Headers identify RX0 on lane 0 and RX1
+on lane 1, with chirps 0, 1 and 2 on both. The lanes contain distinct samples;
+the six records provide 3072 validated I/Q pairs. This is data-transfer/framing
+validation, not calibrated range/angle or proof of continuous lossless capture.
+
+The first 8 KiB capture image's UFW SHA256 was
+`501d05e5b5b960c51ce360e4c0e51f6b339ec21e40ec7962583fe4435fece3e5`.
+It captures once per boot, leaves the radar powered off after dumping, and keeps
+the updater available (READY/START probed after capture). To decode saved output:
+
+```powershell
+python firmware/tools/decode_capture.py PATH/TO/com13-post.txt --out output/spi_capture/decoded
+```
+
+The first upload attempt stalled in the existing radar image at SDK loader-stage
+flash erase after seven reads; no new application was installed then. A user
+power cycle let the host catch the boot recovery gate and install the capture
+image successfully. Cause of the staging stall is unresolved; this is evidence
+that boot recovery bypassed it, not proof that ordinary updater entry is always
+reliable after radar activity.
+
+Raw captures, six extracted records, IQ CSV, plot and checksum report are in
+`output/spi_capture/first_dual_lane/`. Build/protocol provenance is in
+`output/firmware_build/spi_capture_hardware_validation_20261005.json`.
+Seven native suites and 34 Python tests pass (including three decoder tests).
+
+The subsequent larger capture completed **16 contiguous records per lane**,
+matching chirp numbers 0-15, with all headers/trailers/checksums valid and no
+truncated record: 65792 raw bytes and 16384 decoded I/Q pairs. Main RAM heap
+reservation is 91296 bytes after static allocation; this is not a measurement of
+runtime free heap. The update from the stopped first-capture application completed
+normally without a manual reset (417 reads, 184320 reported application bytes).
+Both ports were released, and the radar is off after its one-shot dump.
+
+The installed image at that stage was `build/spi-capture16/update-two-wire.ufw`, SHA256
+`16381b9302ccceaa48af63f7459c293fccbeb042064be85432480fbb575f6fb5`.
+Raw buffers, all 32 extracted packets, IQ CSV and plots are in
+`output/spi_capture/dual_lane_16chirps/`; full evidence is in
+`output/firmware_build/spi_capture16_hardware_validation_20261005.json`.
+`decode_capture.py` accepts both capture sizes and exports records plus IQ CSV.
+`plot_capture.py DIRECTORY` regenerates the chirp overlay/difference plot from
+the decoder output. Differences are in sample units, without motion/range/angle
+interpretation or RF calibration. Seven native suites and 34 Python tests pass.
 
 With the radar profile, `target/br23/image/main.c` invokes `ld2450_app_start()`
 from `app_core`, after the shared early console and board power setup:
@@ -299,10 +384,11 @@ programming have now been exercised on COM13 at 256000. Stock V2.04 requires
 an update to V2.14 through BLE first. Keep initial and negotiated rates equal
 to the tested 256000 for this route.
 
-The device reported final programming success, but the custom boot banner and
-UART entry have not been observed. Application boot, radar initialization,
-repeat updates and restoration remain separate unresolved bench checks.
-Do not treat the image as a working drop-in replacement yet.
+Later hello, radar and capture runs established custom application boot,
+radar initialization and repeat UART entry. The 2026-10-06 `stream` application
+also passed continuous acquisition and updater entry while running; see
+[FRAME_STREAM.md](FRAME_STREAM.md) for the exact image and evidence. Native
+USB enumeration and concurrent export remain untested until USB is wired.
 
 ## Validation performed
 
@@ -310,7 +396,7 @@ Do not treat the image as a working drop-in replacement yet.
 records both current images and their source hashes. The earlier
 `validation.json` describes the preceding recovery-only application.
 
-`python firmware/tools/test_host.py` runs five native C suites and the
+`python firmware/tools/test_host.py` runs twelve CTest suites and the
 Python tests: captured packet parsing, pin/peripheral behavior, radar table
 generation, bounded UART framing, actual adapter logic with modeled device
 I/O, two-stage PC protocol handling and packaging boundaries. Startup tests
@@ -323,4 +409,5 @@ decoder verifies custom applications in all four flash variants.
 
 Host tests do not execute the vendor engine or flash writer. The separate
 [bench record](UART_LOADER_BENCH.md) establishes programming success using
-the patched loader; the custom application has not yet been observed booting.
+the patched loader; later hello and radar initialization bench results above
+also confirm application execution and updater reentry.

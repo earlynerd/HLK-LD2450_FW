@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_diagnostics_capture\\stream.ldf",
+  "complete_frames": 0,
+  "rejected_frames": 1,
+  "protocol_errors": 0,
+  "parser_errors": 0,
+  "discarded_bytes": 0,
+  "received_bytes": 4314,
+  "stream_sha256": "1817c8e79c01ef37f878960d675636927e400b4017203a9c671d3fee1bbbb4cb"
+}

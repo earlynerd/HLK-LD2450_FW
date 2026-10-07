@@ -1,0 +1,9 @@
+[00:00:30.270][Debug]: [USB]free zalloc: usb_config_var = 0
+
+CLOCK sys=240000000 lsb=48000000 timer=24000000 timer_ticks_us=6 timer_prd=5999 sdk_ms=30270 local_us=26655676
+USB before_stop init=1 dtr=1 state=4 epoch=3 sof=161 age_ms=0 txcsr=0 running=0 halted=1
+USB resets=2 suspends=0 controls=3 control_value=1 ready_polls=1264066 writes=259 busy=1963 bytes=16535
+STREAM stopped us=26655676 valid=13319/13320 frames=209 skip=208 bad=0 sync=0 unpaired=0 timeout=0
+STREAM dma_overrun=1 backlog=3 process_max_us=1102 queue_peak=16111 encoded=0 rejected=1 raw=2 compressed=13 usb_epoch=3
+STREAM heap_free=230640 heap_min=230640 state_bytes=16648 dma_bytes=16448 queue_bytes=49152
+STREAM complete_pairs=207 sequence_errors=0 bad_status=0

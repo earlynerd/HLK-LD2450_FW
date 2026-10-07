@@ -117,3 +117,118 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Why:** A later application failure must remain recoverable by starting the uploader and power-cycling. Avoid making radar initialization a dependency of UART entry.
 - **Supersedes:** Radar-before-updater startup and immediate hello heartbeat. SDK startup still precedes recovery; no independent rescue image or automatic watchdog reset is added.
 - **Affects:** image/main.c, image/uart_loader.c, peripherals.c, host boot/peripheral tests, and firmware/docs/IMAGE_BUILD.md. Target builds/tests pass; recovery-window firmware is not flashed.
+
+
+## 2026-10-05 - Separate bounded SPI capture profile
+
+- **Decision:** Keep hello/radar behavior separate from a capture profile with two aligned 8 KiB buffers, armed before REXT. Stop radar/DMA before serial dump; bound acquisition to two seconds and cancel on updater entry. Mark incomplete buffers explicitly and retain raw bytes.
+- **Why:** Capture both receiver lanes without an external analyzer or concurrent acquisition/UART throughput assumptions, while preserving the tested boot recovery path.
+- **Supersedes:** No acquisition in the capture profile; hello and radar profiles retain their prior scope.
+- **Affects:** capture.c, app.c, image/main.c, image builder, capture tests/decoder and firmware/docs/IMAGE_BUILD.md. First dual-lane capture validated; detailed bench provenance lives in the image guide.
+
+
+## 2026-10-05 - Expand one-shot capture to sixteen whole records per lane
+
+- **Decision:** Allocate 32896 bytes per lane (16 x 2056-byte DS RAW records), retaining the two-second deadline, stop-before-dump behavior and boot recovery. Decoder accepts bounded, line-aligned lengths and exports IQ CSV plus individual validated packets.
+- **Why:** The first 8 KiB snapshots ended partway through their fourth record; larger buffers allow consecutive-chirp comparisons while leaving 91296 bytes of main RAM heap reservation.
+- **Supersedes:** Two 8 KiB buffers in the earlier bounded capture decision.
+- **Affects:** capture.c, capture tests, decode_capture.py, plot_capture.py and IMAGE_BUILD.md. Hardware produced sixteen checksum-valid records on each lane; raw evidence is in output/spi_capture/dual_lane_16chirps.
+
+
+## 2026-10-05 - Plan shared range processing and configurable export
+
+- **Decision:** Use `DSP_plan.md` as the working plan and session handoff. Target a complete 64-chirp, two-receiver frame of configurable complex range intermediates, initially budgeting 64 bins subject to sample interpretation and measured numeric/resource limits. Accept reduced whole-frame export cadence and keep losses explicit.
+- **Why:** Shared intermediates support Doppler, bearing and small-motion consumers with independent filtering. Stock firmware offers examples rather than a required architecture. Continuous raw export is not a prerequisite.
+- **Supersedes:** No implemented behaviour; this records the agreed next direction.
+- **Affects:** `DSP_plan.md` and README navigation. Continuous acquisition, range processing and binary export remain planned. The existing recovery contract remains required.
+
+
+## 2026-10-06 - Capture raw frames over USB before selecting onboard reduction
+
+- **Decision:** First implement bounded acquisition, streaming lossless compression and USB export of complete raw frames at reduced cadence. Use those frames to evaluate and select a host processing workflow, then port its early stages and transmit the reduced representation over USB.
+- **Why:** Representative full frames let us measure algorithm performance and information loss before committing to a reduction. Concurrent USB draining reduces the required capture backlog.
+- **Supersedes:** The intermediate-first milestone and UART-first export sequence in "Plan shared range processing and configurable export" (2026-10-05). The 64-bin representation becomes a candidate rather than the initial target.
+- **Affects:** DSP_plan.md. Preserve the UART boot recovery contract and diagnostic raw capture. Target throughput, compression timing and full-frame capture remain unvalidated.
+
+
+## 2026-10-06 - Establish a bounded lossless frame stream before USB integration
+
+- **Decision:** Implement LDF1 with independent paired 64-chirp frames, previous-chirp block32 lossless coding, raw fallback, preserved radar bytes and CRCs. Use a caller-owned queue with atomic messages, reserved ABORT capacity, explicit skips/rejections and a bounded-copy transport callback. Publish only complete verified frames on the host.
+- **Why:** The existing capture supports this codec and exact host reconstruction. A transport-independent producer permits stall/overflow testing before continuous acquisition; the SDK CDC wrapper's mutex and bulk-write loop are not yet qualified for that path.
+- **Supersedes:** Host-experiment-only codec status; the raw-first milestone remains. This is a component, not an enabled streaming image.
+- **Affects:** firmware/src/stream.c, firmware/include/ld2450_stream.h, firmware/tools/frame_stream.py, firmware/docs/FRAME_STREAM.md, component builds/tests and DSP_plan.md. Preserve UART recovery and existing application profiles; measure USB/acquisition/timing before integration claims.
+
+
+## 2026-10-06 - Integrate continuous acquisition and native CDC streaming
+
+- **Decision:** Add stream and radar-off usb-bench profiles. Use four record-sized DMA slots per lane, IRQ rearm, TIMER3 observation timestamps, paired chirp-zero synchronization, a 48 KiB output queue and a project-owned 64-byte CDC endpoint buffer. Keep SDK USB buffers outside audio overlays. The pinned SDK remains unchanged.
+- **Recovery contract:** Keep the three-second boot recovery window and 256000-baud UART updater. Use bounded idle UART reads; stop radar/USB before entering the existing updater. ASCII ? on module UART stops first, then reports on PA9. No acquisition-time debug printing.
+- **Loss contract:** USB absence/backpressure skips or rejects complete export frames. A DMA ownership overrun stops the radar until restart; never rearm mid-record. USB reset/suspend/DTR/SOF loss invalidates partial output. Complete paired acquisition is counted independently of export.
+- **Evidence:** stream SHA256 388a98cf4c637a0d8863df2fedb7c248b77d027016525d1f74104075c9e0c8c4 is flashed. A 10.58 s acquisition-only run has 117 complete paired frames, zero corrupt/sequence/DMA errors; active UART updater reentry passes. Twelve CTest suites and 34 Python tests pass; both target profiles link and package.
+- **Supersedes:** Component-only status in the prior frame-stream decision. Native USB is not wired: enumeration, concurrent codec/USB timing, throughput/stalls and physical memory accounting remain unqualified. See firmware/docs/FRAME_STREAM.md and output/firmware_build/stream_integration_validation_20261006.json.
+
+
+## 2026-10-06 - Isolate raw USB transport and budget the codec service time
+
+- **Decision:** Add --raw-usb-bench only to the radar-off usb-bench profile. Label its identity synthetic/paced/raw-only; reuse existing LDF1 raw mode and require exact host comparison. Keep this known-pattern image as the current hardware baseline while concurrent real-radar export remains under investigation.
+- **Timing contract:** Stream/acquisition/parser compile with -O2. CRC uses a byte table and startup-copied internal RAM; packing computes each residual once and writes bytes rather than bits. Preserve all integrity checks and the wire format. A stopped UART report snapshots USB/DTR/endpoint counters and clock registers without hot-path printing.
+- **Why:** Correct 240 MHz clock setup did not make the original per-bit loops meet the DMA deadline. Raw USB separates transport correctness from that CPU budget and the distinct output-queue budget.
+- **Affects:** firmware/docs/FRAME_STREAM.md; detailed evidence and remaining limits in DEBUG_LOG.md and output/firmware_build/usb_debug_validation_20261006.json.
+
+
+## 2026-10-06 - Interrupt-driven CDC and bounded live frame export
+
+- **Decision:** Retain native CDC bulk endpoint 4 and the existing LDF1 wire format. Use a 4 KiB owned staging ring, separate USB DMA buffer and completion-driven packet submission. The main producer copies at most 2 KiB per call; queue and USB ownership are serialized against reset/completion interrupts. Flush short tails/ZLP only at output boundaries. Epoch changes discard staged bytes; hosts resynchronize independently.
+- **CPU contract:** Slicing-by-four IEEE CRC with a 4 KiB RAM table; -O2 for project hot paths and the generated SDK USB dispatcher. Acquisition passes a VALID decoder result for its unchanged owned candidate, eliminating the second radar checksum pass. The ordinary API validates, and header/payload/raw CRCs remain mandatory. At two pending DMA records, reject the current export with ABORT reason 6 and continue input validation. Four-slot DMA ownership overflow still stops safely.
+- **Memory contract:** 88 KiB producer queue, generated together with configuration identity. Queue indices remain size_t and support crossing 64 KiB. Final link reservations are 24,320 main heap plus 11,648 secondary heap bytes; no PSRAM assumption. SDK-reported free heap is not trusted. Frame skips and explicit rejection remain permitted; retained frames must contain all 128 records.
+- **Evidence:** 159 host-validated complete frames in 30.003 s, ~680 kB/s compressed wire data; zero acquisition errors, output overflows or CPU-budget rejections in that run. Raw-pattern throughput ~790 kB/s, 29 exact frames. Reader pause/reopen recovers. Details and qualifications: firmware/docs/FRAME_STREAM.md and output/firmware_build/usb_optimized_validation_20261006.json.
+
+
+## 2026-10-06 - Extensible local live radar visualizer
+
+- **Decision:** Use a loopback Python server with NumPy processing and a browser Canvas UI. Reuse the LDF1 decoder as the sole integrity boundary; publish only complete paired frames. Discover native USB by VID/PID/serial and assert DTR without touching updater/debug UARTs.
+- **Flow contract:** Separate USB reading, decoding and processing. Bound the byte queue at 4 MiB and stop visibly on overflow. Keep only the latest pending processing frame, counting display drops independently of device export skips. A frozen or closed browser never pauses acquisition. Raw recordings preserve original wire bytes with hashes; snapshots preserve complete lane binaries.
+- **Extension contract:** Named processing stages consume a shared frame context and publish products with explicit units. Source/configuration changes clear references and history. Keep FFT-bin and slow-time-Hz axes until distance, velocity and angle calibration exists; do not label features as targets.
+- **Canonical guide:** docs/LIVE_RADAR_VIEWER.md. Firmware and wire format are unchanged.
+
+
+## 2026-10-06 - Distinguish firmware export protection from host invalidation
+
+- **Decision:** Retain valid LDF1 ABORT reasons in host decoder diagnostics and display buffer-full, CPU-backlog, other-abort and non-ABORT invalidation counts separately. Total rejected exports still includes all rejected candidates; no incomplete frame becomes displayable. Device telemetry updates on each validated BEGIN, even when no candidate completes. Active wire rate must not be zeroed solely because completed-frame age grows.
+- **Why:** A motion demonstration exposed both real firmware resource limits and misleading/stale viewer diagnostics. Clear counters identify the limit without treating it as a checksum failure or claiming the streaming limitation is fixed.
+- **Scope:** Host diagnostics only; no wire format, firmware, sample-retention or protective-threshold change. See DEBUG_LOG.md and docs/LIVE_RADAR_VIEWER.md for evidence and remaining work.
+
+
+## 2026-10-06 - Raw 16-chirp live export windows
+
+- **Decision:** Export physical chirps 0-15 from both receivers in fixed-size LDF1 raw mode, retaining all 512 complex samples per chirp. Continue validating all 64 physical chirps and skip whole frame starts while output drains. Declare 16 chirps in BEGIN; decoder/viewer support both 16 and 64.
+- **Why:** The user chose shorter captures after moving scenes repeatedly exceeded the compressed 64-chirp CPU/queue budget. A complete 67,100-byte raw export fits the existing 90,112-byte queue without USB service. Preserve all integrity checks and protective guards.
+- **Tradeoff:** Later 48 chirps are deliberately omitted; slow-time bins become about 52.1 Hz instead of 13.0 Hz at 1.2 ms/chirp. Radar configuration is unchanged.
+- **Supersedes:** The 128-record retained-frame requirement for this live profile in Interrupt-driven CDC and bounded live frame export. Full64 remains a build option.
+- **Affects:** firmware/docs/FRAME_STREAM.md, DSP_plan.md, docs/LIVE_RADAR_VIEWER.md.
+
+
+## 2026-10-06 - Preserve full spectrum with selectable central zoom
+
+- **Decision:** Default spectrum/history view to signed bins-16..16, with0..32 and full-256..255 options. Crop only at drawing time, retaining full FFT, history and raw samples. Keep axes uncalibrated and leave Doppler processing unchanged.
+- **Why:** Sampling/sweep experiments distinguish fixed outer tones from sweep-sensitive central structure that was compressed into a few screen pixels. Do not notch or label outer tones as targets.
+- **Firmware:** Sampling/slope profiles are diagnostics only; restore the archived raw16 baseline after comparison. No permanent RF-setting change.
+- **Affects:** docs/LIVE_RADAR_VIEWER.md; detailed bench evidence in DEBUG_LOG.md and output/radar_analysis/spur_four_way_comparison/.
+
+
+## 2026-10-06 - Live radar register control over native USB
+
+- **Decision:** Add LDC1 host commands on the CDC bulk OUT endpoint: READ, WRITE and REINIT for the radar's I2C registers, answered by LDF1 type-5 REPLY messages between frames. BEGIN's former reserved u16 becomes the register generation (every live WRITE/REINIT since boot). The viewer gains a Radar registers panel and identifies settings by build configuration plus generation.
+- **Why:** Access to every chip setting is a main purpose of the custom firmware; flashing one image per register experiment is too slow, and there is no chip documentation to work from. The user explicitly asked for no register, value, frequency or power restrictions: this is a home-laboratory instrument and the user takes responsibility for staying in the legal band.
+- **Integrity:** Writes run only in the inter-frame gap so no frame mixes settings; every frame states its generation; replies travel in the recorded wire stream. REINIT disarms DMA before power-cycling, so restarts never begin mid-record.
+- **Supersedes:** "The viewer never sends radar commands" (docs/LIVE_RADAR_VIEWER.md) and BEGIN reserved=0. Images without control still send generation 0 and ignore commands.
+- **Status (2026-10-06):** Installed as `firmware/build/stream-raw16-control5/update-two-wire.ufw`. The I2C read protocol (register byte, repeated start, two big-endian bytes) is verified: a 120-register dump matches every stock-written value (`output/live_radar/register_dump_20261006.json`). Final image `stream-raw16-control5`: all 128 registers 0x00-0x7F read repeatably with no lost commands; REINIT verified. Two SDK/chip constraints shape the design (DEBUG_LOG.md): the SDK bulk-OUT read may only be entered with a packet waiting, and some registers read slowly, so commands execute one transaction per inter-frame gap and the host keeps one command in flight.
+- **Affects:** firmware/include/ld2450_radar_control.h, src/radar_control.c, src/stream.c, src/app.c, target/br23/image/stream_app.c, firmware/tools/frame_stream.py, firmware/tools/build_image.py, tools/radar_viewer/, firmware/docs/FRAME_STREAM.md, docs/LIVE_RADAR_VIEWER.md.
+
+
+## 2026-10-06 - Software I/Q mismatch correction
+
+- **Decision:** Correct each receiver's I/Q gain and phase mismatch in the viewer pipeline, fitted on demand from a static scene (Calibrate I/Q), rather than by register trims. Raw samples, recordings and the waveform/constellation views stay uncorrected.
+- **Why:** The bench register sweep found no phase trim. The mirror is dominated by a quadrature phase error (-18 / -15 deg); 0x65 gain steps are 2.6 dB, too coarse for RX2's 0.8 dB gain error. The model alpha = (1 - u)/(1 + u) predicted every 0x65 step to 0.1 dB, and the correction lowers negative-bin energy by 15-16 dB.
+- **Scope:** Session-local and cleared on any settings-identity change, like the background reference. Not persisted or applied on the device; a future onboard stage could use the same two parameters per receiver.
+- **Evidence:** output/live_radar/register_sweep_20261006*.jsonl (two runs, 183/184 tests agree), register_experiments_20261006.json, docs/LIVE_RADAR_VIEWER.md.

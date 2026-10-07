@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-06",
+  "current_firmware": "raw-only synthetic paced USB bench, radar off",
+  "ufw_sha256": "4c7ef325f5ea3427ca6942030c990507f40bc470eaeffb48ffc16f625d294361",
+  "release": "firmware/releases/usb-raw-baseline-20261006",
+  "ctest_passed": 13,
+  "python_tests_passed": 34,
+  "raw_tests": {
+    "usb_raw_bench": {
+      "decoded": {
+        "source": "output\\stream_bench\\usb_raw_bench_capture\\stream.ldf",
+        "complete_frames": 27,
+        "rejected_frames": 1,
+        "protocol_errors": 0,
+        "parser_errors": 65,
+        "discarded_bytes": 1621,
+        "received_bytes": 7294976,
+        "stream_sha256": "88d9875451a0b35e7fb560df70df536efb49d8b47fff81f63841738a7fe59ea0"
+      },
+      "known_pattern": {
+        "complete_frames_exact": 27,
+        "raw_bytes_verified": 7105536,
+        "parser_error_locations": [
+          {
+            "input_offset": 64,
+            "new_errors": 64
+          }
+        ],
+        "incomplete_tail_bytes": 1557,
+        "final_parser_errors": 65,
+        "raw_only": true
+      }
+    },
+    "usb_raw_stall": {
+      "decoded": {
+        "source": "output\\stream_bench\\usb_raw_stall\\stream.ldf",
+        "complete_frames": 10,
+        "rejected_frames": 2,
+        "protocol_errors": 0,
+        "parser_errors": 2030,
+        "discarded_bytes": 2547,
+        "received_bytes": 2961408,
+        "stream_sha256": "3c7f47aec1bcd0ee2fc12b476bca0fdbaf6950ccc4a669d9eb014dc1a18b60f4"
+      },
+      "known_pattern": {
+        "complete_frames_exact": 10,
+        "parser_error_locations": [
+          [
+            16768,
+            2029
+          ]
+        ],
+        "incomplete_tail_bytes": 518
+      }
+    },
+    "usb_raw_reopen": {
+      "decoded": {
+        "source": "output\\stream_bench\\usb_raw_reopen\\stream.ldf",
+        "complete_frames": 11,
+        "rejected_frames": 1,
+        "protocol_errors": 0,
+        "parser_errors": 129,
+        "discarded_bytes": 724,
+        "received_bytes": 2949120,
+        "stream_sha256": "82502f911d1307c3c2d5e2cc43c24c5063a14ded1c22dd7082b7aea9401d45dd"
+      },
+      "known_pattern": {
+        "complete_frames_exact": 11,
+        "parser_error_locations": [
+          [
+            0,
+            33
+          ],
+          [
+            64,
+            31
+          ],
+          [
+            128,
+            64
+          ]
+        ],
+        "incomplete_tail_bytes": 596
+      }
+    }
+  },
+  "final_restart": {
+    "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\usb-raw-bench\\update-two-wire.ufw",
+    "sha256": "4c7ef325f5ea3427ca6942030c990507f40bc470eaeffb48ffc16f625d294361",
+    "port": "COM13",
+    "debug_port": "COM11",
+    "started_utc": "2026-10-06T21:28:57.420397+00:00",
+    "stop_report": false,
+    "upload_complete": true,
+    "read_requests": 50,
+    "reported_size": 0,
+    "loader_staged": true,
+    "device_error": null,
+    "pa9_bytes": 8867
+  },
+  "compressed_radar_status": "No DMA overruns in latest 3-second capture; 17 explicit queue aborts and no complete host frame.",
+  "clock_evidence": {
+    "reported_sys_hz": 240000000,
+    "reported_lsb_hz": 48000000,
+    "reported_timer_hz": 24000000,
+    "clk_con0": "1c3",
+    "clk_con2": "c53",
+    "sys_div": "400",
+    "independent_waveform_measured": false
+  },
+  "limits": [
+    "Synthetic raw test is not live radar acquisition.",
+    "Host read pause lost a region; root cause of that loss not established.",
+    "No physical cable unplug/replug test.",
+    "Physical heap/stack accounting still pending."
+  ]
+}

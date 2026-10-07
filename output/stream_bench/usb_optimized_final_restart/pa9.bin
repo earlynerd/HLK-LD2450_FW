@@ -1,0 +1,251 @@
+[00:00:51.986]single bank update
+[00:00:51.989][Info]: [UPDATE]<<<<update_type:5a04>>>>>>>>
+
+[00:00:51.995][Info]: [UPDATE]boot_offset:0 sfc_base:3000
+
+[00:00:52.065][Info]: [UPDATE]head crc verify ok
+
+[00:00:52.070][Info]: [UPDATE]match_name :flash.bin
+
+[00:00:52.075][Info]: [UPDATE]match_name :flash2.bin
+
+[00:00:52.080][Info]: [UPDATE]match_name :flash3.bin
+
+[00:00:52.085][Info]: [UPDATE]match_name :flash4.bin
+
+[00:00:52.090][Info]: [UPDATE]match flash bin num:4
+
+[00:00:52.095][Info]: [UPDATE]find file cnt:5
+
+[00:00:52.100][Info]: [UPDATE]local sector_align_mode:10
+
+[00:00:52.105][Info]: [UPDATE]flash_app_area_head adrr:60
+
+
+40 BE FF FF 00 30 00 00 FF FF FF FF 81 FF 00 00 
+61 70 70 5F 64 69 72 5F 68 65 61 64 00 FF FF FF 
+[00:00:52.120]tab length: 4
+[00:00:52.122][Info]: [UPDATE]read ufw flash_bin addr:400
+
+[00:00:52.160][Info]: [UPDATE]>>>>>ufw_flash_file_info:addr:400 len:30000
+
+[00:00:52.167][Info]: [UPDATE]flash_bin_addr:400
+
+[00:00:52.204][Info]: [UPDATE]find app code file
+
+[00:00:52.242][Info]: [UPDATE]user key decode succ
+
+[00:00:52.246][Info]: [UPDATE]find vm file head:30000 d000
+
+[00:00:52.266][Info]: [UPDATE]vid compare:0.01 0.01
+[00:00:52.270][Info]: [UPDATE]pid compare:AC635Nÿÿÿÿÿÿÿÿÿÿ AC635Nÿÿÿÿÿÿÿÿÿÿ
+[00:00:52.277][Info]: [UPDATE]loader_addr:306a0 len:3e460
+
+[00:00:52.315][Info]: [UPDATE]find target update type :uart_user.bin
+
+[00:00:52.322][Info]: [UPDATE]ota loader 0 crc verify ok
+
+[00:00:52.327][Info]: [UPDATE]ota loader 1 crc verify ok
+
+[00:00:52.332][Info]: [UPDATE]ota loader 2 crc verify ok
+
+[00:00:52.338][Info]: [UPDATE]ota loader 3 crc verify ok
+
+[00:00:52.343][Info]: [UPDATE]ota loader 4 crc verify ok
+
+[00:00:52.349][Info]: [UPDATE]ota loader 5 crc verify ok
+
+[00:00:52.354][Info]: [UPDATE]ota loader 6 crc verify ok
+
+[00:00:52.359][Info]: [UPDATE]ota loader 7 crc verify ok
+
+[00:00:52.365][Info]: [UPDATE]ota loader 8 crc verify ok
+
+[00:00:52.370]flash length error!!!
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+FF FF FF FF FF FF FF FF FF FF FF FF 
+[00:00:52.386]>>>loader_len:0x4621 res_area_len:0x100 total_len:0x5000
+[00:00:52.392][Info]: [UPDATE]new_fw_size:40000 flash_cap:100000 load_len:5000 local_fw_size:40000
+
+[00:00:52.401][Info]: [UPDATE]loader_suppose_addr:38000  valid_vm_start_addr:30000
+
+[00:00:52.409][Info]: [UPDATE]loader_area_addr:38000 len:5000
+
+[00:00:52.415][Info]: [UPDATE]erase_first_unit:30000 1000
+
+[00:00:52.420][Info]: [UPDATE]erase_sec_addr = 0x30000 1000
+
+[00:00:52.430][Info]: [UPDATE]erase_first_unit:38000 1000
+
+[00:00:52.440][Info]: [UPDATE]curr_erase:39000 bank_addr:38000 size:4000
+
+
+A9 5A FF FF 00 80 03 00 41 46 00 00 41 FF FF FF 
+4C 4F 41 44 45 52 2E 42 49 4E 00 72 65 73 65 72 
+[00:00:52.459]reserve_saddr:0x3cf00  loader_area_len:0x5000
+[00:00:52.464]vm_update_param.ota_addr:0x38000   type:0x5a04
+[00:00:52.470][Info]: [UPDATE]total_len:0x4621 + 0x0 = 0x4621
+
+[00:00:52.492][Info]: [UPDATE]remote_file:addr:6a295 local_addr:38020 len:4621
+
+[00:00:52.812][Info]: [UPDATE]SEC_ERASE:39000 1000
+
+[00:00:53.132][Info]: [UPDATE]SEC_ERASE:3a000 1000
+
+[00:00:53.452][Info]: [UPDATE]SEC_ERASE:3b000 1000
+
+[00:00:53.912][Info]: [UPDATE]---DOWNLOAD LOADER COMPLETE!
+
+[00:00:53.925][Info]: [UPDATE]verify_file-addr:38020 len:4621
+
+[00:00:53.933][Info]: [UPDATE]
+---loader all data verify ok:4ae 4ae
+
+[00:00:53.940][Info]: [UPDATE]loader_data_verify ok
+
+[00:00:53.945][Info]: [UPDATE]loader download err:0
+
+[00:00:53.961][Info]: [UPDATE]reser_addr:3cf00
+
+
+D5 41 04 5A 01 5A 41 54 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 
+00 E8 03 00 E8 03 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 80 03 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+[00:00:53.997][Info]: [UPDATE]writen conntent verify succ
+
+UPDATE: entering uart_user loaderÊ 
+BOOT: clocks ready; PA9 console ready
+
+[00:00:00.103]BOOT: sys=240000000 lsb=48000000 uart=48000000 UART0_BAUD=0
+
+[00:00:00.110]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[00:00:00.116]         setup_arch Oct  6 2026 15:06:31 
+
+[00:00:00.116]~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[00:00:00.117][Debug]: [CLOCK][-------------Clock Dump-----------]
+[00:00:00.123][Debug]: [CLOCK]---CHIP Ver. : 0x5e06
+[00:00:00.128][Debug]: [CLOCK]--Internal OSC CLK : 24000000
+[00:00:00.128][Debug]: [CLOCK]--OSC CLK : 0
+[00:00:00.138][Debug]: [CLOCK]--PLL SYS CLK : 240000000
+[00:00:00.138][Debug]: [CLOCK]--PLL ALNK CLK : 11294117
+[00:00:00.138][Debug]: [CLOCK]---SFC CLK : 240000000
+[00:00:00.143][Debug]: [CLOCK]---SPI CLK : 80000000
+[00:00:00.147][Debug]: [CLOCK]---HSB CLK : 240000000
+[00:00:00.147][Debug]: [CLOCK]---LSB CLK : 48000000
+[00:00:00.157][Debug]: [CLOCK]---P33 CLK : 24000000
+[00:00:00.157][Debug]: [CLOCK]--USB CLK : 48000000
+[00:00:00.166][Debug]: [CLOCK]--AUDIO CLK : 48000000
+[00:00:00.166][Debug]: [CLOCK]--UART CLK : 48000000
+[00:00:00.176][Debug]: [CLOCK]--BT CLK : 48000000
+[00:00:00.176][Debug]: [CLOCK]---SYS DVDD : 14
+[00:00:00.185][Debug]: [CLOCK]---VDC13    : 7
+[00:00:00.189][Debug]: [CLOCK]---RANGE  : 3
+[00:00:00.189][Debug]: [CLOCK]---TRIM SYS DVDD : 9
+[00:00:00.197][Debug]: [CLOCK]SFC_CON  : 007802b5
+[00:00:00.197][Debug]: [CLOCK]SFC_QCNT  : 0000001f
+[00:00:00.207][Debug]: [CLOCK]CACHE_CON  : 60f23120
+[00:00:00.207][Info]: [PMU]--Reset Source : 0x1
+[00:00:00.216][Info]: [PMU]P33 RESET
+[00:00:00.219]--P3 Reset Source : 0x40
+[00:00:00.219]SOFT RESET
+[00:00:00.220][Info]: [SDFILE]VM size: 0xd000 @ 0x30000
+[00:00:00.225]flash length error!!!
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+FF FF FF FF FF FF FF FF FF FF FF FF 
+[00:00:00.231][Info]: [SDFILE]disk capacity 1024 KB
+[00:00:00.235]last file_addr:3000 2ce9c
+[00:00:00.239]end_addr:30000
+
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+[00:00:00.246][Debug]: [SDFILE]sdfile mount succ
+[00:00:00.251][Info]: [VM]vm_info:addr:0x30000, len:0xd000, mode:0x0, max_items: 256
+[00:00:00.259][Info]: [VM]--func = vm_init--
+
+
+[00:00:00.263](error): <Error>: [VM]VM_ERR: fun:vm_init_check: line:263	err:vm_NOT_INIT
+
+
+[00:00:00.272][Info]: [VM]--vm_adr = 0x30000--
+
+[00:00:00.276][Info]: [VM]--vm_len = 0xd000--
+
+[00:00:00.280][Info]: [VM]--vm_mode = 0x0--
+
+[00:00:00.285][Info]: [VM]--vm_adr_ali = 0x30000--
+
+[00:00:00.289][Info]: [VM]--vm_len_ali = 0xc000--
+
+[00:00:00.294][Info]: [VM]--vm_mode = 0x0--
+
+[00:00:00.298][Info]: [VM]vm_area_a adr = 0x30000
+
+[00:00:00.303][Info]: [VM]vm_area_a len = 0x6000
+
+[00:00:00.308][Info]: [VM]vm_area_b adr = 0x36000
+
+[00:00:00.313][Info]: [VM]vm_area_b len = 0x6000
+
+[00:00:00.317][Info]: [VM]vm_area_a magic = 0xffffffff
+
+[00:00:00.322][Info]: [VM]vm_area_b magic = 0xffffffff
+
+[00:00:00.328][Info]: [VM]---vm_area_all_unused---
+vm_eraser
+
+[00:00:00.333][Info]: [VM]--func = vm_reset--
+
+[00:00:00.340][Info]: [VM]---VM_AREA_USING  = 0---
+
+[00:00:00.346][Info]: [VM]vm_find_all_index_last_updated_addr CRC_ERROR, maybe power down cause.
+
+[00:00:00.355][Info]: [VM]vm_crc = 0xff
+
+[00:00:00.359][Info]: [VM]crc_c = 0x1f
+
+[00:00:00.364][Info]: [VM]---VM_LAST_ADR= 0x30004---
+
+[00:00:00.369][Info]: [VM]vm_warning_line = 80 % 
+
+[00:00:00.374][Info]: [VM]VM_LAST_ADR = 0x30004     
+[00:00:00.379][Info]: [VM]VM_AREA_ADR(VM_AREA_USING)= 0x30000       
+[00:00:00.385][Info]: [VM]warning_adr = 0x4ccc
+
+[00:00:00.390][Info]: [VM]VM used 0 %
+
+[00:00:00.393][Debug]: [SDFILE]Open 0x1e0f4ba, [/cfg_tool.bin] Fail! (>_<)
+
+[00:00:00.400](error): <Error>: [CFG BIN]open mnt/sdfile/res/cfg_tool.bin fail
+
+BOOT: MCU power init
+[00:00:00.410][Info]: [PMU]VDDIO KEEP : 0
+[00:00:00.414][Info]: [PMU]VDC13 KEEP : 0
+[00:00:00.417][Info]: [PMU]SPI boot port : 0x0
+[00:00:00.422][Info]: [PMU]POWER_OSC_INFO: LRC - 00032000
+[00:00:00.427][Info]: [PMU]Delay n * uS: 00000240 / 00000240
+[00:00:00.434][Info]: [PMU]Prepare : 31(us) / Recover 4500(us) / 4500(us)
+[00:00:00.441][Info]: [PMU]Low power Tprp : 0x1 / Tcke : 0x90
+[00:00:00.446][Info]: [PMU]Low power Reserve time: 0x126 (tick) / 9187(us)
+[00:00:00.453][Info]: [PMU]power VDDIO : VDDIOM_VOL_32V / VDDIOW_VOL_24V
+BOOT: MCU power ready; radar held off
+BOOT: app_main reached
+[00:00:00.466][Info]: [UPDATE]update module init ok
+
+UPDATE: boot recovery window 3000 ms; radar held off
+[00:00:03.470][Info]: [USB]add desc cdc
+[00:00:03.473][Debug]: [USB]zalloc: usb_config_var = 24ac8
+
+[00:00:03.479]STREAM: init=0; native USB CDC; '?' stops/reports; UART recovery retained
+HLK-LD2450_FW radar experiment application 0.2
+RADAR: profile=stock-mode2-baseline; I2C=0x20; starting init
+
+[00:00:03.579](error): <Error>: [USB]usb reset
+
+
+[00:00:03.667](error): <Error>: [USB]usb reset
+

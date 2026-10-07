@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_raw_stall\\stream.ldf",
+  "complete_frames": 10,
+  "rejected_frames": 2,
+  "protocol_errors": 0,
+  "parser_errors": 2030,
+  "discarded_bytes": 2547,
+  "received_bytes": 2961408,
+  "stream_sha256": "3c7f47aec1bcd0ee2fc12b476bca0fdbaf6950ccc4a669d9eb014dc1a18b60f4"
+}

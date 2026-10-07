@@ -1,0 +1,14 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\usb-88k\\update-two-wire.ufw",
+  "sha256": "414b4691010320a0a591f43b088365f1bf0a7f01b219162c14c9e246d866bb89",
+  "port": "COM13",
+  "debug_port": "COM11",
+  "started_utc": "2026-10-06T22:03:18.596415+00:00",
+  "stop_report": false,
+  "upload_complete": true,
+  "read_requests": 417,
+  "reported_size": 184320,
+  "loader_staged": true,
+  "device_error": null,
+  "pa9_bytes": 8977
+}

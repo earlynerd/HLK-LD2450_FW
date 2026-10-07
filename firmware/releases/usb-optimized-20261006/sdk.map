@@ -1,0 +1,2132 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(crc16.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o (symbol from plugin) (__crc16_mutex_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(uart.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\6_console.o (symbol from plugin) (uart_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(usb.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\16_usb_config_stream.o (symbol from plugin) (usb_sof_clr_pnd)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(clock.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\1_peripherals.o (symbol from plugin) (clk_get)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(gpio.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\1_peripherals.o (symbol from plugin) (gpio_set_direction)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(timer.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\1_peripherals.o (symbol from plugin) (timer_get_ms)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(debug.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o (symbol from plugin) (debug_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(wdt.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o (symbol from plugin) (wdt_close)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(efuse.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\20_charge.o (symbol from plugin) (get_vbat_trim)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(p33.c.o)
+                              wdt.c.o (symbol from plugin) (p33_and_1byte)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(power_hw.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\4_uart_loader.o (symbol from plugin) (p33_soft_reset)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(power_wakeup.c.o)
+                              power_hw.c.o (symbol from plugin) (__hw_wakeup_port_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(rtc.c.o)
+                              power_wakeup.c.o (symbol from plugin) (rtc_port_pr_in)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(pmu_calibrate.c.o)
+                              power_hw.c.o (symbol from plugin) (get_vddiow_trim)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(power_port.c.o)
+                              power_hw.c.o (symbol from plugin) (spi_get_port)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(usb_phy.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\17_usb_device.o (symbol from plugin) (usb_slave_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(usb_setup.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\14_usb_stream.o (symbol from plugin) (usb_id2device)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(descriptor.c.o)
+                              usb_setup.c.o (symbol from plugin) (get_string_ee)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+                              (_start)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(vm.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o) (spi_for_maskrom_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(lp_timer_hw.c.o)
+                              power_hw.c.o (symbol from plugin) (__hw_nv_timer0_dump)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(lrc_hw.c.o)
+                              power_hw.c.o (symbol from plugin) (__get_lrc_hz)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(misc_hw.c.o)
+                              power_hw.c.o (symbol from plugin) (watchdog_close)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(encryption.c.o)
+                              vm.c.o (symbol from plugin) (doe)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(os_api.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\2_main.o (symbol from plugin) (os_time_dly)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(tasks.c.o)
+                              os_api.c.o (symbol from plugin) (xTaskCreate)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(main.c.o)
+                              tasks.c.o (symbol from plugin) (vApplicationIdleHook)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(list.c.o)
+                              tasks.c.o (symbol from plugin) (vListInitialise)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(queue.c.o)
+                              os_api.c.o (symbol from plugin) (xQueueGenericReset)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(syscfg_api.c.o)
+                              rtc.c.o (symbol from plugin) (syscfg_read)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(cfg_bin.c.o)
+                              syscfg_api.c.o (symbol from plugin) (syscfg_bin_enable)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(cfg_btif.c.o)
+                              syscfg_api.c.o (symbol from plugin) (syscfg_btif_enable)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(memory.c.o)
+                              power_hw.c.o (symbol from plugin) (malloc)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(port.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\4_uart_loader.o (symbol from plugin) (local_irq_disable)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(heap_mmu.c.o)
+                              tasks.c.o (symbol from plugin) (pvPortMalloc)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(hwi.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\15_stream_app.o (symbol from plugin) (request_irq)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(sbrk.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o (symbol from plugin) (memory_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(pmalloc.c.o)
+                              sbrk.c.o (symbol from plugin) (pmalloc_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(event.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\20_charge.o (symbol from plugin) (sys_event_notify)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(sdfile_new.c.o)
+                              cfg_btif.c.o (symbol from plugin) (sdfile_cpu_addr2flash_addr)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(vfs.c.o)
+                              sdfile_new.c.o (symbol from plugin) (mount)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(fat_compact.c.o)
+                              vfs.c.o (symbol from plugin) (__fat_fscan_subpath_or_pre_dir)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(tff.c.o)
+                              fat_compact.c.o (symbol from plugin) (get_powerof2)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(ff_opr.c.o)
+                              fat_compact.c.o (symbol from plugin) (ff_update_saveinfo)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(init.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o) (boot_info_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(puthex.c.o)
+                              power_hw.c.o (symbol from plugin) (putchar)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(log.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o (symbol from plugin) (log_flush)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(printf-stdarg.c.o)
+                              log.c.o (symbol from plugin) (print)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(task.c.o)
+                              event.c.o (symbol from plugin) (os_current_task)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(timer.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\20_charge.o (symbol from plugin) (sys_timer_add)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(app_core.c.o)
+                              init.c.o (symbol from plugin) (app_core_msg_handler)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(ASCII_lib.c.o)
+                              tff.c.o (symbol from plugin) (ASCII_ToUpper)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(circular_buf.c.o)
+                              event.c.o (symbol from plugin) (cbuf_read)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(vmalloc.c.o)
+                              sbrk.c.o (symbol from plugin) (vmm_init_)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(common.c.o)
+                              timer.c.o (symbol from plugin) (jiffies_half_msec)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(device_api.c.o)
+                              vfs.c.o (symbol from plugin) (dev_open)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(mbr.c.o)
+                              fat_compact.c.o (symbol from plugin) (mbr_scan)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(ffunicode.c.o)
+                              tff.c.o (symbol from plugin) (ff_wtoupper)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a(lbuf.c.o)
+                              log.c.o (symbol from plugin) (lbuf_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(update_main.c.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\4_uart_loader.o (symbol from plugin) (app_active_update_task_init)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(version.z.o)
+                              (lib_update_version)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(download_loop.c.o)
+                              update_main.c.o (symbol from plugin) (update_get_err_code)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(flash_fs_api.c.o)
+                              download_loop.c.o (symbol from plugin) (jl_file_head_valid_check)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(encrypt_api.c.o)
+                              download_loop.c.o (symbol from plugin) (decode_data_by_user_key)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-memcmp.o)
+                              vm.c.o (symbol from plugin) (memcmp)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strcat.o)
+                              ff_opr.c.o (symbol from plugin) (strcat)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strchr.o)
+                              sdfile_new.c.o (symbol from plugin) (strchr)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strcmp.o)
+                              clock.c.o (symbol from plugin) (strcmp)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strcpy.o)
+                              tasks.c.o (symbol from plugin) (strcpy)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strlen.o)
+                              C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\1_peripherals.o (symbol from plugin) (strlen)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strrchr.o)
+                              sdfile_new.c.o (symbol from plugin) (strrchr)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(key0_decode.c.o)
+                              init.c.o (symbol from plugin) (mkey_dummy_func)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-memcpy.o)
+                              C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o (memcpy)
+C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-memset.o)
+                              C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o (memset)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\0_uart_update_protocol.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\1_peripherals.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\2_main.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\3_config.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\4_uart_loader.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\5_bringup.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\6_console.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\7_board.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\8_radar_wire.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\9_radar_init.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\10_app.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\11_radar_config_generated.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\12_stream.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\13_acquisition.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\14_usb_stream.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\15_stream_app.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\16_usb_config_stream.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\17_usb_device.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\19_uart_dev.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\20_charge.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\21_pwm_led.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\22_lib_system_config.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\23_lib_driver_config.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\24_lib_update_config.o (symbol from plugin)
+ .text          0x00000000        0x0 crc16.c.o (symbol from plugin)
+ .text          0x00000000        0x0 uart.c.o (symbol from plugin)
+ .text          0x00000000        0x0 usb.c.o (symbol from plugin)
+ .text          0x00000000        0x0 clock.c.o (symbol from plugin)
+ .text          0x00000000        0x0 gpio.c.o (symbol from plugin)
+ .text          0x00000000        0x0 timer.c.o (symbol from plugin)
+ .text          0x00000000        0x0 debug.c.o (symbol from plugin)
+ .text          0x00000000        0x0 wdt.c.o (symbol from plugin)
+ .text          0x00000000        0x0 efuse.c.o (symbol from plugin)
+ .text          0x00000000        0x0 p33.c.o (symbol from plugin)
+ .text          0x00000000        0x0 power_hw.c.o (symbol from plugin)
+ .text          0x00000000        0x0 power_wakeup.c.o (symbol from plugin)
+ .text          0x00000000        0x0 rtc.c.o (symbol from plugin)
+ .text          0x00000000        0x0 pmu_calibrate.c.o (symbol from plugin)
+ .text          0x00000000        0x0 power_port.c.o (symbol from plugin)
+ .text          0x00000000        0x0 usb_phy.c.o (symbol from plugin)
+ .text          0x00000000        0x0 usb_setup.c.o (symbol from plugin)
+ .text          0x00000000        0x0 descriptor.c.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+ .text          0x00000000        0x0 vm.c.o (symbol from plugin)
+ .text          0x00000000        0x0 lp_timer_hw.c.o (symbol from plugin)
+ .text          0x00000000        0x0 lrc_hw.c.o (symbol from plugin)
+ .text          0x00000000        0x0 misc_hw.c.o (symbol from plugin)
+ .text          0x00000000        0x0 encryption.c.o (symbol from plugin)
+ .text          0x00000000        0x0 os_api.c.o (symbol from plugin)
+ .text          0x00000000        0x0 tasks.c.o (symbol from plugin)
+ .text          0x00000000        0x0 main.c.o (symbol from plugin)
+ .text          0x00000000        0x0 list.c.o (symbol from plugin)
+ .text          0x00000000        0x0 queue.c.o (symbol from plugin)
+ .text          0x00000000        0x0 syscfg_api.c.o (symbol from plugin)
+ .text          0x00000000        0x0 cfg_bin.c.o (symbol from plugin)
+ .text          0x00000000        0x0 cfg_btif.c.o (symbol from plugin)
+ .text          0x00000000        0x0 memory.c.o (symbol from plugin)
+ .text          0x00000000        0x0 port.c.o (symbol from plugin)
+ .text          0x00000000        0x0 heap_mmu.c.o (symbol from plugin)
+ .text          0x00000000        0x0 hwi.c.o (symbol from plugin)
+ .text          0x00000000        0x0 sbrk.c.o (symbol from plugin)
+ .text          0x00000000        0x0 pmalloc.c.o (symbol from plugin)
+ .text          0x00000000        0x0 event.c.o (symbol from plugin)
+ .text          0x00000000        0x0 sdfile_new.c.o (symbol from plugin)
+ .text          0x00000000        0x0 vfs.c.o (symbol from plugin)
+ .text          0x00000000        0x0 fat_compact.c.o (symbol from plugin)
+ .text          0x00000000        0x0 tff.c.o (symbol from plugin)
+ .text          0x00000000        0x0 ff_opr.c.o (symbol from plugin)
+ .text          0x00000000        0x0 init.c.o (symbol from plugin)
+ .text          0x00000000        0x0 puthex.c.o (symbol from plugin)
+ .text          0x00000000        0x0 log.c.o (symbol from plugin)
+ .text          0x00000000        0x0 printf-stdarg.c.o (symbol from plugin)
+ .text          0x00000000        0x0 task.c.o (symbol from plugin)
+ .text          0x00000000        0x0 timer.c.o (symbol from plugin)
+ .text          0x00000000        0x0 app_core.c.o (symbol from plugin)
+ .text          0x00000000        0x0 ASCII_lib.c.o (symbol from plugin)
+ .text          0x00000000        0x0 circular_buf.c.o (symbol from plugin)
+ .text          0x00000000        0x0 vmalloc.c.o (symbol from plugin)
+ .text          0x00000000        0x0 common.c.o (symbol from plugin)
+ .text          0x00000000        0x0 device_api.c.o (symbol from plugin)
+ .text          0x00000000        0x0 mbr.c.o (symbol from plugin)
+ .text          0x00000000        0x0 ffunicode.c.o (symbol from plugin)
+ .text          0x00000000        0x0 lbuf.c.o (symbol from plugin)
+ .text          0x00000000        0x0 update_main.c.o (symbol from plugin)
+ .text          0x00000000        0x0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(version.z.o)
+ .text          0x00000000        0x0 download_loop.c.o (symbol from plugin)
+ .text          0x00000000        0x0 flash_fs_api.c.o (symbol from plugin)
+ .text          0x00000000        0x0 encrypt_api.c.o (symbol from plugin)
+ .text          0x00000000       0x38 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-memcmp.o)
+ .text          0x00000000       0x18 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strcat.o)
+ .text          0x00000000       0xa0 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strcmp.o)
+ .text          0x00000000       0x6e C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strcpy.o)
+ .text          0x00000000        0xc C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strlen.o)
+ .text          0x00000000        0x0 key0_decode.c.o (symbol from plugin)
+ .text          0x00000000       0xc2 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-memcpy.o)
+ .text          0x00000000       0x2c C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-memset.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+psram            0x00800000         0x00200000         xrw
+code0            0x01e00120         0x00040000         xr
+ram0             0x00000000         0x0002bf00         xrw
+ram1             0x0002c000         0x00003f80         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\0_uart_update_protocol.o
+LOAD C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\1_peripherals.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\2_main.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\3_config.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\4_uart_loader.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\5_bringup.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\6_console.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\7_board.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\8_radar_wire.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\9_radar_init.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\10_app.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\11_radar_config_generated.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\12_stream.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\13_acquisition.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\14_usb_stream.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\15_stream_app.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\16_usb_config_stream.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\17_usb_device.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\18_setup.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\19_uart_dev.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\20_charge.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\21_pwm_led.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\22_lib_system_config.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\23_lib_driver_config.o
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\24_lib_update_config.o
+START GROUP
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\system.a
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libm.a
+LOAD C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libcompiler-rt.a
+END GROUP
+                0x0002c000                RAM1_LIMIT_L = 0x2c000
+                0x00030000                RAM1_LIMIT_H = 0x30000
+                0x00000080                UPDATA_SIZE = 0x80
+                0x0002ff80                UPDATA_BEG = (RAM1_LIMIT_H - UPDATA_SIZE)
+                0x0002c000                RAM1_BEGIN = RAM1_LIMIT_L
+                0x0002ff80                RAM1_END = (RAM1_LIMIT_H - UPDATA_SIZE)
+                0x00003f80                RAM1_SIZE = (RAM1_END - RAM1_BEGIN)
+                0x00000000                RAM_LIMIT_L = 0x0
+                0x0002c000                RAM_LIMIT_H = 0x2c000
+                0x00000100                ISR_SIZE = 0x100
+                0x0002bf00                ISR_BASE = (RAM_LIMIT_H - ISR_SIZE)
+                0x00000000                RAM_BEGIN = RAM_LIMIT_L
+                0x0002bf00                RAM_END = (RAM_LIMIT_H - ISR_SIZE)
+                0x0002bf00                RAM_SIZE = (RAM_END - RAM_BEGIN)
+                0x00001400                BANK_SIZE = 0x1400
+                0x00800000                PSRAM_BEG = 0x800000
+                0x00200000                PSRAM_SIZE = 0x200000
+                0x01e000c0                CODE_BEG = 0x1e000c0
+                0x000f9000                UPDATA_BREDR_BASE_BEG = 0xf9000
+                0x00000003                MIC_EFFECT_EQ_SECTION = 0x3
+                0x0000000d                EQ_SECTION_NUM = (0xa + MIC_EFFECT_EQ_SECTION)
+                0x001127a4                memmem = 0x1127a4
+                0x001127a8                memcpy = 0x1127a8
+                0x001127ac                memmove = 0x1127ac
+                0x001127b0                memcmp = 0x1127b0
+                0x001127b4                memset = 0x1127b4
+                0x001127b8                strcmp = 0x1127b8
+                0x001127bc                strcpy = 0x1127bc
+                0x001127c0                strlen = 0x1127c0
+                0x001127c4                strncmp = 0x1127c4
+                0x001127c8                strstr = 0x1127c8
+                0x001127cc                flush_dcache = 0x1127cc
+                0x001127d0                flushinv_dcache = 0x1127d0
+                0x001127d4                sfc_suspend = 0x1127d4
+                0x001127d8                sfc_resume = 0x1127d8
+                0x001127e0                chip_crc16 = 0x1127e0
+                0x001127f0                nvram_set_boot_state = 0x1127f0
+                0x0002bf00                _IRQ_MEM_ADDR = 0x2bf00
+                0x0002bdc0                _MASK_MEM_BEGIN = 0x2bdc0
+                0x0000012c                _MASK_MEM_SIZE = 0x12c
+                0x00800000                . = ORIGIN (psram)
+
+.psram_text     0x00800000        0x0
+
+.psram
+                0x01e00120                . = ORIGIN (code0)
+
+.text           0x01e00120    0x14390
+                0x01e00120                text_code_begin = .
+                [!provide]                PROVIDE (text_rodata_begin, .)
+ *(.startup.text)
+ .startup.text  0x01e00120       0x9a C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+                0x01e00120                _start
+                0x01e001ba                bank_stub_start = .
+ *(.bank.stub.*)
+                0x00000000                bank_stub_size = (. - bank_stub_start)
+ *(.aac_const)
+ *(.aac_code)
+ *(.alac_const)
+ *(.alac_code)
+ *(.alac_dec_code)
+ *(.bt_aac_dec_eng_const)
+ *(.bt_aac_dec_eng_code)
+ *(.bt_aac_dec_core_code)
+ *(.bt_aac_dec_core_sparse_code)
+ *(.dts_dec_const)
+ *(.gpio_ram)
+ *fill*         0x01e001ba        0x2 
+ .gpio_ram      0x01e001bc      0x3e4 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.LED_code)
+ *(.LED_const)
+                0x01e005a0                . = ALIGN (0x4)
+ *(.usr_timer_const)
+ *(.usr_timer_code)
+ .usr_timer_code
+                0x01e005a0      0x2fa C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.timer_const)
+ *(.timer_code)
+ *(.cbuf_const)
+ *(.cbuf_code)
+ .cbuf_code     0x01e0089a       0x92 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.fm_data_code)
+ *(.fm_data_const)
+                0x01e0092c                . = ALIGN (0x4)
+ *(.cvsd_const)
+ *(.cvsd_code)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                gsensor_dev_begin = .
+ *(.gsensor_dev)
+                0x01e0092c                gsensor_dev_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                hrsensor_dev_begin = .
+ *(.hrsensor_dev)
+                0x01e0092c                hrsensor_dev_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                fm_dev_begin = .
+ *(.fm_dev)
+                0x01e0092c                fm_dev_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                fm_emitter_dev_begin = .
+ *(.fm_emitter_dev)
+                0x01e0092c                fm_emitter_dev_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                tool_interface_begin = .
+ *(.tool_interface)
+                0x01e0092c                tool_interface_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                cmd_interface_begin = .
+ *(.eff_cmd)
+                0x01e0092c                cmd_interface_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                chargeIc_dev_begin = .
+ *(.chargeIc_dev)
+                0x01e0092c                chargeIc_dev_end = .
+                0x01e0092c                . = ALIGN (0x4)
+ *(.opcore_table_maskrom)
+ *(.bfilt_table_maskroom)
+ *(.opcore_maskrom)
+ *(.bfilt_code)
+ *(.bfilt_const)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                btctler_code_start = .
+                0x01e0092c                BTCTLER_CONTROLLER_CODE_START = .
+ *(.bt_rf_const)
+ *(.bt_rf_code)
+ *(.vendor_manager_const)
+ *(.vendor_manager_code)
+ *(.device_manager_const)
+ *(.device_manager_code)
+ *(.hci_controller_const)
+ *(.hci_controller_code)
+ *(.hci_interface_const)
+ *(.hci_interface_code)
+                0x00000000                BTCTLER_CONTROLLER_CODE_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_CODE_START))
+                0x01e0092c                BTCTLER_LE_CONTROLLER_CODE_START = .
+ *(.ble_rf_const)
+ *(.ble_rf_code)
+ *(.ble_ll_const)
+ *(.ble_ll_code)
+ *(.ble_hci_const)
+ *(.ble_hci_code)
+                0x00000000                BTCTLER_LE_CONTROLLER_CODE_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_CODE_START))
+                0x01e0092c                BTCTLER_CL_CODE_START = .
+ *(.bredr_irq)
+ *(.bredr_irq_code)
+ *(.bredr_irq_const)
+ *(.classic_lmp_const)
+ *(.classic_lmp_linkbulk_const)
+ *(.classic_lmp_code)
+ *(.classic_lmp_linkbulk_code)
+ *(.classic_hci_const)
+ *(.classic_hci_code)
+                0x01e0092c                LMP_ENC_CODE_START = .
+ *(.classic_lmp_auth_const)
+ *(.classic_lmp_bigint_const)
+ *(.classic_lmp_crypt_const)
+ *(.classic_lmp_ecdh_const)
+ *(.classic_lmp_hmac_const)
+ *(.classic_lmp_auth_code)
+ *(.classic_lmp_bigint_code)
+ *(.classic_lmp_crypt_code)
+ *(.classic_lmp_ecdh_code)
+ *(.classic_lmp_hmac_code)
+                0x00000000                LMP_ENC_CODE_SIZE = ABSOLUTE ((. - LMP_ENC_CODE_START))
+ *(.classic_rf_const)
+ *(.classic_rf_code)
+ *(.classic_bb_const)
+ *(.classic_bb_code)
+                0x00000000                BTCTLER_CL_CODE_SIZE = ABSOLUTE ((. - BTCTLER_CL_CODE_START))
+                0x01e0092c                . = ALIGN (0x4)
+ *(.classic_tws_const)
+ *(.classic_tws_code)
+ *(.classic_tws_code.esco)
+ *(.tws_media_sync_code)
+ *(.tws_media_sync_const)
+ *(.tws_data_forward_code)
+ *(.tws_data_forward_const)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                tws_func_stub_begin = .
+ *(.tws_func_stub)
+                0x01e0092c                tws_func_stub_end = .
+ *(.lmp_irq_code)
+ *(.link_bulk_code)
+ *(.frame_irq_code)
+                0x01e0092c                . = ALIGN (0x4)
+ *(.link_task_const)
+ *(.link_task_code)
+                0x01e0092c                . = ALIGN (0x4)
+ *(.classic_irq_const)
+ *(.classic_irq_code)
+                0x01e0092c                . = ALIGN (0x4)
+ *(.tws_irq_code)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                tws_sync_call_begin = .
+ *(.tws_sync_call)
+                0x01e0092c                tws_sync_call_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                tws_sync_channel_begin = .
+ *(.tws_sync_channel.0)
+ *(.tws_sync_channel.1)
+ *(.tws_sync_channel.2)
+ *(.tws_sync_channel.3)
+ *(.tws_sync_channel.4)
+ *(.tws_sync_channel.5)
+ *(.tws_sync_channel.6)
+ *(.tws_sync_channel.7)
+ *(.tws_sync_channel.8)
+ *(.tws_sync_channel.9)
+ *(.tws_sync_channel.10)
+ *(.tws_sync_channel.11)
+ *(.tws_sync_channel.12)
+ *(.tws_sync_channel.13)
+                0x01e0092c                tws_sync_channel_end = .
+                0x01e0092c                btctler_code_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                btstack_code_start = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                a2dp_source_media_codec_begin = .
+ *(.a2dp_source_media_codec)
+                0x01e0092c                a2dp_source_media_codec_end = .
+                0x01e0092c                a2dp_sink_media_probe_begin = .
+ *(.a2dp_sink_media_probe)
+                0x01e0092c                a2dp_sink_media_probe_end = .
+                0x01e0092c                a2dp_sink_media_codec_begin = .
+ *(.a2dp_sink_media_codec)
+                0x01e0092c                a2dp_sink_media_codec_end = .
+                0x01e0092c                a2dp_event_handler_begin = .
+ *(.a2dp_event_handler)
+                0x01e0092c                a2dp_event_handler_end = .
+                0x01e0092c                sdp_record_item_begin = .
+ *(.sdp_record_item)
+                0x01e0092c                sdp_record_item_end = .
+                0x01e0092c                bt_sleep_begin = .
+ *(.bt_sleep)
+                0x01e0092c                bt_sleep_end = .
+ *(.bt_stack_const)
+ *(.bt_stack_code)
+ *(.ble_db_const)
+ *(.ble_db_code)
+ *(.ble_sm_const)
+ *(.ble_sm_code)
+ *(.ble_att_const)
+ *(.ble_att_code)
+ *(.ble_gatt_const)
+ *(.ble_gatt_code)
+                0x01e0092c                BTSTACK_LE_HOST_MESH_CODE_START = .
+ *(.ble_mesh_code)
+ *(.ble_mesh_tinycrypt_code)
+ *(.ble_mesh_const)
+ *(.ble_mesh_tinycrypt_const)
+                0x00000000                BTSTACK_LE_HOST_MESH_CODE_SIZE = ABSOLUTE ((. - BTSTACK_LE_HOST_MESH_CODE_START))
+                0x01e0092c                btstack_code_end = .
+                0x01e0092c                . = ALIGN (0x4)
+                0x00000000                BTSTACK_CODE_TOTAL_SIZE = (btstack_code_end - btstack_code_start)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                . = ALIGN (0x4)
+                0x01e0092c                system_text_start = .
+                0x01e0092c                _device_node_begin = .
+                0x01e0092c                PROVIDE (device_node_begin, .)
+ *(.device)
+                0x01e0092c                _device_node_end = .
+                0x01e0092c                PROVIDE (device_node_end, .)
+                0x01e0092c                config_target_begin = .
+                [!provide]                PROVIDE (config_target_begin, .)
+ *(.config_target)
+                0x01e0092c                config_target_end = .
+                [!provide]                PROVIDE (config_target_end, .)
+                0x01e0092c                system_code_begin = .
+ *(.system.*.text)
+ .system.lbuf.text
+                0x01e0092c      0x670 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.printf.text
+                0x01e00f9c      0x93e C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.cpu.text
+                0x01e018da       0x8a C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.timer.text
+                0x01e01964      0x2aa C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.cfg_tool.text
+                0x01e01c0e      0x594 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.fs.text
+                0x01e021a2     0x1542 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.device.text
+                0x01e036e4       0x8a C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.event.text
+                0x01e0376e      0x338 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.cbuf.text
+                0x01e03aa6        0xe C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.task.text
+                0x01e03ab4       0x84 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.ascii.text
+                0x01e03b38       0x3a C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .system.init.text
+                0x01e03b72      0x11a C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03b72                boot_info_init
+                0x01e03b9c                main
+ .system.app_core.text
+                0x01e03c8c      0x1d0 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03e5c                system_code_end = .
+                0x01e03e5c                . = ALIGN (0x4)
+                0x00003530                system_code_size = (system_code_end - system_code_begin)
+                0x01e03e5c                vfs_ops_begin = .
+ *(.vfs_operations)
+ .vfs_operations
+                0x01e03e5c       0x74 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03e5c                sdfile_vfs_ops
+                0x01e03ed0                vfs_ops_end = .
+                0x01e03ed0                _lib_version_begin = .
+                [!provide]                PROVIDE (lib_version_begin, .)
+ *(.lib_version)
+ .lib_version   0x01e03ed0        0xc C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03ed0                __version_sdfile
+                0x01e03ed4                __version_fs
+                0x01e03ed8                __version_fatfs
+                0x01e03edc                _lib_version_end = .
+                [!provide]                PROVIDE (lib_version_end, .)
+                0x01e03edc                _initcall_begin = .
+                0x01e03edc                PROVIDE (initcall_begin, .)
+ *(.initcall)
+ .initcall      0x01e03edc        0x4 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03edc                __initcall_ld2450_board_power_init
+                0x01e03ee0                _initcall_end = .
+                0x01e03ee0                PROVIDE (initcall_end, .)
+                0x01e03ee0                _early_initcall_begin = .
+                0x01e03ee0                PROVIDE (early_initcall_begin, .)
+ *(.early.initcall)
+ .early.initcall
+                0x01e03ee0        0x8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03ee0                __initcall_sys_event_init
+                0x01e03ee4                __initcall_sdfile_init
+                0x01e03ee8                _early_initcall_end = .
+                0x01e03ee8                PROVIDE (early_initcall_end, .)
+                0x01e03ee8                _late_initcall_begin = .
+                0x01e03ee8                PROVIDE (late_initcall_begin, .)
+ *(.late.initcall)
+ .late.initcall
+                0x01e03ee8        0x8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03ee8                __initcall_check_otp_data
+                0x01e03eec                __initcall_sdk_meky_check
+                0x01e03ef0                _late_initcall_end = .
+                0x01e03ef0                PROVIDE (late_initcall_end, .)
+                0x01e03ef0                _platform_initcall_begin = .
+                0x01e03ef0                PROVIDE (platform_initcall_begin, .)
+ *(.platform.initcall)
+ .platform.initcall
+                0x01e03ef0        0x4 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03ef0                __initcall_syscfg_tools_init
+                0x01e03ef4                _platform_initcall_end = .
+                0x01e03ef4                PROVIDE (platform_initcall_end, .)
+                0x01e03ef4                _module_initcall_begin = .
+                0x01e03ef4                PROVIDE (module_initcall_begin, .)
+ *(.module.initcall)
+                0x01e03ef4                _module_initcall_end = .
+                0x01e03ef4                PROVIDE (module_initcall_end, .)
+                0x01e03ef4                _sys_event_handler_begin = .
+                0x01e03ef4                PROVIDE (sys_event_handler_begin, .)
+ *(.sys_event.4.handler)
+ *(.sys_event.3.handler)
+ *(.sys_event.2.handler)
+ *(.sys_event.1.handler)
+ *(.sys_event.0.handler)
+                0x01e03ef4                _sys_event_handler_end = .
+                0x01e03ef4                PROVIDE (sys_event_handler_end, .)
+                0x01e03ef4                _syscfg_arg_begin = .
+                [!provide]                PROVIDE (syscfg_arg_begin, .)
+ *(.syscfg.arg)
+                0x01e03ef4                _syscfg_arg_end = .
+                [!provide]                PROVIDE (syscfg_arg_end, .)
+                0x01e03ef4                _syscfg_handler_begin = .
+                [!provide]                PROVIDE (syscfg_handler_begin, .)
+ *(.syscfg.handler)
+                0x01e03ef4                _syscfg_handler_end = .
+                [!provide]                PROVIDE (syscfg_handler_end, .)
+                0x01e03ef4                _syscfg_ops_begin = .
+                0x01e03ef4                PROVIDE (syscfg_ops_begin, .)
+ *(.syscfg.2.ops)
+ .syscfg.2.ops  0x01e03ef4       0x1c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03ef4                cfg_btif
+ *(.syscfg.1.ops)
+ .syscfg.1.ops  0x01e03f10       0x1c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03f10                cfg_vm
+ *(.syscfg.0.ops)
+ .syscfg.0.ops  0x01e03f2c       0x1c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03f2c                cfg_bin
+                0x01e03f48                _syscfg_ops_end = .
+                0x01e03f48                PROVIDE (syscfg_ops_end, .)
+                0x01e03f48                _server_info_begin = .
+                [!provide]                PROVIDE (server_info_begin, .)
+ *(.server_info)
+                0x01e03f48                _server_info_end = .
+                [!provide]                PROVIDE (server_info_end, .)
+                0x01e03f48                _bus_device_begin = .
+                [!provide]                PROVIDE (bus_device_begin, .)
+ *(.bus_device)
+                0x01e03f48                _bus_device_end = .
+                [!provide]                PROVIDE (bus_device_end, .)
+                0x01e03f48                _sys_power_hal_ops_begin = .
+                [!provide]                PROVIDE (sys_power_hal_ops_begin, .)
+ *(.sys_power_hal_ops)
+                0x01e03f48                _sys_power_hal_ops_end = .
+                [!provide]                PROVIDE (sys_power_hal_ops_end, .)
+                0x01e03f48                . = ALIGN (0x4)
+                0x01e03f48                lp_target_begin = .
+                [!provide]                PROVIDE (lp_target_begin, .)
+ *(.lp_target)
+ .lp_target     0x01e03f48        0x8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e03f48                usr_systimer_lp_target
+                0x01e03f50                lp_target_end = .
+                [!provide]                PROVIDE (lp_target_end, .)
+                0x01e03f50                . = ALIGN (0x4)
+                0x01e03f50                deepsleep_target_begin = .
+                [!provide]                PROVIDE (deepsleep_target_begin, .)
+ *(.deepsleep_target)
+                0x01e03f50                deepsleep_target_end = .
+                [!provide]                PROVIDE (deepsleep_target_end, .)
+                0x01e03f50                crypto_begin = .
+ *(.crypto_ecdh_code)
+ *(.crypto_ecdh_const)
+ *(.crypto_bigint_code)
+ *(.crypto_bigint_const)
+ *(.crypto_code)
+ *(.crypto_const)
+ *(.ECDH_sample_code)
+ *(.ECDH_sample_const)
+ *(.uECC_code)
+ *(.uECC_const)
+ *(.hmac_code)
+ *(.hmac_const)
+ *(.hash_sample_code)
+ *(.hash_sample_const)
+ *(.aes_cmac_sample_code)
+ *(.aes_cmac_sample_const)
+                0x01e03f50                crypto_end = .
+                0x00000000                crypto_size = (. - crypto_begin)
+ *(.mem_code)
+ .mem_code      0x01e03f50      0x5e8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.mem_const)
+ *(.os_port_code)
+ .os_port_code  0x01e04538      0x2f0 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.os_port_const)
+ .os_port_const
+                0x01e04828       0x24 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e0484c                __movable_function_start = .
+ *(movable.text.*)
+ *(movable.stub.*)
+ *(movable.region.*)
+                0x01e0484c                __movable_function_end = .
+                0x00000000                __movable_function_size = (__movable_function_end - __movable_function_start)
+                0x01e0484c                system_text_end = .
+                0x00003f20                system_code_total_size = (system_text_end - system_text_start)
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                lcd_interface_begin = .
+ *(.lcd_if_info)
+                0x01e0484c                lcd_interface_end = .
+                0x01e0484c                ui_style_begin = .
+ *(.ui_style)
+                0x01e0484c                ui_style_end = .
+                0x01e0484c                elm_event_handler_begin_JL = .
+ *(.elm_event_handler_JL)
+                0x01e0484c                elm_event_handler_end_JL = .
+                0x01e0484c                elm_event_handler_begin_UPGRADE = .
+ *(.elm_event_handler_UPGRADE)
+                0x01e0484c                elm_event_handler_end_UPGRADE = .
+                0x01e0484c                elm_event_handler_begin_DIAL = .
+ *(.elm_event_handler_DIAL)
+                0x01e0484c                elm_event_handler_end_DIAL = .
+                0x01e0484c                control_event_handler_begin = .
+ *(.control_event_handler)
+                0x01e0484c                control_event_handler_end = .
+                0x01e0484c                control_ops_begin = .
+ *(.control_ops)
+                0x01e0484c                control_ops_end = .
+                0x01e0484c                battery_notify_begin = .
+ *(.battery_notify)
+                0x01e0484c                battery_notify_end = .
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                media_text_start = .
+                0x01e0484c                . = ALIGN (0x4)
+ *(.dns_16k_data)
+ *(.dns_8k_data)
+ *(.jlsp_const)
+ *(.jlsp_code)
+ *(.aec_code)
+ *(.aec_const)
+ *(.der_code)
+ *(.der_const)
+ *(.nlp_code)
+ *(.nlp_const)
+ *(.qmf_code)
+ *(.qmf_const)
+ *(.bt_audioplc_sparse_code)
+ *(.bt_audioplc_code)
+ *(.bt_audioplc_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.res_code)
+ *(.res_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.ns_code)
+ *(.ns_const)
+ *(.opcore_maskrom)
+ *(.bark_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.pcm_code)
+ *(.pcm_const)
+ *(.g729_code)
+ *(.g729_const)
+ *(.g726_code)
+ *(.g726_const)
+ *(.wtg_dec_code)
+ *(.wtg_dec_const)
+ *(.wtg_dec_sparse_code)
+ *(.wtg_dec_sparse_const)
+ *(.wtgv2_code)
+ *(.wtgv2_const)
+ *(.wtgv2dec_code)
+ *(.wtgv2dec_const)
+ *(.wtgv2dec_str)
+ *(.wtg_decv2_sparse_code)
+ *(.bfilt_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.mp3_decstream_const)
+ *(.mp3_decstream_code)
+ *(.mp3_decstream_sparse_code)
+ *(.mp3_decstream_sparse_const)
+ *(.mp3_dec_sparse_code)
+ *(.mp3_dec_sparse_const)
+ *(.mp3_dec_code)
+ *(.mp3_dec_const)
+ *(.mp3_const)
+ *(.mp3_code)
+ *(.msbc_code)
+ *(.msbc_const)
+ *(.mty_code)
+ *(.mty_const)
+ *(.mp3tsy_dec_code)
+ *(.mp3tsy_dec_const)
+ *(.mp3tsy_dec_sparse_code)
+ *(.mp3tsy_dec_sparse_const)
+ *(.sbc_code)
+ *(.sbc_const)
+ *(.sine_code)
+ *(.sine_const)
+ *(.wma_code)
+ *(.wma_const)
+ *(.wma_dec_code)
+ *(.wma_dec_const)
+ *(.wma_dec_sparse_code)
+ *(.wma_dec_sparse_const)
+ *(.wma_decstream_const)
+ *(.wma_decstream_code)
+ *(.wma_decstream_sparse_code)
+ *(.wma_decstream_sparse_const)
+ *(.amr_code)
+ *(.amr_const)
+ *(.midi_code)
+ *(.midi_const)
+ *(.audio_decoder_code)
+ *(.audio_decoder_const)
+ *(.mp3_encode_code)
+ *(.mp3_encode_const)
+ *(.media_device_code)
+ *(.media_device_const)
+ *(.audio_encoder_code)
+ *(.audio_encoder_const)
+ *(.mixer_code)
+ *(.mixer_const)
+ *(.stream_code)
+ *(.stream_const)
+ *(.dec_server_code)
+ *(.dec_server_const)
+ *(.rec_server_code)
+ *(.rec_server_const)
+ *(.auto_mute_code)
+ *(.auto_mute_const)
+ *(.plc_code)
+ *(.plc_const)
+ *(.wireless_sync_code)
+ *(.wireless_sync_const)
+ *(.fft_code)
+ *(.fft_const)
+ *(.mp3_enc_code)
+ *(.mp3_enc_const)
+ *(.mp3_enc_sparse_code)
+ *(.mp3_enc_sparse_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.mp2_encode_code)
+ *(.mp2_encode_const)
+ *(.mp2_encode_sparse_code)
+ *(.mp2_encode_sparse_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.adpcm_encode_code)
+ *(.adpcm_encode_const)
+ *(.adpcm_encode_sparse_code)
+ *(.adpcm_encode_sparse_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.m4a_dec_sparse_code)
+ *(.m4a_dec_sparse_const)
+ *(.aac_dec_sparse_code)
+ *(.aac_dec_sparse_const)
+ *(.bt_aac_dec_core_const)
+ *(.amr_dec_const)
+ *(.dts_dec_ff_const)
+ *(.dts_dec_sparse_code)
+ *(.dts_dec_sparse_const)
+ *(.res_sparse_code)
+ *(.ns_sparse_code)
+ *(.aec_sparse_code)
+ *(.nlp_sparse_code)
+ *(.der_sparse_code)
+ *(.qmf_sparse_code)
+ *(.sms_const)
+ *(.sms_sparse_code)
+ *(.sms_code)
+ *(.resample_cal_code)
+ *(.resample_cal_sparse_code)
+ *(.resample_cal_const)
+ *(.bt_compressor_sparse_const)
+ *(.bt_compressor_sparse_code)
+ *(.compressor_sparse_code)
+ *(.compressor_sparse_const)
+ *(.bt_limiter_sparse_const)
+ *(.bt_limiter_sparse_code)
+ *(.limiter_sparse_code)
+ *(.limiter_sparse_const)
+ *(.bt_crossOver_sparse_const)
+ *(.bt_crossOver_sparse_code)
+ *(.crossOver_sparse_code)
+ *(.crossOver_sparse_const)
+ *(.iap_code)
+ *(.iap_const)
+ *(.audio_bfilt_code)
+ *(.audio_bfilt_const)
+ *(.audio_buf_sync_code)
+ *(.audio_buf_sync_const)
+ *(.audio_dec_app_code)
+ *(.audio_dec_app_const)
+ *(.audio_dec_app_sync_code)
+ *(.audio_dec_app_sync_const)
+ *(.audio_dec_app_event_callback)
+ *(.audio_dec_app_dec_run)
+ *(.audio_dec_app_normal_run)
+ *(.audio_dec_tone_event_callback)
+ *(.audio_dig_vol_code)
+ *(.audio_dig_vol_const)
+ *(.audio_echo_reverb_code)
+ *(.audio_echo_reverb_const)
+ *(.echo_cal_code)
+ *(.echo_cal_const)
+ *(.platereverb_code)
+ *(.platereverb_const)
+ *(.reverb0_code)
+ *(.reverb0_const)
+ *(.reverb_cal_sparse_code)
+ *(.audio_echo_src_code)
+ *(.audio_echo_src_const)
+ *(.audio_energy_detect_code)
+ *(.audio_energy_detect_const)
+ *(.audio_eq_code)
+ *(.audio_eq_const)
+ *(.audio_drc_code)
+ *(.audio_drc_const)
+ *(.drc_const)
+ *(.drc_code)
+ *(.drc_pro_code)
+ *(.drc_pro_const)
+ *(.drc_pro_sparse_code)
+ *(.drc_pro_sparse_const)
+ *(.iir_filter_code)
+ *(.iir_filter_const)
+ *(.iir_filter_sparse_code)
+ *(.iir_filter_sparse_const)
+ *(.audio_eq_drc_apply_code)
+ *(.audio_eq_drc_apply_const)
+ *(.audio_equalloudness_code)
+ *(.audio_equalloudness_const)
+ *(.audio_howling_code)
+ *(.audio_howling_const)
+ *(.howlings_phf_sparse_code)
+ *(.howlings_phf_code)
+ *(.howlings_phf_const)
+ *(.notchhowling_code)
+ *(.notchhowling_const)
+ *(.notchhowling_sparse_code)
+ *(.notchhowling_sparse_const)
+ *(.audio_noisegate_code)
+ *(.audio_noisegate_const)
+ *(.noisegate_code)
+ *(.noisegate_const)
+ *(.noisegate_sparse_code)
+ *(.noisegate_sparse_const)
+ *(.audio_output_dac_code)
+ *(.audio_output_dac_const)
+ *(.audio_pemafrow_code)
+ *(.audio_pemafrow_const)
+ *(.audio_pitch_code)
+ *(.audio_pitch_const)
+ *(.audio_pitchspeed_code)
+ *(.audio_pitchspeed_const)
+ *(.audio_surround_code)
+ *(.audio_surround_const)
+ *(.audio_vbass_code)
+ *(.audio_vbass_const)
+ *(.audio_vocal_remove_code)
+ *(.audio_vocal_remove_const)
+ *(.audio_vocal_tract_synthesis_code)
+ *(.audio_vocal_tract_synthesis_const)
+ *(.eq_config_code)
+ *(.eq_config_const)
+ *(.eq_config_protocol_code)
+ *(.eq_config_protocol_const)
+ *(.spectrum_eq_code)
+ *(.spectrum_eq_const)
+ *(.spectrum_fft_code)
+ *(.spectrum_fft_const)
+ *(.audio_localtws_code)
+ *(.audio_localtws_const)
+ *(.audio_dec_localtws_code)
+ *(.audio_dec_localtws_const)
+ *(.audio_dec_a2dp_code)
+ *(.audio_dec_a2dp_const)
+ *(.audio_dec_esco_code)
+ *(.audio_dec_esco_const)
+ *(.audio_dec_file_code)
+ *(.audio_dec_file_const)
+ *(.audio_dec_pcm_code)
+ *(.audio_dec_pcm_const)
+ *(.audio_resample_code)
+ *(.audio_resample_const)
+ *(.audio_splicing_code)
+ *(.audio_splicing_const)
+ *(.channel_switch_code)
+ *(.channel_switch_const)
+ *(.sw_drc_code)
+ *(.sw_drc_const)
+ *(.aptx_decoder_code)
+ *(.aptx_decoder_const)
+ *(.ldac_decoder_code)
+ *(.ldac_decoder_const)
+ *(.speex_encoder_code)
+ *(.speex_encoder_const)
+ *(.sbc_encoder_code)
+ *(.sbc_encoder_const)
+ *(.opus_encoder_code)
+ *(.opus_encoder_const)
+ *(.prevent_task_fill_code)
+ *(.prevent_task_fill_const)
+ *(.audio_cfifo_code)
+ *(.audio_cfifo_const)
+ *(.audio_track_code)
+ *(.audio_track_const)
+ *(.audio_adc_code)
+ *(.audio_adc_const)
+ *(.audio_dac_code)
+ *(.audio_dac_const)
+ *(.audio_linein_code)
+ *(.audio_linein_const)
+ *(.audio_link_code)
+ *(.audio_link_const)
+ *(.audio_sample_sync_code)
+ *(.audio_sample_sync_const)
+ *(.audio_wireless_sync_code)
+ *(.audio_wireless_sync_const)
+ *(.audio_spdif_code)
+ *(.audio_spdif_const)
+ *(.audio_src_code)
+ *(.audio_src_const)
+ *(.audio_src_base_code)
+ *(.audio_src_base_const)
+ *(.effectrs_sync_code)
+ *(.effectrs_sync_const)
+ *(.eq_design_code)
+ *(.eq_design_const)
+ *(.hw_eq_code)
+ *(.hw_eq_const)
+ *(.iic_code)
+ *(.iic_const)
+ *(.mic_cap_code)
+ *(.mic_cap_const)
+ *(.sbc_hwaccel_code)
+ *(.sbc_hwaccel_const)
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                _audio_decoder_begin = .
+                [!provide]                PROVIDE (audio_decoder_begin, .)
+ *(.audio_decoder)
+                0x01e0484c                _audio_decoder_end = .
+                [!provide]                PROVIDE (audio_decoder_end, .)
+                0x01e0484c                _audio_encoder_begin = .
+                [!provide]                PROVIDE (audio_encoder_begin, .)
+ *(.audio_encoder)
+                0x01e0484c                _audio_encoder_end = .
+                [!provide]                PROVIDE (audio_encoder_end, .)
+                0x01e0484c                _audio_package_begin = .
+                [!provide]                PROVIDE (audio_package_begin, .)
+ *(.audio_package)
+                0x01e0484c                _audio_package_end = .
+                [!provide]                PROVIDE (audio_package_end, .)
+                0x01e0484c                _audio_dev_begin = .
+                [!provide]                PROVIDE (audio_dev_begin, .)
+ *(.audio_device)
+                0x01e0484c                _audio_dev_end = .
+                [!provide]                PROVIDE (audio_dev_end, .)
+                0x01e0484c                _audio_hwaccel_begin = .
+                [!provide]                PROVIDE (audio_hwaccel_begin, .)
+ *(.audio_hwaccel)
+                0x01e0484c                _audio_hwaccel_end = .
+                [!provide]                PROVIDE (audio_hwaccel_end, .)
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                media_code_begin = .
+ *(.media.*.text)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.crossOver_code)
+ *(.crossOver_const)
+ *(.bt_crossOver_const)
+ *(.bt_crossOver_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.compressor_code)
+ *(.compressor_const)
+ *(.bt_compressor_const)
+ *(.bt_compressor_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.limiter_code)
+ *(.limiter_const)
+ *(.bt_limiter_const)
+ *(.bt_limiter_code)
+ *(.drc_sparse_code)
+ *(.drc_sparse_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.lib_pitchshift_code)
+ *(.lib_pitchshift_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.sur_cal_const)
+ *(.sur_cal_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.reverb_cal_sparse_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.dvol_ram_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.reverb_cal_const)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.reverb_cal_code)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.stream_code_nor_run)
+ *(.mixer_code_nor_run)
+ *(.stream_code_copy_run)
+ *(.mixer_code_out_run)
+ *(.audio_codec_code)
+ *(.audio_codec_code_read_file)
+ *(.audio_src_code_nor_run)
+ *(.src_base_code_nor_run)
+ *(.audio_dac_code_nor_run)
+ *(.audio_cfifo_code_nor_run)
+ *(.audio_codec_code_frame_file)
+ *(.buf_sync_code_nor_run)
+ *(.resample_fastcal_const)
+ *(.resample_fastcal_code)
+ *(.resample_fastcal_sparse_code)
+ *(.dynamic_eq_code)
+ *(.dynamic_eq_const)
+ *(.dynamic_eq_detect_code)
+ *(.dynamic_eq_detect_const)
+ *(.dynamic_eq_sparse_code)
+ *(.dynamic_eq_sparse_const)
+ *(.dynamic_eq_detect_sparse_code)
+ *(.dynamic_eq_detect_sparse_const)
+ *(.audio_mic_effect_const)
+ *(.audio_mic_effect_code)
+ *(.audio_mic_stream_const)
+ *(.audio_mic_stream_code)
+ *(.audio_effect_adj_const)
+ *(.audio_effect_adj_code)
+ *(.pitchshifter_code)
+ *(.pitchshifter_const)
+ *(.pitchshifter_sparse_code)
+ *(.vbss_code)
+ *(.vbss_sparse_code)
+ *(.vbss_sparse_const)
+ *(.wav_dec_sparse_code)
+ *(.wav_dec_sparse_const)
+ *(.wav_dec_code)
+ *(.wav_dec_const)
+ *(.wav_dec_data)
+ *(.wav_data)
+ *(.wav_const)
+ *(.wav_code)
+ *(.flac_dec_sparse_code)
+ *(.flac_dec_sparse_const)
+ *(.flac_dec_code)
+ *(.flac_dec_const)
+ *(.flac_dec_data)
+ *(.flac_data)
+ *(.flac_const)
+ *(.flac_code)
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                media_code_end = .
+                0x01e0484c                . = ALIGN (0x4)
+                0x00000000                media_code_size = (media_code_end - media_code_begin)
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                media_text_end = .
+                0x00000000                media_code_total_size = (media_text_end - media_text_start)
+                0x01e0484c                . = ALIGN (0x4)
+                0x01e0484c                update_target_begin = .
+                [!provide]                PROVIDE (update_target_begin, .)
+ *(.update_target)
+                0x01e0484c                update_target_end = .
+                [!provide]                PROVIDE (update_target_end, .)
+                0x01e0484c                . = ALIGN (0x4)
+ *(.text*)
+ .text          0x01e0484c     0x85b4 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e048ca                update_result_get
+                0x01e06f54                app_load_common_code
+                0x01e070c2                exception_analyze
+ .text          0x01e0ce00       0x14 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strchr.o)
+                0x01e0ce00                strchr
+ .text          0x01e0ce14       0x24 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\toolchain\extracted-2.5.2\C$\JL\pi32\pi32v2-lib\r3\libc.a(lib_a-strrchr.o)
+                0x01e0ce14                strrchr
+ *(.LOG_TAG_CONST*)
+ *(.rodata*)
+ .rodata.cst16  0x01e0ce38       0x30 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .rodata.str1.1
+                0x01e0ce68     0x44c2 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                               0x44e4 (size before relaxing)
+ *fill*         0x01e1132a        0x2 
+ .rodata        0x01e1132c      0x6ec C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .rodata.cst32  0x01e11a18       0x20 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *fill*         0x01e11a38        0x8 
+ .rodata.str1.16
+                0x01e11a40       0xd0 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                                 0xca (size before relaxing)
+ .rodata.cst4   0x01e11b10        0x8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .rodata.cst8   0x01e11b18        0x8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e11b20                . = ALIGN (0x4)
+                0x01e11b20                __VERSION_BEGIN = .
+ *(.version)
+ .version       0x01e11b20       0x1e C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(version.z.o)
+                0x01e11b20                lib_update_version
+                0x01e11b3e                __VERSION_END = .
+                0x01e11b40                . = ALIGN (0x4)
+ *fill*         0x01e11b3e        0x2 
+                0x01e11b40                text_code_end = .
+                0x01e11b40                update_code_start = .
+ *(.bt_updata_ram_code)
+ *(.update_const)
+ .update_const  0x01e11b40      0x136 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.update_code)
+ .update_code   0x01e11c76     0x10f2 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e12d68                update_code_end = .
+                0x01e12d68                driver_code_start = .
+                0x01e12d68                . = ALIGN (0x4)
+                0x01e12d68                _SPI_CODE_START = .
+ *(.spi_code)
+                0x01e12d68                . = ALIGN (0x4)
+                0x01e12d68                _SPI_CODE_END = .
+                0x01e12d68                clock_critical_handler_begin = .
+ *(.clock_critical_txt)
+ .clock_critical_txt
+                0x01e12d68       0x18 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x01e12d68                clock_uart
+                0x01e12d70                clock_lrc
+                0x01e12d78                clock_port
+                0x01e12d80                clock_critical_handler_end = .
+                0x01e12d80                CLOCK_CODE_START = .
+ *(.clock_code)
+ .clock_code    0x01e12d80      0x766 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.clock_const)
+ .clock_const   0x01e134e6        0x4 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x0000076a                CLOCK_CODE_SIZE = ABSOLUTE ((. - CLOCK_CODE_START))
+ *(.debug_code)
+ *(.debug_const)
+ *(.power_code)
+ *(.power_const)
+ *(.uart_code)
+ .uart_code     0x01e134ea      0xfc6 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.uart_const)
+                0x01e144b0                driver_code_end = .
+                0x01e144b0                . = ALIGN (0x4)
+                0x00000000                . = ORIGIN (ram0)
+                0x00000000                _data_code_begin = .
+                0x00000000                bank_code_run_addr = .
+                0x00000000                common_code_run_addr = .
+
+.data           0x00000000     0x47e0
+ *(.data_magic)
+ .data_magic    0x00000000       0x40 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x00000000                data_magic
+                0x00000040                . = ALIGN (0x4)
+ *(.flushinv_icache)
+ *(.volatile_ram_code)
+ .volatile_ram_code
+                0x00000040     0x11b4 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x000001d0                switch_to_hrc
+                0x000004a8                __udelay
+                0x0000054e                exit_continue_mode
+                0x000005c8                sfc_drop_cache
+                0x0000066e                enter_continue_mode
+                0x0000070a                spi_soft_writebyte
+                0x00000862                spi_soft_readbyte
+                0x000008c8                ze_flash_cam_patch
+                0x00000992                check_flash_type
+                0x00000a0c                flushinv_dcache_api
+                0x00000a58                norflash_erase
+                0x00000b46                norflash_get_uuid
+                0x00000c34                norflash_send_write_sr_enable
+                0x00000c60                norflash_write_enable_mode
+                0x00000c68                update_norflash_write_protect
+                0x00000da6                read_flash_id
+                0x00000e4a                spi_cache_way_switch
+                0x00000e9a                spi_for_maskrom_init
+                0x00001100                hw_mmu_disable
+ .volatile_ram_code
+                0x000011f4      0x158 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+                0x000011f4                __BT_UPDATA_JUMP
+                0x00001274                __JUMP_TO_MASKROM
+                0x000012ba                __DEV_UPDATA_JUMP
+                0x0000133a                exception_irq_handler
+ *(.os_critical_code)
+ .os_critical_code
+                0x0000134c      0x654 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x00001382                jiffies_half_msec
+                0x000013da                jiffies_msec
+                0x000013e2                vmalloc_
+                0x0000154e                vfree_
+                0x00001666                vfree_v2
+                0x0000172c                vcopy_
+                0x00001778                vmalloc_v2
+ *(.chargebox_code)
+ *(.os_code)
+ .os_code       0x000019a0     0x181a C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.os_const)
+ *(.ui_ram)
+ *(.fat_data_code)
+                0x000031bc                . = ALIGN (0x4)
+ *fill*         0x000031ba        0x2 
+                0x000031bc                media_data_code_start = .
+                0x000031bc                . = ALIGN (0x4)
+ *(.sbc_eng_code)
+                0x000031bc                . = ALIGN (0x4)
+                0x000031bc                AudioEffects_data_code_begin = .
+                0x000031bc                AudioEffects_data_code_end = .
+                0x00000000                AudioEffects_data_code_size = (AudioEffects_data_code_end - AudioEffects_data_code_begin)
+                0x000031bc                media_data_code_end = .
+                0x000031bc                . = ALIGN (0x4)
+                0x000031bc                _data_code_end = .
+                0x000031bc                _cpu_store_begin = .
+                0x000031bc                . = ALIGN (0x4)
+ *(.data*)
+ .data          0x000031bc     0x105c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.cvsd_data)
+                0x00004218                . = ALIGN (0x4)
+                0x00004218                dec_board_param_mem_begin = .
+ *(.dec_board_param_mem)
+                0x00004218                dec_board_param_mem_end = .
+                0x00004218                . = ALIGN (0x4)
+ *(.sbc_eng_code)
+                0x00004218                . = ALIGN (0x4)
+                0x00004220                . = ALIGN (0x20)
+ *fill*         0x00004218        0x8 
+                0x00004220                btstack_data_start = .
+ *(.bt_stack_data)
+ *(.ble_db_data)
+ *(.ble_sm_data)
+ *(.ble_att_data)
+ *(.ble_gatt_data)
+                0x00004220                BTSTACK_LE_HOST_MESH_DATA_START = .
+                0x00004220                . = ((. + 0x3) & 0xfffffffc)
+                0x00004220                _net_buf_pool_list = .
+ *(._net_buf_pool.static.*)
+ *(.ble_mesh_data)
+ *(.ble_mesh_tinycrypt_data)
+                0x00000000                BTSTACK_LE_HOST_MESH_DATA_SIZE = ABSOLUTE ((. - BTSTACK_LE_HOST_MESH_DATA_START))
+                0x00004220                btstack_data_end = .
+                0x00004220                . = ALIGN (0x4)
+                0x00004220                btctler_data_start = .
+                0x00004220                BTCTLER_CONTROLLER_DATA_START = .
+ *(.bt_rf_data)
+ *(.vendor_manager_data)
+ *(.device_manager_data)
+ *(.hci_controller_data)
+ *(.hci_interface_data)
+                0x00000000                BTCTLER_CONTROLLER_DATA_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_DATA_START))
+                0x00004220                BTCTLER_LE_CONTROLLER_DATA_START = .
+ *(.ble_ll_data)
+ *(.ble_hci_data)
+ *(.classic_hci_data)
+ *(.ble_rf_data)
+                0x00000000                BTCTLER_LE_CONTROLLER_DATA_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_DATA_START))
+                0x00004220                BTCTLER_CL_DATA_START = .
+ *(.classic_lmp_data)
+ *(.classic_lmp_auth_data)
+ *(.classic_lmp_bigint_data)
+ *(.classic_lmp_crypt_data)
+ *(.classic_lmp_ecdh_data)
+ *(.classic_lmp_linkbulk_data)
+ *(.classic_lmp_hmac_data)
+ *(.classic_rf_data)
+ *(.classic_bb_data)
+                0x00000000                BTCTLER_CL_DATA_SIZE = ABSOLUTE ((. - BTCTLER_CL_DATA_START))
+                0x00004220                btctler_data_end = .
+                0x00004220                . = ALIGN (0x4)
+                0x00004220                . = ALIGN (0x4)
+                0x00004220                system_data_start = .
+                0x00004220                _video_subdev_begin = .
+                [!provide]                PROVIDE (video_subdev_begin, .)
+ *(.video_subdev.0)
+ *(.video_subdev.1)
+ *(.video_subdev.2)
+ *(.video_subdev.3)
+ *(.video_subdev.4)
+ *(.video_subdev.5)
+                0x00004220                _video_subdev_end = .
+                [!provide]                PROVIDE (video_subdev_end, .)
+                0x00004220                _audio_subdev_begin = .
+                [!provide]                PROVIDE (audio_subdev_begin, .)
+ *(.audio_subdev.0)
+ *(.audio_subdev.1)
+ *(.audio_subdev.2)
+ *(.audio_subdev.3)
+                0x00004220                _audio_subdev_end = .
+                [!provide]                PROVIDE (audio_subdev_end, .)
+                0x00004220                _iic_device_begin = .
+                [!provide]                PROVIDE (iic_device_begin, .)
+ *(.iic)
+                0x00004220                _iic_device_end = .
+                [!provide]                PROVIDE (iic_device_end, .)
+                0x00004220                _avin_spi_device_begin = .
+                [!provide]                PROVIDE (avin_spi_device_begin, .)
+ *(.sw_spi)
+                0x00004220                _avin_spi_device_end = .
+                [!provide]                PROVIDE (avin_spi_device_end, .)
+                0x00004220                _video_dev_begin = .
+                [!provide]                PROVIDE (video_dev_begin, .)
+ *(.video_device)
+                0x00004220                _video_dev_end = .
+                [!provide]                PROVIDE (video_dev_end, .)
+                0x00004220                _key_driver_ops_begin = .
+                [!provide]                PROVIDE (key_driver_ops_begin, .)
+ *(.key_driver_ops)
+                0x00004220                _key_driver_ops_end = .
+                [!provide]                PROVIDE (key_driver_ops_end, .)
+                0x00004220                _touch_driver_begin = .
+                [!provide]                PROVIDE (touch_driver_begin, .)
+ *(.touch_driver)
+                0x00004220                _touch_driver_end = .
+                [!provide]                PROVIDE (touch_driver_end, .)
+                0x00004220                _static_hi_timer_begin = .
+                [!provide]                PROVIDE (static_hi_timer_begin, .)
+ *(.hi_timer)
+                0x00004220                _static_hi_timer_end = .
+                [!provide]                PROVIDE (static_hi_timer_end, .)
+                0x00004220                _sys_cpu_timer_begin = .
+                0x00004220                PROVIDE (sys_cpu_timer_begin, .)
+ *(.sys_cpu_timer)
+                0x00004220                _sys_cpu_timer_end = .
+                0x00004220                PROVIDE (sys_cpu_timer_end, .)
+                0x00004220                _sys_config_begin = .
+                [!provide]                PROVIDE (sys_config_begin, .)
+ *(.sys_cfg)
+                0x00004220                _sys_config_end = .
+                [!provide]                PROVIDE (sys_config_end, .)
+                0x00004220                _sys_fat_begin = .
+                [!provide]                PROVIDE (sys_fat_begin, .)
+ *(.fs_fat)
+                0x00004220                _sys_fat_end = .
+                [!provide]                PROVIDE (sys_fat_end, .)
+                0x00004220                _app_begin = .
+                0x00004220                PROVIDE (app_begin, .)
+ *(.app)
+                0x00004220                _app_end = .
+                0x00004220                PROVIDE (app_end, .)
+                0x00004220                _os_begin = .
+                [!provide]                PROVIDE (os_begin, .)
+ *(.os_str)
+ .os_str        0x00004220      0x1e8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.os_data)
+ .os_data       0x00004408       0x38 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x00004440                _os_end = .
+                [!provide]                PROVIDE (os_end, .)
+ *(.crypto_ecdh_data)
+ *(.crypto_data)
+ *(.mem_data)
+ .mem_data      0x00004440       0x10 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.os_port_data)
+ *(.uECC_data)
+ *(.ECDH_sample_data)
+                0x00004450                __movable_slot_start = .
+ *(movable.slot.*)
+                0x00004450                __movable_slot_end = .
+                0x00004450                system_data_end = .
+                0x00004450                . = ALIGN (0x4)
+                0x00004450                media_data_start = .
+                0x00004450                . = ALIGN (0x4)
+                0x00004450                EQ_COEFF_BASE = .
+                0x00004728                . = (EQ_COEFF_BASE + ((0x4 * EQ_SECTION_NUM) * 0xe))
+ *fill*         0x00004450      0x2d8 
+                0x00004728                . = ALIGN (0x4)
+ *(.jlsp_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.dns_common_data)
+ *(.dns_param_data_single)
+ *(.dns_param_data_dual)
+                0x00004728                . = ALIGN (0x4)
+ *(.aec_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.res_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.ns_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.der_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.nlp_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.qmf_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.fft_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.bt_audioplc_data)
+ *(.sms_data)
+ *(.pcm_data)
+ *(.g729_data)
+ *(.g726_data)
+ *(.wtg_dec_data)
+ *(.wtgv2_data)
+ *(.wtgv2dec_data)
+ *(.mp3_data)
+ *(.mp3_dec_data)
+ *(.msbc_data)
+ *(.mty_data)
+ *(.mp3tsy_dec_data)
+ *(.sbc_data)
+ *(.sine_data)
+ *(.wma_data)
+ *(.wma_dec_data)
+ *(.amr_data)
+ *(.midi_data)
+ *(.audio_decoder_data)
+ *(.mp3_encode_data)
+ *(.media_device_data)
+ *(.audio_encoder_data)
+ *(.mixer_data)
+ *(.stream_data)
+ *(.dec_server_data)
+ *(.rec_server_data)
+ *(.auto_mute_data)
+ *(.plc_data)
+ *(.wireless_sync_data)
+ *(.resample_cal_data)
+ *(.bt_compressor_data)
+ *(.bt_crossOver_data)
+ *(.bt_limiter_data)
+ *(.bt_compressor_sparse_data)
+ *(.bt_limiter_sparse_data)
+ *(.bt_crossOver_sparse_data)
+ *(.iap_data)
+ *(.audio_bfilt_data)
+ *(.audio_buf_sync_data)
+ *(.audio_dec_app_data)
+ *(.audio_dec_app_sync_data)
+ *(.audio_dig_vol_data)
+ *(.audio_echo_reverb_data)
+ *(.echo_cal_data)
+ *(.reverb_cal_data)
+ *(.reverb0_data)
+ *(.platereverb_data)
+ *(.audio_echo_src_data)
+ *(.audio_energy_detect_data)
+ *(.audio_eq_data)
+ *(.audio_drc_data)
+ *(.audio_eq_drc_apply_data)
+ *(.audio_equalloudness_data)
+ *(.audio_howling_data)
+ *(.howlings_phf_data)
+ *(.audio_noisegate_data)
+ *(.audio_output_dac_data)
+ *(.audio_pemafrow_data)
+ *(.audio_pitch_data)
+ *(.audio_pitchspeed_data)
+ *(.audio_surround_data)
+ *(.audio_vbass_data)
+ *(.audio_vocal_remove_data)
+ *(.audio_vocal_tract_synthesis_data)
+ *(.eq_config_data)
+ *(.eq_config_protocol_data)
+ *(.spectrum_eq_data)
+ *(.spectrum_fft_data)
+ *(.audio_localtws_data)
+ *(.audio_dec_localtws_data)
+ *(.audio_dec_a2dp_data)
+ *(.audio_dec_esco_data)
+ *(.audio_dec_file_data)
+ *(.audio_dec_pcm_data)
+ *(.audio_resample_data)
+ *(.audio_splicing_data)
+ *(.channel_switch_data)
+ *(.sw_drc_data)
+ *(.aptx_decoder_data)
+ *(.ldac_decoder_data)
+ *(.speex_encoder_data)
+ *(.sbc_encoder_data)
+ *(.opus_encoder_data)
+ *(.prevent_task_fill_data)
+ *(.audio_cfifo_data)
+ *(.audio_track_data)
+ *(.audio_adc_data)
+ *(.audio_dac_data)
+ *(.audio_linein_data)
+ *(.audio_link_data)
+ *(.audio_sample_sync_data)
+ *(.audio_wireless_sync_data)
+ *(.audio_spdif_data)
+ *(.audio_src_data)
+ *(.audio_src_base_data)
+ *(.effectrs_sync_data)
+ *(.eq_design_data)
+ *(.hw_eq_data)
+ *(.iic_data)
+ *(.mic_cap_data)
+ *(.sbc_hwaccel_data)
+ *(.resample_fastcal_data)
+ *(.aac_data)
+ *(.alac_data)
+                0x00004728                . = ALIGN (0x4)
+ *(.dec2tws_mem)
+                0x00004728                . = ALIGN (0x4)
+ *(.midi_mem)
+ *(.midi_ctrl_mem)
+ *(.lfwordana_data)
+ *(.pitchshifter_data)
+                0x00004728                media_data_end = .
+                0x00004728                . = ALIGN (0x4)
+                0x00004728                update_data_start = .
+                0x00004728                update_data_end = .
+                0x00004728                driver_data_start = .
+                0x00004728                CLOCK_DATA_START = .
+ *(.clock_data)
+ .clock_data    0x00004728       0xa0 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x000000a0                CLOCK_DATA_SIZE = ABSOLUTE ((. - CLOCK_DATA_START))
+ *(.debug_data)
+ *(.power_data)
+ *(.uart_data)
+ .uart_data     0x000047c8       0x18 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x000047e0                driver_data_end = .
+
+.irq_stack      0x000047e0      0x848
+ *(.stack_magic)
+ .stack_magic   0x000047e0       0x10 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x000047e0                stack_magic
+                0x000047f0                _cpu0_sstack_begin = .
+                [!provide]                PROVIDE (cpu0_sstack_begin, .)
+ *(.stack)
+ .stack         0x000047f0      0x800 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+                0x00004ff0                _stack
+                0x00004ff0                _cpu0_sstack_end = .
+                [!provide]                PROVIDE (cpu0_sstack_end, .)
+                0x00004ff0                _stack_end = .
+ *(.stack_magic0)
+ .stack_magic0  0x00004ff0       0x10 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x00004ff0                stack_magic0
+                0x00005000                . = ALIGN (0x4)
+ *(.boot_info)
+ .boot_info     0x00005000       0x28 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.bss            0x00005040    0x20fbc
+ *(.usb_h_dma)
+ *(.usb_ep0)
+ *(.dec_mix_buff)
+ *(.sd0_var)
+ *(.sd1_var)
+ *(.dac_buff)
+ *(.bss)
+ .bss           0x00005040    0x20690 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(COMMON)
+ *(.cvsd_bss)
+ *(.volatile_ram)
+                0x000256d0                btctler_bss_start = .
+                0x000256d0                BTCTLER_CONTROLLER_BSS_START = .
+ *(.bd_base)
+ *(.bredr_rxtx_bulk)
+                0x000256d0                acl_tx_pool = .
+ *(.bredr_tx_bulk)
+                0x000256d0                acl_tx_pool_end = acl_tx_pool
+                0x000256d0                . = acl_tx_pool_end
+                0x000256d0                acl_rx_pool = .
+ *(.bredr_rx_bulk)
+                0x000256d0                acl_rx_pool_end = acl_rx_pool
+                0x000256d0                . = acl_rx_pool_end
+                0x000256d0                tws_bulk_pool = .
+                0x000256d0                tws_bulk_pool_end = tws_bulk_pool
+                0x000256d0                . = tws_bulk_pool_end
+ *(.bt_rf_bss)
+ *(.hci_controller_bss)
+ *(.hci_interface_bss)
+ *(.device_manager_bss)
+ *(.vendor_manager_bss)
+                0x00000000                BTCTLER_CONTROLLER_BSS_SIZE = ABSOLUTE ((. - BTCTLER_CONTROLLER_BSS_START))
+                0x000256d0                BTCTLER_LE_CONTROLLER_BSS_START = .
+ *(.ble_hci_bss)
+ *(.ble_ll_bss)
+ *(.ble_rf_bss)
+                0x00000000                BTCTLER_LE_CONTROLLER_BSS_SIZE = ABSOLUTE ((. - BTCTLER_LE_CONTROLLER_BSS_START))
+                0x000256d0                BTCTLER_CL_BSS_START = .
+ *(.classic_rf_bss)
+ *(.classic_lmp_bss)
+ *(.classic_lmp_auth_bss)
+ *(.classic_lmp_bigint_bss)
+ *(.classic_lmp_crypt_bss)
+ *(.classic_lmp_ecdh_bss)
+ *(.classic_lmp_linkbulk_bss)
+ *(.classic_lmp_hmac_bss)
+ *(.classic_bb_bss)
+ *(.classic_hci_bss)
+                0x00000000                BTCTLER_CL_BSS_SIZE = ABSOLUTE ((. - BTCTLER_CL_BSS_START))
+                0x000256d0                btctler_bss_end = .
+                0x000256d0                btstack_bss_start = .
+ *(.bt_stack_bss)
+ *(.ble_db_bss)
+ *(.ble_sm_bss)
+ *(.ble_att_bss)
+ *(.ble_gatt_bss)
+ *(.btstack_pool)
+                0x000256d0                BTSTACK_LE_HOST_MESH_BSS_START = .
+ *(.ble_mesh_bss)
+ *(.ble_mesh_tinycrypt_bss)
+                0x00000000                BTSTACK_LE_HOST_MESH_BSS_SIZE = ABSOLUTE ((. - BTSTACK_LE_HOST_MESH_BSS_START))
+                0x000256d0                btstack_bss_end = .
+                0x000256d0                system_bss_start = .
+                0x000256d0                . = ALIGN (0x4)
+ *(.os_bss)
+ .os_bss        0x000256d0      0x12c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.mem_heap)
+ *(.memp_memory_x)
+ *(.mem_bss)
+ .mem_bss       0x000257fc      0x1bc C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.os_port_bss)
+ .os_port_bss   0x000259b8       0x15 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x000259b8                uxCriticalNesting
+ *(.uECC_bss)
+ *(.ECDH_sample_bss)
+                0x000259cd                system_bss_end = .
+                0x000259cd                media_bss_start = .
+                0x000259d0                . = ALIGN (0x4)
+ *fill*         0x000259cd        0x3 
+ *(.jlsp_bss)
+ *(.aec_bss)
+ *(.res_bss)
+ *(.ns_bss)
+ *(.der_bss)
+ *(.nlp_bss)
+ *(.qmf_bss)
+ *(.bt_audioplc_bss)
+ *(.fft_bss)
+ *(.sms_bss)
+ *(.pcm_bss)
+ *(.g729_bss)
+ *(.g726_bss)
+ *(.wtg_dec_bss)
+ *(.wtgv2_bss)
+ *(.wtgv2dec_bss)
+ *(.mp3_bss)
+ *(.mp3_dec_bss)
+ *(.msbc_bss)
+ *(.mty_bss)
+ *(.mp3tsy_dec_bss)
+ *(.sbc_bss)
+ *(.sine_bss)
+ *(.wma_bss)
+ *(.wma_dec_bss)
+ *(.amr_bss)
+ *(.midi_bss)
+ *(.audio_decoder_bss)
+ *(.mp3_encode_bss)
+ *(.media_device_bss)
+ *(.audio_encoder_bss)
+ *(.mixer_bss)
+ *(.stream_bss)
+ *(.dec_server_bss)
+ *(.rec_server_bss)
+ *(.auto_mute_bss)
+ *(.plc_bss)
+ *(.wireless_sync_bss)
+ *(.audio_buf)
+ *(.resample_cal_bss)
+ *(.bt_crossOver_bss)
+ *(.bt_compressor_bss)
+ *(.bt_limiter_bss)
+ *(.bt_limiter_sparse_bss)
+ *(.bt_crossOver_sparse_bss)
+ *(.bt_compressor_sparse_bss)
+ *(.iap_bss)
+ *(.audio_bfilt_bss)
+ *(.audio_buf_sync_bss)
+ *(.audio_dec_app_bss)
+ *(.audio_dec_app_sync_bss)
+ *(.audio_dig_vol_bss)
+ *(.audio_echo_reverb_bss)
+ *(.echo_cal_bss)
+ *(.reverb_cal_bss)
+ *(.reverb0_bss)
+ *(.platereverb_bss)
+ *(.audio_echo_src_bss)
+ *(.audio_energy_detect_bss)
+ *(.audio_eq_bss)
+ *(.audio_drc_bss)
+ *(.audio_eq_drc_apply_bss)
+ *(.audio_equalloudness_bss)
+ *(.audio_howling_bss)
+ *(.howlings_phf_bss)
+ *(.audio_noisegate_bss)
+ *(.audio_output_dac_bss)
+ *(.audio_pemafrow_bss)
+ *(.audio_pitch_bss)
+ *(.audio_pitchspeed_bss)
+ *(.audio_surround_bss)
+ *(.audio_vbass_bss)
+ *(.audio_vocal_remove_bss)
+ *(.audio_vocal_tract_synthesis_bss)
+ *(.eq_config_bss)
+ *(.eq_config_protocol_bss)
+ *(.spectrum_eq_bss)
+ *(.spectrum_fft_bss)
+ *(.audio_localtws_bss)
+ *(.audio_dec_localtws_bss)
+ *(.audio_dec_a2dp_bss)
+ *(.audio_dec_esco_bss)
+ *(.audio_dec_file_bss)
+ *(.audio_dec_pcm_bss)
+ *(.audio_resample_bss)
+ *(.audio_splicing_bss)
+ *(.channel_switch_bss)
+ *(.sw_drc_bss)
+ *(.aptx_decoder_bss)
+ *(.ldac_decoder_bss)
+ *(.speex_encoder_bss)
+ *(.sbc_encoder_bss)
+ *(.opus_encoder_bss)
+ *(.prevent_task_fill_bss)
+ *(.audio_cfifo_bss)
+ *(.audio_track_bss)
+ *(.audio_adc_bss)
+ *(.audio_dac_bss)
+ *(.audio_linein_bss)
+ *(.audio_link_bss)
+ *(.audio_sample_sync_bss)
+ *(.audio_wireless_sync_bss)
+ *(.audio_spdif_bss)
+ *(.audio_src_bss)
+ *(.audio_src_base_bss)
+ *(.effectrs_sync_bss)
+ *(.eq_design_bss)
+ *(.hw_eq_bss)
+ *(.iic_bss)
+ *(.mic_cap_bss)
+ *(.sbc_hwaccel_bss)
+ *(.resample_fastcal_bss)
+ *(.lfwordana_bss)
+                0x000259d0                media_bss_end = .
+                0x000259e0                . = (((. + 0x1f) / 0x20) * 0x20)
+ *fill*         0x000259d0       0x10 
+                0x000259e0                . = ALIGN (0x4)
+                0x000259e0                NVRAM_DATA_START = .
+ *(.non_volatile_ram)
+ .non_volatile_ram
+                0x000259e0      0x190 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x00000190                NVRAM_DATA_SIZE = ABSOLUTE ((. - NVRAM_DATA_START))
+                0x00025b70                . = ALIGN (0x4)
+                0x00025b70                NVRAM_END = .
+                0x00025b70                _nv_pre_begin = .
+ *(.src_filt)
+ *(.src_dma)
+                0x00025b70                . = ALIGN (0x4)
+                0x00025b70                update_bss_start = .
+ *(.update_bss)
+ .update_bss    0x00025b70      0x204 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                0x00025d74                update_bss_end = .
+                0x00025d74                driver_bss_start = .
+                0x00025d74                CLOCK_BSS_START = .
+ *(.clock_bss)
+                0x00000000                CLOCK_BSS_SIZE = ABSOLUTE ((. - CLOCK_BSS_START))
+ *(.debug_bss)
+ *(.power_bss)
+ *(.uart_bss)
+ .uart_bss      0x00025d74      0x288 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ *(.sd_var)
+                0x00025ffc                driver_bss_end = .
+                0x00025ffc                _cpu_store_end = .
+                0x00025ffc                _prp_store_begin = .
+
+.prp_bss        0x00026000        0x0
+                0x00026000                . = (((. + 0x1f) / 0x20) * 0x20)
+                0x00026000                _prp_store_end = .
+                0x00026000                overlay_begin = .
+
+.overlay_aec    0x00025ffc        0x4 load address 0x00200000
+                0x00025ffc        0x4 LONG 0xffffffff
+                0x00026000                o_aec_end = .
+ *(.aec_mem)
+ *(.msbc_enc)
+                [!provide]                PROVIDE (__load_start_overlay_aec, LOADADDR (.overlay_aec))
+                [!provide]                PROVIDE (__load_stop_overlay_aec, (LOADADDR (.overlay_aec) + SIZEOF (.overlay_aec)))
+
+.overlay_mp3    0x00025ffc        0x4 load address 0x00200004
+                0x00025ffc        0x4 LONG 0xffffffff
+                0x00026000                o_mp3_end = .
+ *(.mp3_mem)
+ *(.mp3_ctrl_mem)
+ *(.mp3pick_mem)
+ *(.mp3pick_ctrl_mem)
+                [!provide]                PROVIDE (__load_start_overlay_mp3, LOADADDR (.overlay_mp3))
+                [!provide]                PROVIDE (__load_stop_overlay_mp3, (LOADADDR (.overlay_mp3) + SIZEOF (.overlay_mp3)))
+
+.overlay_wma    0x00025ffc        0x4 load address 0x00200008
+                0x00025ffc        0x4 LONG 0xffffffff
+                0x00026000                o_wma_end = .
+ *(.wma_mem)
+ *(.wma_ctrl_mem)
+ *(.wmapick_mem)
+ *(.wmapick_ctrl_mem)
+                [!provide]                PROVIDE (__load_start_overlay_wma, LOADADDR (.overlay_wma))
+                [!provide]                PROVIDE (__load_stop_overlay_wma, (LOADADDR (.overlay_wma) + SIZEOF (.overlay_wma)))
+
+.overlay_wav    0x00025ffc        0x4 load address 0x0020000c
+                0x00025ffc        0x4 LONG 0xffffffff
+ *(.wav_bss)
+ *(.wav_dec_bss)
+ *(.wav_mem)
+ *(.wav_ctrl_mem)
+                [!provide]                PROVIDE (__load_start_overlay_wav, LOADADDR (.overlay_wav))
+                [!provide]                PROVIDE (__load_stop_overlay_wav, (LOADADDR (.overlay_wav) + SIZEOF (.overlay_wav)))
+
+.overlay_ape    0x00025ffc        0x4 load address 0x00200010
+ *(.ape_mem)
+ *(.ape_ctrl_mem)
+ *(.ape_dec_sparse_code)
+ *(.ape_dec_sparse_const)
+ *(.ape_dec_code)
+ *(.ape_dec_const)
+ *(.ape_dec_data)
+ *(.ape_dec_bss)
+                0x00025ffc        0x4 LONG 0xffffffff
+ *(.ape_bss)
+ *(.ape_data)
+ *(.ape_const)
+ *(.ape_code)
+                [!provide]                PROVIDE (__load_start_overlay_ape, LOADADDR (.overlay_ape))
+                [!provide]                PROVIDE (__load_stop_overlay_ape, (LOADADDR (.overlay_ape) + SIZEOF (.overlay_ape)))
+
+.overlay_flac   0x00025ffc        0x4 load address 0x00200014
+                0x00025ffc        0x4 LONG 0xffffffff
+ *(.flac_mem)
+ *(.flac_ctrl_mem)
+ *(.flac_dec_bss)
+ *(.flac_bss)
+                [!provide]                PROVIDE (__load_start_overlay_flac, LOADADDR (.overlay_flac))
+                [!provide]                PROVIDE (__load_stop_overlay_flac, (LOADADDR (.overlay_flac) + SIZEOF (.overlay_flac)))
+
+.overlay_m4a    0x00025ffc        0x4 load address 0x00200018
+ *(.m4a_dec_code)
+ *(.m4a_dec_ff_const)
+ *(.m4a_dec_const)
+ *(.m4a_dec_data)
+ *(.m4a_data)
+ *(.m4a_const)
+ *(.m4a_code)
+ *(.m4apick_mem)
+ *(.m4apick_ctrl_mem)
+                0x00025ffc        0x4 LONG 0xffffffff
+ *(.m4a_mem)
+ *(.m4a_ctrl_mem)
+ *(.m4a_dec_bss)
+ *(.m4a_bss)
+ *(.aac_ctrl_mem)
+ *(.aac_bss)
+ *(.alac_ctrl_mem)
+ *(.alac_bss)
+                [!provide]                PROVIDE (__load_start_overlay_m4a, LOADADDR (.overlay_m4a))
+                [!provide]                PROVIDE (__load_stop_overlay_m4a, (LOADADDR (.overlay_m4a) + SIZEOF (.overlay_m4a)))
+
+.overlay_amr    0x00025ffc        0x4 load address 0x0020001c
+ *(.amr_dec_sparse_code)
+ *(.amr_dec_sparse_const)
+ *(.amr_dec_code)
+ *(.amr_dec_data)
+                0x00025ffc        0x4 LONG 0xffffffff
+ *(.amr_mem)
+ *(.amr_ctrl_mem)
+ *(.amr_dec_bss)
+                [!provide]                PROVIDE (__load_start_overlay_amr, LOADADDR (.overlay_amr))
+                [!provide]                PROVIDE (__load_stop_overlay_amr, (LOADADDR (.overlay_amr) + SIZEOF (.overlay_amr)))
+
+.overlay_dts    0x00025ffc        0x4 load address 0x00200020
+ *(.dts_dec_code)
+ *(.dts_dec_data)
+ *(.dts_data)
+ *(.dts_const)
+ *(.dts_code)
+                0x00025ffc        0x4 LONG 0xffffffff
+ *(.dts_mem)
+ *(.dts_ctrl_mem)
+ *(.dts_dec_bss)
+ *(.dts_bss)
+                [!provide]                PROVIDE (__load_start_overlay_dts, LOADADDR (.overlay_dts))
+                [!provide]                PROVIDE (__load_stop_overlay_dts, (LOADADDR (.overlay_dts) + SIZEOF (.overlay_dts)))
+
+.overlay_fm     0x00025ffc        0x4 load address 0x00200024
+                0x00025ffc        0x4 LONG 0xffffffff
+                0x00026000                o_fm_end = .
+ *(.fm_mem)
+ *(.linein_pcm_mem)
+                [!provide]                PROVIDE (__load_start_overlay_fm, LOADADDR (.overlay_fm))
+                [!provide]                PROVIDE (__load_stop_overlay_fm, (LOADADDR (.overlay_fm) + SIZEOF (.overlay_fm)))
+
+.overlay_pc     0x00025ffc        0x0 load address 0x00200028
+ *(.usb_audio_play_dma)
+ *(.usb_audio_rec_dma)
+ *(.uac_rx)
+ *(.mass_storage)
+ *(.usb_msd_dma)
+ *(.usb_hid_dma)
+ *(.usb_iso_dma)
+ *(.usb_cdc_dma)
+ *(.uac_var)
+ *(.usb_config_var)
+ *(.cdc_var)
+                [!provide]                PROVIDE (__load_start_overlay_pc, LOADADDR (.overlay_pc))
+                [!provide]                PROVIDE (__load_stop_overlay_pc, (LOADADDR (.overlay_pc) + SIZEOF (.overlay_pc)))
+                0x00026000                overlay_end = .
+                0x00000001                ASSERT ((overlay_end <= (overlay_begin + 0x10000)), overlay overflow 64k!)
+                0x00026000                RAM_USED = .
+                0x0002c000                . = ORIGIN (ram1)
+
+.mmu_tlb        0x0002c000     0x1200
+ *(.mmu_tlb_segment)
+ .mmu_tlb_segment
+                0x0002c000     0x1200 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.bss1           0x0002d200        0x0
+                0x0002d200                RAM1_USED = .
+                0x00001228                UPDATE_CODE_TOTAL_SIZE = (update_code_end - update_code_start)
+                0x00000340                DRIVER_RAM_TOTAL = ((driver_data_end - driver_data_start) + (driver_bss_end - driver_bss_start))
+                0x00001748                DRIVER_CODE_TOTAL = (driver_code_end - driver_code_start)
+                0x01e00120                text_begin = ADDR (.text)
+                0x00014390                text_size = SIZEOF (.text)
+                0x01e144b0                text_end = (ADDR (.text) + SIZEOF (.text))
+                0x00005040                bss_begin = ADDR (.bss)
+                0x00020fbc                bss_size = SIZEOF (.bss)
+                0x0002d200                bss1_begin = ADDR (.bss1)
+                0x00000000                bss1_size = SIZEOF (.bss1)
+                0x00000000                data_addr = ADDR (.data)
+                0x01e144b0                data_begin = (text_begin + text_size)
+                0x000047e0                data_size = SIZEOF (.data)
+                0x00800000                psram_vaddr = ADDR (.psram_text)
+                0x01e18c90                psram_laddr = ((text_begin + text_size) + data_size)
+                0x00000000                psram_text_size = SIZEOF (.psram_text)
+                0x01e18c90                bank_code_load_addr = (data_begin + data_size)
+                0x00025ffc                aec_addr = ADDR (.overlay_aec)
+                0x01e18c90                aec_begin = ((text_begin + text_size) + data_size)
+                0x00000004                aec_size = (o_aec_end - aec_addr)
+                0x00025ffc                wav_addr = ADDR (.overlay_wav)
+                0x01e18c94                wav_begin = (aec_begin + aec_size)
+                0x00000004                wav_size = SIZEOF (.overlay_wav)
+                0x00025ffc                ape_addr = ADDR (.overlay_ape)
+                0x01e18c98                ape_begin = (wav_begin + wav_size)
+                0x00000004                ape_size = SIZEOF (.overlay_ape)
+                0x00025ffc                flac_addr = ADDR (.overlay_flac)
+                0x01e18c9c                flac_begin = (ape_begin + ape_size)
+                0x00000004                flac_size = SIZEOF (.overlay_flac)
+                0x00025ffc                m4a_addr = ADDR (.overlay_m4a)
+                0x01e18ca0                m4a_begin = (flac_begin + flac_size)
+                0x00000004                m4a_size = SIZEOF (.overlay_m4a)
+                0x00025ffc                amr_addr = ADDR (.overlay_amr)
+                0x01e18ca4                amr_begin = (m4a_begin + m4a_size)
+                0x00000004                amr_size = SIZEOF (.overlay_amr)
+                0x00025ffc                dts_addr = ADDR (.overlay_dts)
+                0x01e18ca8                dts_begin = (amr_begin + amr_size)
+                0x00000004                dts_size = SIZEOF (.overlay_dts)
+                0x00025ffc                fm_addr = ADDR (.overlay_fm)
+                0x01e18cac                fm_begin = (dts_begin + dts_size)
+                0x00000004                fm_size = (o_fm_end - fm_addr)
+                0x00026000                _HEAP_BEGIN = RAM_USED
+                0x00026000                PROVIDE (HEAP_BEGIN, RAM_USED)
+                0x0002bf00                _HEAP_END = RAM_END
+                0x0002bf00                PROVIDE (HEAP_END, RAM_END)
+                0x00005f00                _HEAP_SIZE = (HEAP_END - HEAP_BEGIN)
+                0x00005f00                PROVIDE (HEAP_SIZE, (HEAP_END - HEAP_BEGIN))
+                0x0002d200                _HEAP1_BEGIN = RAM1_USED
+                0x0002d200                PROVIDE (HEAP1_BEGIN, RAM1_USED)
+                0x0002ff80                _HEAP1_END = RAM1_END
+                0x0002ff80                PROVIDE (HEAP1_END, RAM1_END)
+                0x00002d80                _HEAP1_SIZE = (HEAP1_END - HEAP1_BEGIN)
+                0x00002d80                PROVIDE (HEAP1_SIZE, (HEAP1_END - HEAP1_BEGIN))
+                0x00008c80                _MALLOC_SIZE = (HEAP_SIZE + HEAP1_SIZE)
+                [!provide]                PROVIDE (MALLOC_SIZE, (HEAP_SIZE + HEAP1_SIZE))
+OUTPUT(C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\usb-budget-guard\sdk.elf elf32-pi32v2)
+
+.debug_str      0x00000000     0xf38c
+ .debug_str     0x00000000     0xf38c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+                              0x10568 (size before relaxing)
+
+.debug_loc      0x00000000     0xc5e0
+ .debug_loc     0x00000000     0xc5e0 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.debug_abbrev   0x00000000      0xe83
+ .debug_abbrev  0x00000000      0xe5d C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .debug_abbrev  0x00000e5d       0x26 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+
+.debug_info     0x00000000    0x2c03a
+ .debug_info    0x00000000    0x2bec3 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .debug_info    0x0002bec3      0x177 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+
+.debug_ranges   0x00000000     0x1c30
+ .debug_ranges  0x00000000     0x1c08 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .debug_ranges  0x00001c08       0x28 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+
+.debug_macinfo  0x00000000        0x1
+ .debug_macinfo
+                0x00000000        0x1 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.debug_pubnames
+                0x00000000     0x8487
+ .debug_pubnames
+                0x00000000     0x8487 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.debug_pubtypes
+                0x00000000     0x448c
+ .debug_pubtypes
+                0x00000000     0x448c C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.debug_frame    0x00000000     0x3980
+ .debug_frame   0x00000000     0x3980 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+
+.debug_line     0x00000000    0x19915
+ .debug_line    0x00000000    0x197b8 C:\Users\mmsyl\AppData\Local\Temp\lto-llvm-247f15.o
+ .debug_line    0x000197b8      0x131 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)
+ .debug_line    0x000198e9       0x2c C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\update.a(version.z.o)
+
+.debug_aranges  0x00000000       0x28
+ .debug_aranges
+                0x00000000       0x28 C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\.cache\sdk\include_lib\liba\br23\cpu.a(startup.S.o)

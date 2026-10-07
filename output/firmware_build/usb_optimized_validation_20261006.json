@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-06",
+  "current_firmware": "live dual-lane radar, compressed LDF1 over interrupt-driven CDC",
+  "ufw_sha256": "25e98a57868261ed3abfe1e7f218eca90a0574452d379be93904c81cce547bd8",
+  "release": "firmware/releases/usb-optimized-20261006",
+  "ctest_passed": 13,
+  "python_tests_passed": 34,
+  "runs": {
+    "usb_budget_guard": {
+      "capture": {
+        "port": "COM30",
+        "identity": "USB VID:PID=4C4A:4155 SER=LD2450-STREAM-01 LOCATION=1-4:x.0",
+        "seconds": 30.0,
+        "stall_seconds": 0,
+        "requested_dtr": true,
+        "stop_report": true,
+        "received_bytes": 20402188,
+        "read_elapsed_seconds": 30.003224099998988,
+        "stream_sha256": "e9b07f50ca88c55dd95973bd54beb71e268a6209cb0e7304a705a19224b7be01"
+      },
+      "decoded": {
+        "source": "output\\stream_bench\\usb_budget_guard_capture\\stream.ldf",
+        "complete_frames": 159,
+        "rejected_frames": 1,
+        "protocol_errors": 0,
+        "parser_errors": 1,
+        "discarded_bytes": 326,
+        "received_bytes": 20402188,
+        "stream_sha256": "e9b07f50ca88c55dd95973bd54beb71e268a6209cb0e7304a705a19224b7be01"
+      },
+      "wire_bytes_per_second": 679999.8537490738,
+      "integrity_details": {
+        "interior_resync_bytes": 0,
+        "first_resync_offset": null,
+        "last_resync_offset": null,
+        "eof_tail_bytes": 326,
+        "abort_reasons": {}
+      },
+      "pa9_path": "output/stream_bench/usb_budget_guard_capture/pa9.txt"
+    },
+    "usb_budget_guard_stall": {
+      "capture": {
+        "port": "COM30",
+        "identity": "USB VID:PID=4C4A:4155 SER=LD2450-STREAM-01 LOCATION=1-4:x.0",
+        "seconds": 5.0,
+        "stall_seconds": 3.0,
+        "requested_dtr": true,
+        "stop_report": false,
+        "received_bytes": 3522560,
+        "read_elapsed_seconds": 5.005004200000258,
+        "stream_sha256": "ba0df8a4affd9f35e764c3c044c6c4d7a252c90dc3345a2fea093dea4c08e925"
+      },
+      "decoded": {
+        "source": "output\\stream_bench\\usb_budget_guard_stall_capture\\stream.ldf",
+        "complete_frames": 27,
+        "rejected_frames": 2,
+        "protocol_errors": 0,
+        "parser_errors": 1,
+        "discarded_bytes": 144,
+        "received_bytes": 3522560,
+        "stream_sha256": "ba0df8a4affd9f35e764c3c044c6c4d7a252c90dc3345a2fea093dea4c08e925"
+      },
+      "wire_bytes_per_second": 703807.6012003784,
+      "integrity_details": {
+        "interior_resync_bytes": 0,
+        "first_resync_offset": null,
+        "last_resync_offset": null,
+        "eof_tail_bytes": 144,
+        "abort_reasons": {
+          "3": 1
+        }
+      },
+      "pa9_path": "output/stream_bench/usb_budget_guard_stall_capture/pa9.txt"
+    },
+    "usb_budget_guard_reopen": {
+      "capture": {
+        "port": "COM30",
+        "identity": "USB VID:PID=4C4A:4155 SER=LD2450-STREAM-01 LOCATION=1-4:x.0",
+        "seconds": 5.0,
+        "stall_seconds": 0,
+        "requested_dtr": true,
+        "stop_report": true,
+        "received_bytes": 3477504,
+        "read_elapsed_seconds": 5.002544199998738,
+        "stream_sha256": "170e6d17c458f2d090f41dc9a8458ec6ba582d0c90b0668a6204761c0b112bda"
+      },
+      "decoded": {
+        "source": "output\\stream_bench\\usb_budget_guard_reopen_capture\\stream.ldf",
+        "complete_frames": 28,
+        "rejected_frames": 1,
+        "protocol_errors": 0,
+        "parser_errors": 65,
+        "discarded_bytes": 1880,
+        "received_bytes": 3477504,
+        "stream_sha256": "170e6d17c458f2d090f41dc9a8458ec6ba582d0c90b0668a6204761c0b112bda"
+      },
+      "wire_bytes_per_second": 695147.0813592966,
+      "integrity_details": {
+        "interior_resync_bytes": 64,
+        "first_resync_offset": 0,
+        "last_resync_offset": 63,
+        "eof_tail_bytes": 1816,
+        "abort_reasons": {}
+      },
+      "pa9_path": "output/stream_bench/usb_budget_guard_reopen_capture/pa9.txt"
+    },
+    "usb_optimized_raw_final": {
+      "capture": {
+        "port": "COM30",
+        "identity": "USB VID:PID=4C4A:4155 SER=LD2450-STREAM-01 LOCATION=1-4:x.0",
+        "seconds": 10.0,
+        "stall_seconds": 0,
+        "requested_dtr": true,
+        "stop_report": true,
+        "received_bytes": 7901184,
+        "read_elapsed_seconds": 10.004327800001192,
+        "stream_sha256": "ac04e104eb2f698c488ba40e1a7829361235be20d45e67583ab31f28b6c48fb3"
+      },
+      "decoded": {
+        "source": "output\\stream_bench\\usb_optimized_raw_final_capture\\stream.ldf",
+        "complete_frames": 29,
+        "rejected_frames": 1,
+        "protocol_errors": 0,
+        "parser_errors": 1,
+        "discarded_bytes": 611,
+        "received_bytes": 7901184,
+        "stream_sha256": "ac04e104eb2f698c488ba40e1a7829361235be20d45e67583ab31f28b6c48fb3"
+      },
+      "wire_bytes_per_second": 789776.6004827489,
+      "integrity_details": {
+        "interior_resync_bytes": 0,
+        "first_resync_offset": null,
+        "last_resync_offset": null,
+        "eof_tail_bytes": 611,
+        "abort_reasons": {}
+      },
+      "pa9_path": "output/stream_bench/usb_optimized_raw_final_capture/pa9.txt"
+    },
+    "usb_optimized_final_live": {
+      "capture": {
+        "port": "COM30",
+        "identity": "USB VID:PID=4C4A:4155 SER=LD2450-STREAM-01 LOCATION=1-4:x.0",
+        "seconds": 5.0,
+        "stall_seconds": 0,
+        "requested_dtr": true,
+        "stop_report": false,
+        "received_bytes": 3469312,
+        "read_elapsed_seconds": 5.00218920000043,
+        "stream_sha256": "4a796a5a8a4f88be88bfbf2b05933509f3816a7c0431a0da655e058466634367"
+      },
+      "decoded": {
+        "source": "output\\stream_bench\\usb_optimized_final_live_capture\\stream.ldf",
+        "complete_frames": 27,
+        "rejected_frames": 1,
+        "protocol_errors": 0,
+        "parser_errors": 1,
+        "discarded_bytes": 906,
+        "received_bytes": 3469312,
+        "stream_sha256": "4a796a5a8a4f88be88bfbf2b05933509f3816a7c0431a0da655e058466634367"
+      },
+      "wire_bytes_per_second": 693558.7322446144,
+      "pa9_path": "output/stream_bench/usb_optimized_final_live_capture/pa9.txt"
+    }
+  },
+  "final_restart": {
+    "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\usb-budget-guard\\update-two-wire.ufw",
+    "sha256": "25e98a57868261ed3abfe1e7f218eca90a0574452d379be93904c81cce547bd8",
+    "port": "COM13",
+    "debug_port": "COM11",
+    "started_utc": "2026-10-06T22:10:43.211170+00:00",
+    "stop_report": false,
+    "upload_complete": true,
+    "read_requests": 417,
+    "reported_size": 184320,
+    "loader_staged": true,
+    "device_error": null,
+    "pa9_bytes": 8977
+  },
+  "heap_reservations_bytes": {
+    "main": 24320,
+    "secondary": 11648,
+    "runtime_qualified": false
+  },
+  "limits": [
+    "Reduced whole-frame cadence, not full-rate export.",
+    "Scene-dependent compression and CPU costs; CPU-backlog guard activation not deliberately exercised.",
+    "No physical unplug/replug qualification.",
+    "Link-time RAM reservations are not runtime free heap or stack high-water measurements.",
+    "Capture start/end can contain incomplete frames; only accepted frames are published."
+  ]
+}

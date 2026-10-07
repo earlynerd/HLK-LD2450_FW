@@ -1,0 +1,78 @@
+[00:04:16.668]single bank update
+[00:04:16.671][Info]: [UPDATE]<<<<update_type:5a04>>>>>>>>
+
+[00:04:16.677][Info]: [UPDATE]boot_offset:0 sfc_base:3000
+
+[00:04:16.748][Info]: [UPDATE]head crc verify ok
+
+[00:04:16.752][Info]: [UPDATE]match_name :flash.bin
+
+[00:04:16.757][Info]: [UPDATE]match_name :flash2.bin
+
+[00:04:16.762][Info]: [UPDATE]match_name :flash3.bin
+
+[00:04:16.768][Info]: [UPDATE]match_name :flash4.bin
+
+[00:04:16.773][Info]: [UPDATE]match flash bin num:4
+
+[00:04:16.778][Info]: [UPDATE]find file cnt:5
+
+[00:04:16.782][Info]: [UPDATE]local sector_align_mode:10
+
+[00:04:16.788][Info]: [UPDATE]flash_app_area_head adrr:60
+
+
+40 BE FF FF 00 30 00 00 FF FF FF FF 81 FF 00 00 
+61 70 70 5F 64 69 72 5F 68 65 61 64 00 FF FF FF 
+[00:04:16.802]tab length: 4
+[00:04:16.805][Info]: [UPDATE]read ufw flash_bin addr:400
+
+[00:04:16.843][Info]: [UPDATE]>>>>>ufw_flash_file_info:addr:400 len:30000
+
+[00:04:16.850][Info]: [UPDATE]flash_bin_addr:400
+
+[00:04:16.887][Info]: [UPDATE]find app code file
+
+[00:04:16.925][Info]: [UPDATE]user key decode succ
+
+[00:04:16.929][Info]: [UPDATE]find vm file head:30000 d000
+
+[00:04:16.949][Info]: [UPDATE]vid compare:0.01 0.01
+[00:04:16.953][Info]: [UPDATE]pid compare:AC635Nÿÿÿÿÿÿÿÿÿÿ AC635Nÿÿÿÿÿÿÿÿÿÿ
+[00:04:16.960][Info]: [UPDATE]loader_addr:306a0 len:3e460
+
+[00:04:16.998][Info]: [UPDATE]find target update type :uart_user.bin
+
+[00:04:17.005][Info]: [UPDATE]ota loader 0 crc verify ok
+
+[00:04:17.010][Info]: [UPDATE]ota loader 1 crc verify ok
+
+[00:04:17.016][Info]: [UPDATE]ota loader 2 crc verify ok
+
+[00:04:17.021][Info]: [UPDATE]ota loader 3 crc verify ok
+
+[00:04:17.027][Info]: [UPDATE]ota loader 4 crc verify ok
+
+[00:04:17.032][Info]: [UPDATE]ota loader 5 crc verify ok
+
+[00:04:17.037][Info]: [UPDATE]ota loader 6 crc verify ok
+
+[00:04:17.043][Info]: [UPDATE]ota loader 7 crc verify ok
+
+[00:04:17.048][Info]: [UPDATE]ota loader 8 crc verify ok
+
+[00:04:17.054]flash length error!!!
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+FF FF FF FF FF FF FF FF FF FF FF FF 
+[00:04:17.070]>>>loader_len:0x4621 res_area_len:0x100 total_len:0x5000
+[00:04:17.076][Info]: [UPDATE]new_fw_size:40000 flash_cap:100000 load_len:5000 local_fw_size:40000
+
+[00:04:17.086][Info]: [UPDATE]loader_suppose_addr:38000  valid_vm_start_addr:30000
+
+[00:04:17.093][Info]: [UPDATE]loader_area_addr:38000 len:5000
+
+[00:04:17.099][Info]: [UPDATE]erase_first_unit:30000 1000
+
+[00:04:17.105][Info]: [UPDATE]erase_sec_addr = 0x30000 1000
+

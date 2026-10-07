@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-06",
+  "stream_device_flashed": true,
+  "stream_ufw_sha256": "388a98cf4c637a0d8863df2fedb7c248b77d027016525d1f74104075c9e0c8c4",
+  "release": "firmware/releases/stream-acquisition-20261006",
+  "host_validation": {
+    "ctest_suites_passed": 12,
+    "python_tests_passed": 34
+  },
+  "quiet_start": {
+    "local_runtime_us": 10584937,
+    "valid_records_per_lane": [
+      7536,
+      7536
+    ],
+    "complete_paired_frames": 117,
+    "frame_starts": 118,
+    "export_skips": 118,
+    "bad_records": 0,
+    "sequence_errors": 0,
+    "dma_overruns": 0,
+    "timeouts": 0,
+    "peak_pending_records": 1,
+    "max_record_processing_us_without_encoding": 264
+  },
+  "usb_bench_built_not_flashed": {
+    "ufw_sha256": "7e7bb9aed56a06b899e859cd46b168835a71781a8bd05a2e65c4b01e70e4cbaa",
+    "build_result": "firmware/build/usb-bench/build-result.json"
+  },
+  "hardware_runs": {
+    "quiet_start": {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\stream\\update-two-wire.ufw",
+      "sha256": "388a98cf4c637a0d8863df2fedb7c248b77d027016525d1f74104075c9e0c8c4",
+      "port": "COM13",
+      "debug_port": "COM11",
+      "started_utc": "2026-10-06T09:49:25.473859+00:00",
+      "stop_report": true,
+      "upload_complete": true,
+      "read_requests": 417,
+      "reported_size": 184320,
+      "loader_staged": true,
+      "device_error": null,
+      "pa9_bytes": 9301
+    },
+    "restart": {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\stream\\update-two-wire.ufw",
+      "sha256": "388a98cf4c637a0d8863df2fedb7c248b77d027016525d1f74104075c9e0c8c4",
+      "port": "COM13",
+      "debug_port": "COM11",
+      "started_utc": "2026-10-06T09:53:34.968828+00:00",
+      "stop_report": false,
+      "upload_complete": true,
+      "read_requests": 50,
+      "reported_size": 0,
+      "loader_staged": true,
+      "device_error": null,
+      "pa9_bytes": 8873
+    },
+    "active_updater_reentry": {
+      "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\stream\\update-two-wire.ufw",
+      "sha256": "388a98cf4c637a0d8863df2fedb7c248b77d027016525d1f74104075c9e0c8c4",
+      "port": "COM13",
+      "debug_port": "COM11",
+      "started_utc": "2026-10-06T09:54:05.355600+00:00",
+      "stop_report": false,
+      "upload_complete": true,
+      "read_requests": 50,
+      "reported_size": 0,
+      "loader_staged": true,
+      "device_error": null,
+      "pa9_bytes": 8936
+    }
+  },
+  "final_state": "Application rebooted after active UART updater reentry, no stop command issued; ports closed.",
+  "limits": [
+    "Native USB not wired: no enumeration, throughput, stall or reconnect qualification.",
+    "No concurrent target codec/USB timing or host-received frame on hardware.",
+    "SDK heap counters inconsistent with physical RAM; stack and allocator accounting pending.",
+    "Acquisition pass is approximately ten seconds, not long-duration qualification."
+  ]
+}

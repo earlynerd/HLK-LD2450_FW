@@ -6,6 +6,12 @@
 #include "asm/timer.h"
 #endif
 #include "ld2450_peripherals.h"
+#ifdef LD2450_USB_STREAM
+#include "ld2450_stream_app.h"
+#endif
+#ifdef LD2450_CAPTURE
+#include "ld2450_capture.h"
+#endif
 extern void ld2450_console_write(const char *text);
 extern void ld2450_uart_loader_init(void);
 extern int ld2450_uart_loader_poll(void);
@@ -36,6 +42,9 @@ void app_main(void)
 {
     struct ld2450_config cfg = ld2450_default_config();
     int result;
+#ifdef LD2450_USB_STREAM
+    int stream_ready=0;
+#endif
 #ifdef LD2450_HELLO_WORLD
     uint32_t last_hello;
     static const char heartbeat[] = "HLK-LD2450_FW: hello; UART updater ready\r\n";
@@ -51,21 +60,37 @@ void app_main(void)
     }
     ld2450_uart_loader_init();
     boot_recovery_window();
+#ifdef LD2450_USB_STREAM
+    result=ld2450_stream_app_init();
+    stream_ready=(result==0);
+    printf("STREAM: init=%d; native USB CDC; '?' stops/reports; UART recovery retained\n",result);
+#endif
 #ifdef LD2450_HELLO_WORLD
     ld2450_debug_write("Hello world! Starting UART updater\r\n");
-#else
+#elif !defined(LD2450_USB_BENCH)
     ld2450_debug_write("HLK-LD2450_FW radar experiment application 0.2\r\n");
+#ifdef LD2450_USB_STREAM
+    if(stream_ready)
+#endif
     result = ld2450_app_start();
     if (result) printf("BOOT: radar init=%d; updater remains available\n", result);
 #endif
-#ifdef LD2450_HELLO_WORLD
+#ifndef LD2450_USB_STREAM
     ld2450_debug_write("UPDATE: ready on PA1/PA0 at 256000 baud\r\n");
+#endif
+#ifdef LD2450_HELLO_WORLD
     ld2450_module_uart_write((const uint8_t *)heartbeat, sizeof(heartbeat) - 1);
     last_hello = timer_get_ms();
 #endif
     for (;;) {
         clr_wdt();
         ld2450_uart_loader_poll();
+#ifdef LD2450_USB_STREAM
+        if(stream_ready) ld2450_stream_app_poll();
+#endif
+#ifdef LD2450_CAPTURE
+        ld2450_capture_poll();
+#endif
 #ifdef LD2450_HELLO_WORLD
         if ((uint32_t)(timer_get_ms() - last_hello) >= 1000u) {
             ld2450_debug_write("Hello world!\r\n");

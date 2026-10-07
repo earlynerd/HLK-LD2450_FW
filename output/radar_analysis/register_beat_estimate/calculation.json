@@ -1,0 +1,30 @@
+{
+  "status": "Register-derived candidate; absolute S5 frequency scale inferred, not RF calibrated",
+  "icl_candidate_hz_per_code": 17.881393432617188,
+  "icl_abd_start_hz": 24015000003.57628,
+  "icl_abd_up_bandwidth_hz": 230026245.1171875,
+  "icl_abd_down_bandwidth_hz": 230044126.51062012,
+  "icl_mtt_start_hz": 24025000011.92093,
+  "s5_candidate_hz_per_code": 143.0511474609375,
+  "s5_start_hz": 24025000047.683716,
+  "s5_ramp_counts": 84000,
+  "s5_ramp_seconds": 0.00042,
+  "s5_bandwidth_hz": 204277038.57421875,
+  "s5_slope_hz_per_second": 486373901367.1875,
+  "fft_bin_hz": 2441.40625,
+  "range_bin_m": 0.7524202867450981,
+  "distances": [
+    {
+      "feet": 3,
+      "meters": 0.9144000000000001,
+      "beat_hz": 2966.987884732953,
+      "fft_bin_magnitude": 1.2152782375866176
+    },
+    {
+      "feet": 6,
+      "meters": 1.8288000000000002,
+      "beat_hz": 5933.975769465906,
+      "fft_bin_magnitude": 2.430556475173235
+    }
+  ]
+}

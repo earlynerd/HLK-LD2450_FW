@@ -18,9 +18,10 @@ from package_ufw import container
 p = argparse.ArgumentParser()
 p.add_argument('--entry', choices=['stock', 'custom', 'capture'], required=True)
 p.add_argument('--seconds', type=float, default=20)
-p.add_argument('--image-build', choices=['hello-logfix', 'hello-repeat', 'hello-recovery', 'hello-recovery-retry'], default='hello-logfix')
+p.add_argument('--timeout', type=float, default=20)
+p.add_argument('--image-build', choices=['hello-logfix', 'hello-repeat', 'hello-recovery', 'hello-recovery-retry', 'radar-bringup', 'spi-capture', 'spi-capture16'], default='hello-logfix')
 a = p.parse_args()
-out = ROOT / 'output/stock_uart_compatibility' / ('hello_logfix_' + a.entry + '_' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
+out = ROOT / 'output/stock_uart_compatibility' / (a.image_build.replace('-', '_') + '_' + a.entry + '_' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
 out.mkdir(parents=True)
 image = ROOT / 'firmware/build' / a.image_build / 'update-two-wire.ufw'
 raw = image.read_bytes()
@@ -28,7 +29,10 @@ sha = hashlib.sha256(raw).hexdigest()
 assert sha == {'hello-logfix': '1ee98f1c057629b5ffefbd5e9605f73255826cea6ac182fae82b7b91ee59a51a',
                'hello-repeat': '05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb',
                'hello-recovery': '5e35b716bc94cd174042c467632767a81c8197d3e10f87ea562fbcafa71391d0',
-               'hello-recovery-retry': '5d77b20852c17a659cd5b83f8b2cd025720250c7e86475bbf3ab73f9d844283e'}[a.image_build]
+               'hello-recovery-retry': '5d77b20852c17a659cd5b83f8b2cd025720250c7e86475bbf3ab73f9d844283e',
+               'radar-bringup': '1f7e69f8d5630fcee9ea50b9d242ba95990b40aeeb5fa132e21c500bc35c7e56',
+               'spi-capture': '501d05e5b5b960c51ce360e4c0e51f6b339ec21e40ec7962583fe4435fece3e5',
+               'spi-capture16': '16381b9302ccceaa48af63f7459c293fccbeb042064be85432480fbb575f6fb5'}[a.image_build]
 container(raw)
 report = dict(image=str(image), image_sha256=sha, entry=a.entry, result='starting')
 start = time.monotonic()
@@ -93,7 +97,7 @@ try:
     if a.entry != 'capture':
         peer = RecordingPeer(raw, 256000)
         with (out / 'update-events.jsonl').open('w') as events:
-            upload(module, peer)
+            upload(module, peer, timeout=a.timeout)
         print('Device reported final success; collecting boot output.', flush=True)
     deadline = time.monotonic() + a.seconds
     while time.monotonic() < deadline:

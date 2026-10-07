@@ -1,0 +1,146 @@
+{
+  "input": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\output\\stream_bench\\usb_budget_guard_decoded",
+  "configuration_sha256": "ee4b48c3d2ebb606418db55f2bbb893791d3729c1d8c7142cf23c5f35c473f3e",
+  "scene_context": "User reports unattended office, radar aimed approximately at keyboard; no controlled target distances.",
+  "accepted_frames": 159,
+  "records_verified": 20352,
+  "complex_samples": 10420224,
+  "real_IQ_values": 20840448,
+  "reconstructed_record_bytes": 41843712,
+  "capture_span_seconds": 29.797276,
+  "median_chirp_interval_seconds": 0.0012,
+  "frame_period_seconds": 0.088987,
+  "radar_frame_rate_hz": 11.237596502859969,
+  "retained_frame_id_gaps": {
+    "2": 140,
+    "3": 18
+  },
+  "full_int16_rail_hits": 0,
+  "timestamp_interval_outliers": {
+    "count": 8,
+    "intervals": 20034,
+    "values_us": [
+      199,
+      2201,
+      199,
+      2200,
+      199,
+      2201,
+      199,
+      2201
+    ],
+    "locations_frame_lane_interval": [
+      [
+        73,
+        0,
+        59
+      ],
+      [
+        73,
+        0,
+        60
+      ],
+      [
+        73,
+        1,
+        59
+      ],
+      [
+        73,
+        1,
+        60
+      ],
+      [
+        108,
+        0,
+        14
+      ],
+      [
+        108,
+        0,
+        15
+      ],
+      [
+        108,
+        1,
+        14
+      ],
+      [
+        108,
+        1,
+        15
+      ]
+    ],
+    "interpretation": "Two chirp events have paired roughly -1000/+1000 us interval errors on both lanes. Metadata anomaly, not evidence of lost samples. Cause not proven; originals retained."
+  },
+  "receivers": [
+    {
+      "receiver": 1,
+      "I_min_max": [
+        2437.0,
+        4925.0
+      ],
+      "Q_min_max": [
+        -4003.0,
+        -2133.0
+      ],
+      "mean_I_Q": [
+        3500.689453125,
+        -3203.8544921875
+      ],
+      "AC_complex_rms_counts": 876.6544189453125,
+      "within_frame_residual_complex_rms_counts": 35.50154495239258,
+      "residual_to_AC_amplitude_percent": 4.0496625900268555,
+      "AC_to_residual_power_ratio_db": 27.85162353515625,
+      "repeatable_within_frame_AC_energy_percent": 99.83600616455078,
+      "off_band_median_spectral_amplitude_counts": 0.8151740933880914,
+      "spur_bin_220_relative_peak_db": -31.85815756381388
+    },
+    {
+      "receiver": 2,
+      "I_min_max": [
+        -2699.0,
+        19.0
+      ],
+      "Q_min_max": [
+        831.0,
+        2536.0
+      ],
+      "mean_I_Q": [
+        -1276.641357421875,
+        1807.9227294921875
+      ],
+      "AC_complex_rms_counts": 1068.1151123046875,
+      "within_frame_residual_complex_rms_counts": 19.299304962158203,
+      "residual_to_AC_amplitude_percent": 1.8068562746047974,
+      "AC_to_residual_power_ratio_db": 34.86153030395508,
+      "repeatable_within_frame_AC_energy_percent": 99.96735382080078,
+      "off_band_median_spectral_amplitude_counts": 0.6300855462064568,
+      "spur_bin_220_relative_peak_db": -40.49235983646958
+    }
+  ],
+  "strongest_AC_bin_interreceiver": {
+    "bin": 1,
+    "median_within_frame_coherence": 0.9999921923061017,
+    "phase_p5_median_p95_deg": [
+      -152.73803509195494,
+      -152.48036229613396,
+      -152.30971826940157
+    ],
+    "phase_drift_first_to_last_10_frames_deg": 0.45174263712877405,
+    "amplitude_change_first_to_last_10_frames_percent": [
+      -4.037192912819343,
+      -3.211956927770432
+    ],
+    "caution": "Dominated by static signal; phase is not calibrated azimuth or a pure isolated target."
+  },
+  "processing": "Signed BE int16 I+jQ; per-chirp complex mean removed for spectra; 512-point Hann FFT divided by window sum. Residual = centered waveform minus its own frame-average waveform. Doppler is an exploratory FFT over 64 records at the median 1.2 ms spacing; no resampling of timestamp outliers. Full-record FFT may mix sweep segments.",
+  "limits": [
+    "No calibrated fast-time sample rate, sweep slope/segmentation or range axis.",
+    "Residual includes noise, drift, ripple and any real small motion; no receiver noise figure or target SNR measured.",
+    "Exported int16 range is not the unverified physical ADC range.",
+    "No controlled moving or known-distance target; no detection range or sensitivity measurement.",
+    "Skipped whole frames limit cross-frame motion analysis; no interpolation across them.",
+    "Stable interreceiver phase does not identify a target angle without geometry and phase-offset calibration."
+  ]
+}

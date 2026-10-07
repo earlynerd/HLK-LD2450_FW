@@ -5,3 +5,17 @@ build/
 tmp/
 .codex*/
 node_modules/
+
+# Bulk recordings and decoded frame dumps stay local. Keep reports, diagnostic
+# logs, plots, release images, and firmware test fixtures under version control.
+# See output/local_capture_manifest.json for the saved recording hashes.
+/output/stream_bench/**/*.ldf
+/output/stream_bench/**/frame-*/
+/output/live_radar/**/*.ldf
+/output/live_radar/**/frame-*/
+/output/radar_analysis/**/*.npz
+
+# Transient live-viewer process state.
+/output/live_radar/server.pid
+/output/live_radar/server.stdout.log
+/output/live_radar/server.stderr.log

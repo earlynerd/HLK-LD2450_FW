@@ -1,0 +1,7582 @@
+{
+  "source": "output\\live_radar\\20261006-173642-capture-3fc19b\\stream.ldf",
+  "stream_sha256": "6aff4c53b47ce5f600b93b7c9c2d4236d69f24c7becaf7e019278bdd3a58e09b",
+  "bytes": 50612581,
+  "complete_frames": 305,
+  "rejected_frames": 125,
+  "parser_errors": 1205,
+  "discarded_bytes": 1205,
+  "initial_resync_bytes": 336,
+  "protocol_errors": 0,
+  "partial_tail": true,
+  "abort_reasons": {
+    "CPU backlog guard": 71,
+    "output queue full": 53
+  },
+  "predictor_screen": {
+    "complete": {
+      "frames": 305,
+      "validated_records": 39040,
+      "actual_wire_bytes": 38370388,
+      "estimated_wire_bytes": {
+        "previous_chirp": 38370388,
+        "previous_sample": 40655112,
+        "gradient_2d": 40277252
+      }
+    },
+    "abort": {
+      "frames": 124,
+      "validated_records": 9285,
+      "actual_wire_bytes": 12083309,
+      "estimated_wire_bytes": {
+        "previous_chirp": 12083309,
+        "previous_sample": 10143889,
+        "gradient_2d": 10017765
+      }
+    }
+  },
+  "events": [
+    {
+      "frame_id": 98244,
+      "started_us": 152523655,
+      "wire_bytes": 123844,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123844,
+        "previous_sample": 134528,
+        "gradient_2d": 132628
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98246,
+      "started_us": 152701627,
+      "wire_bytes": 128212,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128212,
+        "previous_sample": 135924,
+        "gradient_2d": 139192
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98248,
+      "started_us": 152879600,
+      "wire_bytes": 124208,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124208,
+        "previous_sample": 135112,
+        "gradient_2d": 134712
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98250,
+      "started_us": 153057576,
+      "wire_bytes": 125328,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125328,
+        "previous_sample": 135016,
+        "gradient_2d": 136144
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98252,
+      "started_us": 153235548,
+      "wire_bytes": 127316,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127316,
+        "previous_sample": 135608,
+        "gradient_2d": 137980
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98254,
+      "started_us": 153413523,
+      "wire_bytes": 127476,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127476,
+        "previous_sample": 135776,
+        "gradient_2d": 138256
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98256,
+      "started_us": 153591496,
+      "wire_bytes": 128872,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128872,
+        "previous_sample": 136176,
+        "gradient_2d": 139880
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98258,
+      "started_us": 153769470,
+      "wire_bytes": 131596,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131596,
+        "previous_sample": 135596,
+        "gradient_2d": 143496
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98260,
+      "started_us": 153947443,
+      "wire_bytes": 131576,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131576,
+        "previous_sample": 134264,
+        "gradient_2d": 143784
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98263,
+      "started_us": 154214405,
+      "wire_bytes": 123676,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123676,
+        "previous_sample": 133816,
+        "gradient_2d": 133380
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98265,
+      "started_us": 154392377,
+      "wire_bytes": 124876,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124876,
+        "previous_sample": 133708,
+        "gradient_2d": 135180
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98267,
+      "started_us": 154570354,
+      "wire_bytes": 126556,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126556,
+        "previous_sample": 133484,
+        "gradient_2d": 137380
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98269,
+      "started_us": 154748326,
+      "wire_bytes": 125796,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125796,
+        "previous_sample": 133592,
+        "gradient_2d": 136668
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98271,
+      "started_us": 154926299,
+      "wire_bytes": 123624,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123624,
+        "previous_sample": 133592,
+        "gradient_2d": 133496
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98273,
+      "started_us": 155104275,
+      "wire_bytes": 122428,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122428,
+        "previous_sample": 133912,
+        "gradient_2d": 132332
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98275,
+      "started_us": 155282246,
+      "wire_bytes": 122716,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122716,
+        "previous_sample": 134304,
+        "gradient_2d": 132264
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98277,
+      "started_us": 155460220,
+      "wire_bytes": 125832,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125832,
+        "previous_sample": 135708,
+        "gradient_2d": 135948
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98279,
+      "started_us": 155638195,
+      "wire_bytes": 128184,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128184,
+        "previous_sample": 136264,
+        "gradient_2d": 138660
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98281,
+      "started_us": 155816169,
+      "wire_bytes": 131668,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131668,
+        "previous_sample": 135780,
+        "gradient_2d": 143532
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98284,
+      "started_us": 156083128,
+      "wire_bytes": 127796,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127796,
+        "previous_sample": 135752,
+        "gradient_2d": 137928
+      },
+      "outcome": "complete",
+      "elapsed_us": 75598
+    },
+    {
+      "frame_id": 98286,
+      "started_us": 156261102,
+      "wire_bytes": 130292,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 130292,
+        "previous_sample": 135628,
+        "gradient_2d": 141644
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98288,
+      "started_us": 156439075,
+      "wire_bytes": 127964,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127964,
+        "previous_sample": 135376,
+        "gradient_2d": 138700
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98290,
+      "started_us": 156617049,
+      "wire_bytes": 123944,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123944,
+        "previous_sample": 135272,
+        "gradient_2d": 133440
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98292,
+      "started_us": 156795024,
+      "wire_bytes": 125296,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125296,
+        "previous_sample": 135484,
+        "gradient_2d": 135028
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98294,
+      "started_us": 156972997,
+      "wire_bytes": 128344,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128344,
+        "previous_sample": 135600,
+        "gradient_2d": 139196
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98296,
+      "started_us": 157150971,
+      "wire_bytes": 129696,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129696,
+        "previous_sample": 133824,
+        "gradient_2d": 140948
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98298,
+      "started_us": 157328945,
+      "wire_bytes": 125988,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125988,
+        "previous_sample": 135004,
+        "gradient_2d": 136632
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98300,
+      "started_us": 157506919,
+      "wire_bytes": 125664,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125664,
+        "previous_sample": 134764,
+        "gradient_2d": 136008
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98302,
+      "started_us": 157684891,
+      "wire_bytes": 131320,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131320,
+        "previous_sample": 134628,
+        "gradient_2d": 143404
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98304,
+      "started_us": 157862875,
+      "wire_bytes": 126012,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126012,
+        "previous_sample": 133548,
+        "gradient_2d": 136092
+      },
+      "outcome": "complete",
+      "elapsed_us": 75581
+    },
+    {
+      "frame_id": 98306,
+      "started_us": 158040841,
+      "wire_bytes": 126460,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126460,
+        "previous_sample": 132548,
+        "gradient_2d": 136920
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98308,
+      "started_us": 158218812,
+      "wire_bytes": 121256,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121256,
+        "previous_sample": 132024,
+        "gradient_2d": 130136
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98310,
+      "started_us": 158396789,
+      "wire_bytes": 120564,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120564,
+        "previous_sample": 131772,
+        "gradient_2d": 129064
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98312,
+      "started_us": 158574760,
+      "wire_bytes": 126308,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126308,
+        "previous_sample": 131824,
+        "gradient_2d": 136844
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98314,
+      "started_us": 158752734,
+      "wire_bytes": 125376,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125376,
+        "previous_sample": 132036,
+        "gradient_2d": 135892
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98316,
+      "started_us": 158930709,
+      "wire_bytes": 125924,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125924,
+        "previous_sample": 131892,
+        "gradient_2d": 136680
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98318,
+      "started_us": 159108683,
+      "wire_bytes": 127500,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127500,
+        "previous_sample": 131944,
+        "gradient_2d": 138740
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98320,
+      "started_us": 159286655,
+      "wire_bytes": 124368,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124368,
+        "previous_sample": 131888,
+        "gradient_2d": 134748
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98322,
+      "started_us": 159464629,
+      "wire_bytes": 127484,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127484,
+        "previous_sample": 131532,
+        "gradient_2d": 138968
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98324,
+      "started_us": 159642603,
+      "wire_bytes": 125336,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125336,
+        "previous_sample": 131628,
+        "gradient_2d": 135740
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98326,
+      "started_us": 159820576,
+      "wire_bytes": 126452,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126452,
+        "previous_sample": 131568,
+        "gradient_2d": 137224
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98328,
+      "started_us": 159998551,
+      "wire_bytes": 125280,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125280,
+        "previous_sample": 131096,
+        "gradient_2d": 136204
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98330,
+      "started_us": 160176524,
+      "wire_bytes": 125400,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125400,
+        "previous_sample": 130944,
+        "gradient_2d": 136056
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98332,
+      "started_us": 160354499,
+      "wire_bytes": 123300,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123300,
+        "previous_sample": 131540,
+        "gradient_2d": 132708
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98334,
+      "started_us": 160532473,
+      "wire_bytes": 122252,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122252,
+        "previous_sample": 131936,
+        "gradient_2d": 131420
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98336,
+      "started_us": 160710446,
+      "wire_bytes": 121712,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121712,
+        "previous_sample": 132884,
+        "gradient_2d": 130944
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98338,
+      "started_us": 160888419,
+      "wire_bytes": 129948,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129948,
+        "previous_sample": 133536,
+        "gradient_2d": 141500
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98340,
+      "started_us": 161066394,
+      "wire_bytes": 125992,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125992,
+        "previous_sample": 134444,
+        "gradient_2d": 136440
+      },
+      "outcome": "complete",
+      "elapsed_us": 75593
+    },
+    {
+      "frame_id": 98342,
+      "started_us": 161244368,
+      "wire_bytes": 127184,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127184,
+        "previous_sample": 134208,
+        "gradient_2d": 136020
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98344,
+      "started_us": 161422340,
+      "wire_bytes": 130756,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 130756,
+        "previous_sample": 136160,
+        "gradient_2d": 135692
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98346,
+      "started_us": 161600315,
+      "wire_bytes": 124856,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124856,
+        "previous_sample": 135720,
+        "gradient_2d": 134240
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98348,
+      "started_us": 161778288,
+      "wire_bytes": 122968,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122968,
+        "previous_sample": 136696,
+        "gradient_2d": 131780
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98350,
+      "started_us": 161956261,
+      "wire_bytes": 123768,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123768,
+        "previous_sample": 136412,
+        "gradient_2d": 133048
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98352,
+      "started_us": 162134236,
+      "wire_bytes": 122708,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122708,
+        "previous_sample": 135448,
+        "gradient_2d": 131676
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98354,
+      "started_us": 162312209,
+      "wire_bytes": 126656,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126656,
+        "previous_sample": 135632,
+        "gradient_2d": 136428
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98356,
+      "started_us": 162490182,
+      "wire_bytes": 142692,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142692,
+        "previous_sample": 134316,
+        "gradient_2d": 129660
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98359,
+      "started_us": 162757146,
+      "wire_bytes": 67346,
+      "records": 46,
+      "last_chirp": [
+        22,
+        22
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 67346,
+        "previous_sample": 50254,
+        "gradient_2d": 51514
+      },
+      "outcome": "abort",
+      "elapsed_us": 28814,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98360,
+      "started_us": 162846130,
+      "wire_bytes": 107706,
+      "records": 78,
+      "last_chirp": [
+        38,
+        38
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 107706,
+        "previous_sample": 88054,
+        "gradient_2d": 84806
+      },
+      "outcome": "abort",
+      "elapsed_us": 48045,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98362,
+      "started_us": 163024104,
+      "wire_bytes": 142489,
+      "records": 117,
+      "last_chirp": [
+        58,
+        57
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142489,
+        "previous_sample": 126869,
+        "gradient_2d": 122017
+      },
+      "outcome": "abort",
+      "elapsed_us": 69589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98365,
+      "started_us": 163291065,
+      "wire_bytes": 142911,
+      "records": 119,
+      "last_chirp": [
+        59,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142911,
+        "previous_sample": 124143,
+        "gradient_2d": 124743
+      },
+      "outcome": "abort",
+      "elapsed_us": 70790,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98368,
+      "started_us": 163558026,
+      "wire_bytes": 138615,
+      "records": 107,
+      "last_chirp": [
+        53,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138615,
+        "previous_sample": 113579,
+        "gradient_2d": 118039
+      },
+      "outcome": "abort",
+      "elapsed_us": 63589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98371,
+      "started_us": 163824987,
+      "wire_bytes": 141072,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141072,
+        "previous_sample": 129632,
+        "gradient_2d": 134868
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98374,
+      "started_us": 164091946,
+      "wire_bytes": 140622,
+      "records": 114,
+      "last_chirp": [
+        56,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140622,
+        "previous_sample": 119558,
+        "gradient_2d": 119874
+      },
+      "outcome": "abort",
+      "elapsed_us": 68389,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98377,
+      "started_us": 164358908,
+      "wire_bytes": 141672,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141672,
+        "previous_sample": 132896,
+        "gradient_2d": 128980
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98380,
+      "started_us": 164625868,
+      "wire_bytes": 145058,
+      "records": 122,
+      "last_chirp": [
+        60,
+        60
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145058,
+        "previous_sample": 126822,
+        "gradient_2d": 124466
+      },
+      "outcome": "abort",
+      "elapsed_us": 73188,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98383,
+      "started_us": 164892829,
+      "wire_bytes": 141086,
+      "records": 114,
+      "last_chirp": [
+        56,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141086,
+        "previous_sample": 119206,
+        "gradient_2d": 116850
+      },
+      "outcome": "abort",
+      "elapsed_us": 68389,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98386,
+      "started_us": 165159788,
+      "wire_bytes": 139076,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139076,
+        "previous_sample": 137252,
+        "gradient_2d": 133104
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98389,
+      "started_us": 165426750,
+      "wire_bytes": 140264,
+      "records": 112,
+      "last_chirp": [
+        55,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140264,
+        "previous_sample": 119164,
+        "gradient_2d": 117844
+      },
+      "outcome": "abort",
+      "elapsed_us": 67189,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98392,
+      "started_us": 165693711,
+      "wire_bytes": 143652,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 143652,
+        "previous_sample": 141352,
+        "gradient_2d": 137648
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98395,
+      "started_us": 165960671,
+      "wire_bytes": 141051,
+      "records": 115,
+      "last_chirp": [
+        57,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141051,
+        "previous_sample": 122723,
+        "gradient_2d": 121163
+      },
+      "outcome": "abort",
+      "elapsed_us": 68390,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98398,
+      "started_us": 166227631,
+      "wire_bytes": 145767,
+      "records": 127,
+      "last_chirp": [
+        63,
+        62
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145767,
+        "previous_sample": 135463,
+        "gradient_2d": 131551
+      },
+      "outcome": "abort",
+      "elapsed_us": 75589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98401,
+      "started_us": 166494594,
+      "wire_bytes": 140987,
+      "records": 115,
+      "last_chirp": [
+        57,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140987,
+        "previous_sample": 119015,
+        "gradient_2d": 115579
+      },
+      "outcome": "abort",
+      "elapsed_us": 68388,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98404,
+      "started_us": 166761552,
+      "wire_bytes": 138708,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138708,
+        "previous_sample": 137424,
+        "gradient_2d": 137160
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98407,
+      "started_us": 167028514,
+      "wire_bytes": 141982,
+      "records": 118,
+      "last_chirp": [
+        58,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141982,
+        "previous_sample": 123658,
+        "gradient_2d": 122622
+      },
+      "outcome": "abort",
+      "elapsed_us": 70788,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98410,
+      "started_us": 167295475,
+      "wire_bytes": 145448,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145448,
+        "previous_sample": 131544,
+        "gradient_2d": 128148
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98413,
+      "started_us": 167562437,
+      "wire_bytes": 141259,
+      "records": 115,
+      "last_chirp": [
+        57,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141259,
+        "previous_sample": 119891,
+        "gradient_2d": 121583
+      },
+      "outcome": "abort",
+      "elapsed_us": 68388,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98416,
+      "started_us": 167829395,
+      "wire_bytes": 137032,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 137032,
+        "previous_sample": 140880,
+        "gradient_2d": 138308
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98419,
+      "started_us": 168096357,
+      "wire_bytes": 118956,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118956,
+        "previous_sample": 126964,
+        "gradient_2d": 125840
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98421,
+      "started_us": 168274331,
+      "wire_bytes": 120372,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120372,
+        "previous_sample": 126072,
+        "gradient_2d": 127512
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98423,
+      "started_us": 168452304,
+      "wire_bytes": 121432,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121432,
+        "previous_sample": 130720,
+        "gradient_2d": 128848
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98425,
+      "started_us": 168630279,
+      "wire_bytes": 119964,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119964,
+        "previous_sample": 129644,
+        "gradient_2d": 127944
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98427,
+      "started_us": 168808251,
+      "wire_bytes": 120680,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120680,
+        "previous_sample": 128044,
+        "gradient_2d": 128928
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98429,
+      "started_us": 168986227,
+      "wire_bytes": 121228,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121228,
+        "previous_sample": 130248,
+        "gradient_2d": 130100
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98431,
+      "started_us": 169164199,
+      "wire_bytes": 120916,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120916,
+        "previous_sample": 131368,
+        "gradient_2d": 128732
+      },
+      "outcome": "complete",
+      "elapsed_us": 75593
+    },
+    {
+      "frame_id": 98433,
+      "started_us": 169342173,
+      "wire_bytes": 120960,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120960,
+        "previous_sample": 131752,
+        "gradient_2d": 129252
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98435,
+      "started_us": 169520147,
+      "wire_bytes": 117508,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 117508,
+        "previous_sample": 129616,
+        "gradient_2d": 124392
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98437,
+      "started_us": 169698121,
+      "wire_bytes": 118932,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118932,
+        "previous_sample": 130244,
+        "gradient_2d": 126828
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98439,
+      "started_us": 169876094,
+      "wire_bytes": 120816,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120816,
+        "previous_sample": 131396,
+        "gradient_2d": 127680
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98441,
+      "started_us": 170054068,
+      "wire_bytes": 122660,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122660,
+        "previous_sample": 133208,
+        "gradient_2d": 131044
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98443,
+      "started_us": 170232041,
+      "wire_bytes": 121236,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121236,
+        "previous_sample": 133344,
+        "gradient_2d": 129728
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98445,
+      "started_us": 170410015,
+      "wire_bytes": 120336,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120336,
+        "previous_sample": 131184,
+        "gradient_2d": 128076
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98447,
+      "started_us": 170587989,
+      "wire_bytes": 119920,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119920,
+        "previous_sample": 130836,
+        "gradient_2d": 127436
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98449,
+      "started_us": 170765962,
+      "wire_bytes": 120664,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120664,
+        "previous_sample": 130280,
+        "gradient_2d": 127772
+      },
+      "outcome": "complete",
+      "elapsed_us": 75592
+    },
+    {
+      "frame_id": 98451,
+      "started_us": 170943936,
+      "wire_bytes": 129344,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129344,
+        "previous_sample": 128032,
+        "gradient_2d": 127380
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98453,
+      "started_us": 171121910,
+      "wire_bytes": 137938,
+      "records": 110,
+      "last_chirp": [
+        54,
+        54
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 137938,
+        "previous_sample": 117390,
+        "gradient_2d": 114342
+      },
+      "outcome": "abort",
+      "elapsed_us": 65990,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98456,
+      "started_us": 171388870,
+      "wire_bytes": 139762,
+      "records": 110,
+      "last_chirp": [
+        54,
+        54
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139762,
+        "previous_sample": 118278,
+        "gradient_2d": 115262
+      },
+      "outcome": "abort",
+      "elapsed_us": 65990,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98459,
+      "started_us": 171655832,
+      "wire_bytes": 143636,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 143636,
+        "previous_sample": 131748,
+        "gradient_2d": 130832
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98462,
+      "started_us": 171922792,
+      "wire_bytes": 143072,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 143072,
+        "previous_sample": 130300,
+        "gradient_2d": 130808
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98465,
+      "started_us": 172189754,
+      "wire_bytes": 144956,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 144956,
+        "previous_sample": 131188,
+        "gradient_2d": 128416
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98468,
+      "started_us": 172456714,
+      "wire_bytes": 141946,
+      "records": 118,
+      "last_chirp": [
+        58,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141946,
+        "previous_sample": 124834,
+        "gradient_2d": 123238
+      },
+      "outcome": "abort",
+      "elapsed_us": 70789,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98471,
+      "started_us": 172723675,
+      "wire_bytes": 137447,
+      "records": 107,
+      "last_chirp": [
+        53,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 137447,
+        "previous_sample": 112671,
+        "gradient_2d": 110523
+      },
+      "outcome": "abort",
+      "elapsed_us": 63590,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98474,
+      "started_us": 172990634,
+      "wire_bytes": 141869,
+      "records": 117,
+      "last_chirp": [
+        58,
+        57
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141869,
+        "previous_sample": 123089,
+        "gradient_2d": 120397
+      },
+      "outcome": "abort",
+      "elapsed_us": 69590,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98477,
+      "started_us": 173257595,
+      "wire_bytes": 27109,
+      "records": 17,
+      "last_chirp": [
+        7,
+        8
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 27109,
+        "previous_sample": 19577,
+        "gradient_2d": 19481
+      },
+      "outcome": "abort",
+      "elapsed_us": 10817,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98478,
+      "started_us": 173346582,
+      "wire_bytes": 68708,
+      "records": 48,
+      "last_chirp": [
+        23,
+        23
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 68708,
+        "previous_sample": 52864,
+        "gradient_2d": 53148
+      },
+      "outcome": "abort",
+      "elapsed_us": 30020,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98480,
+      "started_us": 173524555,
+      "wire_bytes": 51922,
+      "records": 34,
+      "last_chirp": [
+        16,
+        16
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 51922,
+        "previous_sample": 38818,
+        "gradient_2d": 38614
+      },
+      "outcome": "abort",
+      "elapsed_us": 21710,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98481,
+      "started_us": 173613544,
+      "wire_bytes": 67774,
+      "records": 46,
+      "last_chirp": [
+        22,
+        22
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 67774,
+        "previous_sample": 50206,
+        "gradient_2d": 48782
+      },
+      "outcome": "abort",
+      "elapsed_us": 28832,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98482,
+      "started_us": 173702530,
+      "wire_bytes": 136284,
+      "records": 112,
+      "last_chirp": [
+        55,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 136284,
+        "previous_sample": 119340,
+        "gradient_2d": 116776
+      },
+      "outcome": "abort",
+      "elapsed_us": 67187,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98485,
+      "started_us": 173969490,
+      "wire_bytes": 42402,
+      "records": 26,
+      "last_chirp": [
+        12,
+        12
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 42402,
+        "previous_sample": 31010,
+        "gradient_2d": 32210
+      },
+      "outcome": "abort",
+      "elapsed_us": 16835,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98486,
+      "started_us": 174058477,
+      "wire_bytes": 144092,
+      "records": 120,
+      "last_chirp": [
+        59,
+        59
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 144092,
+        "previous_sample": 127732,
+        "gradient_2d": 124432
+      },
+      "outcome": "abort",
+      "elapsed_us": 71988,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98489,
+      "started_us": 174325438,
+      "wire_bytes": 45788,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 45788,
+        "previous_sample": 33720,
+        "gradient_2d": 33304
+      },
+      "outcome": "abort",
+      "elapsed_us": 18060,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98490,
+      "started_us": 174414426,
+      "wire_bytes": 57202,
+      "records": 38,
+      "last_chirp": [
+        18,
+        18
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 57202,
+        "previous_sample": 44950,
+        "gradient_2d": 44966
+      },
+      "outcome": "abort",
+      "elapsed_us": 24007,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98491,
+      "started_us": 174503411,
+      "wire_bytes": 47698,
+      "records": 30,
+      "last_chirp": [
+        14,
+        14
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 47698,
+        "previous_sample": 34994,
+        "gradient_2d": 35310
+      },
+      "outcome": "abort",
+      "elapsed_us": 19324,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98492,
+      "started_us": 174592399,
+      "wire_bytes": 123764,
+      "records": 92,
+      "last_chirp": [
+        45,
+        45
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123764,
+        "previous_sample": 102244,
+        "gradient_2d": 98684
+      },
+      "outcome": "abort",
+      "elapsed_us": 56400,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98494,
+      "started_us": 174770371,
+      "wire_bytes": 138587,
+      "records": 107,
+      "last_chirp": [
+        53,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138587,
+        "previous_sample": 119259,
+        "gradient_2d": 116215
+      },
+      "outcome": "abort",
+      "elapsed_us": 63590,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98497,
+      "started_us": 175037332,
+      "wire_bytes": 47590,
+      "records": 30,
+      "last_chirp": [
+        14,
+        14
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 47590,
+        "previous_sample": 34486,
+        "gradient_2d": 34034
+      },
+      "outcome": "abort",
+      "elapsed_us": 19285,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98498,
+      "started_us": 175126319,
+      "wire_bytes": 103228,
+      "records": 80,
+      "last_chirp": [
+        39,
+        39
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 103228,
+        "previous_sample": 84808,
+        "gradient_2d": 85580
+      },
+      "outcome": "abort",
+      "elapsed_us": 49194,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98500,
+      "started_us": 175304297,
+      "wire_bytes": 57186,
+      "records": 38,
+      "last_chirp": [
+        18,
+        18
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 57186,
+        "previous_sample": 42826,
+        "gradient_2d": 42190
+      },
+      "outcome": "abort",
+      "elapsed_us": 24081,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98501,
+      "started_us": 175393281,
+      "wire_bytes": 45028,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 45028,
+        "previous_sample": 33608,
+        "gradient_2d": 33200
+      },
+      "outcome": "abort",
+      "elapsed_us": 18045,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98502,
+      "started_us": 175482268,
+      "wire_bytes": 139328,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139328,
+        "previous_sample": 127504,
+        "gradient_2d": 124292
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98505,
+      "started_us": 175749228,
+      "wire_bytes": 132620,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 132620,
+        "previous_sample": 134492,
+        "gradient_2d": 129008
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98508,
+      "started_us": 176016188,
+      "wire_bytes": 119052,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119052,
+        "previous_sample": 131912,
+        "gradient_2d": 126216
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98510,
+      "started_us": 176194162,
+      "wire_bytes": 121848,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121848,
+        "previous_sample": 132596,
+        "gradient_2d": 130036
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98512,
+      "started_us": 176372137,
+      "wire_bytes": 119544,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119544,
+        "previous_sample": 133684,
+        "gradient_2d": 127648
+      },
+      "outcome": "complete",
+      "elapsed_us": 75586
+    },
+    {
+      "frame_id": 98517,
+      "started_us": 176817070,
+      "wire_bytes": 120360,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120360,
+        "previous_sample": 132760,
+        "gradient_2d": 129204
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98519,
+      "started_us": 176995044,
+      "wire_bytes": 119404,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119404,
+        "previous_sample": 132244,
+        "gradient_2d": 128400
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98521,
+      "started_us": 177173017,
+      "wire_bytes": 118952,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118952,
+        "previous_sample": 132660,
+        "gradient_2d": 128136
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98523,
+      "started_us": 177350992,
+      "wire_bytes": 119588,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119588,
+        "previous_sample": 133620,
+        "gradient_2d": 128684
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98525,
+      "started_us": 177528966,
+      "wire_bytes": 125240,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125240,
+        "previous_sample": 134364,
+        "gradient_2d": 135692
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98527,
+      "started_us": 177706939,
+      "wire_bytes": 122816,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122816,
+        "previous_sample": 133884,
+        "gradient_2d": 132944
+      },
+      "outcome": "complete",
+      "elapsed_us": 75599
+    },
+    {
+      "frame_id": 98529,
+      "started_us": 177884913,
+      "wire_bytes": 123028,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123028,
+        "previous_sample": 133056,
+        "gradient_2d": 133160
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98531,
+      "started_us": 178062887,
+      "wire_bytes": 122656,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122656,
+        "previous_sample": 132096,
+        "gradient_2d": 129416
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98533,
+      "started_us": 178240861,
+      "wire_bytes": 125220,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125220,
+        "previous_sample": 132344,
+        "gradient_2d": 127868
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98535,
+      "started_us": 178418833,
+      "wire_bytes": 120516,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120516,
+        "previous_sample": 133024,
+        "gradient_2d": 128700
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98537,
+      "started_us": 178596808,
+      "wire_bytes": 121376,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121376,
+        "previous_sample": 134608,
+        "gradient_2d": 129868
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98539,
+      "started_us": 178774782,
+      "wire_bytes": 121412,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121412,
+        "previous_sample": 135388,
+        "gradient_2d": 129420
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98541,
+      "started_us": 178952754,
+      "wire_bytes": 122376,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122376,
+        "previous_sample": 135420,
+        "gradient_2d": 130888
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98543,
+      "started_us": 179130730,
+      "wire_bytes": 122896,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122896,
+        "previous_sample": 135480,
+        "gradient_2d": 131612
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98545,
+      "started_us": 179308703,
+      "wire_bytes": 122712,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122712,
+        "previous_sample": 135556,
+        "gradient_2d": 131380
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98547,
+      "started_us": 179486676,
+      "wire_bytes": 123148,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123148,
+        "previous_sample": 135652,
+        "gradient_2d": 131616
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98549,
+      "started_us": 179664659,
+      "wire_bytes": 124276,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124276,
+        "previous_sample": 134956,
+        "gradient_2d": 133500
+      },
+      "outcome": "complete",
+      "elapsed_us": 75581
+    },
+    {
+      "frame_id": 98551,
+      "started_us": 179842624,
+      "wire_bytes": 124072,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124072,
+        "previous_sample": 135076,
+        "gradient_2d": 132020
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98553,
+      "started_us": 180020597,
+      "wire_bytes": 136300,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 136300,
+        "previous_sample": 130752,
+        "gradient_2d": 127896
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98556,
+      "started_us": 180287558,
+      "wire_bytes": 138128,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138128,
+        "previous_sample": 134668,
+        "gradient_2d": 131792
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98559,
+      "started_us": 180554518,
+      "wire_bytes": 49044,
+      "records": 32,
+      "last_chirp": [
+        15,
+        15
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 49044,
+        "previous_sample": 39336,
+        "gradient_2d": 38252
+      },
+      "outcome": "abort",
+      "elapsed_us": 20401,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98560,
+      "started_us": 180643505,
+      "wire_bytes": 140010,
+      "records": 110,
+      "last_chirp": [
+        54,
+        54
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140010,
+        "previous_sample": 116058,
+        "gradient_2d": 112642
+      },
+      "outcome": "abort",
+      "elapsed_us": 65989,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98563,
+      "started_us": 180910468,
+      "wire_bytes": 118566,
+      "records": 90,
+      "last_chirp": [
+        44,
+        44
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118566,
+        "previous_sample": 98422,
+        "gradient_2d": 96654
+      },
+      "outcome": "abort",
+      "elapsed_us": 55204,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98565,
+      "started_us": 181088440,
+      "wire_bytes": 140337,
+      "records": 113,
+      "last_chirp": [
+        56,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140337,
+        "previous_sample": 121777,
+        "gradient_2d": 120305
+      },
+      "outcome": "abort",
+      "elapsed_us": 67190,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98568,
+      "started_us": 181355401,
+      "wire_bytes": 144918,
+      "records": 122,
+      "last_chirp": [
+        60,
+        60
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 144918,
+        "previous_sample": 126754,
+        "gradient_2d": 126410
+      },
+      "outcome": "abort",
+      "elapsed_us": 73188,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98571,
+      "started_us": 181622360,
+      "wire_bytes": 54656,
+      "records": 36,
+      "last_chirp": [
+        17,
+        17
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 54656,
+        "previous_sample": 40932,
+        "gradient_2d": 41696
+      },
+      "outcome": "abort",
+      "elapsed_us": 22851,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98572,
+      "started_us": 181711348,
+      "wire_bytes": 134680,
+      "records": 104,
+      "last_chirp": [
+        51,
+        51
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 134680,
+        "previous_sample": 109680,
+        "gradient_2d": 107788
+      },
+      "outcome": "abort",
+      "elapsed_us": 63588,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98575,
+      "started_us": 181978311,
+      "wire_bytes": 64208,
+      "records": 44,
+      "last_chirp": [
+        21,
+        21
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 64208,
+        "previous_sample": 53276,
+        "gradient_2d": 54060
+      },
+      "outcome": "abort",
+      "elapsed_us": 27639,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98576,
+      "started_us": 182067295,
+      "wire_bytes": 56598,
+      "records": 38,
+      "last_chirp": [
+        18,
+        18
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 56598,
+        "previous_sample": 43218,
+        "gradient_2d": 42266
+      },
+      "outcome": "abort",
+      "elapsed_us": 24042,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98577,
+      "started_us": 182156283,
+      "wire_bytes": 77450,
+      "records": 54,
+      "last_chirp": [
+        26,
+        26
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 77450,
+        "previous_sample": 59658,
+        "gradient_2d": 58582
+      },
+      "outcome": "abort",
+      "elapsed_us": 33609,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98579,
+      "started_us": 182334257,
+      "wire_bytes": 140161,
+      "records": 113,
+      "last_chirp": [
+        56,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140161,
+        "previous_sample": 117289,
+        "gradient_2d": 118365
+      },
+      "outcome": "abort",
+      "elapsed_us": 67190,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98582,
+      "started_us": 182601218,
+      "wire_bytes": 140738,
+      "records": 114,
+      "last_chirp": [
+        56,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140738,
+        "previous_sample": 118434,
+        "gradient_2d": 115790
+      },
+      "outcome": "abort",
+      "elapsed_us": 68387,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98585,
+      "started_us": 182868179,
+      "wire_bytes": 90122,
+      "records": 66,
+      "last_chirp": [
+        32,
+        32
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 90122,
+        "previous_sample": 72130,
+        "gradient_2d": 69890
+      },
+      "outcome": "abort",
+      "elapsed_us": 40824,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98587,
+      "started_us": 183046151,
+      "wire_bytes": 71718,
+      "records": 50,
+      "last_chirp": [
+        24,
+        24
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 71718,
+        "previous_sample": 56482,
+        "gradient_2d": 56406
+      },
+      "outcome": "abort",
+      "elapsed_us": 31233,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98589,
+      "started_us": 183224124,
+      "wire_bytes": 142969,
+      "records": 121,
+      "last_chirp": [
+        60,
+        59
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142969,
+        "previous_sample": 127529,
+        "gradient_2d": 125313
+      },
+      "outcome": "abort",
+      "elapsed_us": 71989,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98592,
+      "started_us": 183491088,
+      "wire_bytes": 138685,
+      "records": 109,
+      "last_chirp": [
+        54,
+        53
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138685,
+        "previous_sample": 114021,
+        "gradient_2d": 111385
+      },
+      "outcome": "abort",
+      "elapsed_us": 64788,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98595,
+      "started_us": 183758046,
+      "wire_bytes": 141601,
+      "records": 117,
+      "last_chirp": [
+        58,
+        57
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141601,
+        "previous_sample": 122389,
+        "gradient_2d": 120765
+      },
+      "outcome": "abort",
+      "elapsed_us": 69589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98598,
+      "started_us": 184025010,
+      "wire_bytes": 62394,
+      "records": 42,
+      "last_chirp": [
+        20,
+        20
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 62394,
+        "previous_sample": 48366,
+        "gradient_2d": 48302
+      },
+      "outcome": "abort",
+      "elapsed_us": 26390,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98599,
+      "started_us": 184113993,
+      "wire_bytes": 61862,
+      "records": 42,
+      "last_chirp": [
+        20,
+        20
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 61862,
+        "previous_sample": 48030,
+        "gradient_2d": 47910
+      },
+      "outcome": "abort",
+      "elapsed_us": 26398,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98600,
+      "started_us": 184202981,
+      "wire_bytes": 93892,
+      "records": 68,
+      "last_chirp": [
+        33,
+        33
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 93892,
+        "previous_sample": 74396,
+        "gradient_2d": 73904
+      },
+      "outcome": "abort",
+      "elapsed_us": 42010,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98602,
+      "started_us": 184380953,
+      "wire_bytes": 64460,
+      "records": 44,
+      "last_chirp": [
+        21,
+        21
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 64460,
+        "previous_sample": 49656,
+        "gradient_2d": 49288
+      },
+      "outcome": "abort",
+      "elapsed_us": 27616,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98603,
+      "started_us": 184469942,
+      "wire_bytes": 70440,
+      "records": 48,
+      "last_chirp": [
+        23,
+        23
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 70440,
+        "previous_sample": 54176,
+        "gradient_2d": 54036
+      },
+      "outcome": "abort",
+      "elapsed_us": 30038,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98605,
+      "started_us": 184647915,
+      "wire_bytes": 142731,
+      "records": 119,
+      "last_chirp": [
+        59,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142731,
+        "previous_sample": 125943,
+        "gradient_2d": 124183
+      },
+      "outcome": "abort",
+      "elapsed_us": 70790,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98608,
+      "started_us": 184914875,
+      "wire_bytes": 142264,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142264,
+        "previous_sample": 133884,
+        "gradient_2d": 130956
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98611,
+      "started_us": 185181837,
+      "wire_bytes": 139100,
+      "records": 108,
+      "last_chirp": [
+        53,
+        53
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139100,
+        "previous_sample": 114816,
+        "gradient_2d": 111380
+      },
+      "outcome": "abort",
+      "elapsed_us": 64788,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98614,
+      "started_us": 185448796,
+      "wire_bytes": 43699,
+      "records": 31,
+      "last_chirp": [
+        14,
+        15
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 43699,
+        "previous_sample": 34087,
+        "gradient_2d": 35491
+      },
+      "outcome": "abort",
+      "elapsed_us": 19216,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98615,
+      "started_us": 185537785,
+      "wire_bytes": 44536,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 44536,
+        "previous_sample": 33100,
+        "gradient_2d": 33304
+      },
+      "outcome": "abort",
+      "elapsed_us": 18013,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98616,
+      "started_us": 185626771,
+      "wire_bytes": 44900,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 44900,
+        "previous_sample": 32544,
+        "gradient_2d": 33828
+      },
+      "outcome": "abort",
+      "elapsed_us": 18012,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98617,
+      "started_us": 185715757,
+      "wire_bytes": 139291,
+      "records": 111,
+      "last_chirp": [
+        55,
+        54
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139291,
+        "previous_sample": 116707,
+        "gradient_2d": 115063
+      },
+      "outcome": "abort",
+      "elapsed_us": 65990,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98620,
+      "started_us": 185982717,
+      "wire_bytes": 142183,
+      "records": 119,
+      "last_chirp": [
+        59,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142183,
+        "previous_sample": 123431,
+        "gradient_2d": 122711
+      },
+      "outcome": "abort",
+      "elapsed_us": 70791,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98623,
+      "started_us": 186249678,
+      "wire_bytes": 138611,
+      "records": 107,
+      "last_chirp": [
+        53,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138611,
+        "previous_sample": 111267,
+        "gradient_2d": 109251
+      },
+      "outcome": "abort",
+      "elapsed_us": 63591,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98626,
+      "started_us": 186516638,
+      "wire_bytes": 59132,
+      "records": 40,
+      "last_chirp": [
+        19,
+        19
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 59132,
+        "previous_sample": 44080,
+        "gradient_2d": 43048
+      },
+      "outcome": "abort",
+      "elapsed_us": 25238,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98627,
+      "started_us": 186605627,
+      "wire_bytes": 42842,
+      "records": 26,
+      "last_chirp": [
+        12,
+        12
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 42842,
+        "previous_sample": 33110,
+        "gradient_2d": 33778
+      },
+      "outcome": "abort",
+      "elapsed_us": 16885,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98628,
+      "started_us": 186694614,
+      "wire_bytes": 82704,
+      "records": 60,
+      "last_chirp": [
+        29,
+        29
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 82704,
+        "previous_sample": 74720,
+        "gradient_2d": 72076
+      },
+      "outcome": "abort",
+      "elapsed_us": 37230,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98630,
+      "started_us": 186872587,
+      "wire_bytes": 59028,
+      "records": 40,
+      "last_chirp": [
+        19,
+        19
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 59028,
+        "previous_sample": 44944,
+        "gradient_2d": 44288
+      },
+      "outcome": "abort",
+      "elapsed_us": 25202,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98631,
+      "started_us": 186961573,
+      "wire_bytes": 61106,
+      "records": 42,
+      "last_chirp": [
+        20,
+        20
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 61106,
+        "previous_sample": 46358,
+        "gradient_2d": 45262
+      },
+      "outcome": "abort",
+      "elapsed_us": 26425,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98632,
+      "started_us": 187050560,
+      "wire_bytes": 50208,
+      "records": 32,
+      "last_chirp": [
+        15,
+        15
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 50208,
+        "previous_sample": 38744,
+        "gradient_2d": 37404
+      },
+      "outcome": "abort",
+      "elapsed_us": 20454,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98633,
+      "started_us": 187139548,
+      "wire_bytes": 138803,
+      "records": 111,
+      "last_chirp": [
+        55,
+        54
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138803,
+        "previous_sample": 115027,
+        "gradient_2d": 112547
+      },
+      "outcome": "abort",
+      "elapsed_us": 65990,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98636,
+      "started_us": 187406507,
+      "wire_bytes": 133396,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 133396,
+        "previous_sample": 134852,
+        "gradient_2d": 131840
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98639,
+      "started_us": 187673470,
+      "wire_bytes": 123776,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123776,
+        "previous_sample": 130240,
+        "gradient_2d": 129288
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98641,
+      "started_us": 187851442,
+      "wire_bytes": 122728,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122728,
+        "previous_sample": 135932,
+        "gradient_2d": 130116
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98643,
+      "started_us": 188029416,
+      "wire_bytes": 121120,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121120,
+        "previous_sample": 132496,
+        "gradient_2d": 128256
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98645,
+      "started_us": 188207395,
+      "wire_bytes": 129292,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129292,
+        "previous_sample": 138888,
+        "gradient_2d": 135784
+      },
+      "outcome": "complete",
+      "elapsed_us": 75584
+    },
+    {
+      "frame_id": 98647,
+      "started_us": 188385362,
+      "wire_bytes": 127888,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127888,
+        "previous_sample": 138480,
+        "gradient_2d": 133052
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98649,
+      "started_us": 188563337,
+      "wire_bytes": 123404,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123404,
+        "previous_sample": 137460,
+        "gradient_2d": 131968
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98651,
+      "started_us": 188741312,
+      "wire_bytes": 123024,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123024,
+        "previous_sample": 136664,
+        "gradient_2d": 131644
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98653,
+      "started_us": 188919285,
+      "wire_bytes": 125040,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125040,
+        "previous_sample": 136068,
+        "gradient_2d": 135000
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98655,
+      "started_us": 189097258,
+      "wire_bytes": 122472,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122472,
+        "previous_sample": 134152,
+        "gradient_2d": 131448
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98657,
+      "started_us": 189275233,
+      "wire_bytes": 136492,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 136492,
+        "previous_sample": 133492,
+        "gradient_2d": 129232
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98660,
+      "started_us": 189542193,
+      "wire_bytes": 127904,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127904,
+        "previous_sample": 130536,
+        "gradient_2d": 125024
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98662,
+      "started_us": 189720166,
+      "wire_bytes": 120820,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120820,
+        "previous_sample": 132288,
+        "gradient_2d": 129304
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98664,
+      "started_us": 189898142,
+      "wire_bytes": 120280,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120280,
+        "previous_sample": 132348,
+        "gradient_2d": 126596
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98666,
+      "started_us": 190076114,
+      "wire_bytes": 117172,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 117172,
+        "previous_sample": 131228,
+        "gradient_2d": 125156
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98668,
+      "started_us": 190254088,
+      "wire_bytes": 120068,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120068,
+        "previous_sample": 131820,
+        "gradient_2d": 128796
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98670,
+      "started_us": 190432062,
+      "wire_bytes": 122096,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122096,
+        "previous_sample": 132116,
+        "gradient_2d": 131324
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98672,
+      "started_us": 190610036,
+      "wire_bytes": 119716,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119716,
+        "previous_sample": 131740,
+        "gradient_2d": 128176
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98674,
+      "started_us": 190788008,
+      "wire_bytes": 120380,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120380,
+        "previous_sample": 131844,
+        "gradient_2d": 129304
+      },
+      "outcome": "complete",
+      "elapsed_us": 75595
+    },
+    {
+      "frame_id": 98676,
+      "started_us": 190965984,
+      "wire_bytes": 118468,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118468,
+        "previous_sample": 131616,
+        "gradient_2d": 126672
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98678,
+      "started_us": 191143956,
+      "wire_bytes": 119212,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119212,
+        "previous_sample": 131396,
+        "gradient_2d": 127916
+      },
+      "outcome": "complete",
+      "elapsed_us": 75594
+    },
+    {
+      "frame_id": 98680,
+      "started_us": 191321929,
+      "wire_bytes": 119868,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119868,
+        "previous_sample": 131692,
+        "gradient_2d": 129008
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98682,
+      "started_us": 191499904,
+      "wire_bytes": 119884,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119884,
+        "previous_sample": 132248,
+        "gradient_2d": 129316
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98684,
+      "started_us": 191677877,
+      "wire_bytes": 119832,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119832,
+        "previous_sample": 132124,
+        "gradient_2d": 128916
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98686,
+      "started_us": 191855850,
+      "wire_bytes": 120060,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120060,
+        "previous_sample": 133344,
+        "gradient_2d": 129620
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98688,
+      "started_us": 192033825,
+      "wire_bytes": 119868,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119868,
+        "previous_sample": 132152,
+        "gradient_2d": 129560
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98690,
+      "started_us": 192211800,
+      "wire_bytes": 124448,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124448,
+        "previous_sample": 131144,
+        "gradient_2d": 133224
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98692,
+      "started_us": 192389772,
+      "wire_bytes": 124600,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124600,
+        "previous_sample": 131340,
+        "gradient_2d": 133864
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98694,
+      "started_us": 192567759,
+      "wire_bytes": 138508,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138508,
+        "previous_sample": 133404,
+        "gradient_2d": 132572
+      },
+      "outcome": "complete",
+      "elapsed_us": 75577
+    },
+    {
+      "frame_id": 98697,
+      "started_us": 192834707,
+      "wire_bytes": 124308,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124308,
+        "previous_sample": 133204,
+        "gradient_2d": 131348
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98699,
+      "started_us": 193012683,
+      "wire_bytes": 127480,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127480,
+        "previous_sample": 135184,
+        "gradient_2d": 132392
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98701,
+      "started_us": 193190655,
+      "wire_bytes": 124280,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124280,
+        "previous_sample": 129508,
+        "gradient_2d": 129880
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98703,
+      "started_us": 193368629,
+      "wire_bytes": 123084,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123084,
+        "previous_sample": 130424,
+        "gradient_2d": 131780
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98705,
+      "started_us": 193546605,
+      "wire_bytes": 123456,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123456,
+        "previous_sample": 131684,
+        "gradient_2d": 129392
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98707,
+      "started_us": 193724576,
+      "wire_bytes": 123856,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123856,
+        "previous_sample": 135896,
+        "gradient_2d": 132828
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98709,
+      "started_us": 193902549,
+      "wire_bytes": 123012,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123012,
+        "previous_sample": 136428,
+        "gradient_2d": 131740
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98711,
+      "started_us": 194080524,
+      "wire_bytes": 122368,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122368,
+        "previous_sample": 132868,
+        "gradient_2d": 129324
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98713,
+      "started_us": 194258497,
+      "wire_bytes": 122360,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122360,
+        "previous_sample": 131856,
+        "gradient_2d": 130628
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98715,
+      "started_us": 194436472,
+      "wire_bytes": 120328,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120328,
+        "previous_sample": 131420,
+        "gradient_2d": 126948
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98717,
+      "started_us": 194614445,
+      "wire_bytes": 119736,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119736,
+        "previous_sample": 131880,
+        "gradient_2d": 127896
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98719,
+      "started_us": 194792418,
+      "wire_bytes": 122660,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122660,
+        "previous_sample": 133096,
+        "gradient_2d": 131720
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98721,
+      "started_us": 194970392,
+      "wire_bytes": 122480,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122480,
+        "previous_sample": 132392,
+        "gradient_2d": 132320
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98723,
+      "started_us": 195148368,
+      "wire_bytes": 121452,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121452,
+        "previous_sample": 131876,
+        "gradient_2d": 131300
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98725,
+      "started_us": 195326339,
+      "wire_bytes": 120388,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120388,
+        "previous_sample": 132960,
+        "gradient_2d": 128948
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98727,
+      "started_us": 195504314,
+      "wire_bytes": 121868,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121868,
+        "previous_sample": 132944,
+        "gradient_2d": 131296
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98729,
+      "started_us": 195682289,
+      "wire_bytes": 123184,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123184,
+        "previous_sample": 133080,
+        "gradient_2d": 133036
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98731,
+      "started_us": 195860263,
+      "wire_bytes": 120888,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120888,
+        "previous_sample": 132908,
+        "gradient_2d": 129916
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98733,
+      "started_us": 196038234,
+      "wire_bytes": 124260,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124260,
+        "previous_sample": 132784,
+        "gradient_2d": 134040
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98735,
+      "started_us": 196216210,
+      "wire_bytes": 123584,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123584,
+        "previous_sample": 132328,
+        "gradient_2d": 133572
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98737,
+      "started_us": 196394183,
+      "wire_bytes": 120292,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120292,
+        "previous_sample": 131424,
+        "gradient_2d": 127820
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98739,
+      "started_us": 196572156,
+      "wire_bytes": 120204,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120204,
+        "previous_sample": 131308,
+        "gradient_2d": 128528
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98741,
+      "started_us": 196750130,
+      "wire_bytes": 120032,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120032,
+        "previous_sample": 132308,
+        "gradient_2d": 128392
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98743,
+      "started_us": 196928108,
+      "wire_bytes": 118616,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118616,
+        "previous_sample": 131308,
+        "gradient_2d": 127160
+      },
+      "outcome": "complete",
+      "elapsed_us": 75584
+    },
+    {
+      "frame_id": 98745,
+      "started_us": 197106077,
+      "wire_bytes": 117636,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 117636,
+        "previous_sample": 130676,
+        "gradient_2d": 125916
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98747,
+      "started_us": 197284051,
+      "wire_bytes": 117704,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 117704,
+        "previous_sample": 130092,
+        "gradient_2d": 125212
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98749,
+      "started_us": 197462024,
+      "wire_bytes": 117488,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 117488,
+        "previous_sample": 131324,
+        "gradient_2d": 126508
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98751,
+      "started_us": 197639998,
+      "wire_bytes": 120324,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120324,
+        "previous_sample": 132896,
+        "gradient_2d": 129132
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98753,
+      "started_us": 197817973,
+      "wire_bytes": 119060,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119060,
+        "previous_sample": 133164,
+        "gradient_2d": 128048
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98755,
+      "started_us": 197995946,
+      "wire_bytes": 119160,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119160,
+        "previous_sample": 132860,
+        "gradient_2d": 128348
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98757,
+      "started_us": 198173919,
+      "wire_bytes": 120908,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120908,
+        "previous_sample": 133156,
+        "gradient_2d": 131264
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98759,
+      "started_us": 198351894,
+      "wire_bytes": 119856,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119856,
+        "previous_sample": 132812,
+        "gradient_2d": 128504
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98761,
+      "started_us": 198529868,
+      "wire_bytes": 121224,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121224,
+        "previous_sample": 132092,
+        "gradient_2d": 131104
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98763,
+      "started_us": 198707840,
+      "wire_bytes": 120576,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120576,
+        "previous_sample": 131592,
+        "gradient_2d": 130268
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98765,
+      "started_us": 198885816,
+      "wire_bytes": 121000,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121000,
+        "previous_sample": 131696,
+        "gradient_2d": 130820
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98767,
+      "started_us": 199063789,
+      "wire_bytes": 121356,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121356,
+        "previous_sample": 132100,
+        "gradient_2d": 131320
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98769,
+      "started_us": 199241761,
+      "wire_bytes": 119236,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119236,
+        "previous_sample": 132216,
+        "gradient_2d": 128568
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98771,
+      "started_us": 199419737,
+      "wire_bytes": 118024,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118024,
+        "previous_sample": 132156,
+        "gradient_2d": 127104
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98773,
+      "started_us": 199597710,
+      "wire_bytes": 121220,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121220,
+        "previous_sample": 132428,
+        "gradient_2d": 131200
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98775,
+      "started_us": 199775685,
+      "wire_bytes": 119180,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119180,
+        "previous_sample": 132516,
+        "gradient_2d": 127940
+      },
+      "outcome": "complete",
+      "elapsed_us": 75586
+    },
+    {
+      "frame_id": 98777,
+      "started_us": 199953658,
+      "wire_bytes": 118840,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 118840,
+        "previous_sample": 131700,
+        "gradient_2d": 127996
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98779,
+      "started_us": 200131633,
+      "wire_bytes": 117992,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 117992,
+        "previous_sample": 131452,
+        "gradient_2d": 126056
+      },
+      "outcome": "complete",
+      "elapsed_us": 75586
+    },
+    {
+      "frame_id": 98781,
+      "started_us": 200309604,
+      "wire_bytes": 119348,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119348,
+        "previous_sample": 132924,
+        "gradient_2d": 128584
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98783,
+      "started_us": 200487581,
+      "wire_bytes": 121460,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121460,
+        "previous_sample": 133632,
+        "gradient_2d": 130928
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98785,
+      "started_us": 200665554,
+      "wire_bytes": 120812,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120812,
+        "previous_sample": 134168,
+        "gradient_2d": 129832
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98787,
+      "started_us": 200843525,
+      "wire_bytes": 120732,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120732,
+        "previous_sample": 134392,
+        "gradient_2d": 130028
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98789,
+      "started_us": 201021500,
+      "wire_bytes": 121088,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121088,
+        "previous_sample": 132612,
+        "gradient_2d": 128108
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98791,
+      "started_us": 201199473,
+      "wire_bytes": 119896,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119896,
+        "previous_sample": 131408,
+        "gradient_2d": 128864
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98793,
+      "started_us": 201377446,
+      "wire_bytes": 122860,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122860,
+        "previous_sample": 133092,
+        "gradient_2d": 131588
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98795,
+      "started_us": 201555421,
+      "wire_bytes": 119468,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119468,
+        "previous_sample": 132448,
+        "gradient_2d": 127836
+      },
+      "outcome": "complete",
+      "elapsed_us": 75592
+    },
+    {
+      "frame_id": 98797,
+      "started_us": 201733395,
+      "wire_bytes": 120268,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120268,
+        "previous_sample": 131436,
+        "gradient_2d": 128060
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98799,
+      "started_us": 201911368,
+      "wire_bytes": 130512,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 130512,
+        "previous_sample": 130540,
+        "gradient_2d": 129592
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98801,
+      "started_us": 202089344,
+      "wire_bytes": 124036,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124036,
+        "previous_sample": 131104,
+        "gradient_2d": 129940
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98803,
+      "started_us": 202267316,
+      "wire_bytes": 121904,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121904,
+        "previous_sample": 132228,
+        "gradient_2d": 130260
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98805,
+      "started_us": 202445289,
+      "wire_bytes": 123336,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123336,
+        "previous_sample": 132684,
+        "gradient_2d": 131476
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98807,
+      "started_us": 202623265,
+      "wire_bytes": 119308,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119308,
+        "previous_sample": 132172,
+        "gradient_2d": 127488
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98809,
+      "started_us": 202801238,
+      "wire_bytes": 123264,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123264,
+        "previous_sample": 132128,
+        "gradient_2d": 128344
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98811,
+      "started_us": 202979210,
+      "wire_bytes": 120828,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120828,
+        "previous_sample": 131300,
+        "gradient_2d": 126064
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98813,
+      "started_us": 203157186,
+      "wire_bytes": 123888,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123888,
+        "previous_sample": 134536,
+        "gradient_2d": 130128
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98815,
+      "started_us": 203335159,
+      "wire_bytes": 119460,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119460,
+        "previous_sample": 130880,
+        "gradient_2d": 127572
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98817,
+      "started_us": 203513131,
+      "wire_bytes": 119676,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119676,
+        "previous_sample": 131236,
+        "gradient_2d": 127824
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98819,
+      "started_us": 203691106,
+      "wire_bytes": 121124,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121124,
+        "previous_sample": 133500,
+        "gradient_2d": 129004
+      },
+      "outcome": "complete",
+      "elapsed_us": 75597
+    },
+    {
+      "frame_id": 98821,
+      "started_us": 203869079,
+      "wire_bytes": 120452,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120452,
+        "previous_sample": 133936,
+        "gradient_2d": 128200
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98823,
+      "started_us": 204047054,
+      "wire_bytes": 122984,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122984,
+        "previous_sample": 133656,
+        "gradient_2d": 131608
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98825,
+      "started_us": 204225027,
+      "wire_bytes": 120828,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120828,
+        "previous_sample": 133448,
+        "gradient_2d": 129840
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98827,
+      "started_us": 204403000,
+      "wire_bytes": 120628,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120628,
+        "previous_sample": 133444,
+        "gradient_2d": 129476
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98829,
+      "started_us": 204580974,
+      "wire_bytes": 121140,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121140,
+        "previous_sample": 132596,
+        "gradient_2d": 130056
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98831,
+      "started_us": 204758950,
+      "wire_bytes": 119152,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119152,
+        "previous_sample": 131708,
+        "gradient_2d": 126816
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98833,
+      "started_us": 204936922,
+      "wire_bytes": 125456,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125456,
+        "previous_sample": 132048,
+        "gradient_2d": 130520
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98835,
+      "started_us": 205114895,
+      "wire_bytes": 119732,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119732,
+        "previous_sample": 132620,
+        "gradient_2d": 128832
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98837,
+      "started_us": 205292872,
+      "wire_bytes": 119076,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119076,
+        "previous_sample": 131484,
+        "gradient_2d": 126724
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98839,
+      "started_us": 205470843,
+      "wire_bytes": 121480,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121480,
+        "previous_sample": 132160,
+        "gradient_2d": 130432
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98841,
+      "started_us": 205648825,
+      "wire_bytes": 122240,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122240,
+        "previous_sample": 132800,
+        "gradient_2d": 131248
+      },
+      "outcome": "complete",
+      "elapsed_us": 75581
+    },
+    {
+      "frame_id": 98843,
+      "started_us": 205826792,
+      "wire_bytes": 123532,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123532,
+        "previous_sample": 132756,
+        "gradient_2d": 132856
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98845,
+      "started_us": 206004764,
+      "wire_bytes": 123244,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123244,
+        "previous_sample": 131980,
+        "gradient_2d": 131936
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98847,
+      "started_us": 206182738,
+      "wire_bytes": 128892,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128892,
+        "previous_sample": 133340,
+        "gradient_2d": 136572
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98849,
+      "started_us": 206360714,
+      "wire_bytes": 126300,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126300,
+        "previous_sample": 133736,
+        "gradient_2d": 131704
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98851,
+      "started_us": 206538685,
+      "wire_bytes": 124848,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124848,
+        "previous_sample": 133828,
+        "gradient_2d": 128592
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98853,
+      "started_us": 206716659,
+      "wire_bytes": 119424,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119424,
+        "previous_sample": 132904,
+        "gradient_2d": 127408
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98855,
+      "started_us": 206894634,
+      "wire_bytes": 121176,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121176,
+        "previous_sample": 134564,
+        "gradient_2d": 129980
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98857,
+      "started_us": 207072607,
+      "wire_bytes": 122624,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122624,
+        "previous_sample": 134752,
+        "gradient_2d": 132112
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98859,
+      "started_us": 207250582,
+      "wire_bytes": 124868,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124868,
+        "previous_sample": 134820,
+        "gradient_2d": 135192
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98861,
+      "started_us": 207428555,
+      "wire_bytes": 124964,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124964,
+        "previous_sample": 134800,
+        "gradient_2d": 135336
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98863,
+      "started_us": 207606529,
+      "wire_bytes": 120016,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 120016,
+        "previous_sample": 134144,
+        "gradient_2d": 128372
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98865,
+      "started_us": 207784503,
+      "wire_bytes": 119888,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 119888,
+        "previous_sample": 133272,
+        "gradient_2d": 128384
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98867,
+      "started_us": 207962476,
+      "wire_bytes": 122472,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122472,
+        "previous_sample": 132668,
+        "gradient_2d": 132124
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98869,
+      "started_us": 208140449,
+      "wire_bytes": 122820,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122820,
+        "previous_sample": 133188,
+        "gradient_2d": 131868
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98871,
+      "started_us": 208318423,
+      "wire_bytes": 122760,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122760,
+        "previous_sample": 133220,
+        "gradient_2d": 131020
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98873,
+      "started_us": 208496397,
+      "wire_bytes": 125244,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125244,
+        "previous_sample": 132472,
+        "gradient_2d": 129472
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98875,
+      "started_us": 208674371,
+      "wire_bytes": 140608,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140608,
+        "previous_sample": 135516,
+        "gradient_2d": 130808
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98878,
+      "started_us": 208941330,
+      "wire_bytes": 66898,
+      "records": 46,
+      "last_chirp": [
+        22,
+        22
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 66898,
+        "previous_sample": 50102,
+        "gradient_2d": 48542
+      },
+      "outcome": "abort",
+      "elapsed_us": 28836,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98879,
+      "started_us": 209030318,
+      "wire_bytes": 95888,
+      "records": 72,
+      "last_chirp": [
+        35,
+        35
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 95888,
+        "previous_sample": 80276,
+        "gradient_2d": 76576
+      },
+      "outcome": "abort",
+      "elapsed_us": 44417,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98881,
+      "started_us": 209208293,
+      "wire_bytes": 145295,
+      "records": 123,
+      "last_chirp": [
+        61,
+        60
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145295,
+        "previous_sample": 128203,
+        "gradient_2d": 127963
+      },
+      "outcome": "abort",
+      "elapsed_us": 73188,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98884,
+      "started_us": 209475251,
+      "wire_bytes": 42458,
+      "records": 26,
+      "last_chirp": [
+        12,
+        12
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 42458,
+        "previous_sample": 33766,
+        "gradient_2d": 32574
+      },
+      "outcome": "abort",
+      "elapsed_us": 16866,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98885,
+      "started_us": 209564240,
+      "wire_bytes": 45192,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 45192,
+        "previous_sample": 33876,
+        "gradient_2d": 33296
+      },
+      "outcome": "abort",
+      "elapsed_us": 18088,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98886,
+      "started_us": 209653227,
+      "wire_bytes": 109204,
+      "records": 84,
+      "last_chirp": [
+        41,
+        41
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 109204,
+        "previous_sample": 91996,
+        "gradient_2d": 90336
+      },
+      "outcome": "abort",
+      "elapsed_us": 51607,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98888,
+      "started_us": 209831199,
+      "wire_bytes": 94886,
+      "records": 70,
+      "last_chirp": [
+        34,
+        34
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 94886,
+        "previous_sample": 85758,
+        "gradient_2d": 83074
+      },
+      "outcome": "abort",
+      "elapsed_us": 43227,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98890,
+      "started_us": 210009175,
+      "wire_bytes": 139684,
+      "records": 112,
+      "last_chirp": [
+        55,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139684,
+        "previous_sample": 130608,
+        "gradient_2d": 125608
+      },
+      "outcome": "abort",
+      "elapsed_us": 67187,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98893,
+      "started_us": 210276135,
+      "wire_bytes": 45848,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 45848,
+        "previous_sample": 35868,
+        "gradient_2d": 34772
+      },
+      "outcome": "abort",
+      "elapsed_us": 18087,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98894,
+      "started_us": 210365121,
+      "wire_bytes": 47038,
+      "records": 30,
+      "last_chirp": [
+        14,
+        14
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 47038,
+        "previous_sample": 34602,
+        "gradient_2d": 34426
+      },
+      "outcome": "abort",
+      "elapsed_us": 19238,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98895,
+      "started_us": 210454108,
+      "wire_bytes": 95424,
+      "records": 72,
+      "last_chirp": [
+        35,
+        35
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 95424,
+        "previous_sample": 83620,
+        "gradient_2d": 80580
+      },
+      "outcome": "abort",
+      "elapsed_us": 44400,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98897,
+      "started_us": 210632083,
+      "wire_bytes": 71598,
+      "records": 50,
+      "last_chirp": [
+        24,
+        24
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 71598,
+        "previous_sample": 64042,
+        "gradient_2d": 63602
+      },
+      "outcome": "abort",
+      "elapsed_us": 31281,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98899,
+      "started_us": 210810056,
+      "wire_bytes": 141732,
+      "records": 112,
+      "last_chirp": [
+        55,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141732,
+        "previous_sample": 119772,
+        "gradient_2d": 116688
+      },
+      "outcome": "abort",
+      "elapsed_us": 68459,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98902,
+      "started_us": 211077017,
+      "wire_bytes": 37590,
+      "records": 22,
+      "last_chirp": [
+        10,
+        10
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 37590,
+        "previous_sample": 28746,
+        "gradient_2d": 28666
+      },
+      "outcome": "abort",
+      "elapsed_us": 14488,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98903,
+      "started_us": 211166004,
+      "wire_bytes": 53616,
+      "records": 36,
+      "last_chirp": [
+        17,
+        17
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 53616,
+        "previous_sample": 43448,
+        "gradient_2d": 42372
+      },
+      "outcome": "abort",
+      "elapsed_us": 22809,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98904,
+      "started_us": 211254990,
+      "wire_bytes": 56382,
+      "records": 38,
+      "last_chirp": [
+        18,
+        18
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 56382,
+        "previous_sample": 43282,
+        "gradient_2d": 43022
+      },
+      "outcome": "abort",
+      "elapsed_us": 24009,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98905,
+      "started_us": 211343977,
+      "wire_bytes": 45008,
+      "records": 28,
+      "last_chirp": [
+        13,
+        13
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 45008,
+        "previous_sample": 35324,
+        "gradient_2d": 34608
+      },
+      "outcome": "abort",
+      "elapsed_us": 18099,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98906,
+      "started_us": 211432963,
+      "wire_bytes": 36810,
+      "records": 22,
+      "last_chirp": [
+        10,
+        10
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 36810,
+        "previous_sample": 27906,
+        "gradient_2d": 26918
+      },
+      "outcome": "abort",
+      "elapsed_us": 14409,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98907,
+      "started_us": 211521950,
+      "wire_bytes": 56058,
+      "records": 38,
+      "last_chirp": [
+        18,
+        18
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 56058,
+        "previous_sample": 45174,
+        "gradient_2d": 45418
+      },
+      "outcome": "abort",
+      "elapsed_us": 24013,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98908,
+      "started_us": 211610937,
+      "wire_bytes": 51002,
+      "records": 34,
+      "last_chirp": [
+        16,
+        16
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 51002,
+        "previous_sample": 40290,
+        "gradient_2d": 39126
+      },
+      "outcome": "abort",
+      "elapsed_us": 21608,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98909,
+      "started_us": 211699925,
+      "wire_bytes": 21861,
+      "records": 13,
+      "last_chirp": [
+        5,
+        6
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 21861,
+        "previous_sample": 17073,
+        "gradient_2d": 17137
+      },
+      "outcome": "abort",
+      "elapsed_us": 8424,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98910,
+      "started_us": 211788911,
+      "wire_bytes": 40004,
+      "records": 24,
+      "last_chirp": [
+        11,
+        11
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 40004,
+        "previous_sample": 30232,
+        "gradient_2d": 30252
+      },
+      "outcome": "abort",
+      "elapsed_us": 15603,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98911,
+      "started_us": 211877898,
+      "wire_bytes": 56638,
+      "records": 38,
+      "last_chirp": [
+        18,
+        18
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 56638,
+        "previous_sample": 45314,
+        "gradient_2d": 44134
+      },
+      "outcome": "abort",
+      "elapsed_us": 24081,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98912,
+      "started_us": 211966885,
+      "wire_bytes": 50200,
+      "records": 32,
+      "last_chirp": [
+        15,
+        15
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 50200,
+        "previous_sample": 38592,
+        "gradient_2d": 38356
+      },
+      "outcome": "abort",
+      "elapsed_us": 20416,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98913,
+      "started_us": 212055871,
+      "wire_bytes": 49844,
+      "records": 32,
+      "last_chirp": [
+        15,
+        15
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 49844,
+        "previous_sample": 40164,
+        "gradient_2d": 38804
+      },
+      "outcome": "abort",
+      "elapsed_us": 20404,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98914,
+      "started_us": 212144857,
+      "wire_bytes": 42994,
+      "records": 26,
+      "last_chirp": [
+        12,
+        12
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 42994,
+        "previous_sample": 33430,
+        "gradient_2d": 33274
+      },
+      "outcome": "abort",
+      "elapsed_us": 16884,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98915,
+      "started_us": 212233846,
+      "wire_bytes": 135348,
+      "records": 104,
+      "last_chirp": [
+        51,
+        51
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 135348,
+        "previous_sample": 120424,
+        "gradient_2d": 119036
+      },
+      "outcome": "abort",
+      "elapsed_us": 63613,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98918,
+      "started_us": 212500807,
+      "wire_bytes": 43046,
+      "records": 26,
+      "last_chirp": [
+        12,
+        12
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 43046,
+        "previous_sample": 33290,
+        "gradient_2d": 31990
+      },
+      "outcome": "abort",
+      "elapsed_us": 16928,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98919,
+      "started_us": 212589793,
+      "wire_bytes": 138480,
+      "records": 108,
+      "last_chirp": [
+        53,
+        53
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138480,
+        "previous_sample": 115480,
+        "gradient_2d": 114948
+      },
+      "outcome": "abort",
+      "elapsed_us": 64789,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98922,
+      "started_us": 212856754,
+      "wire_bytes": 40020,
+      "records": 24,
+      "last_chirp": [
+        11,
+        11
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 40020,
+        "previous_sample": 30376,
+        "gradient_2d": 29664
+      },
+      "outcome": "abort",
+      "elapsed_us": 15640,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98923,
+      "started_us": 212945741,
+      "wire_bytes": 138094,
+      "records": 106,
+      "last_chirp": [
+        52,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138094,
+        "previous_sample": 126666,
+        "gradient_2d": 123654
+      },
+      "outcome": "abort",
+      "elapsed_us": 63589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98926,
+      "started_us": 213212700,
+      "wire_bytes": 40172,
+      "records": 24,
+      "last_chirp": [
+        11,
+        11
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 40172,
+        "previous_sample": 29892,
+        "gradient_2d": 29836
+      },
+      "outcome": "abort",
+      "elapsed_us": 15652,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98927,
+      "started_us": 213301688,
+      "wire_bytes": 85158,
+      "records": 62,
+      "last_chirp": [
+        30,
+        30
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 85158,
+        "previous_sample": 65970,
+        "gradient_2d": 64062
+      },
+      "outcome": "abort",
+      "elapsed_us": 38404,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98929,
+      "started_us": 213479662,
+      "wire_bytes": 43078,
+      "records": 26,
+      "last_chirp": [
+        12,
+        12
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 43078,
+        "previous_sample": 29698,
+        "gradient_2d": 30286
+      },
+      "outcome": "abort",
+      "elapsed_us": 16830,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98930,
+      "started_us": 213568649,
+      "wire_bytes": 87436,
+      "records": 64,
+      "last_chirp": [
+        31,
+        31
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 87436,
+        "previous_sample": 68032,
+        "gradient_2d": 66704
+      },
+      "outcome": "abort",
+      "elapsed_us": 39603,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98932,
+      "started_us": 213746621,
+      "wire_bytes": 124244,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124244,
+        "previous_sample": 132848,
+        "gradient_2d": 128436
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98934,
+      "started_us": 213924598,
+      "wire_bytes": 122596,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122596,
+        "previous_sample": 130504,
+        "gradient_2d": 127708
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98936,
+      "started_us": 214102570,
+      "wire_bytes": 127560,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127560,
+        "previous_sample": 129536,
+        "gradient_2d": 128160
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 98938,
+      "started_us": 214280542,
+      "wire_bytes": 121748,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121748,
+        "previous_sample": 130864,
+        "gradient_2d": 127692
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98940,
+      "started_us": 214458517,
+      "wire_bytes": 128252,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128252,
+        "previous_sample": 137540,
+        "gradient_2d": 132088
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98942,
+      "started_us": 214636491,
+      "wire_bytes": 122200,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122200,
+        "previous_sample": 133072,
+        "gradient_2d": 128808
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98944,
+      "started_us": 214814464,
+      "wire_bytes": 144788,
+      "records": 124,
+      "last_chirp": [
+        61,
+        61
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 144788,
+        "previous_sample": 128304,
+        "gradient_2d": 125704
+      },
+      "outcome": "abort",
+      "elapsed_us": 74388,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98947,
+      "started_us": 215081425,
+      "wire_bytes": 140620,
+      "records": 116,
+      "last_chirp": [
+        57,
+        57
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140620,
+        "previous_sample": 121724,
+        "gradient_2d": 120632
+      },
+      "outcome": "abort",
+      "elapsed_us": 69589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98950,
+      "started_us": 215348385,
+      "wire_bytes": 141971,
+      "records": 119,
+      "last_chirp": [
+        59,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141971,
+        "previous_sample": 125403,
+        "gradient_2d": 124211
+      },
+      "outcome": "abort",
+      "elapsed_us": 70789,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98953,
+      "started_us": 215615347,
+      "wire_bytes": 140526,
+      "records": 114,
+      "last_chirp": [
+        56,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140526,
+        "previous_sample": 121030,
+        "gradient_2d": 121214
+      },
+      "outcome": "abort",
+      "elapsed_us": 68388,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98956,
+      "started_us": 215882306,
+      "wire_bytes": 126788,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126788,
+        "previous_sample": 133268,
+        "gradient_2d": 131596
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98958,
+      "started_us": 216060281,
+      "wire_bytes": 53968,
+      "records": 36,
+      "last_chirp": [
+        17,
+        17
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 53968,
+        "previous_sample": 42000,
+        "gradient_2d": 41148
+      },
+      "outcome": "abort",
+      "elapsed_us": 22800,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 98959,
+      "started_us": 216149268,
+      "wire_bytes": 143728,
+      "records": 120,
+      "last_chirp": [
+        59,
+        59
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 143728,
+        "previous_sample": 125488,
+        "gradient_2d": 123132
+      },
+      "outcome": "abort",
+      "elapsed_us": 71988,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 98962,
+      "started_us": 216416229,
+      "wire_bytes": 135492,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 135492,
+        "previous_sample": 133272,
+        "gradient_2d": 135436
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 98965,
+      "started_us": 216683189,
+      "wire_bytes": 125700,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125700,
+        "previous_sample": 134376,
+        "gradient_2d": 134528
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98967,
+      "started_us": 216861163,
+      "wire_bytes": 125164,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125164,
+        "previous_sample": 136288,
+        "gradient_2d": 134204
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98969,
+      "started_us": 217039137,
+      "wire_bytes": 129404,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129404,
+        "previous_sample": 136384,
+        "gradient_2d": 140156
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98972,
+      "started_us": 217306098,
+      "wire_bytes": 127636,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127636,
+        "previous_sample": 137344,
+        "gradient_2d": 137800
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98974,
+      "started_us": 217484070,
+      "wire_bytes": 126676,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126676,
+        "previous_sample": 138312,
+        "gradient_2d": 136216
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98976,
+      "started_us": 217662046,
+      "wire_bytes": 127836,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127836,
+        "previous_sample": 139048,
+        "gradient_2d": 137276
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98978,
+      "started_us": 217840019,
+      "wire_bytes": 127156,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127156,
+        "previous_sample": 138692,
+        "gradient_2d": 136136
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98980,
+      "started_us": 218017992,
+      "wire_bytes": 127100,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127100,
+        "previous_sample": 136536,
+        "gradient_2d": 135980
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98982,
+      "started_us": 218195966,
+      "wire_bytes": 127744,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127744,
+        "previous_sample": 135688,
+        "gradient_2d": 137424
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98984,
+      "started_us": 218373940,
+      "wire_bytes": 129216,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129216,
+        "previous_sample": 138328,
+        "gradient_2d": 138904
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98987,
+      "started_us": 218640901,
+      "wire_bytes": 126936,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126936,
+        "previous_sample": 138800,
+        "gradient_2d": 136264
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98989,
+      "started_us": 218818874,
+      "wire_bytes": 124092,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124092,
+        "previous_sample": 137720,
+        "gradient_2d": 133068
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98991,
+      "started_us": 218996848,
+      "wire_bytes": 123616,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123616,
+        "previous_sample": 136696,
+        "gradient_2d": 132452
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 98993,
+      "started_us": 219174822,
+      "wire_bytes": 126460,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126460,
+        "previous_sample": 136976,
+        "gradient_2d": 134356
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 98995,
+      "started_us": 219352795,
+      "wire_bytes": 139864,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 139864,
+        "previous_sample": 132776,
+        "gradient_2d": 131372
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 98998,
+      "started_us": 219619755,
+      "wire_bytes": 124756,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124756,
+        "previous_sample": 131656,
+        "gradient_2d": 128556
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99000,
+      "started_us": 219797730,
+      "wire_bytes": 130848,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 130848,
+        "previous_sample": 136272,
+        "gradient_2d": 134092
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99003,
+      "started_us": 220064691,
+      "wire_bytes": 135128,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 135128,
+        "previous_sample": 135540,
+        "gradient_2d": 132752
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99006,
+      "started_us": 220331651,
+      "wire_bytes": 145302,
+      "records": 126,
+      "last_chirp": [
+        62,
+        62
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145302,
+        "previous_sample": 132458,
+        "gradient_2d": 131158
+      },
+      "outcome": "abort",
+      "elapsed_us": 75588,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99009,
+      "started_us": 220598611,
+      "wire_bytes": 140745,
+      "records": 113,
+      "last_chirp": [
+        56,
+        55
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 140745,
+        "previous_sample": 122093,
+        "gradient_2d": 125509
+      },
+      "outcome": "abort",
+      "elapsed_us": 67190,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99012,
+      "started_us": 220865571,
+      "wire_bytes": 144780,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 144780,
+        "previous_sample": 136216,
+        "gradient_2d": 131448
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99015,
+      "started_us": 221132533,
+      "wire_bytes": 125196,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125196,
+        "previous_sample": 137536,
+        "gradient_2d": 134744
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99017,
+      "started_us": 221310509,
+      "wire_bytes": 133152,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 133152,
+        "previous_sample": 140424,
+        "gradient_2d": 139420
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 99020,
+      "started_us": 221577467,
+      "wire_bytes": 130232,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 130232,
+        "previous_sample": 130632,
+        "gradient_2d": 127916
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99022,
+      "started_us": 221755440,
+      "wire_bytes": 128196,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128196,
+        "previous_sample": 123988,
+        "gradient_2d": 123516
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99024,
+      "started_us": 221933415,
+      "wire_bytes": 128228,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128228,
+        "previous_sample": 126928,
+        "gradient_2d": 125008
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99027,
+      "started_us": 222200374,
+      "wire_bytes": 142698,
+      "records": 118,
+      "last_chirp": [
+        58,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142698,
+        "previous_sample": 126130,
+        "gradient_2d": 122346
+      },
+      "outcome": "abort",
+      "elapsed_us": 70789,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99030,
+      "started_us": 222467337,
+      "wire_bytes": 144652,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 144652,
+        "previous_sample": 140492,
+        "gradient_2d": 141200
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99033,
+      "started_us": 222734297,
+      "wire_bytes": 145613,
+      "records": 125,
+      "last_chirp": [
+        62,
+        61
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145613,
+        "previous_sample": 146977,
+        "gradient_2d": 144361
+      },
+      "outcome": "abort",
+      "elapsed_us": 74388,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99036,
+      "started_us": 223001257,
+      "wire_bytes": 131608,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131608,
+        "previous_sample": 134432,
+        "gradient_2d": 138516
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99039,
+      "started_us": 223268217,
+      "wire_bytes": 122788,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122788,
+        "previous_sample": 126152,
+        "gradient_2d": 130076
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99041,
+      "started_us": 223446193,
+      "wire_bytes": 127368,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127368,
+        "previous_sample": 130212,
+        "gradient_2d": 137640
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99043,
+      "started_us": 223624165,
+      "wire_bytes": 143525,
+      "records": 121,
+      "last_chirp": [
+        60,
+        59
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 143525,
+        "previous_sample": 136109,
+        "gradient_2d": 134593
+      },
+      "outcome": "abort",
+      "elapsed_us": 71989,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99046,
+      "started_us": 223891127,
+      "wire_bytes": 137578,
+      "records": 106,
+      "last_chirp": [
+        52,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 137578,
+        "previous_sample": 113814,
+        "gradient_2d": 113490
+      },
+      "outcome": "abort",
+      "elapsed_us": 63587,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99049,
+      "started_us": 224158088,
+      "wire_bytes": 141714,
+      "records": 114,
+      "last_chirp": [
+        56,
+        56
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141714,
+        "previous_sample": 121182,
+        "gradient_2d": 120622
+      },
+      "outcome": "abort",
+      "elapsed_us": 68387,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99052,
+      "started_us": 224425046,
+      "wire_bytes": 97636,
+      "records": 72,
+      "last_chirp": [
+        35,
+        35
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 97636,
+        "previous_sample": 78368,
+        "gradient_2d": 78284
+      },
+      "outcome": "abort",
+      "elapsed_us": 44411,
+      "abort_reason": 6,
+      "abort_label": "CPU backlog guard"
+    },
+    {
+      "frame_id": 99054,
+      "started_us": 224603021,
+      "wire_bytes": 138812,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138812,
+        "previous_sample": 125164,
+        "gradient_2d": 123792
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99057,
+      "started_us": 224869981,
+      "wire_bytes": 131664,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131664,
+        "previous_sample": 137088,
+        "gradient_2d": 135588
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99060,
+      "started_us": 225136942,
+      "wire_bytes": 142924,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142924,
+        "previous_sample": 130228,
+        "gradient_2d": 129476
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99063,
+      "started_us": 225403902,
+      "wire_bytes": 129344,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129344,
+        "previous_sample": 132436,
+        "gradient_2d": 135668
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99065,
+      "started_us": 225581877,
+      "wire_bytes": 129252,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129252,
+        "previous_sample": 132392,
+        "gradient_2d": 132716
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99068,
+      "started_us": 225848838,
+      "wire_bytes": 142534,
+      "records": 118,
+      "last_chirp": [
+        58,
+        58
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 142534,
+        "previous_sample": 122674,
+        "gradient_2d": 122982
+      },
+      "outcome": "abort",
+      "elapsed_us": 70788,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99071,
+      "started_us": 226115798,
+      "wire_bytes": 136696,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 136696,
+        "previous_sample": 132420,
+        "gradient_2d": 137372
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99074,
+      "started_us": 226382758,
+      "wire_bytes": 126156,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126156,
+        "previous_sample": 134812,
+        "gradient_2d": 136620
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99076,
+      "started_us": 226560731,
+      "wire_bytes": 124816,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124816,
+        "previous_sample": 133548,
+        "gradient_2d": 134472
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99078,
+      "started_us": 226738707,
+      "wire_bytes": 122096,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122096,
+        "previous_sample": 133528,
+        "gradient_2d": 129892
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99080,
+      "started_us": 226916679,
+      "wire_bytes": 122620,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122620,
+        "previous_sample": 134240,
+        "gradient_2d": 129972
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99082,
+      "started_us": 227094652,
+      "wire_bytes": 121380,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 121380,
+        "previous_sample": 133648,
+        "gradient_2d": 130136
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99084,
+      "started_us": 227272628,
+      "wire_bytes": 129900,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129900,
+        "previous_sample": 134132,
+        "gradient_2d": 133028
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99086,
+      "started_us": 227450600,
+      "wire_bytes": 146600,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 146600,
+        "previous_sample": 135580,
+        "gradient_2d": 142116
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99089,
+      "started_us": 227717562,
+      "wire_bytes": 141024,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141024,
+        "previous_sample": 133724,
+        "gradient_2d": 135704
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99092,
+      "started_us": 227984522,
+      "wire_bytes": 133716,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 133716,
+        "previous_sample": 130800,
+        "gradient_2d": 135972
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99094,
+      "started_us": 228162496,
+      "wire_bytes": 138644,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 138644,
+        "previous_sample": 139284,
+        "gradient_2d": 149116
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 99097,
+      "started_us": 228429456,
+      "wire_bytes": 128808,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128808,
+        "previous_sample": 135432,
+        "gradient_2d": 137676
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99099,
+      "started_us": 228607429,
+      "wire_bytes": 124716,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124716,
+        "previous_sample": 132776,
+        "gradient_2d": 131588
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99101,
+      "started_us": 228785404,
+      "wire_bytes": 135332,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 135332,
+        "previous_sample": 135068,
+        "gradient_2d": 138300
+      },
+      "outcome": "complete",
+      "elapsed_us": 75592
+    },
+    {
+      "frame_id": 99104,
+      "started_us": 229052364,
+      "wire_bytes": 145212,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 145212,
+        "previous_sample": 136696,
+        "gradient_2d": 134196
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99107,
+      "started_us": 229319326,
+      "wire_bytes": 143999,
+      "records": 123,
+      "last_chirp": [
+        61,
+        60
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 143999,
+        "previous_sample": 131615,
+        "gradient_2d": 133519
+      },
+      "outcome": "abort",
+      "elapsed_us": 73189,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99110,
+      "started_us": 229586285,
+      "wire_bytes": 129064,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129064,
+        "previous_sample": 128960,
+        "gradient_2d": 134216
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99112,
+      "started_us": 229764258,
+      "wire_bytes": 133668,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 133668,
+        "previous_sample": 140736,
+        "gradient_2d": 138680
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99115,
+      "started_us": 230031220,
+      "wire_bytes": 137328,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 137328,
+        "previous_sample": 130204,
+        "gradient_2d": 134144
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99118,
+      "started_us": 230298179,
+      "wire_bytes": 125744,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125744,
+        "previous_sample": 132108,
+        "gradient_2d": 131904
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99120,
+      "started_us": 230476155,
+      "wire_bytes": 141380,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141380,
+        "previous_sample": 132860,
+        "gradient_2d": 140396
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99123,
+      "started_us": 230743115,
+      "wire_bytes": 137530,
+      "records": 106,
+      "last_chirp": [
+        52,
+        52
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 137530,
+        "previous_sample": 111238,
+        "gradient_2d": 117594
+      },
+      "outcome": "abort",
+      "elapsed_us": 63589,
+      "abort_reason": 3,
+      "abort_label": "output queue full"
+    },
+    {
+      "frame_id": 99126,
+      "started_us": 231010076,
+      "wire_bytes": 147152,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 147152,
+        "previous_sample": 134316,
+        "gradient_2d": 142352
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99129,
+      "started_us": 231277037,
+      "wire_bytes": 141016,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 141016,
+        "previous_sample": 132456,
+        "gradient_2d": 135580
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99132,
+      "started_us": 231543997,
+      "wire_bytes": 135768,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 135768,
+        "previous_sample": 134444,
+        "gradient_2d": 135988
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99135,
+      "started_us": 231810957,
+      "wire_bytes": 128832,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 128832,
+        "previous_sample": 134208,
+        "gradient_2d": 135392
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99137,
+      "started_us": 231988933,
+      "wire_bytes": 125936,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125936,
+        "previous_sample": 130432,
+        "gradient_2d": 133728
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99139,
+      "started_us": 232166905,
+      "wire_bytes": 130268,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 130268,
+        "previous_sample": 137056,
+        "gradient_2d": 139308
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99142,
+      "started_us": 232433865,
+      "wire_bytes": 124968,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 124968,
+        "previous_sample": 130100,
+        "gradient_2d": 128204
+      },
+      "outcome": "complete",
+      "elapsed_us": 75591
+    },
+    {
+      "frame_id": 99144,
+      "started_us": 232611840,
+      "wire_bytes": 129388,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129388,
+        "previous_sample": 131540,
+        "gradient_2d": 127680
+      },
+      "outcome": "complete",
+      "elapsed_us": 75589
+    },
+    {
+      "frame_id": 99146,
+      "started_us": 232789814,
+      "wire_bytes": 131352,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 131352,
+        "previous_sample": 136532,
+        "gradient_2d": 139088
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99149,
+      "started_us": 233056775,
+      "wire_bytes": 126076,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 126076,
+        "previous_sample": 133796,
+        "gradient_2d": 132176
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    },
+    {
+      "frame_id": 99151,
+      "started_us": 233234748,
+      "wire_bytes": 125528,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125528,
+        "previous_sample": 130780,
+        "gradient_2d": 129600
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99153,
+      "started_us": 233412722,
+      "wire_bytes": 122516,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 122516,
+        "previous_sample": 132000,
+        "gradient_2d": 130172
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99155,
+      "started_us": 233590697,
+      "wire_bytes": 127188,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 127188,
+        "previous_sample": 133712,
+        "gradient_2d": 131988
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99157,
+      "started_us": 233768670,
+      "wire_bytes": 125960,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 125960,
+        "previous_sample": 135456,
+        "gradient_2d": 131924
+      },
+      "outcome": "complete",
+      "elapsed_us": 75587
+    },
+    {
+      "frame_id": 99159,
+      "started_us": 233946642,
+      "wire_bytes": 129180,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 129180,
+        "previous_sample": 131664,
+        "gradient_2d": 127636
+      },
+      "outcome": "complete",
+      "elapsed_us": 75588
+    },
+    {
+      "frame_id": 99161,
+      "started_us": 234124618,
+      "wire_bytes": 123080,
+      "records": 128,
+      "last_chirp": [
+        63,
+        63
+      ],
+      "estimated_wire_bytes": {
+        "previous_chirp": 123080,
+        "previous_sample": 134512,
+        "gradient_2d": 129436
+      },
+      "outcome": "complete",
+      "elapsed_us": 75590
+    }
+  ],
+  "scope": "Validated records, including incomplete frame prefixes. Predictor size estimates only; target cost unmeasured."
+}

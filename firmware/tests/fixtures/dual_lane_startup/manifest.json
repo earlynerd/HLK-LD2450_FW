@@ -1,0 +1,16 @@
+{
+  "source": "output/spi_capture/dual_lane_16chirps",
+  "scope": "16 startup chirps per lane; not complete 64-chirp frames",
+  "files": [
+    {
+      "file": "lane0.bin",
+      "bytes": 32896,
+      "sha256": "1346cf2b00803edf296587ab5c18263ee0ae77caaeb8f097f65f004e16e6c0d7"
+    },
+    {
+      "file": "lane1.bin",
+      "bytes": 32896,
+      "sha256": "8715a0085c45e63233afb0b710d359c9b95382b2e8319c396609ce00fc6272fc"
+    }
+  ]
+}

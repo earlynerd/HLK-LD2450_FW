@@ -1,0 +1,27 @@
+{
+  "status": "live",
+  "stats": {
+    "received_bytes": 126227896,
+    "complete_frames": 1881,
+    "rejected_frames": 0,
+    "parser_errors": 64,
+    "discarded_bytes": 64,
+    "protocol_errors": 0,
+    "device_skipped": 639,
+    "device_rejected": 1,
+    "device_queue_peak": 54512,
+    "processing_drops": 0,
+    "timing_outliers": 18,
+    "replay_loops": 0,
+    "wire_kbps": 617.2,
+    "frames_per_second": 9.0,
+    "truncated_tail": false,
+    "device_aborts": 0,
+    "queue_aborts": 0,
+    "cpu_aborts": 0,
+    "other_aborts": 0,
+    "invalid_frames": 0,
+    "last_abort": null
+  },
+  "last_recording": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\output\\live_radar\\20261006-175804-capture-a2a17a"
+}

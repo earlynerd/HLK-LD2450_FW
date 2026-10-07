@@ -1,0 +1,18 @@
+{
+  "complete_frames_exact": 11,
+  "parser_error_locations": [
+    [
+      0,
+      33
+    ],
+    [
+      64,
+      31
+    ],
+    [
+      128,
+      64
+    ]
+  ],
+  "incomplete_tail_bytes": 596
+}

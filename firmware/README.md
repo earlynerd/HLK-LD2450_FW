@@ -1,5 +1,14 @@
 # LD2450 firmware foundation
 
+The new [stream application and bench handoff](docs/FRAME_STREAM.md) connects
+continuous dual-SPI acquisition to lossless LDF1 encoding and native USB CDC.
+The optimized image is flashed and has delivered 159 complete host-validated
+frames in a 30-second concurrent acquisition/compression/USB trial, with zero
+DMA overruns or radar errors. Native CDC is COM30; UART recovery remains on
+COM13 and PA9 diagnostics on COM11. Use `--application stream` for radar data
+or `--application usb-bench --raw-usb-bench` for paced synthetic raw records
+with the radar off. See the linked report for skips, pause/reopen and limits.
+
 An incremental C firmware component for the likely **JieLi AC695N / AC6956C
 (BR23)** MCU, using the RD-03D schematic as the working LD2450 pin map. The
 [hardware reference](../docs/radar_ic_and_internal_interfaces.md) records the
@@ -16,7 +25,9 @@ receiver and complete image builder are implemented. Stock V2.14 to custom hello
 power-cycle boot, and custom-to-custom replacement are bench-verified with two
 [loader patches](docs/UART_LOADER_BENCH.md). The boot recovery window, failed
 handshake latch and subsequent update retry are also bench-verified in hello.
-Radar operation and stock restoration remain
+The radar image now reports 80/80 initialization writes ACKed and retains working
+updater entry. Bounded SPI DMA capture now yields checksum-valid, distinct
+RX0/RX1 records. Continuous acquisition, RF calibration and stock restoration remain
 unverified; see [the image guide](docs/IMAGE_BUILD.md) for exact artifacts.
 
 ## Implemented

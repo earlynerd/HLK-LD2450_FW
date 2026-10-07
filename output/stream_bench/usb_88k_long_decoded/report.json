@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_88k_long_capture\\stream.ldf",
+  "complete_frames": 1,
+  "rejected_frames": 5,
+  "protocol_errors": 0,
+  "parser_errors": 0,
+  "discarded_bytes": 0,
+  "received_bytes": 797899,
+  "stream_sha256": "c8492e59e69cbcaaa3f944cd73ff9e3a490898fe1f2214fbb11a5d59514f01ed"
+}

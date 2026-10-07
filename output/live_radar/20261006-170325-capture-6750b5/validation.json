@@ -1,0 +1,12 @@
+{
+  "sha256_matches": true,
+  "bytes": 59505092,
+  "complete_frames": 466,
+  "rejected_frames": 0,
+  "protocol_errors": 0,
+  "parser_errors": 502,
+  "resync_bytes": 502,
+  "partial_tail": true,
+  "initial_resync_bytes": 502,
+  "parser_errors_after_first_complete_frame": 0
+}

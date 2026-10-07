@@ -1,0 +1,14 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\usb-budget-guard\\update-two-wire.ufw",
+  "sha256": "25e98a57868261ed3abfe1e7f218eca90a0574452d379be93904c81cce547bd8",
+  "port": "COM13",
+  "debug_port": "COM11",
+  "started_utc": "2026-10-06T22:06:44.224757+00:00",
+  "stop_report": false,
+  "upload_complete": true,
+  "read_requests": 417,
+  "reported_size": 184320,
+  "loader_staged": true,
+  "device_error": null,
+  "pa9_bytes": 8977
+}

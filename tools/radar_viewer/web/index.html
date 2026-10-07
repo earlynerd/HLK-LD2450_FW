@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Radar Observatory · LD2450</title><link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="mark">◉</span><div><h1>Radar Observatory</h1><p>LD2450 · two receivers · live signal workspace</p></div></div>
+  <div class="header-actions"><span id="status" class="badge">DISCONNECTED</span><button id="pause">Freeze display</button></div>
+</header>
+<div class="layout">
+<aside>
+  <section><h2>01 / Source</h2>
+    <label for="port">Native USB device</label><div class="inline"><select id="port"><option>No device found</option></select><button id="refresh" title="Refresh devices and recordings">↻</button></div>
+    <div class="inline"><button class="primary" id="connect">Connect USB</button><button id="disconnect">Disconnect</button></div>
+    <p class="hint">DTR asserted automatically. Disconnect releases the port for other tools.</p>
+    <label for="replay">Saved wire recording</label><select id="replay"></select><button id="play">Replay recording</button>
+    <p id="source" class="source">Waiting for a source</p>
+  </section>
+  <section><h2>02 / Processing</h2>
+    <label for="receiver">Heatmap receiver</label><select id="receiver"><option value="0">RX 1</option><option value="1">RX 2</option></select>
+    <label for="spectrum-span">Spectrum / history span</label><select id="spectrum-span"><option value="center">Center: -16 to +16 bins</option><option value="positive">Positive: 0 to +32 bins</option><option value="full">Full: -256 to +255 bins</option></select>
+    <p class="hint">Zoom shows the original FFT bins. No filtering or extra range resolution. Full view retains the fixed outer peaks.</p>
+    <label class="check"><input id="remove_dc" type="checkbox" checked> Remove each chirp’s DC offset</label>
+    <label class="check"><input id="detrend" type="checkbox"> Remove each chirp’s linear trend</label>
+    <p class="hint">Subtracts a straight-line fit from every chirp. Clears the slow drift that floods the central bins.</p>
+    <label for="window">Fast-time window</label><select id="window"><option value="hann">Hann</option><option value="rectangular">Rectangular</option></select>
+    <label class="check"><input id="remove_static" type="checkbox" checked> Remove static Doppler component</label>
+    <div class="inline"><button id="reference">Capture background</button><button id="clear-reference">Clear</button></div>
+    <p id="reference-state" class="hint">No background reference. Subtraction affects spectrum and Doppler.</p>
+    <div class="inline"><button id="iq-calibrate">Calibrate I/Q</button><button id="iq-clear">Clear</button></div>
+    <p id="iq-state" class="hint">No I/Q correction. Calibrate on a static scene with a strong reflector; the fit uses the latest frame.</p>
+    <label for="history-mode">Waterfall shows</label><select id="history-mode"><option value="change">Change from running average</option><option value="spectrum">Absolute spectrum</option></select>
+    <p class="hint">Change subtracts a slowly updated complex mean spectrum, so static leakage and clutter fade and motion stands out.</p>
+    <label class="check"><input id="auto-scale" type="checkbox" checked> Auto-scale plots to visible data</label>
+    <div id="manual-scale" hidden>
+      <label for="color-min">Waterfall / spectrogram floor <span id="color-min-value">−30 dB</span></label><input type="range" id="color-min" min="-80" max="20" value="-30" step="5">
+      <label for="color-max">Waterfall / spectrogram ceiling <span id="color-max-value">60 dB</span></label><input type="range" id="color-max" min="0" max="100" value="60" step="5">
+      <label for="doppler-min">Doppler floor <span id="doppler-min-value">−20 dB</span></label><input type="range" id="doppler-min" min="-80" max="20" value="-20" step="5">
+      <label for="doppler-max">Doppler ceiling <span id="doppler-max-value">20 dB</span></label><input type="range" id="doppler-max" min="-20" max="100" value="20" step="5">
+    </div>
+    <div class="colorbar"></div><p class="hint">Amplitude in dB relative to one exported count. These are not calibrated power measurements. Auto uses the 2nd–99.5th percentile of the visible data.</p>
+  </section>
+  <section><h2>03 / Keep evidence</h2>
+    <button id="record">Start raw recording</button><button id="snapshot">Save latest acquired frame</button>
+    <p id="record-state" class="hint">Original USB bytes and SHA-256 manifest. Recording stops automatically at 1 GiB.</p>
+  </section>
+  <details><summary>How to read these views</summary><p>The waveform is one chirp or the mean of the captured chirps. Each receiver supplies 512 complex samples per chirp.</p><p>Spectrum averages power over the captured chirps. The waterfall keeps the most recent displayed spectra.</p><p>Doppler explores changes within a frame, using the median chirp interval. Exported frames have gaps; the waterfall is indexed by displayed frame, not continuous time.</p><p>Range, velocity and angle need further calibration. Full-record FFTs may combine multiple ramp segments. Features are not yet identified targets.</p><p>Residual RMS measures chirp-to-chirp variation after removing the frame mean. It includes noise, drift and motion; it is not target SNR.</p></details>
+</aside>
+<main>
+  <div id="notice" role="status" hidden></div>
+  <div class="metrics">
+    <article><span>USB / replay input</span><strong id="rate">—</strong><small>kB/s · wire bytes</small></article>
+    <article><span>Validated frames</span><strong id="fps">—</strong><small id="frames">complete frames / s</small></article>
+    <article><span>Frame in view</span><strong id="frame-id">—</strong><small id="frame-detail">Waiting for capture dimensions</small></article>
+    <article><span>Within-frame variation</span><strong id="residual">—</strong><small>RX1 / RX2 · residual amplitude</small></article>
+  </div>
+  <div class="charts">
+    <section class="panel"><div class="panel-heading"><div><h2>Complex waveform</h2><p>Exported I/Q samples · DC follows setting · background not subtracted</p></div><span class="tag">FAST TIME</span></div>
+      <div class="wave-controls"><label for="chirp">Chirp <b id="chirp-label">0</b></label><input id="chirp" type="range" min="0" max="63" value="0"><label class="check"><input id="mean" type="checkbox"> <span id="mean-label">Mean of capture</span></label></div>
+      <canvas id="wave" aria-label="In-phase and quadrature samples for both receivers"></canvas>
+      <div class="legend"><span class="cyan">RX1 I</span><span class="pink">RX1 Q</span><span class="orange">RX2 I</span><span class="purple">RX2 Q</span><span class="right">Sample index · exported counts</span></div>
+    </section>
+    <section class="panel"><div class="panel-heading"><div><h2>Frame spectrum</h2><p>RMS spectral amplitude over the captured chirps</p></div><span class="tag">512 POINT FFT</span></div>
+      <canvas id="spectrum" aria-label="Spectrum of both receivers in signed FFT bins"></canvas>
+      <div class="legend"><span class="cyan">RX1</span><span class="orange">RX2</span><span class="right" id="spectrum-span-detail">Bins -16 to +16 · dB re 1 count</span></div>
+    </section>
+    <section class="panel"><div class="panel-heading"><div><h2>Spectrum history <span class="rx-label">RX1</span></h2><p id="history-subtitle">Change from running average · newest at the bottom · last 160 views</p></div><span class="tag">WATERFALL</span></div>
+      <canvas id="waterfall" aria-label="History of spectral amplitude"></canvas>
+      <div class="legend"><span id="history-count">0 displayed frames</span><span class="right" id="history-detail">Signed FFT bin · relative amplitude</span></div>
+    </section>
+    <section class="panel"><div class="panel-heading"><div><h2>Within-frame Doppler <span class="rx-label">RX1</span></h2><p>Exploratory · full-record FFT · no range or velocity calibration</p></div><span class="tag" id="doppler-tag">CHIRP FFT</span></div>
+      <canvas id="doppler" aria-label="Exploratory Doppler frequency versus fast-time FFT bin"></canvas>
+      <div class="legend"><span id="doppler-detail">Waiting for timing</span><span class="right">Fast-time bin · slow-time Hz</span></div>
+    </section>
+    <section class="panel"><div class="panel-heading"><div><h2>Constellation</h2><p id="constellation-subtitle">I versus Q · equal axes</p></div><span class="tag">I/Q PLANE</span></div>
+      <div class="wave-controls"><label for="constellation-mode">Show</label><select id="constellation-mode"><option value="bin">FFT bin over time</option><option value="raw">Raw samples, selected chirp</option></select><label for="constellation-bin">Bin <b id="constellation-bin-label">4</b></label><input id="constellation-bin" type="range" min="-64" max="64" value="4"></div>
+      <canvas id="constellation" aria-label="In-phase versus quadrature constellation for both receivers"></canvas>
+      <div class="legend"><span class="cyan">RX1</span><span class="orange">RX2</span><span class="right" id="constellation-detail">Exported counts</span></div>
+    </section>
+    <section class="panel"><div class="panel-heading"><div><h2>Within-chirp spectrogram <span class="rx-label">RX1</span></h2><p id="spectrogram-subtitle">Beat frequency along each chirp · a steady reflector is a vertical line</p></div><span class="tag">STFT</span></div>
+      <canvas id="spectrogram" aria-label="Short-time spectrum versus sample position within the chirp"></canvas>
+      <div class="legend"><span id="spectrogram-detail">Waiting for a complete frame</span><span class="right">Signed FFT bin · sample position (start at top)</span></div>
+    </section>
+  </div>
+  <section class="health"><div><h2>Stream health</h2><p id="health-summary">Only complete frames that pass transport and radar integrity checks are displayed.</p></div>
+    <dl><div><dt>Parser errors</dt><dd id="parser-errors">0</dd></div><div><dt>Protocol errors</dt><dd id="protocol-errors">0</dd></div><div><dt>Rejected exports</dt><dd id="rejected">0</dd></div><div><dt>Resync bytes</dt><dd id="resync">0</dd></div><div><dt>Device skipped*</dt><dd id="device-skips">0</dd></div><div><dt>Device rejected*</dt><dd id="device-rejects">0</dd></div><div><dt>Buffer-full aborts</dt><dd id="queue-aborts">0</dd></div><div><dt>CPU-guard aborts</dt><dd id="cpu-aborts">0</dd></div><div><dt>Other device aborts</dt><dd id="other-aborts">0</dd></div><div><dt>Invalid / incomplete</dt><dd id="invalid-frames">0</dd></div><div><dt>Display work dropped</dt><dd id="drops">0</dd></div><div><dt>Timing outliers†</dt><dd id="timing">0</dd></div></dl>
+    <p id="abort-detail">No firmware abort observed in this connection.</p>
+    <p class="hint">Rejected exports include intentional firmware aborts. Buffer-full and CPU-guard aborts protect acquisition; they are not host checksum failures.</p>
+    <p class="hint">* Device counters are cumulative since boot. Export skips are expected with the current USB bandwidth. † Intervals more than 10% from the frame median, counted across both receivers in processed frames.</p>
+  </section>
+  <section class="health registers"><div><h2>Radar registers</h2><p id="register-summary">Live I2C register access to the radar chip. Needs register-control firmware and a live USB connection.</p></div>
+    <div class="register-tools">
+      <button id="register-dump">Read 0x00–0x7F</button><button id="register-stock">Read stock-written</button>
+      <button id="register-reinit">Re-init radar (build profile)</button>
+      <label for="register-address">Reg</label><input id="register-address" class="hex" placeholder="61" maxlength="2">
+      <label for="register-value">Value</label><input id="register-value" class="hex" placeholder="0021" maxlength="4">
+      <button id="register-read-one">Read</button><button id="register-write-one" class="primary">Write</button>
+    </div>
+    <p class="hint">Writes are applied between radar frames and change the settings identity, so history and averages restart. Notes and stock values come from the recovered startup table and are interpretations, not documentation. Nothing is blocked.</p>
+    <div class="register-table-wrap"><table class="register-table"><thead><tr><th>Reg</th><th>Working interpretation</th><th>Stock</th><th>Current</th><th>Set</th></tr></thead><tbody id="register-rows"></tbody></table></div>
+    <details><summary>Operation log</summary><ol id="register-log" class="register-log"></ol></details>
+  </section>
+  <footer><span id="config">Configuration identity: waiting</span><span>Uncalibrated signal exploration · local processing only</span></footer>
+</main>
+</div>
+<script src="/app.js"></script>
+</body></html>

@@ -1,0 +1,7 @@
+{
+  "interior_resync_bytes": 64,
+  "first_resync_offset": 0,
+  "last_resync_offset": 63,
+  "eof_tail_bytes": 1816,
+  "abort_reasons": {}
+}

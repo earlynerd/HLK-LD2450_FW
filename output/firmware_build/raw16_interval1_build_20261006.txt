@@ -1,0 +1,2 @@
+Linked 101032 application bytes; packaged C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\stream-raw16-interval1\update.ufw
+All four flash variants verified; no device operation performed.

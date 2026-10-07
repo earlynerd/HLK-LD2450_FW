@@ -1,0 +1,20 @@
+{
+  "name": "reduced-slope-diagnostic",
+  "base_profile": "mode_2_ram_initial",
+  "overrides": [
+    {
+      "sequence": 27,
+      "register": "0x56",
+      "expected": "0x0011",
+      "value": "0x0008",
+      "reason": "Diagnostic: reduce inferred rising sweep step from 17 to 8 (8/17 slope), preserving start frequency, timing and sampling. Test whether spectral peaks follow sweep slope."
+    },
+    {
+      "sequence": 29,
+      "register": "0x58",
+      "expected": "0xFFEF",
+      "value": "0xFFF8",
+      "reason": "Match falling sweep step -17 to -8 so the symmetric sweep returns to its original start frequency. Narrower frequency excursion only."
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import subprocess
 from setup_sdk import ROOT, load_lock, verify_sdk
 from generate_radar_config import generate
 
-SOURCES = ["src/radar_wire.c", "src/radar_init.c", "src/app.c", "target/br23/peripherals.c"]
+SOURCES = ["src/radar_wire.c", "src/stream.c", "src/radar_init.c", "src/app.c", "target/br23/peripherals.c"]
 
 
 def default_toolchain():

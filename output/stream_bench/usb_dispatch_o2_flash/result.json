@@ -1,0 +1,14 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\usb-dispatch-o2\\update-two-wire.ufw",
+  "sha256": "598591f828581ac7545ab80a34ebc6c52db10e90ec359b8060fb9770fa3ddc78",
+  "port": "COM13",
+  "debug_port": "COM11",
+  "started_utc": "2026-10-06T21:52:50.346704+00:00",
+  "stop_report": false,
+  "upload_complete": true,
+  "read_requests": 417,
+  "reported_size": 184320,
+  "loader_staged": true,
+  "device_error": null,
+  "pa9_bytes": 8977
+}

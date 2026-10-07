@@ -1,0 +1,87 @@
+{
+  "replay": {
+    "frame_id": 455,
+    "source": "Replay: usb_budget_guard_capture",
+    "stats": {
+      "received_bytes": 34951180,
+      "complete_frames": 271,
+      "rejected_frames": 0,
+      "parser_errors": 0,
+      "discarded_bytes": 0,
+      "protocol_errors": 0,
+      "device_skipped": 343,
+      "device_rejected": 0,
+      "device_queue_peak": 80924,
+      "processing_drops": 0,
+      "timing_outliers": 16,
+      "replay_loops": 1,
+      "wire_kbps": 708.1,
+      "frames_per_second": 5.6,
+      "truncated_tail": true
+    },
+    "status": "replay"
+  },
+  "ui_verified": [
+    "freeze retains displayed frame while acquisition advances",
+    "chirp 63 and mean of 64",
+    "receiver switch",
+    "background capture and clear",
+    "raw recording start and stop",
+    "verified frame snapshot",
+    "recording replay",
+    "DC/window/static controls"
+  ],
+  "recorded_capture_validation": "output/live_radar/20261006-170325-capture-6750b5/validation.json",
+  "tests_passed": 12,
+  "calibration": "FFT bins and slow-time Hz; range, velocity and angle remain uncalibrated",
+  "verified_at": "2026-10-06T17:08:47.002510-07:00",
+  "live_final": {
+    "status": "live",
+    "source": "USB COM30",
+    "error": "",
+    "stats": {
+      "received_bytes": 40336956,
+      "complete_frames": 305,
+      "rejected_frames": 0,
+      "parser_errors": 64,
+      "discarded_bytes": 64,
+      "protocol_errors": 0,
+      "device_skipped": 77922,
+      "device_rejected": 3,
+      "device_queue_peak": 79548,
+      "processing_drops": 0,
+      "timing_outliers": 0,
+      "replay_loops": 0,
+      "wire_kbps": 553.4,
+      "frames_per_second": 4.8,
+      "truncated_tail": false
+    },
+    "version": 902,
+    "generation": 12,
+    "last_frame_age_s": 0.17,
+    "settings": {
+      "remove_dc": true,
+      "window": "hann",
+      "remove_static": true
+    },
+    "recording": null,
+    "last_recording": null,
+    "reference_frame": null,
+    "frame_id": 79429,
+    "processing_ms": 3.54,
+    "stage_errors": {}
+  },
+  "source_sha256": {
+    "tools\\radar_viewer\\processing.py": "e01951a6a9493e37dfe252d689d0319fec46eda648d63ed65519c386929b8db1",
+    "tools\\radar_viewer\\requirements.txt": "d10a33abc230b25f5d4b2ef5e8b65f4dfb30a3d3fbd50507e8f3d05e2c7844ef",
+    "tools\\radar_viewer\\server.py": "d27c0f6c95fd80fee8d666606b2c9a89b37913ba1ab3aed7aa644bfaa75d2857",
+    "tools\\radar_viewer\\test_viewer.py": "5296aa1ce2b4888433ed685c084982047e6e6369f99f744709e3bfe4adc21aae",
+    "tools\\radar_viewer\\__init__.py": "afadd6c77be111c33a3cab476149a1b337e8201db22ada8aeee03b1165ce6487",
+    "tools\\radar_viewer\\web\\app.js": "0717848a3617d3168859cedd58606f49764ade4dbfd3e451d585c09ae75cc7b3",
+    "tools\\radar_viewer\\web\\index.html": "a36cbb43bc04d01ce471684881701c1b8405ac68e18f7303683a83cf6b398b90",
+    "tools\\radar_viewer\\web\\style.css": "6353ca6cc18e14717f06e691de1957b5475cfa8b79926fda40a23811f64ba580",
+    "tools/live_radar.py": "b5b3006e293d7821c261f9d74bc885d9b55051c4c9c83bce0a98d8c8e4ae3704",
+    "tools/start_radar_viewer.ps1": "bcfa68f83b016e148bc6f0bb1cc7b40839b54f7cb32941f7a0df39a98fd731dd"
+  },
+  "launcher_reuses_existing_server": true
+}

@@ -1,0 +1,103 @@
+{
+  "image_sha256": "541c110a9707a110bf3afca69ae46f8ad1e57a406398ce956bf80212fa8506af",
+  "build_input_hashes_verified": true,
+  "build_inputs_checked": 64,
+  "flash": {
+    "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\stream-raw16\\update-two-wire.ufw",
+    "sha256": "541c110a9707a110bf3afca69ae46f8ad1e57a406398ce956bf80212fa8506af",
+    "port": "COM13",
+    "debug_port": "COM11",
+    "started_utc": "2026-10-07T00:57:25.949266+00:00",
+    "stop_report": false,
+    "upload_complete": true,
+    "read_requests": 417,
+    "reported_size": 184320,
+    "loader_staged": true,
+    "device_error": null,
+    "pa9_bytes": 9040
+  },
+  "restart": {
+    "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\stream-raw16\\update-two-wire.ufw",
+    "sha256": "541c110a9707a110bf3afca69ae46f8ad1e57a406398ce956bf80212fa8506af",
+    "port": "COM13",
+    "debug_port": "COM11",
+    "started_utc": "2026-10-07T01:02:01.499619+00:00",
+    "stop_report": false,
+    "upload_complete": true,
+    "read_requests": 50,
+    "reported_size": 0,
+    "loader_staged": true,
+    "device_error": null,
+    "pa9_bytes": 8977
+  },
+  "tests": {
+    "ctest_suites": 15,
+    "python_firmware": 34,
+    "viewer": 16
+  },
+  "capture": {
+    "stream_sha256": "1c37d068b232587bb56935da3e0b227bbb79255d24d122c42975ebeb1682cfde",
+    "bytes": 126215608,
+    "complete_windows": 1881,
+    "rejected_before_eof": 0,
+    "protocol_errors": 0,
+    "parser_errors": 64,
+    "discarded_bytes": 64,
+    "partial_tail": true,
+    "abort_reasons": {},
+    "record_modes": {
+      "0": 60192
+    },
+    "first": {
+      "frame_id": 258,
+      "config_sha256": "cdc8522d33c2f58d79aa41877b7922b895f21d554bc8203d4c872c3f34b5b5f5",
+      "chirps": 16,
+      "started_us": 22990618,
+      "device_skipped": 108,
+      "device_rejected": 1,
+      "device_queue_peak": 54128,
+      "ended_us": 23008615
+    },
+    "last": {
+      "frame_id": 2669,
+      "config_sha256": "cdc8522d33c2f58d79aa41877b7922b895f21d554bc8203d4c872c3f34b5b5f5",
+      "chirps": 16,
+      "started_us": 237537982,
+      "device_skipped": 639,
+      "device_rejected": 1,
+      "device_queue_peak": 54512,
+      "ended_us": 237555979
+    },
+    "window_span_seconds": 214.547364,
+    "complete_windows_per_second": 8.762633876965275,
+    "within_window_variation_quantiles": {
+      "min": 0.020718522606139673,
+      "median": 0.12587899614149922,
+      "p90": 0.5871378092328652,
+      "max": 0.9889543292523121
+    },
+    "motion_context": "User confirmed plots kept updating while moving hand/body; exact motion start/end unmarked. Variation includes noise, drift and motion.",
+    "eof_note": "A partial final window is a recording boundary, not a firmware abort. Initial 64 bytes are reconnect resynchronization."
+  },
+  "diagnostics": {
+    "valid_records_per_lane": 174592,
+    "dma_overrun": 0,
+    "corrupt": 0,
+    "sequence_errors": 0,
+    "timeouts": 0,
+    "cpu_rejections": 0,
+    "queue_overflows": 0,
+    "max_dma_backlog": 1,
+    "queue_peak": 54512,
+    "queue_capacity": 90112,
+    "boot_cumulative_rejected": 2,
+    "note": "Device rejection count stayed 1 during recording, then 2 after disconnect/reopen. Exact boundary causes not captured."
+  },
+  "evidence_sha256": {
+    "output/live_radar/20261006-175804-capture-a2a17a/validation-raw16.json": "68ba52814da8790fec1ad909f759c84294fe5ca87bbf76944ef701a108eb24d6",
+    "output/stream_bench/raw16_motion_report/pa9.txt": "8afb66073d0ab12567e9ecbe4121851bce97f509725daeb69fc7a8d6af7850e8",
+    "output/firmware_build/raw16_host_tests_20261006.txt": "76f0f4b8ba06471197040b8e840943a5405a11e4581849ba345e0f5f1728ccce",
+    "output/firmware_build/raw16_build_20261006.txt": "70c827489e223fda8e761f4de246e1b58c0b83d17b851ae4b3d0988de1c2693e",
+    "output/live_radar/raw16-live-preview.jpg": "2c66b8983368fece1c5f1411a1580a9cefc2b4b456aa481d0b56cee6427b4550"
+  }
+}

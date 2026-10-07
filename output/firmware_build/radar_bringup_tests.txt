@@ -1,0 +1,70 @@
+-- Configuring done (0.3s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/mmsyl/Documents/HLK-LD2450/HLK-LD2450_FW/firmware/build/host
+MSBuild version 17.14.51+25f168cee for .NET Framework
+
+  radar_init.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\radar_init.lib
+  app.c
+  br23_host_model.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\br23_host_model.lib
+  radar_wire.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\radar_wire.lib
+  test_boot_recovery.c
+  test_boot_recovery.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\test_boot_recovery.exe
+  test_peripherals.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\test_peripherals.exe
+  test_radar_init.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\test_radar_init.exe
+  test_radar_wire.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\test_radar_wire.exe
+  test_uart_loader.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\test_uart_loader.exe
+  test_uart_update.vcxproj -> C:\Users\mmsyl\Documents\HLK-LD2450\HLK-LD2450_FW\firmware\build\host\Debug\test_uart_update.exe
+Test project C:/Users/mmsyl/Documents/HLK-LD2450/HLK-LD2450_FW/firmware/build/host
+    Start 1: captured_records
+1/6 Test #1: captured_records .................   Passed    0.01 sec
+    Start 2: br23_peripherals
+2/6 Test #2: br23_peripherals .................   Passed    0.02 sec
+    Start 3: radar_init_sequence
+3/6 Test #3: radar_init_sequence ..............   Passed    0.01 sec
+    Start 4: uart_update_protocol
+4/6 Test #4: uart_update_protocol .............   Passed    0.01 sec
+    Start 5: uart_loader_adapter
+5/6 Test #5: uart_loader_adapter ..............   Passed    0.01 sec
+    Start 6: boot_recovery_window
+6/6 Test #6: boot_recovery_window .............   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Total Test time (real) =   0.80 sec
+test_bad_instruction_operand_in_both_elf_and_image (test_image_audit.StartupAuditTests.test_bad_instruction_operand_in_both_elf_and_image) ... ok
+test_overlap_and_callback_order (test_image_audit.StartupAuditTests.test_overlap_and_callback_order) ... ok
+test_valid_layout (test_image_audit.StartupAuditTests.test_valid_layout) ... ok
+test_wrong_packaged_data (test_image_audit.StartupAuditTests.test_wrong_packaged_data) ... ok
+test_only_selected_instructions_change (test_loader_patch.LoaderPatchTests.test_only_selected_instructions_change) ... ok
+test_package_preserves_every_other_component (test_loader_patch.LoaderPatchTests.test_package_preserves_every_other_component) ... ok
+test_reject_unpinned_oversize_empty_and_input_overwrite (test_package.PackageTests.test_reject_unpinned_oversize_empty_and_input_overwrite) ... ok
+test_stock_identity_and_replacement (test_package.PackageTests.test_stock_identity_and_replacement) ... ok
+test_late_logger_is_rejected (test_runtime_audit.RuntimeAuditTests.test_late_logger_is_rejected) ... ok
+test_missing_mutex_constructor_is_rejected (test_runtime_audit.RuntimeAuditTests.test_missing_mutex_constructor_is_rejected) ... ok
+test_retained_initializer_without_call_is_rejected (test_runtime_audit.RuntimeAuditTests.test_retained_initializer_without_call_is_rejected) ... ok
+test_scheduler_before_setup_is_rejected (test_runtime_audit.RuntimeAuditTests.test_scheduler_before_setup_is_rejected) ... ok
+test_valid_including_ram_alias_calls (test_runtime_audit.RuntimeAuditTests.test_valid_including_ram_alias_calls) ... ok
+test_command_bytes (test_stock_uart.StockTests.test_command_bytes) ... ok
+test_negative_ack_stops_entry (test_stock_uart.StockTests.test_negative_ack_stops_entry) ... ok
+test_parser_noise_corruption_partial_unrelated (test_stock_uart.StockTests.test_parser_noise_corruption_partial_unrelated) ... ok
+test_probe_does_not_ack_start_or_serve_image (test_stock_uart.StockTests.test_probe_does_not_ack_start_or_serve_image) ... ok
+test_ready_timeout_never_sends_start (test_stock_uart.StockTests.test_ready_timeout_never_sends_start) ... ok
+test_unrelated_ack_does_not_extend_deadline (test_stock_uart.StockTests.test_unrelated_ack_does_not_extend_deadline) ... ok
+test_baselines_match_recovered_binary_tables (test_tools.RadarConfigTests.test_baselines_match_recovered_binary_tables) ... ok
+test_generated_bytes_and_provenance (test_tools.RadarConfigTests.test_generated_bytes_and_provenance) ... ok
+test_guards_and_bad_configs (test_tools.RadarConfigTests.test_guards_and_bad_configs) ... ok
+test_occurrence_override_preserves_earlier_write (test_tools.RadarConfigTests.test_occurrence_override_preserves_earlier_write) ... ok
+test_archive_paths_and_symlinks_are_rejected (test_tools.SourceIntegrityTests.test_archive_paths_and_symlinks_are_rejected) ... ok
+test_captured_fixture_hashes (test_tools.SourceIntegrityTests.test_captured_fixture_hashes) ... ok
+test_verified_setup_preserves_a_changed_checkout (test_tools.SourceIntegrityTests.test_verified_setup_preserves_a_changed_checkout) ... ok
+test_bounds_and_error (test_uart_upload.HostPeerTests.test_bounds_and_error) ... ok
+test_sdk_start_baud_confirmation (test_uart_upload.HostPeerTests.test_sdk_start_baud_confirmation) ... ok
+test_stream_corruption_and_split_frames (test_uart_upload.HostPeerTests.test_stream_corruption_and_split_frames) ... ok
+test_two_stages_repeated_reads_and_status (test_uart_upload.HostPeerTests.test_two_stages_repeated_reads_and_status) ... ok
+test_upload_across_stock_reset_without_staged_stop (test_uart_upload.HostPeerTests.test_upload_across_stock_reset_without_staged_stop) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 2.289s
+
+OK
+Stock version response: 76 65 72 73 69 6f 6e

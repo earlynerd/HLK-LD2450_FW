@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_irq_stream_capture\\stream.ldf",
+  "complete_frames": 0,
+  "rejected_frames": 1,
+  "protocol_errors": 0,
+  "parser_errors": 0,
+  "discarded_bytes": 0,
+  "received_bytes": 24494,
+  "stream_sha256": "c63ab727802a3737092949b4aa93a1272ef8fd7eea693570fd0cd61955921b67"
+}

@@ -1,0 +1,9 @@
+{
+  "source": "USB COM30",
+  "settings": {
+    "remove_dc": true,
+    "window": "hann",
+    "remove_static": true
+  },
+  "reference_frame": null
+}

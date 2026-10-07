@@ -1,0 +1,409 @@
+{
+  "bench_date_pacific": "2026-10-05",
+  "build": {
+    "image_linked": true,
+    "device_flashed": false,
+    "toolchain": {
+      "bin": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\bin",
+      "matches_project_lock": true,
+      "version": "2.5.2",
+      "installer_sha256": "1ec78e3315a5987d4e82ecd002536c84240e5c832b1875beff7ce55450124ee5",
+      "tool_files_sha256": {
+        "bin/clang.exe": "0ae79bfb1e79018a12f401050674b6ddc90c202bf81a07832e37a73c3a447c25",
+        "bin/llvm-ar.exe": "0b436f8d2ab4f5750fe70ac0b9c6e0028b8188cd3ef0eb29413b967a002dd822",
+        "bin/pi32v2-lto-wrapper.exe": "ff78492bbc19f0f2a1751319e332fdcba43a368319685d58da6c5e15e16f9bb7",
+        "bin/pi32v2-ld.exe": "c06dede1b64d7381a86eeec44500b97392aff191e1694afdfb3bb97b20bbbb3b",
+        "pi32v2-lib/r3/libc.a": "5571a8e13d060d64ae4b3f4646c242de32668ac41a9acfd06fb94cd30f66ffff",
+        "pi32v2-lib/r3/libm.a": "a1cf76362ec872be97a7b7ba3152819fcb0828198ef0490011e0ed7cee60c280",
+        "pi32v2-lib/r3/libcompiler-rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf"
+      }
+    },
+    "profile": {
+      "profile_name": "stock-mode2-baseline",
+      "base_profile": "mode_2_ram_initial",
+      "config_file": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\config\\radar_baseline_mode2.json",
+      "config_sha256": "e57a49ba0ab0c240cbe38583a5828f7e9446f92a84ac60cef47f7ea622d2d0f2",
+      "baseline_table_sha256": "ff0a3715d077a864283e1222cf6746d9736749644bf5b5a4eb1ebd1fe89c5ec5",
+      "table_sha256": "ff0a3715d077a864283e1222cf6746d9736749644bf5b5a4eb1ebd1fe89c5ec5",
+      "write_count": 80,
+      "pre_spi_count": 75,
+      "post_spi_count": 5,
+      "i2c_address_7bit": 32,
+      "changes": [],
+      "extraction_manifest_sha256": "612f2995c3e1c243fc421dfa06613e01ef38305545f46c3634f3953fab294213",
+      "sources": [
+        {
+          "version": "V2.04",
+          "stem": "oncstzcza54pd",
+          "ufw_sha256": "a1b090ccb9aeaede130bec24d4414c09b5aa85ba81020f6ce123d1c9d6b4a277",
+          "app_sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+        },
+        {
+          "version": "V2.14",
+          "stem": "5o09fdkye1jo8",
+          "ufw_sha256": "b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093",
+          "app_sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+        }
+      ],
+      "generator_sha256": "dbd72b9101987ea6231f78bf9c3179e3313ac02d6c73fe258251c3a7e9b58802",
+      "target_built": false,
+      "device_tested": false
+    },
+    "package": {
+      "template_sha256": "b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093",
+      "ufw_sha256": "7c2da03fd4e938c8baa19fbc16d72da05ba22397dc0e641a8c3538df535ffb2f",
+      "ufw_bytes": 1035776,
+      "application_sha256": "843a643c49ace56aacba321d14109021e8700aa86998dcb2540a68fc03898222",
+      "application_bytes": 84336,
+      "entry_point": "0x1e00120",
+      "changed_flash_variants": [
+        {
+          "name": "flash.bin",
+          "app_bytes": 84336,
+          "slot_bytes": 182760,
+          "app_sha256": "843a643c49ace56aacba321d14109021e8700aa86998dcb2540a68fc03898222"
+        },
+        {
+          "name": "flash2.bin",
+          "app_bytes": 84336,
+          "slot_bytes": 182760,
+          "app_sha256": "843a643c49ace56aacba321d14109021e8700aa86998dcb2540a68fc03898222"
+        },
+        {
+          "name": "flash3.bin",
+          "app_bytes": 84336,
+          "slot_bytes": 182760,
+          "app_sha256": "843a643c49ace56aacba321d14109021e8700aa86998dcb2540a68fc03898222"
+        },
+        {
+          "name": "flash4.bin",
+          "app_bytes": 84336,
+          "slot_bytes": 182760,
+          "app_sha256": "843a643c49ace56aacba321d14109021e8700aa86998dcb2540a68fc03898222"
+        }
+      ],
+      "non_flash_components_preserved": true,
+      "crc_roundtrip_verified": true,
+      "device_flashed": false,
+      "bench_validated": false
+    },
+    "sdk_commit": "641e45dff1a8dc455fc6ccd688236fa59688b9ee",
+    "application": "capture",
+    "startup_audit": {
+      "entry": "0x1e00120",
+      "startup_immediates_checked": 13,
+      "ram_sections_nonoverlapping": true,
+      "flat_text_and_data_verified": true,
+      "board_power_after_platform_init": true,
+      "ram0_heap_bytes": 140704,
+      "ram1_heap_bytes": 11648,
+      "device_execution_verified": false
+    },
+    "runtime_audit": {
+      "logger_init_before_clock_dump": true,
+      "logger_mutex_constructor_linked": true,
+      "logger_buffer_allocation_linked": true,
+      "setup_before_application_tasks_and_scheduler": true,
+      "device_execution_verified": false
+    },
+    "radar_table_retained": true,
+    "source_and_link_inputs_sha256": {
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\apps\\soundbox\\log_config\\lib_driver_config.c": "58ef6f8e192978f63d7b82a5184933b2c93c4d9d15201528f353e54c430f9faa",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\apps\\soundbox\\log_config\\lib_system_config.c": "6f574b6a0e4ad92cc87b6fbd235cf0f2f26879b467976cb646c5603d91d627b8",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\apps\\soundbox\\log_config\\lib_update_config.c": "c3a9bf62aaff12a054d67d1103eb7906504faae6a4fd7e1866d3f8c15dbc4f00",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\charge.c": "de2b816ec98e0a5f65c71ab100b26d0d7778df3881d1e0b66652fe9659c4450a",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\maskrom_stubs.ld": "0d89bcd558f728bed7ca06b87c0a8b158d314d96e9190944ab127fdb88a90b92",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\pwm_led.c": "a29a95b2620f8d6b7db56f42ad4660758c12ee45d1a3a06c6d12d3b9aa2923e8",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\sdk_ld.c": "6e38fcdf96b4fd420ea0b34dd50425e2efff87ca5ae8da7f957e80858f924c11",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\sdk_used_list.c": "d1fc89197505c34f16b4f9c80cc1afe8c4f10d54f3200724b3052b4c8e8365f1",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\setup.c": "78ef48ee8a22d126e7e53a69084e67edd35e5e06569c0449a4977cc1d0b12fa9",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\cpu\\br23\\uart_dev.c": "3eebbe879e9d9b32f839ff549ec217c730ed158659e87dc7eb79996b79b94e75",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\include_lib\\liba\\br23\\cpu.a": "775c9b7cd3e78eebaca31dd443e1c0a993a60669e4b701713539de30486cb2e0",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\include_lib\\liba\\br23\\system.a": "c1b7971954c7a8b8c5997c4fdf9fab954be301393d382bb5c04243ed8e2b24bc",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\include_lib\\liba\\br23\\update.a": "53de665a95ef50659c4e132bed2bb35fa6adfecb5e5638d68c824d1c1c620e9a",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\sdk\\Makefile": "d7ef427cde4809f4bafa882b0f53833a0315a4e5006984a216a49e590aac73b4",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\bin\\llvm-objdump.exe": "18c3c29205781c115a12ebc56ed2fdf0d55a95a694778ccce78b48979f1faa86",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libc.a": "5571a8e13d060d64ae4b3f4646c242de32668ac41a9acfd06fb94cd30f66ffff",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcompiler-rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcompiler_rt.a": "d1be1eafb8b39f37d9a926edc6b8498e6157908f0aa72a45f99f2ac11cce49bf",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply.a": "c8b06245432626815fbcc7c386486a79cd23d6e45930cafefddf6ffe5c920db6",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply_f.a": "a6792453ec5610520691720cc720485328ec1d8d65e5f3211923c9743306361e",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply_fll.a": "6dfc4e884d1594004b27cfb601c1a23c81780d976b3a08d1d474cb4da5be5fe0",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libcsupply_ll.a": "6368f9f1ae69749d9aad9b9ec021d1406def11220eee0f3423f0f8c1a37f5580",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libg.a": "e496ae9a5000ca59972eb1a4b2bb6ab31be500deb6ac8bae1b88f342f0e1d7ea",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\.cache\\toolchain\\extracted-2.5.2\\C$\\JL\\pi32\\pi32v2-lib\\r3\\libm.a": "a1cf76362ec872be97a7b7ba3152819fcb0828198ef0490011e0ed7cee60c280",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\spi-capture\\generated\\radar_config_generated.c": "3f8a11b18605e7ebbdeba8a7e2b4a9aae684a8286348b68b6ce08f75aedd7bad",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\config\\radar_baseline_mode2.json": "e57a49ba0ab0c240cbe38583a5828f7e9446f92a84ac60cef47f7ea622d2d0f2",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\ld2450_capture.h": "9d89e1b56d5bfc115860a3825c1364a0294559fb02211e2a95c42790d9b29b86",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\ld2450_peripherals.h": "81e88d2464b87288a0091ee770edb879c7a284755db38ef1ec645cf6f59a89f5",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\ld2450_radar_init.h": "a291755ac60fbf7a0abd3711b6893403902968257e4a6d2b1834ed4b148d29e1",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\radar_wire.h": "39e9b76afed201529a929573401f83af8248f7ac8879dcc6cb953a378e9f8e93",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\include\\uart_update_protocol.h": "f0b445f821608dbce2dd17d24b061f178ee4435b881a78a192c4400ed8ab240f",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\sdk.lock.json": "cdefd9bd04b7c4a571628fde669f0a60bf702724a0fe754367182556e00dcd19",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\src\\app.c": "436b7edc16c329e35f6fc48b4d02361f05e841d302d2ca8fc708ad7db691f47c",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\src\\capture.c": "38349c4e1ed07051b89919b9d8bdd788e7defd8b67bbded97ec932fe970a1af8",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\src\\radar_init.c": "5689bfeafb6a449a9e353a236d35730db4f37733645802d428bb00f16576d377",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\src\\radar_wire.c": "64eb1ed8f27bf72884f5d2edb8dbdb63fef80281ea5a2940beb54d7faafd5352",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\src\\uart_update_protocol.c": "a48f05f41f6a8b1a985d2e217bcd9f2c7faf13b148b32a479d38425a551fa827",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\app_config.h": "4267695f8f6856fadef8b7a5bd263fa474bf445ec48810df30ef902f66af5162",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\board.c": "4e8328257d4ceb0ea29f630c558c1550669312c0fbf982fe844349e69cce89cf",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\bringup.c": "c199453d5766377b27b746051937ac0c8a753a4ece31e8698c3a91cd50918cd6",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\config.c": "b7aa115e0f85907e871ec9b4a8b214cedf30782e21616238dccab04b41b0376d",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\console.c": "dc4751b879787d40455b64e537d83d361d55f28924c8a69921111ea00f7c1351",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\main.c": "d7a94af166d90e7b3222bbd88877ebb40bae7b214cd872bbd3257539cdd28418",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\image\\uart_loader.c": "ee13baacf2a432a06c309fdd7b0e93f4dae0d2bea4110dae4680eb161480fb2f",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\peripherals.c": "6c91a4acf57f4409134e1759310168671d713ca15808cf801e0d37925601708b",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\target\\br23\\sdk_bridge.h": "3b844babc1adae37404fd2dea605cefd312ddf5eb39548aad208967cb21a433d",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\toolchain.lock.json": "3624bcc6d76627a0fbd3dafccb03093d126ba53292f4b16559343d13c8585892",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\audit_image.py": "d8f449c01f4b83009c3121c574bf4978522a6ebc976f21a880f668b9668c6139",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\audit_runtime.py": "5901d0b691bddd7e22ffb60e9d01631c119b9db6ab8a14177ad383d18827c51c",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\build_br23.py": "2d4590bea6df67f2df18acc816eb5c7b6ee32684c19f6f419ebf8a9c3a57d435",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\build_image.py": "fdd70c8ff8b9ec14a20fdf07bdb0deee173868e527de0a916bbb13a6b4b18b4c",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\generate_radar_config.py": "dbd72b9101987ea6231f78bf9c3179e3313ac02d6c73fe258251c3a7e9b58802",
+      "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\tools\\package_ufw.py": "58f00992a66431b65e61b3fb069c2945db727f06eab5949a3552107cedbcebf8"
+    },
+    "elf_sha256": "55d04d0b0cf1b9a343fd60527d6254a15798624adced6eb6c3681358121f1448"
+  },
+  "loader_patch": {
+    "source_sha256": "7c2da03fd4e938c8baa19fbc16d72da05ba22397dc0e641a8c3538df535ffb2f",
+    "ufw_sha256": "501d05e5b5b960c51ce360e4c0e51f6b339ec21e40ec7962583fe4435fece3e5",
+    "stock_loader_sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e",
+    "patched_loader_sha256": "c2f79a161743879655ea4d42f2588e66ef93783a5de419766a393b3c289bc9f7",
+    "decompressed_loader_sha256": "7be82d29b2a3794a3b44ad9934ff8fa9873c56673d988cef913cfcd655fc8162",
+    "instructions": [
+      {
+        "vma": "0xa40e",
+        "before": "d0ec4018",
+        "after": "41210000"
+      },
+      {
+        "vma": "0xa482",
+        "before": "62e13020",
+        "after": "42200000"
+      }
+    ],
+    "old_loader_size": 18212,
+    "new_loader_size": 17953,
+    "application_unchanged": true,
+    "hardware_validated": false
+  },
+  "failed_upload": {
+    "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\spi-capture\\update-two-wire.ufw",
+    "image_sha256": "501d05e5b5b960c51ce360e4c0e51f6b339ec21e40ec7962583fe4435fece3e5",
+    "entry": "custom",
+    "result": "failed",
+    "error": "TimeoutError('No valid device command before deadline')",
+    "pa9_bytes": 2573,
+    "postflash_bytes": 0,
+    "heartbeat_count": 0,
+    "elapsed_seconds": 20.414,
+    "read_requests": 7,
+    "complete": false,
+    "loader_staged": false,
+    "device_error": null,
+    "reported_size": 0
+  },
+  "boot_recovery_upload": {
+    "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\spi-capture\\update-two-wire.ufw",
+    "image_sha256": "501d05e5b5b960c51ce360e4c0e51f6b339ec21e40ec7962583fe4435fece3e5",
+    "entry": "custom",
+    "result": "device reported final success",
+    "pa9_bytes": 14916,
+    "postflash_bytes": 40062,
+    "heartbeat_count": 0,
+    "elapsed_seconds": 49.196,
+    "read_requests": 417,
+    "complete": true,
+    "loader_staged": true,
+    "device_error": null,
+    "reported_size": 184320
+  },
+  "decoded": {
+    "lanes": {
+      "0": {
+        "size": 8192,
+        "dma_complete": true,
+        "ended": true,
+        "sha256": "eac2eb200cae108e80b8f74456d9a5e0d898784ef8f871fc6d8f27b935a5ede3",
+        "unique_bytes": 256,
+        "most_common": [
+          [
+            29,
+            375
+          ],
+          [
+            25,
+            294
+          ],
+          [
+            28,
+            274
+          ],
+          [
+            26,
+            260
+          ],
+          [
+            239,
+            244
+          ],
+          [
+            27,
+            217
+          ],
+          [
+            240,
+            183
+          ],
+          [
+            0,
+            167
+          ]
+        ],
+        "prefix_hex": "aa2002011942ee83196fee50193cee891973ee541929ee8f1978ee531937eeac196aee851961eeab1952eecc19baee8f1942ef0719aceeb01972eee71996eed5",
+        "valid_records": [
+          {
+            "offset": 0,
+            "size": 2056,
+            "header": "aa200201",
+            "rx": 0,
+            "chirp": 0,
+            "pairs": 512,
+            "checksum": "31f4",
+            "i_min": 4780,
+            "i_max": 7797,
+            "q_min": -4528,
+            "q_max": 950,
+            "iq_sha256": "b18a903049ada2f245ba4d744bd28fcaee40b20543e1427b5a3cca99913303ca"
+          },
+          {
+            "offset": 2056,
+            "size": 2056,
+            "header": "aa200a01",
+            "rx": 0,
+            "chirp": 1,
+            "pairs": 512,
+            "checksum": "3312",
+            "i_min": 4757,
+            "i_max": 7808,
+            "q_min": -4527,
+            "q_max": 968,
+            "iq_sha256": "85445e01c519ccbc46f530309e4655dc9923a6d26c32139ef577616630681331"
+          },
+          {
+            "offset": 4112,
+            "size": 2056,
+            "header": "aa201201",
+            "rx": 0,
+            "chirp": 2,
+            "pairs": 512,
+            "checksum": "346e",
+            "i_min": 4786,
+            "i_max": 7818,
+            "q_min": -4546,
+            "q_max": 948,
+            "iq_sha256": "3a7d6cf22154d702ebf9eb1ee4baf0f1c914de17ffef1c445f8dde942e7f0f4c"
+          }
+        ]
+      },
+      "1": {
+        "size": 8192,
+        "dma_complete": true,
+        "ended": true,
+        "sha256": "738c434e623315247833e08819113e9320ddac6285b82098676284c1b376dfa2",
+        "unique_bytes": 256,
+        "most_common": [
+          [
+            10,
+            957
+          ],
+          [
+            9,
+            443
+          ],
+          [
+            2,
+            210
+          ],
+          [
+            3,
+            202
+          ],
+          [
+            255,
+            198
+          ],
+          [
+            1,
+            197
+          ],
+          [
+            8,
+            183
+          ],
+          [
+            254,
+            179
+          ]
+        ],
+        "prefix_hex": "aa600201093cfd7d094afd6b093efd7d0955fd6d0938fd7e0951fd6d0946fd93095afd8d0957fd9f095cfdb40994fdb10961fdda098ffdc70977fdd80990fde6",
+        "valid_records": [
+          {
+            "offset": 0,
+            "size": 2056,
+            "header": "aa600201",
+            "rx": 1,
+            "chirp": 0,
+            "pairs": 512,
+            "checksum": "d68c",
+            "i_min": -675,
+            "i_max": 2842,
+            "q_min": -661,
+            "q_max": 5647,
+            "iq_sha256": "a27a72945d04b80b88c61b3e674f64fc0750166d3798180c6ca5c4a41cfd922e"
+          },
+          {
+            "offset": 2056,
+            "size": 2056,
+            "header": "aa600a01",
+            "rx": 1,
+            "chirp": 1,
+            "pairs": 512,
+            "checksum": "e290",
+            "i_min": -685,
+            "i_max": 2854,
+            "q_min": -661,
+            "q_max": 5675,
+            "iq_sha256": "ae36583f63414f6d392b9fe20b4e1156935c517137646bbe49890be88ca3a43d"
+          },
+          {
+            "offset": 4112,
+            "size": 2056,
+            "header": "aa601201",
+            "rx": 1,
+            "chirp": 2,
+            "pairs": 512,
+            "checksum": "db5b",
+            "i_min": -642,
+            "i_max": 2851,
+            "q_min": -671,
+            "q_max": 5646,
+            "iq_sha256": "d10479cb588b87f7342d15dd1b6318756b32f832467aa89d403a9dd2fa5dd723"
+          }
+        ]
+      }
+    },
+    "lanes_identical": false
+  },
+  "postcapture_updater": {
+    "firmware_bytes_sent": 0,
+    "updater_start_received": true,
+    "rx_hex": "aa55010001a582"
+  },
+  "native_suites_passed": 7,
+  "python_tests_passed": 34,
+  "logic_analyzer_used": false,
+  "continuous_capture_verified": false,
+  "radar_left_powered": false,
+  "ports_released": true
+}

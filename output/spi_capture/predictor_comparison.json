@@ -1,0 +1,295 @@
+{
+  "scope": "Startup capture only; Rice sizes calculated, not an implemented wire codec; no target timing.",
+  "lanes": [
+    {
+      "source": "output\\spi_capture\\dual_lane_16chirps\\lane0.bin",
+      "sha256": "1346cf2b00803edf296587ab5c18263ee0ae77caaeb8f097f65f004e16e6c0d7",
+      "raw_bytes": 32896,
+      "estimates": {
+        "previous_chirp": {
+          "bytes": 17843,
+          "fraction_of_raw": 0.5424063715953308,
+          "packet_bytes": [
+            2057,
+            1017,
+            1071,
+            982,
+            955,
+            934,
+            1026,
+            1041,
+            1007,
+            1114,
+            1120,
+            1104,
+            1073,
+            1120,
+            1119,
+            1103
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "previous_sample": {
+          "bytes": 19013,
+          "fraction_of_raw": 0.5779730058365758,
+          "packet_bytes": [
+            2057,
+            1130,
+            1129,
+            1129,
+            1130,
+            1134,
+            1127,
+            1129,
+            1129,
+            1135,
+            1133,
+            1126,
+            1132,
+            1131,
+            1130,
+            1132
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "linear_sample": {
+          "bytes": 20725,
+          "fraction_of_raw": 0.6300158073929961,
+          "packet_bytes": [
+            2057,
+            1239,
+            1245,
+            1245,
+            1245,
+            1249,
+            1240,
+            1247,
+            1249,
+            1246,
+            1247,
+            1245,
+            1246,
+            1245,
+            1238,
+            1242
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "linear_chirp": {
+          "bytes": 19052,
+          "fraction_of_raw": 0.5791585603112841,
+          "packet_bytes": [
+            2057,
+            1017,
+            1109,
+            1092,
+            1025,
+            1007,
+            1049,
+            1091,
+            1078,
+            1177,
+            1243,
+            1231,
+            1188,
+            1216,
+            1241,
+            1231
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "gradient_2d": {
+          "bytes": 19428,
+          "fraction_of_raw": 0.5905885214007782,
+          "packet_bytes": [
+            2057,
+            1119,
+            1184,
+            1066,
+            1039,
+            1017,
+            1131,
+            1146,
+            1105,
+            1226,
+            1239,
+            1224,
+            1190,
+            1233,
+            1236,
+            1216
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "median_2d": {
+          "bytes": 18304,
+          "fraction_of_raw": 0.556420233463035,
+          "packet_bytes": [
+            2057,
+            1053,
+            1101,
+            1012,
+            990,
+            966,
+            1067,
+            1074,
+            1047,
+            1145,
+            1135,
+            1127,
+            1112,
+            1146,
+            1146,
+            1126
+          ],
+          "predictor_reconstruction_exact": true
+        }
+      }
+    },
+    {
+      "source": "output\\spi_capture\\dual_lane_16chirps\\lane1.bin",
+      "sha256": "8715a0085c45e63233afb0b710d359c9b95382b2e8319c396609ce00fc6272fc",
+      "raw_bytes": 32896,
+      "estimates": {
+        "previous_chirp": {
+          "bytes": 15975,
+          "fraction_of_raw": 0.48562135214007784,
+          "packet_bytes": [
+            2057,
+            900,
+            940,
+            882,
+            863,
+            846,
+            905,
+            915,
+            900,
+            971,
+            976,
+            966,
+            945,
+            971,
+            977,
+            961
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "previous_sample": {
+          "bytes": 16846,
+          "fraction_of_raw": 0.5120987354085603,
+          "packet_bytes": [
+            2057,
+            983,
+            986,
+            987,
+            983,
+            989,
+            985,
+            987,
+            988,
+            985,
+            991,
+            985,
+            987,
+            984,
+            984,
+            985
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "linear_sample": {
+          "bytes": 18415,
+          "fraction_of_raw": 0.5597945038910506,
+          "packet_bytes": [
+            2057,
+            1093,
+            1089,
+            1095,
+            1089,
+            1094,
+            1093,
+            1089,
+            1092,
+            1089,
+            1092,
+            1089,
+            1085,
+            1092,
+            1088,
+            1089
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "linear_chirp": {
+          "bytes": 17279,
+          "fraction_of_raw": 0.5252614299610895,
+          "packet_bytes": [
+            2057,
+            900,
+            998,
+            988,
+            954,
+            928,
+            958,
+            979,
+            982,
+            1045,
+            1091,
+            1089,
+            1052,
+            1074,
+            1096,
+            1088
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "gradient_2d": {
+          "bytes": 17252,
+          "fraction_of_raw": 0.5244406614785992,
+          "packet_bytes": [
+            2057,
+            981,
+            1030,
+            936,
+            912,
+            895,
+            980,
+            1000,
+            972,
+            1075,
+            1079,
+            1069,
+            1037,
+            1083,
+            1084,
+            1062
+          ],
+          "predictor_reconstruction_exact": true
+        },
+        "median_2d": {
+          "bytes": 16284,
+          "fraction_of_raw": 0.49501459143968873,
+          "packet_bytes": [
+            2057,
+            924,
+            965,
+            896,
+            869,
+            861,
+            930,
+            943,
+            923,
+            994,
+            993,
+            982,
+            971,
+            994,
+            999,
+            983
+          ],
+          "predictor_reconstruction_exact": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{"kind": "reference", "at": 1791354440.5203178}
+{"kind": "test", "reg": "0x5E", "original": "0xFF00", "value": "0xFF01", "mask": "0x0001", "readback": "0xFF01", "result": "ok", "changes": {}, "at": 1791354443.1402936}
+{"kind": "test", "reg": "0x5E", "original": "0xFF00", "value": "0xFF10", "mask": "0x0010", "readback": "0xFF10", "result": "ok", "changes": {}, "at": 1791354446.1768858}
+{"kind": "test", "reg": "0x5E", "original": "0xFF00", "value": "0xFE00", "mask": "0x0100", "readback": "0xFE00", "result": "ok", "changes": {}, "at": 1791354448.8468416}
+{"kind": "test", "reg": "0x5E", "original": "0xFF00", "value": "0xEF00", "mask": "0x1000", "readback": "0xEF00", "result": "ok", "changes": {}, "at": 1791354451.7714248}
+{"kind": "test", "reg": "0x5F", "original": "0x1005", "value": "0x1004", "mask": "0x0001", "readback": "0x1004", "result": "ok", "changes": {}, "at": 1791354454.8022583}
+{"kind": "test", "reg": "0x5F", "original": "0x1005", "value": "0x1015", "mask": "0x0010", "readback": "0x1015", "result": "ok", "changes": {}, "at": 1791354457.5686655}
+{"kind": "test", "reg": "0x5F", "original": "0x1005", "value": "0x1105", "mask": "0x0100", "readback": "0x1105", "result": "ok", "changes": {}, "at": 1791354460.4033654}
+{"kind": "test", "reg": "0x5F", "original": "0x1005", "value": "0x0005", "mask": "0x1000", "readback": "0x0005", "result": "ok", "changes": {}, "at": 1791354463.075684}
+{"kind": "test", "reg": "0x60", "original": "0x019C", "value": "0x019D", "mask": "0x0001", "readback": "0x019D", "result": "ok", "changes": {}, "at": 1791354465.9467447}
+{"kind": "test", "reg": "0x60", "original": "0x019C", "value": "0x018C", "mask": "0x0010", "readback": "0x018C", "result": "ok", "changes": {}, "at": 1791354468.7655263}
+{"kind": "test", "reg": "0x60", "original": "0x019C", "value": "0x009C", "mask": "0x0100", "readback": "0x009C", "result": "ok", "changes": {}, "at": 1791354471.2809374}
+{"kind": "test", "reg": "0x60", "original": "0x019C", "value": "0x119C", "mask": "0x1000", "readback": "0x119C", "result": "ok", "changes": {}, "at": 1791354474.3792248}
+{"kind": "test", "reg": "0x65", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0001", "result": "ok", "changes": {"rx2.dc_q": 372.2, "rx2.ac_q_db": 2.6, "rx2.image_db": 1.47, "rx2.image_deg": -58.5, "rx2.refl_db": 1.33, "rx2.noise_db": 1.56}, "at": 1791354477.509523}
+{"kind": "test", "reg": "0x65", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0010", "result": "ok", "changes": {"rx1.dc_q": -815.8, "rx1.ac_q_db": 2.6, "rx1.image_db": -2.02, "rx1.image_deg": -47.5, "rx1.refl_db": 1.3, "rx1.noise_db": 1.47}, "at": 1791354480.0036116}
+{"kind": "test", "reg": "0x65", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0100", "result": "ok", "changes": {"rx2.dc_i": -400.3, "rx2.ac_i_db": 2.61, "rx2.image_db": 4.49, "rx2.image_deg": 37.1, "rx2.refl_db": 1.48, "rx2.noise_db": 1.46}, "at": 1791354482.9241903}
+{"kind": "test", "reg": "0x65", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x1000", "result": "ok", "changes": {"rx1.dc_i": 1022.2, "rx1.ac_i_db": 2.61, "rx1.image_db": 3.74, "rx1.image_deg": 22.3, "rx1.refl_db": 1.47, "rx1.noise_db": 1.61}, "at": 1791354485.6061916}
+{"kind": "test", "reg": "0x66", "original": "0x0F00", "value": "0x0F01", "mask": "0x0001", "readback": "0x0F01", "result": "ok", "changes": {}, "at": 1791354488.4361022}
+{"kind": "test", "reg": "0x66", "original": "0x0F00", "value": "0x0F10", "mask": "0x0010", "readback": "0x0F10", "result": "ok", "changes": {}, "at": 1791354491.6475565}
+{"kind": "test", "reg": "0x66", "original": "0x0F00", "value": "0x0E00", "mask": "0x0100", "readback": "0x0E00", "result": "ok", "changes": {"rx1.image_deg": -4.2, "rx2.dc_q": -4224.6, "rx2.ac_i_db": -1.93, "rx2.ac_q_db": 19.49, "rx2.image_db": 16.37, "rx2.image_deg": 55.1, "rx2.refl_db": -9.65, "rx2.noise_db": 31.94}, "at": 1791354494.2399685}
+{"kind": "test", "reg": "0x66", "original": "0x0F00", "value": "0x1F00", "mask": "0x1000", "readback": "0x1F00", "result": "ok", "changes": {}, "at": 1791354497.1602998}
+{"kind": "test", "reg": "0x67", "original": "0x1E40", "value": "0x1E41", "mask": "0x0001", "readback": "0x1E41", "result": "ok", "changes": {}, "at": 1791354500.2812831}
+{"kind": "test", "reg": "0x67", "original": "0x1E40", "value": "0x1E50", "mask": "0x0010", "readback": "0x1E50", "result": "ok", "changes": {}, "at": 1791354502.7908456}
+{"kind": "test", "reg": "0x67", "original": "0x1E40", "value": "0x1F40", "mask": "0x0100", "readback": "0x1F40", "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354513.3455648}
+{"kind": "test", "reg": "0x67", "original": "0x1E40", "value": "0x0E40", "mask": "0x1000", "readback": "0x0E40", "result": "ok", "changes": {"rx1.dc_i": -2973.5, "rx1.ac_i_db": -176.09, "rx1.image_db": 13.81, "rx1.image_deg": 230.5, "rx1.refl_db": -6.42, "rx1.noise_db": -3.18}, "at": 1791354515.7416446}
+{"kind": "test", "reg": "0x68", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0001", "result": "ok", "changes": {}, "at": 1791354518.3210428}
+{"kind": "test", "reg": "0x68", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0010", "result": "ok", "changes": {}, "at": 1791354521.34703}
+{"kind": "test", "reg": "0x68", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0100", "result": "ok", "changes": {}, "at": 1791354523.8249109}
+{"kind": "test", "reg": "0x68", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x1000", "result": "ok", "changes": {}, "at": 1791354526.7737188}
+{"kind": "test", "reg": "0x69", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0001", "result": "ok", "changes": {}, "at": 1791354529.712708}
+{"kind": "test", "reg": "0x69", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0010", "result": "ok", "changes": {}, "at": 1791354532.0947413}
+{"kind": "test", "reg": "0x69", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0100", "result": "ok", "changes": {}, "at": 1791354535.0332618}
+{"kind": "test", "reg": "0x69", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x1000", "result": "ok", "changes": {"rx1.noise_db": 6.93, "rx2.noise_db": 5.03}, "at": 1791354537.4474344}
+{"kind": "test", "reg": "0x6A", "original": "0x3C41", "value": "0x3C40", "mask": "0x0001", "readback": "0x3C40", "result": "ok", "changes": {}, "at": 1791354539.9183512}
+{"kind": "test", "reg": "0x6A", "original": "0x3C41", "value": "0x3C51", "mask": "0x0010", "readback": "0x3C51", "result": "ok", "changes": {"rx1.noise_db": 7.01, "rx2.noise_db": 5.05}, "at": 1791354542.5058844}
+{"kind": "test", "reg": "0x6A", "original": "0x3C41", "value": "0x3D41", "mask": "0x0100", "readback": "0x3D41", "result": "ok", "changes": {"rx1.noise_db": 7.93, "rx2.noise_db": 9.81}, "at": 1791354544.914342}
+{"kind": "test", "reg": "0x6A", "original": "0x3C41", "value": "0x2C41", "mask": "0x1000", "readback": "0x2C41", "result": "ok", "changes": {}, "at": 1791354547.8283246}
+{"kind": "test", "reg": "0x6B", "original": "0x6D00", "value": "0x6D01", "mask": "0x0001", "readback": "0x6D01", "result": "ok", "changes": {}, "at": 1791354551.065154}
+{"kind": "test", "reg": "0x6B", "original": "0x6D00", "value": "0x6D10", "mask": "0x0010", "readback": "0x6D10", "result": "ok", "changes": {}, "at": 1791354553.4601605}
+{"kind": "test", "reg": "0x6B", "original": "0x6D00", "value": "0x6C00", "mask": "0x0100", "readback": "0x6C00", "result": "ok", "changes": {}, "at": 1791354556.367467}
+{"kind": "test", "reg": "0x6B", "original": "0x6D00", "value": "0x7D00", "mask": "0x1000", "readback": "0x7D00", "result": "ok", "changes": {}, "at": 1791354558.7017112}
+{"kind": "test", "reg": "0x6E", "original": "0xC3FC", "value": "0xC3FD", "mask": "0x0001", "readback": "0xC3FD", "result": "ok", "changes": {}, "at": 1791354561.2939756}
+{"kind": "test", "reg": "0x6E", "original": "0xC3FC", "value": "0xC3EC", "mask": "0x0010", "readback": "0xC3EC", "result": "ok", "changes": {"rx2.dc_i": 381.7, "rx2.dc_q": -419.9, "rx2.ac_i_db": -4.76, "rx2.ac_q_db": -4.6, "rx2.refl_db": -4.67, "rx2.noise_db": -3.78}, "at": 1791354564.3041112}
+{"kind": "test", "reg": "0x6E", "original": "0xC3FC", "value": "0xC2FC", "mask": "0x0100", "readback": "0xC2FC", "result": "ok", "changes": {"rx2.ac_i_db": 0.79, "rx2.ac_q_db": 0.72, "rx2.refl_db": 0.72}, "at": 1791354566.6120493}
+{"kind": "test", "reg": "0x6E", "original": "0xC3FC", "value": "0xD3FC", "mask": "0x1000", "readback": "0xD3FC", "result": "ok", "changes": {"rx1.dc_i": -2494.0, "rx1.dc_q": 1495.5, "rx1.ac_i_db": -10.7, "rx1.ac_q_db": -11.1, "rx1.image_deg": -8.6, "rx1.refl_db": -10.91, "rx1.noise_db": -10.28}, "at": 1791354569.6540902}
+{"kind": "test", "reg": "0x6F", "original": "0x5500", "value": "0x5501", "mask": "0x0001", "readback": "0x5501", "result": "ok", "changes": {}, "at": 1791354572.76961}
+{"kind": "test", "reg": "0x6F", "original": "0x5500", "value": "0x5510", "mask": "0x0010", "readback": "0x5510", "result": "ok", "changes": {}, "at": 1791354575.248509}
+{"kind": "test", "reg": "0x6F", "original": "0x5500", "value": "0x5400", "mask": "0x0100", "readback": "0x5400", "result": "ok", "changes": {}, "at": 1791354578.2657068}
+{"kind": "test", "reg": "0x6F", "original": "0x5500", "value": "0x4500", "mask": "0x1000", "readback": "0x4500", "result": "ok", "changes": {}, "at": 1791354580.6025484}
+{"kind": "test", "reg": "0x70", "original": "0x26A0", "value": "0x26A1", "mask": "0x0001", "readback": "0x26A1", "result": "ok", "changes": {}, "at": 1791354582.9943273}
+{"kind": "test", "reg": "0x70", "original": "0x26A0", "value": "0x26B0", "mask": "0x0010", "readback": "0x26B0", "result": "ok", "changes": {}, "at": 1791354585.9599922}
+{"kind": "test", "reg": "0x70", "original": "0x26A0", "value": "0x27A0", "mask": "0x0100", "readback": "0x27A0", "result": "ok", "changes": {}, "at": 1791354588.1615422}
+{"kind": "test", "reg": "0x70", "original": "0x26A0", "value": "0x36A0", "mask": "0x1000", "readback": "0x36A0", "result": "ok", "changes": {"rx1.dc_i": 508.8, "rx1.dc_q": 1096.0, "rx1.ac_i_db": 2.11, "rx1.ac_q_db": 1.99, "rx1.image_deg": 13.1, "rx1.refl_db": 1.71, "rx2.dc_i": -619.0, "rx2.dc_q": -346.2, "rx2.ac_i_db": 0.93, "rx2.ac_q_db": 2.44, "rx2.image_deg": 9.1, "rx2.refl_db": 1.67, "rx2.noise_db": 1.79}, "at": 1791354591.1848469}
+{"kind": "test", "reg": "0x71", "original": "0x20A1", "value": "0x20A0", "mask": "0x0001", "readback": "0x20A0", "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354601.7676644}
+{"kind": "test", "reg": "0x71", "original": "0x20A1", "value": "0x20B1", "mask": "0x0010", "readback": "0x20B1", "result": "ok", "changes": {}, "at": 1791354604.5348163}
+{"kind": "test", "reg": "0x71", "original": "0x20A1", "value": "0x21A1", "mask": "0x0100", "readback": "0x21A1", "result": "ok", "changes": {}, "at": 1791354607.5489411}
+{"kind": "test", "reg": "0x71", "original": "0x20A1", "value": "0x30A1", "mask": "0x1000", "readback": "0x30A1", "result": "ok", "changes": {}, "at": 1791354610.2288287}
+{"kind": "test", "reg": "0x73", "original": "0x8000", "value": "0x8001", "mask": "0x0001", "readback": "0x8000", "result": "ok", "changes": {}, "at": 1791354613.0743582}
+{"kind": "test", "reg": "0x73", "original": "0x8000", "value": "0x8010", "mask": "0x0010", "readback": "0x8000", "result": "ok", "changes": {}, "at": 1791354616.1125166}
+{"kind": "test", "reg": "0x73", "original": "0x8000", "value": "0x8100", "mask": "0x0100", "readback": "0x8000", "result": "ok", "changes": {}, "at": 1791354618.6865811}
+{"kind": "test", "reg": "0x73", "original": "0x8000", "value": "0x9000", "mask": "0x1000", "readback": "0x8000", "result": "ok", "changes": {}, "at": 1791354621.6196432}
+{"kind": "test", "reg": "0x74", "original": "0x0001", "value": "0x0000", "mask": "0x0001", "readback": "0x0001", "result": "ok", "changes": {}, "at": 1791354624.7110631}
+{"kind": "test", "reg": "0x74", "original": "0x0001", "value": "0x0011", "mask": "0x0010", "readback": "0x0001", "result": "ok", "changes": {}, "at": 1791354627.3849196}
+{"kind": "test", "reg": "0x74", "original": "0x0001", "value": "0x0101", "mask": "0x0100", "readback": "0x0001", "result": "ok", "changes": {}, "at": 1791354630.411642}
+{"kind": "test", "reg": "0x74", "original": "0x0001", "value": "0x1001", "mask": "0x1000", "readback": "0x0001", "result": "ok", "changes": {}, "at": 1791354633.0773444}
+{"kind": "test", "reg": "0x75", "original": "0x0004", "value": "0x0005", "mask": "0x0001", "readback": "0x0004", "result": "ok", "changes": {}, "at": 1791354635.9303071}
+{"kind": "test", "reg": "0x75", "original": "0x0004", "value": "0x0014", "mask": "0x0010", "readback": "0x0004", "result": "ok", "changes": {}, "at": 1791354638.7926064}
+{"kind": "test", "reg": "0x75", "original": "0x0004", "value": "0x0104", "mask": "0x0100", "readback": "0x0004", "result": "ok", "changes": {}, "at": 1791354641.4558785}
+{"kind": "test", "reg": "0x75", "original": "0x0004", "value": "0x1004", "mask": "0x1000", "readback": "0x0004", "result": "ok", "changes": {}, "at": 1791354644.4885397}
+{"kind": "test", "reg": "0x76", "original": "0x0021", "value": "0x0020", "mask": "0x0001", "readback": "0x0020", "result": "ok", "changes": {"rx1.dc_i": -3001.9, "rx1.dc_q": 2403.3, "rx1.ac_i_db": -50.83, "rx1.ac_q_db": -51.57, "rx1.image_db": 2.98, "rx1.image_deg": 147.4, "rx1.refl_db": -73.58, "rx1.noise_db": -19.76, "rx2.dc_i": 1265.8, "rx2.dc_q": -1137.1, "rx2.ac_i_db": -51.71, "rx2.ac_q_db": -48.89, "rx2.image_db": 4.79, "rx2.image_deg": 242.2, "rx2.refl_db": -79.88, "rx2.noise_db": -17.24}, "at": 1791354647.6909647}
+{"kind": "test", "reg": "0x76", "original": "0x0021", "value": "0x0031", "mask": "0x0010", "readback": "0x0031", "result": "ok", "changes": {}, "at": 1791354650.1936953}
+{"kind": "test", "reg": "0x76", "original": "0x0021", "value": "0x0121", "mask": "0x0100", "readback": "0x0121", "result": "ok", "changes": {}, "at": 1791354653.2055132}
+{"kind": "test", "reg": "0x76", "original": "0x0021", "value": "0x1021", "mask": "0x1000", "readback": "0x1021", "result": "ok", "changes": {}, "at": 1791354655.869539}
+{"kind": "test", "reg": "0x77", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354658.726967}
+{"kind": "test", "reg": "0x77", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354661.654877}
+{"kind": "test", "reg": "0x77", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354664.3200037}
+{"kind": "test", "reg": "0x77", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354667.4523938}
+{"kind": "test", "reg": "0x78", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354670.574475}
+{"kind": "test", "reg": "0x78", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354673.1662173}
+{"kind": "test", "reg": "0x78", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354676.0809774}
+{"kind": "test", "reg": "0x78", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354678.6692991}
+{"kind": "test", "reg": "0x79", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354681.523269}
+{"kind": "test", "reg": "0x79", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354684.6280584}
+{"kind": "test", "reg": "0x79", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354687.285057}
+{"kind": "test", "reg": "0x79", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354690.4754899}
+{"kind": "test", "reg": "0x7A", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354693.442897}
+{"kind": "test", "reg": "0x7A", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354695.9075382}
+{"kind": "test", "reg": "0x7A", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354698.938446}
+{"kind": "test", "reg": "0x7A", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354701.4207425}
+{"kind": "test", "reg": "0x7B", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354704.1824563}
+{"kind": "test", "reg": "0x7B", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354707.3126092}
+{"kind": "test", "reg": "0x7B", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354709.81132}
+{"kind": "test", "reg": "0x7B", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354712.7509818}
+{"kind": "test", "reg": "0x7C", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354715.6601586}
+{"kind": "test", "reg": "0x7C", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354718.3589525}
+{"kind": "test", "reg": "0x7C", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354721.2847688}
+{"kind": "test", "reg": "0x7C", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354723.9350233}
+{"kind": "test", "reg": "0x7D", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354726.7988212}
+{"kind": "test", "reg": "0x7D", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354729.8057728}
+{"kind": "test", "reg": "0x7D", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354732.4927437}
+{"kind": "test", "reg": "0x7D", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354735.4184995}
+{"kind": "test", "reg": "0x7E", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354738.5326962}
+{"kind": "test", "reg": "0x7E", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354741.2215693}
+{"kind": "test", "reg": "0x7E", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354744.3374336}
+{"kind": "test", "reg": "0x7E", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354747.1004803}
+{"kind": "test", "reg": "0x7F", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354749.8407273}
+{"kind": "test", "reg": "0x7F", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354752.9647553}
+{"kind": "test", "reg": "0x7F", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354755.3775182}
+{"kind": "test", "reg": "0x7F", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354758.4848995}
+{"kind": "test", "reg": "0x05", "original": "0x0010", "value": "0x0011", "mask": "0x0001", "readback": "0x0011", "result": "ok", "changes": {}, "at": 1791354761.6850357}
+{"kind": "test", "reg": "0x05", "original": "0x0010", "value": "0x0000", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354764.3512487}
+{"kind": "test", "reg": "0x05", "original": "0x0010", "value": "0x0110", "mask": "0x0100", "readback": "0x0110", "result": "ok", "changes": {}, "at": 1791354767.2748342}
+{"kind": "test", "reg": "0x05", "original": "0x0010", "value": "0x1010", "mask": "0x1000", "readback": "0x1010", "result": "ok", "changes": {}, "at": 1791354769.9499927}
+{"kind": "test", "reg": "0x06", "original": "0x0122", "value": "0x0123", "mask": "0x0001", "readback": null, "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354780.5369604}
+{"kind": "test", "reg": "0x06", "original": "0x0122", "value": "0x0132", "mask": "0x0010", "readback": "0x0132", "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354790.9380677}
+{"kind": "test", "reg": "0x06", "original": "0x0122", "value": "0x0022", "mask": "0x0100", "readback": null, "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354801.3543196}
+{"kind": "test", "reg": "0x06", "original": "0x0122", "value": "0x1122", "mask": "0x1000", "readback": "0x1122", "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354811.6179433}
+{"kind": "test", "reg": "0x07", "original": "0x01B2", "value": "0x01B3", "mask": "0x0001", "readback": "0x01B3", "result": "ok", "changes": {}, "at": 1791354814.8972812}
+{"kind": "test", "reg": "0x07", "original": "0x01B2", "value": "0x01A2", "mask": "0x0010", "readback": "0x01A2", "result": "ok", "changes": {}, "at": 1791354817.4041743}
+{"kind": "test", "reg": "0x07", "original": "0x01B2", "value": "0x00B2", "mask": "0x0100", "readback": "0x00B2", "result": "ok", "changes": {}, "at": 1791354820.3472924}
+{"kind": "test", "reg": "0x07", "original": "0x01B2", "value": "0x11B2", "mask": "0x1000", "readback": "0x11B2", "result": "ok", "changes": {}, "at": 1791354822.9080877}
+{"kind": "test", "reg": "0x08", "original": "0x001C", "value": "0x001D", "mask": "0x0001", "readback": "0x001D", "result": "ok", "changes": {}, "at": 1791354825.8492386}
+{"kind": "test", "reg": "0x08", "original": "0x001C", "value": "0x000C", "mask": "0x0010", "readback": "0x000C", "result": "ok", "changes": {}, "at": 1791354828.8049903}
+{"kind": "test", "reg": "0x08", "original": "0x001C", "value": "0x011C", "mask": "0x0100", "readback": "0x011C", "result": "ok", "changes": {}, "at": 1791354831.2731116}
+{"kind": "test", "reg": "0x08", "original": "0x001C", "value": "0x101C", "mask": "0x1000", "readback": "0x101C", "result": "ok", "changes": {}, "at": 1791354834.3041074}
+{"kind": "test", "reg": "0x09", "original": "0x6901", "value": "0x6900", "mask": "0x0001", "readback": "0x6900", "result": "ok", "changes": {}, "at": 1791354837.3228664}
+{"kind": "test", "reg": "0x09", "original": "0x6901", "value": "0x6911", "mask": "0x0010", "readback": "0x6911", "result": "ok", "changes": {}, "at": 1791354840.009138}
+{"kind": "test", "reg": "0x09", "original": "0x6901", "value": "0x6801", "mask": "0x0100", "readback": "0x6801", "result": "ok", "changes": {}, "at": 1791354843.0448515}
+{"kind": "test", "reg": "0x09", "original": "0x6901", "value": "0x7901", "mask": "0x1000", "readback": "0x7901", "result": "ok", "changes": {}, "at": 1791354845.6050708}
+{"kind": "test", "reg": "0x0A", "original": "0x4200", "value": "0x4201", "mask": "0x0001", "readback": "0x4201", "result": "ok", "changes": {}, "at": 1791354848.4552617}
+{"kind": "test", "reg": "0x0A", "original": "0x4200", "value": "0x4210", "mask": "0x0010", "readback": "0x4210", "result": "ok", "changes": {}, "at": 1791354851.500706}
+{"kind": "test", "reg": "0x0A", "original": "0x4200", "value": "0x4300", "mask": "0x0100", "readback": "0x4300", "result": "ok", "changes": {}, "at": 1791354853.9707584}
+{"kind": "test", "reg": "0x0A", "original": "0x4200", "value": "0x5200", "mask": "0x1000", "readback": "0x5200", "result": "ok", "changes": {}, "at": 1791354857.015569}
+{"kind": "test", "reg": "0x0B", "original": "0xC03C", "value": "0xC03D", "mask": "0x0001", "readback": "0xC03D", "result": "ok", "changes": {}, "at": 1791354860.1339595}
+{"kind": "test", "reg": "0x0B", "original": "0xC03C", "value": "0xC02C", "mask": "0x0010", "readback": "0xC02C", "result": "ok", "changes": {}, "at": 1791354862.7830591}
+{"kind": "test", "reg": "0x0B", "original": "0xC03C", "value": "0xC13C", "mask": "0x0100", "readback": "0xC13C", "result": "ok", "changes": {}, "at": 1791354865.8893254}
+{"kind": "test", "reg": "0x0B", "original": "0xC03C", "value": "0xD03C", "mask": "0x1000", "readback": "0xD03C", "result": "ok", "changes": {}, "at": 1791354868.3884773}
+{"kind": "test", "reg": "0x0C", "original": "0xEA5F", "value": "0xEA5E", "mask": "0x0001", "readback": "0xEA5F", "result": "ok", "changes": {}, "at": 1791354871.2281387}
+{"kind": "test", "reg": "0x0C", "original": "0xEA5F", "value": "0xEA4F", "mask": "0x0010", "readback": "0xEA5F", "result": "ok", "changes": {}, "at": 1791354874.1845188}
+{"kind": "test", "reg": "0x0C", "original": "0xEA5F", "value": "0xEB5F", "mask": "0x0100", "readback": "0xEA5F", "result": "ok", "changes": {}, "at": 1791354876.8628254}
+{"kind": "test", "reg": "0x0C", "original": "0xEA5F", "value": "0xFA5F", "mask": "0x1000", "readback": "0xEA5F", "result": "ok", "changes": {}, "at": 1791354879.8804119}
+{"kind": "test", "reg": "0x0D", "original": "0x1000", "value": "0x1001", "mask": "0x0001", "readback": "0x1001", "result": "ok", "changes": {}, "at": 1791354882.825362}
+{"kind": "test", "reg": "0x0D", "original": "0x1000", "value": "0x1010", "mask": "0x0010", "readback": "0x1010", "result": "ok", "changes": {}, "at": 1791354885.4782548}
+{"kind": "test", "reg": "0x0D", "original": "0x1000", "value": "0x1100", "mask": "0x0100", "readback": "0x1100", "result": "ok", "changes": {}, "at": 1791354888.5159144}
+{"kind": "test", "reg": "0x0D", "original": "0x1000", "value": "0x0000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354891.1722326}
+{"kind": "test", "reg": "0x0E", "original": "0x4000", "value": "0x4001", "mask": "0x0001", "readback": "0x4001", "result": "ok", "changes": {}, "at": 1791354893.8470051}
+{"kind": "test", "reg": "0x0E", "original": "0x4000", "value": "0x4010", "mask": "0x0010", "readback": "0x4010", "result": "ok", "changes": {}, "at": 1791354896.5940962}
+{"kind": "test", "reg": "0x0E", "original": "0x4000", "value": "0x4100", "mask": "0x0100", "readback": null, "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354907.0273163}
+{"kind": "test", "reg": "0x0E", "original": "0x4000", "value": "0x5000", "mask": "0x1000", "readback": null, "result": "stream stopped", "recovered_by_reinit": true, "after_recovery": "stream ok", "at": 1791354917.4807224}
+{"kind": "test", "reg": "0x0F", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {"rx1.ac_i_db": 0.54}, "at": 1791354920.670363}
+{"kind": "test", "reg": "0x0F", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354923.2412121}
+{"kind": "test", "reg": "0x0F", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354926.293342}
+{"kind": "test", "reg": "0x0F", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354928.894766}
+{"kind": "test", "reg": "0x10", "original": "0x1001", "value": "0x1000", "mask": "0x0001", "readback": "0x1001", "result": "ok", "changes": {}, "at": 1791354931.636449}
+{"kind": "test", "reg": "0x10", "original": "0x1001", "value": "0x1011", "mask": "0x0010", "readback": "0x1001", "result": "ok", "changes": {}, "at": 1791354934.6537273}
+{"kind": "test", "reg": "0x10", "original": "0x1001", "value": "0x1101", "mask": "0x0100", "readback": "0x1001", "result": "ok", "changes": {}, "at": 1791354937.3075664}
+{"kind": "test", "reg": "0x10", "original": "0x1001", "value": "0x0001", "mask": "0x1000", "readback": "0x1001", "result": "ok", "changes": {}, "at": 1791354940.2363884}
+{"kind": "test", "reg": "0x11", "original": "0x0003", "value": "0x0002", "mask": "0x0001", "readback": "0x0003", "result": "ok", "changes": {}, "at": 1791354943.112048}
+{"kind": "test", "reg": "0x11", "original": "0x0003", "value": "0x0013", "mask": "0x0010", "readback": "0x0003", "result": "ok", "changes": {}, "at": 1791354945.7853236}
+{"kind": "test", "reg": "0x11", "original": "0x0003", "value": "0x0103", "mask": "0x0100", "readback": "0x0003", "result": "ok", "changes": {}, "at": 1791354948.6035771}
+{"kind": "test", "reg": "0x11", "original": "0x0003", "value": "0x1003", "mask": "0x1000", "readback": "0x0003", "result": "ok", "changes": {}, "at": 1791354951.2840395}
+{"kind": "test", "reg": "0x12", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354954.139957}
+{"kind": "test", "reg": "0x12", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354957.15632}
+{"kind": "test", "reg": "0x12", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354959.820426}
+{"kind": "test", "reg": "0x12", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354962.7547042}
+{"kind": "test", "reg": "0x13", "original": "0x0000", "value": "0x0001", "mask": "0x0001", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354965.895582}
+{"kind": "test", "reg": "0x13", "original": "0x0000", "value": "0x0010", "mask": "0x0010", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354968.359933}
+{"kind": "test", "reg": "0x13", "original": "0x0000", "value": "0x0100", "mask": "0x0100", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354971.4848702}
+{"kind": "test", "reg": "0x13", "original": "0x0000", "value": "0x1000", "mask": "0x1000", "readback": "0x0000", "result": "ok", "changes": {}, "at": 1791354974.1692846}
+{"kind": "test", "reg": "0x14", "original": "0x5A03", "value": "0x5A02", "mask": "0x0001", "readback": "0x5A02", "result": "ok", "changes": {}, "at": 1791354976.994627}
+{"kind": "test", "reg": "0x14", "original": "0x5A03", "value": "0x5A13", "mask": "0x0010", "readback": "0x5A13", "result": "ok", "changes": {}, "at": 1791354979.9438322}
+{"kind": "test", "reg": "0x14", "original": "0x5A03", "value": "0x5B03", "mask": "0x0100", "readback": "0x5B03", "result": "ok", "changes": {}, "at": 1791354982.425485}
+{"kind": "test", "reg": "0x14", "original": "0x5A03", "value": "0x4A03", "mask": "0x1000", "readback": "0x4A03", "result": "ok", "changes": {}, "at": 1791354985.5299008}
+{"kind": "test", "reg": "0x15", "original": "0x1708", "value": "0x1709", "mask": "0x0001", "readback": "0x1709", "result": "ok", "changes": {}, "at": 1791354988.674528}
+{"kind": "test", "reg": "0x15", "original": "0x1708", "value": "0x1718", "mask": "0x0010", "readback": "0x1718", "result": "ok", "changes": {}, "at": 1791354991.1589925}
+{"kind": "test", "reg": "0x15", "original": "0x1708", "value": "0x1608", "mask": "0x0100", "readback": "0x1608", "result": "ok", "changes": {}, "at": 1791354994.1928356}
+{"kind": "test", "reg": "0x15", "original": "0x1708", "value": "0x0708", "mask": "0x1000", "readback": "0x0708", "result": "ok", "changes": {}, "at": 1791354996.8543687}
+{"kind": "test", "reg": "0x16", "original": "0x0300", "value": "0x0301", "mask": "0x0001", "readback": "0x0301", "result": "ok", "changes": {}, "at": 1791354999.5071154}
+{"kind": "test", "reg": "0x16", "original": "0x0300", "value": "0x0310", "mask": "0x0010", "readback": "0x0310", "result": "ok", "changes": {}, "at": 1791355002.3738806}
+{"kind": "test", "reg": "0x16", "original": "0x0300", "value": "0x0200", "mask": "0x0100", "readback": "0x0200", "result": "ok", "changes": {}, "at": 1791355005.027945}
+{"kind": "test", "reg": "0x16", "original": "0x0300", "value": "0x1300", "mask": "0x1000", "readback": "0x1300", "result": "ok", "changes": {}, "at": 1791355008.0591648}
+{"kind": "test", "reg": "0x17", "original": "0x0210", "value": "0x0211", "mask": "0x0001", "readback": "0x0211", "result": "ok", "changes": {}, "at": 1791355011.1576371}
+{"kind": "test", "reg": "0x17", "original": "0x0210", "value": "0x0200", "mask": "0x0010", "readback": "0x0200", "result": "ok", "changes": {}, "at": 1791355013.6613436}
+{"kind": "test", "reg": "0x17", "original": "0x0210", "value": "0x0310", "mask": "0x0100", "readback": "0x0310", "result": "ok", "changes": {}, "at": 1791355016.6173673}
+{"kind": "test", "reg": "0x17", "original": "0x0210", "value": "0x1210", "mask": "0x1000", "readback": "0x1210", "result": "ok", "changes": {}, "at": 1791355019.2988048}
+{"kind": "done", "at": 1791355021.5829606}

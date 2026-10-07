@@ -29,6 +29,12 @@
 #define TCFG_UART0_ENABLE 0
 #define TCFG_UART1_ENABLE 0
 #define TCFG_UART2_ENABLE 0
+#ifdef LD2450_USB_STREAM
+#define TCFG_PC_ENABLE 1
+#define USB_DEVICE_CLASS_CONFIG CDC_CLASS
+#include "usb_common_def.h"
+#include "usb_std_class_def.h"
+#endif
 #ifndef __LD__
 void save_spi_port(void);
 #endif

@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-06",
+  "firmware": "firmware/build/stream-raw16-control5/update-two-wire.ufw",
+  "scene": "Static: 6-inch corner reflector at 3.251 m on shelving, cardboard box at 2.083 m, operator out of room.",
+  "method": "LDC1 WRITE one register, read back, capture ~28 frames tagged with the new register generation, compute per receiver: DC offset of I and Q (counts), I/Q RMS ratio, and mirror-image factor alpha fitted as X(-k)=alpha*conj(X(k)) over bins 2-12 of the drift-removed coherent mean chirp. Each change restored to stock before the next; restores reproduced stock values.",
+  "stock_reference": {
+    "RX1": {
+      "dc_i": 2960,
+      "dc_q": -2440,
+      "image_db": -13.8,
+      "image_phase_deg": -50.7,
+      "iq_rms_ratio_db": -0.86
+    },
+    "RX2": {
+      "dc_i": -1315,
+      "dc_q": 1088,
+      "image_db": -17.1,
+      "image_phase_deg": -69.5,
+      "iq_rms_ratio_db": 2.65
+    }
+  },
+  "findings": {
+    "0x61": "RX2 I DC offset, +1 step = +450 counts (0x20: -433). Linear both ways. Small side effect: RX2 image phase about +3 deg/step.",
+    "0x63": "RX2 I DC offset, opposite sense: +1 step = -461 counts.",
+    "0x62": "RX2 Q DC offset, +1 step = +514 counts.",
+    "0x64": "RX2 Q DC offset, opposite sense: +1 step = -456 counts.",
+    "0x76": "0x21->0x22 removed the signal on BOTH receivers (outputs ~0, reflector gone). Restoring 0x21 recovered fully. Function unknown; handle with care.",
+    "0x5B, 0x5C": "+1 step: no measurable change in these metrics.",
+    "0x5D": "+1 in either byte: no measurable change in these metrics."
+  },
+  "conclusions": [
+    "0x61-0x64 are differential DC-offset trims for RX2 only (I+/Q+/I-/Q- pattern), not I/Q gain or phase trims.",
+    "No RX1 offset trim found yet; none of the tested registers changes the mirror-image (I/Q mismatch) level usefully.",
+    "The mirror is a stable per-receiver property: RX1 about -13.8 dB, RX2 about -17.1 dB (bins 2-12)."
+  ]
+}

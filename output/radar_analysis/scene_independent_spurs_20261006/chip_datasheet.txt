@@ -1,0 +1,2941 @@
+PAGE 1
+ 
+ 
+矽典微 | 南京 上海 苏州 深圳 
+ www.iclegend.com  |  support@iclegend.com  
+S5KM312CL 
+Smart mmWave Sensor Series 
+ 
+ 
+ 
+Product Data Sheet 
+Rev.1.3 2022/11/9 
+
+PAGE 2
+1 / 32
+DS10006RN_Rev.1.3_20221109
+   
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Confidential | 
+ 
+ 
+ 
+1 General Description  
+The S5KM312CL is an integrated single-chip mmWave sensor SoC based on FMCW radar transceiver 
+technology. It works in the 24 GHz K-band with up to 4 GHz modulation bandwidth in each single frequency 
+sweeping chirp. 
+The S5KM312CL offers a low-cost fully integrated solution for all critical mmWave functions with full 
+transceiver and signal processing path, including full K-band RF transceiver, on-chip pattern generator, PLL, 
+and ADCs. The pattern generator supports multiple frequency sweeping modes with different time-frequency 
+waveforms, e.g. saw-tooth and triangular waveforms. The pattern generator and PLL support fast chirp mode 
+up to 8 kHz chirp rate. The digitized signals from the receiver chain can be serialized via multiple output 
+interfaces. The device supports full cascading for higher angular resolution applications. 
+The device is packaged in a 32 pin 4 mm × 4 mm leadless ROHS compliant QFN package for easy interfacing 
+to a wide range of antenna board technologies. 
+ 
+2 Main Features 
+ 24 GHz K-band highly integrated FMCW radar 
+sensor SoC 
+ Up to 4 GHz bandwidth FM tuning range 
+ Integrated signal generator, low phase noise PLL, 
+transmitter, receivers, baseband and ADCs 
+ One transmit channel and two receive channels 
+ TX maximum output power: 12 dBm 
+ RX noise figure: 10.5 dB 
+ Phase noise @ 1 MHz offset: -97 dBc/Hz 
+ Built-in 2.5 MHz throughput rate ADC with 16 bits 
+resolution 
+ Support multi-devices cascading applications 
+ Built-in hardware accelerator for FFT and filtering  
+ Chip configuration interface supports: 
+I2C/SPI/UART 
+ Data output interface supports: SPI/UART/RAW 
+data 
+ Support flexible power supply modes 
+ Easy hardware design: 4 × 4 mm2 QFN32 
+package for ultra-compact and low-cost PCB 
+design 
+ Junction temperature range of –40º C to 105º C 
+3 Applications 
+ Smart Home Radar sensor 
+ Robotics 
+ Proximity and Position sensor 
+ Motion detector 
+ Gesture recognition 
+ Vital signs monitoring 
+S5KM312CL 
+
+PAGE 3
+ 
+ 
+S5KM312CL
+Confidential | 
+ 
+2 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Table of Contents 
+Table of Contents 
+1 
+General Description .................................... 1 
+2 
+Main Features ............................................. 1 
+3 
+Applications ................................................ 1 
+4 
+Block Diagram ............................................. 3 
+5 
+Terminal Configuration and Description ... 4 
+5.1 
+Pin Diagram ............................................. 4 
+5.2 
+Signal Descriptions ................................. 4 
+5.3 
+Pin Mux Function .................................... 6 
+5.4 
+Chip Configuration Pin States 
+Configuration ....................................................... 6 
+6 
+Functional Description ............................... 7 
+6.1 
+Transceiver Section ................................ 7 
+6.2 
+Waveform Generator Section ................. 7 
+6.3 
+DSP Accelerator ...................................... 8 
+6.4 
+Power Supply Section ............................. 9 
+6.5 
+Cascading Application ........................... 9 
+6.6 
+Temperature Sensor ............................... 9 
+7 
+Electrical Characteristics ......................... 10 
+7.1 
+Absolute Maximum Ratings ................. 10 
+7.2 
+ESD Ratings ........................................... 10 
+7.3 
+Thermal Resistance .............................. 10 
+7.4 
+Recommended Operating Conditions . 11 
+7.5 
+Power Supply Characteristics .............. 11 
+7.6 
+Dynamic Performance .......................... 12 
+7.7 
+Timing and Switching Characteristics. 13 
+7.8 
+External Clock and Crystal 
+Characteristics .................................................. 14 
+8 
+Interface and Peripherals ......................... 16 
+8.1 
+Chip Configuration Communication 
+Interface............................................................. 16 
+8.2 
+Chip Data Communication Interface ... 21 
+9 
+Application Information............................ 29 
+9.1 
+Application Schematic ......................... 29 
+10 
+Package Outline ........................................ 30 
+11 
+Handling Information................................ 31 
+12 
+References ................................................ 31 
+13 
+Revision History ........................................ 31 
+Important Notice and Warnings............................... 32 
+ 
+ 
+ 
+
+PAGE 4
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Block Diagram 
+S5KM312CL 
+Confidential | 
+ 
+3 / 32
+DS10006RN_Rev.1.3_20221109
+4 Block Diagram 
+The RF and analog subsystem implements the FMCW (frequency-modulated continuous-wave) transceiver 
+system with one transmitter (TX), two receivers (RX1 and RX2), synthesizer, mixer, and baseband. Gain 
+controls are applied to both transmitter and receiver to adjust the whole link budget to work in different 
+scenarios. The baseband section includes intermediate frequency (IF) amplifier, filter and ADC. A built-in DSP 
+accelerator can process the IQ ADC’s raw data with Range FFT or Doppler FFT.  
+S5KM312CL supports full cascading applications, offering separate LOBUF_IN and LOBUF_OUT connections, 
+separate 25 MHz clock inputs and output connections. The pattern generator and PLL support fast chirp mode 
+up to 8 kHz chirp rate. 
+S5KM312CL can be configured via I2C/SPI/UART interface, RAW data can be directly outputted via GPIO mode, 
+DSP processed data can be serialized and outputted via SPI/UART interface. 
+Figure 4-1 presents the illustration of the design of S5KM312CL. 
+LDO
+LDO
+LDO
+PLL
+Osc
+PA
+I2C/SPI/
+UART
+SPI/UART
+Temperature 
+Sensor
+LNA
+ADC
+DSP 
+Accelerator
+ADC
+IF&
+PGA
+TX
+RX1
+Processed Data 
+Output
+Chip 
+Configuration
+GPIO
+Raw Data Output
+LNA
+ADC
+ADC
+IF&
+PGA
+RX2
+Digital Logic
+Drv
+× 3
+DCDC
+Power Management
+LDOs
+Pattern
+Generator
+V_T,V_R,V_A,V_D
+DCDC_SW
+LOBUF_OUT
+LOBUF_IN
+SYNC_IN
+SYNC_OUT
+ 
+Figure 4-1 S5KM312CL block diagram 
+ 
+ 
+
+PAGE 5
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+4 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Terminal Configuration and Description 
+5 Terminal Configuration and Description 
+5.1 
+Pin Diagram 
+The outlook of S5KM312CL is shown in Figure 5-1. 
+1
+2
+3
+4
+5
+6
+7
+8
+24
+23
+22
+21
+20
+19
+18
+17
+32
+31
+30
+29
+28
+27
+26
+25
+9
+10
+11
+12
+13
+14
+15
+16
+Thermal Pad
+RAW_CLK
+SYNC_OUT
+SYNC_IN
+I2C_SCL
+I2C_SDA
+V_D
+V_A
+VDD
+DCDC_SW
+VDD_A
+XIN
+XOUT
+REXT
+GND
+TX
+GND
+RX2
+GND
+RSTN
+V_R
+PLL_VC
+LOBUF_OUT
+V_T
+LOBUF_IN
+UART_TXD
+SPI_CSN
+SPI_MOSI_0
+SPI_MOSI_1
+SPI_SCLK
+GND
+RX1
+GND
+ 
+Figure 5-1 Pin diagram QFN32 (top view) 
+5.2 
+Signal Descriptions 
+Information of each pin is given in Table 5-1. 
+Table 5-1 Pin descriptions 
+Signal Name 
+BALL_NO 
+Type 
+Description 
+RX2 
+1 
+IN 
+Single-ended RX2 receiver input port 
+RSTN 
+3 
+IN 
+External hardware reset input: A logic LOW on this pin resets the 
+device, causing internal digital circuit to take their default states 
+V_R 
+4 
+Power 
+1.6 V analog power supply for RX sections 
+PLL_VC 
+5 
+IN 
+Connected to external loop filter to drive the internal VCO 
+LOBUF_OUT 
+6 
+OUT 
+8 GHz Local Oscillator output port 
+V_T 
+7 
+Power 
+1.6 V analog power supply for TX sections 
+
+PAGE 6
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Terminal Configuration and Description 
+S5KM312CL 
+Confidential | 
+ 
+5 / 32
+DS10006RN_Rev.1.3_20221109
+LOBUF _IN 
+8 
+IN 
+8 GHz Local Oscillator input port 
+TX 
+10 
+OUT 
+Single-ended transmitter output port 
+REXT 
+12 
+IN 
+Current bias circuit input, connect to ground with a bias resistor. 
+XOUT 
+13 
+OUT 
+Crystal oscillator Output port 
+XIN 
+14 
+IN 
+Crystal oscillator or external clock Input port 
+VDD_A 
+15 
+Power 
+3.3 V power supply for analog domain 
+DCDC_SW 
+16 
+OUT 
+DCDC regulator switch node. Connect to the power inductor. 
+VDD 
+17 
+Power 
+3.3 V power supply for the DCDC converter and digital domain 
+V_A 
+18 
+Power 
+1.6 V power supply for analog circuits 
+V_D 
+19 
+Power 
+1.6 V power supply for digital circuits 
+I2C_SDA 
+20[1] 
+OD 
+Configuration_I2C_SDA: Configuration channel I2C data I/O (open 
+drain) 
+IN/OUT 
+Configuration_SPI_MOSI: Configuration channel SPI data master-out/ 
+slave-in  
+IN 
+Configuration_UART_RX: Configuration channel UART receiver 
+I2C_SCL 
+21[1] 
+IN 
+Configuration_I2C_SCL: Configuration channel I2C clock 
+IN/OUT 
+Configuration_SPI_SCLK: Configuration channel SPI serial clock 
+OUT 
+Configuration_UART_TX: Configuration channel UART transmitter 
+SYNC_IN 
+22[1] 
+IN 
+SYNC_IN: Chirp sequence trigger 
+IN/OUT 
+Configuration_SPI_CSN: Configuration channel SPI chip select enable. 
+Connect to Ground with a 3.3kΩ resistor if neither cascaded nor 
+Configuration SPI not used. 
+SYNC_OUT 
+23[1] 
+OUT 
+SYNC_OUT: Chirp timing indication 
+IN/OUT 
+Configuration_SPI_MISO: Configuration channel SPI data master-in/ 
+slave-out  
+IN 
+Chip pin mux function, see Table 5-2 
+RAW_CLK 
+24[1] 
+IN 
+Chip pin mux function, see Table 5-2 
+OUT 
+RAW_CLK: Serial raw data clock out 
+UART_TXD 
+25[1] 
+IN 
+Chip pin mux function (internally pull up), see Table 5-3 
+OUT 
+RAW_READY: Serial raw data ready 
+OUT 
+DATA_UART_TX: Optionally FFT data UART output, 115200 baud rates 
+SPI_CSN 
+26[1] 
+OUT 
+RAW_D0: RX serial raw data channel I data output at RX1 channel 
+OUT 
+DATA_SPI_CSN: FFT data SPI chip select enable 
+SPI_MOSI_0 
+27[1] 
+OUT 
+RAW_D1: RX serial raw data channel Q data output at RX1 channel 
+IN 
+I2C address high bit configuration, see Table 5-4 
+OUT 
+DATA_SPI_MOSI [0]: FFT data SPI master-out/ slave-in output at RX1 
+channel 
+
+PAGE 7
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+6 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Terminal Configuration and Description 
+SPI_MOSI_1 
+28[1] 
+OUT 
+RAW_D2: RX serial raw data channel I data output at RX2 channel 
+IN 
+I2C address low bit configuration, see Table 5-4 
+OUT 
+DATA_SPI_MOSI [1]: FFT data SPI master-out/ slave-in output at RX2 
+channel 
+OUT 
+GPIO Output, Target Detect. High: target exists；Low: No target. 
+SPI_SCLK 
+29[1] 
+OUT 
+RAW_D3: RX serial raw data channel Q data output at RX2 channel 
+OUT 
+DATA_SPI_SCLK: FFT data SPI clock 
+RX1 
+31 
+IN 
+Single-ended receiver1 input port 
+GND 
+Thermal PAD, 
+2, 9, 11, 30, 32 
+GND 
+Ground 
+Note: 
+[1] 
+There are pin multiplexing in Pin 20 ~ Pin 29. 
+5.3 
+Pin Mux Function 
+For S5KM312CL, Pin 20 ~ Pin 29 have multiple digital communication multiplexing functions, and should be 
+properly set to Selected Configuration mode by Pin 23/Pin 24/Pin 25 configuration status during S5KM312CL’s 
+power up or hardware reset’s chip settling time. Pin 28’s target detect function is controlled by register setting. 
+Table 5-2 Function Mode Selection Setup -Chip Configuration setting 
+Pin 23 
+Pin 24 
+Chip Configuration Mode 
+Low 
+Low 
+UART 
+Low 
+High 
+I2C 
+High 
+Low 
+SPI 
+High 
+High 
+SPI 
+Table 5-3 Function Mode Selection Setup – Data Communication setting 
+Pin2 5 
+Data Communication Mode 
+Low 
+Raw Data 
+High 
+SPI/UART 
+When configuration mode is set as I2C communication, Pin27 and Pin28 should be set to configure the slave 
+chip’s address during S5KM312CL power up or hardware reset’s chip settling time. Up to 4 devices can share 
+the same I2C bus in I2C configuration mode. 
+Table 5-4 I2C Device Address 
+Pin 27 
+Pin 28 
+I2C Slave Device Address 
+Low 
+Low 
+7’b010_0000 
+Low 
+High 
+7’b010_0001 
+High 
+Low 
+7’b010_0010 
+High 
+High 
+7’b010_0011 
+5.4 
+Chip Configuration Pin States Configuration 
+The S5KM312CL Configuration mode is determined by Pin 23 and Pin 24 configuration states, the Data 
+Communication mode is determined by Pin 25 configuration state, during the chip settling time. Pin 23 ~ Pin 
+25 configuration states are fully determined by the external voltage applied on the pin during the chip settling 
+
+PAGE 8
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Functional Description 
+S5KM312CL 
+Confidential | 
+ 
+7 / 32
+DS10006RN_Rev.1.3_20221109
+time; each configuration pin has 2 states: low and high. Setting “Low” when the pin is connected to ground 
+with a 3.3 kΩ resistor; setting “High” when the pin is connected to VDD with a 10 kΩ resistor. Pin 24 and Pin 25 
+can be float when setting “High” as they are internally pulled up.  
+After the chip settling time, Pin 23 ~ Pin 25’s external applied voltage should be released, as the chosen 
+configuration mode and processed data output mode are triggered.  
+ 
+6 Functional Description 
+6.1 
+Transceiver Section 
+The S5KM312CL provides one transmitter, and the transmitter parameters can be set via I2C/SPI/UART 
+configuration channel, and directly controlled by the waveform generator. The transmitter can deliver RF power 
+of maximum 12 dBm via the TX port and support programmable transmitter output power for system 
+optimization.  
+The S5KM312CL provides two receivers, which consist of LNAs, mixers, LPF filters, PGAs, ADCs, and 
+decimation filters. The baseband subsystem has two quadrature mixers, dual RX channels’ IF and ADC chains 
+to provide complex I and Q outputs for DSP processing. 
+6.2 
+Waveform Generator Section 
+The waveform generator provides a linear frequency chirp, and frequency deviation from 0 MHz to 4000 MHz. 
+CW mode is also supported in the waveform generator. The waveform generator provides a sequence of 
+frequency chirps with precise timing. An indicative timing of each frequency chirp is shown in Figure 6-1.  
+Tchirp1
+Tchirp2
+fchirp, stop
+fchirp, start
+tstart
+tup
+tdown
+tstop
+Frequency
+Time
+ 
+Figure 6-1 Timing parameters in a frequency chirp 
+The S5KM312CL works in continuous sensing mode, each frame starts from tpre, which the waveform 
+generator is initialized to prepare the chirp generation, tpre is programable and typically 20 μs. Then TX output 
+port sends given numbers of chirps for target sensing. After the last chirp of a frame, the S5KM312CL can 
+enter low power mode during the NOP time denoted as t_NOP in Figure 6-2.  
+
+PAGE 9
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+8 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Functional Description 
+If the register 0x411 bit4 is set to 0, the RF transceiver (PA, LNA) and baseband (ADC, LPF&PGA) circuits will 
+automatically power down in each frame’s NOP time t_NOP and return to work at next tpre period. During the 
+NOP time, PD time is S5KM312CL’s fully power down time, S5KM312CL takes t_2pd time of typical 22 μs to 
+turn to low power mode or vice versa. 
+...
+...
+Frame Inverval
+...
+Frame Inverval
+Frame Inverval
+tpre
+t_2pd
+t_2pd
+t_NOP
+PD
+Time
+Frequency
+ 
+Figure 6-2 Continuous sensing mode 
+6.3 
+DSP Accelerator  
+The S5KM312CL integrates Range FFT and Doppler FFT DSP accelerator, the typical DSP flow diagram is 
+shown in Figure 6-3. 
+The output of the DSP accelerator can be selected as Range FFT data, Doppler FFT data or Doppler FFT Peak 
+data by the data output format configuration. 
+The I/Q raw data output from RX1 and RX2 channel ADCs is processed by the DSP accelerator. In DSP 
+accelerator, the raw data is down sampled firstly, and 3 configuration modes are supported for Down sampling: 
+continuous sampling mode, 1/2 down sampling mode, and 1/4 down sampling mode. The down sampled data 
+can be sent out as RAW data or go to the Range FFT process, the FFT window supports 64/128/256 points. If 
+Doppler processing is selected, Range FFT processed data will pass an IIR high pass filter for cluster removing; 
+then processed by Doppler FFT process, the sampling points support 16x64/64x16/8x128/32x32 points; 
+finally, the Doppler FFT Peak outputs as the last optional DSP processing stage.  
+RX2_I_ADC
+RX2_Q_ADC
+DSP Accelerator
+Down sampling
+Sampling option: 
+• 
+Continuous sampling
+• 
+½  sampling
+• 
+¼  sampling 
+Range FFT
+Sampling option: 
+• 
+64 points
+• 
+128 points
+• 
+256 points
+IIR Highpass Filter
+Key function: 
+• 
+Cluster removing
+Doppler FFT
+Sampling option: 
+• 
+16 x 64 points
+• 
+64 x 16 points
+• 
+8 x 128 points
+• 
+32 x 32 points
+Doppler 
+FFT Peak
+RAW Data / Processed Data Output Via Raw Data / SPI / UART interface
+RX1_I_ADC
+RX1_Q_ADC
+ 
+Figure 6-3 DSP accelerator data flow 
+The S5KM312CL also supports a simplified mode for target identification at Pin 28 if the target identification 
+function is turned on; when the DSP accelerator identifies a moving target existing, Pin 28 outputs a logical 
+High, otherwise Pin 28 keeps at logical Low. 
+                                                             
+1 For register information please refer to S5KM312CL Technical Reference Manual. 
+
+PAGE 10
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Functional Description 
+S5KM312CL 
+Confidential | 
+ 
+9 / 32
+DS10006RN_Rev.1.3_20221109
+6.4 
+Power Supply Section 
+The S5KM312CL 3.3 V power supply domain is based on an available supply voltage of nominal 3.3 V on PCB 
+board, the 3.3 V power supply is converted into a 1.6 V supply by means of on-chip DCDC circuits or an external 
+DCDC. The S5KM312CL supports two power supply modes: single 3.3 V power supply mode and dual power 
+supply (3.3 V and 1.6 V) mode.  
+3.3 V power supply domain should be properly equipped with a 100 nF capacitor as close as possible to the 
+power pins for better PSRR.  
+Pin DCDC_SW is an output pin of the internal DCDC buck converter, and it should connect to a 22 μH power 
+inductor and a 22 µF capacitor as the internal DCDC’s output filter. The inductor and output capacitor together 
+provide a low pass filter. The power inductor should be a low ESR power inductor, as in the reference of 
+SWPA252012S220MT. The output capacitor allows the use of ceramic capacitors with low ESR. These 
+capacitors provide low output voltage ripple and are thus recommended. To keep its resistance up to high 
+frequencies and to achieve narrow capacitance variation with temperature, it is recommended to use X7R or 
+X5R dielectric. 
+6.5 
+Cascading Application 
+In a cascading system with several S5KM312CL devices, one S5KM312CL device should be configured as the 
+master device, the others as slave devices. The master’s LOBUF_OUT pin is connected to each slave chip’s 
+LOBUF_IN pin. In cascaded system, the S5KM312CL devices can be configured through I2C/UART interface. 
+S5KM312CL built-in timing scheme can support up to 4 devices cascading application for TDM MIMO. Figure 
+6-4 shows a 2-devices-cascaded system. 
+S5KM312CL
+Master
+S5KM312CL
+Slave
+MCU
+Configuration(I2C/Uart)
+Configuration(I2C/Uart)
+Data (SPI/UART/RAW)
+Data (SPI/UART/RAW)
+SYNC_OUT
+SYNC_IN
+SYNC_IN
+LOBUF_OUT
+LOBUF_IN
+LOBUF_IN
+ 
+Figure 6-4 Cascaded system configuration 
+6.6 
+Temperature Sensor  
+A 10-bit temperature sensor is provided in S5KM312CL for temperature monitoring. 
+
+PAGE 11
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+10 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Electrical Characteristics 
+7 Electrical Characteristics 
+7.1 
+Absolute Maximum Ratings 
+In accordance with the Absolute Maximum Rating System (IEC 60134). 
+Table 7-1 Absolute Maximum Ratings [1] 
+Parameter 
+Description 
+Min. 
+Max. 
+Unit 
+VDDmax 
+3.3 V power supply max input 
+-0.5 
+3.7 
+V 
+V_1.6max 
+1.6 V power supply (when internal DCDC is not used) 
+max input 
+-0.5 
+3.7 
+V 
+RF_inmax 
+Externally applied power on RF RX1, RX2, LOBUF_IN 
+ports 
+- 
+0 
+dBm 
+RF_OUTmax 
+Externally applied power on RF TX, LOBUF_OUT [2] 
+- 
+16 
+dBm 
+Analog Input 
+and Output 
+voltage 
+Externally applied voltage at PLL_VC, REXT, XIN, XOUT, 
+DCDC_SW ports 
+-0.5 
+3.7 
+V 
+Digital Input 
+and Output 
+voltage 
+Externally applied voltage at RSTN, I2C_SDA, I2C_SCL, 
+SYNC_IN, SYNC_OUT, RAW_CLK, UART_TXD, SPI_CSN, 
+SPI_MOSI_0, SPI_MOSI_1, SPI_SCLK ports 
+-0.5 
+3.7 
+V 
+TJ 
+Junction temperature range 
+-40 
+125 
+°C 
+TSTG 
+Storage temperature range 
+-40 
+125 
+°C 
+Note: 
+[1]  All voltages with respect to ground 
+[2]  This value is for an externally applied signal level on the TX, RX1 and RX2. Additionally, a reflection coefficient up to Gamma = 1 
+can be applied on the TX output. 
+Attention: Stresses exceeding those Max. and Min. values listed here may cause permanent damage to the device. Exposure to absolute 
+maximum rating conditions for extended periods may affect device reliability. Maximum ratings are absolute ratings; exceeding only 
+one of these values may cause irreversible damage to the integrated circuit. 
+7.2 
+ESD Ratings 
+Table 7-2 ESD Ratings 
+Model 
+Value 
+Unit 
+VESD 
+HBM: Human body model 
++/-2000[1] 
+V 
+CDM: Charge device model 
++/-500[2] 
+V 
+Note: 
+[1] According to ANSI/ESDA/JEDEC standard, Method JS-001-2017 
+[2] According to ANSI/ESDA/JEDEC standard, Method JS-002-2014 
+7.3 
+Thermal Resistance 
+Table 7-3 Thermal Resistance 
+Parameter 
+Description 
+Min. 
+Typ. 
+Max. 
+Unit 
+RθJA 
+The junction-to-ambient thermal resistance 
+- 
+47 
+- 
+°C /W 
+Note:  
+[1] 
+Tj = TA + RθJA x Ptotal, where Ptotal is the power consumption of the chip and TA is the environment temperature in the still air.  
+
+PAGE 12
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Electrical Characteristics 
+S5KM312CL 
+Confidential | 
+ 
+11 / 32
+DS10006RN_Rev.1.3_20221109
+7.4 
+Recommended Operating Conditions 
+Table 7-4 Recommended Operating Conditions 
+Parameter 
+Description 
+Min. 
+Typ. 
+Max. 
+Unit 
+VDD_A 
+3.3 V power supply for analog circuits 
+3.0 
+3.3 
+3.6 
+V 
+VDD 
+3.3 V power supply for DCDC and digital I/O circuits 
+3.0 
+3.3 
+3.6 
+V 
+V_T, V_R,  
+V_A, V_D 
+1.6 V power supply when the internal DCDC is bypassed 
+1.5 
+1.6 
+1.7 
+V 
+VIH 
+Voltage input High  
+2.3 
+- 
+VDD 
+V 
+VIL 
+Voltage input Low 
+0 
+- 
+0.8 
+V 
+VOH 
+Voltage output High 
+2.45 
+- 
+VDD 
+V 
+VOL 
+Voltage output Low 
+0 
+- 
+0.45 
+V 
+TJ 
+Operating junction temperature range 
+-40 
+- 
+105 
+°C 
+7.5 
+Power Supply Characteristics 
+7.5.1 Power Supply Modes 
+S5KM312CL has internal low PSRR DCDC module and can support 2 power supply modes: 3.3 V single power 
+supply mode, and 3.3 V/1.6 V dual power supply mode. 
+7.5.1.1 3.3 V Single Power Supply Mode 
+S5KM312CL can utilize the internal low PSRR DCDC module, connect VDD_A and VDD to external 3.3 V power 
+supply, and connect DCDC_SW as 1.6 V power supply to supply to V_T, V_R, V_A, V_D.  
+7.5.1.2 3.3 V/1.6 V Dual Power Supply Mode 
+S5KM312CL has 2 fully independent power supplies (3.3 V and 1.6 V), if internal DCDC is not used, connect 
+VDD_A and VDD to external 3.3 V power supply, and connect V_T, V_R, V_A, V_D to external 1.6 V power supply. 
+7.5.2 Power Consumption 
+Data in Table 7-5 are measured under 25°C ambient temperature, single power supply mode, applied external 
+voltage refers to typical value in Table 7-4. 
+Table 7-5 Average Power Consumption 
+Parameter  
+Description 
+Min. 
+Typ. 
+Max. 
+Unit 
+Ptotal 
+Average power consumption when internal DCDC is 
+used, and all the circuits work at default setting mode 
+and all the circuits are on. Typical data is under 
+condition of 50% duty cycle chirps. 
+- 
+260 
+450 
+mW 
+Data in Table 7-6 are measured under 25°C ambient temperature when the internal DCDC is used, applied 
+external voltage refers to typical value in Table 7-4.  
+Table 7-6 Maximum Current Ratings at Power Terminals 
+Parameter 
+Supply Name 
+Min. 
+Typ. 
+Max. 
+Unit 
+Current 
+VDD_A 
+- 
+- 
+24 
+mA 
+VDD 
+- 
+- 
+145 
+mA 
+
+PAGE 13
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+12 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Electrical Characteristics 
+Data in Table 7-7 are measured under 25°C ambient temperature when the internal DCDC is bypassed.  
+Table 7-7 Maximum Current Ratings at Power Terminals 
+Parameter  
+Supply Name 
+Min. 
+Typ. 
+Max. 
+Unit 
+Current 
+Consumption 
+VDD_A 
+- 
+- 
+23 
+mA 
+VDD 
+- 
+- 
+14 
+mA 
+V_T 
+- 
+- 
+128 
+mA 
+V_R 
+- 
+- 
+56 
+mA 
+V_A 
+- 
+- 
+63 
+mA 
+V_D 
+- 
+- 
+10 
+mA 
+7.6 
+Dynamic Performance 
+Unless otherwise specified, the following conditions apply: VDD_33 = 3.3 V and VDD_13= 1.3 V. Tcase = 25°C. 
+Reference plane on PCB 1.6 mm from bump center; input and output load impedance at 50 Ω. All RF 
+parameters are measured in an application board, relevant information is to be added.  
+Table 7-8 RF Performance 
+Symbol 
+Description 
+Condition 
+Min. 
+Typ. 
+Max. 
+Units 
+Z_Out 
+TX output load impedance 
+ 
+- 
+50 
+- 
+Ω 
+F_Out 
+TX output frequency range 
+ 
+23 
+- 
+27 
+GHz 
+Pmax_Out_ISM 
+TX maximum output power 
+Throughout 24G ISM 
+band 
+10 
+- 
+12 
+dBm 
+Pmax_Out_FullBW 
+TX maximum output power 
+Throughout F_Out 
+9.5 
+- 
+12 
+dBm 
+P_Out 
+TX recommended output 
+programable power range 
+ 
+-5 
+- 
+12 
+dBm 
+Z_LO_out 
+LO output impedance 
+ 
+- 
+50 
+- 
+Ω 
+F_LO_out 
+LO output frequency range 
+ 
+7.7 
+- 
+9 
+GHz 
+P_Lobuf_Out 
+LO buffer output power 
+Register default value 
+configuration 
+- 
+50 
+- 
+dBm 
+P_Lobuf_In 
+Power feed into LO buffer 
+input 
+8 GHz ~ 8.33 GHz 
+- 
+4 
+- 
+dBm 
+Z_Lo_in 
+LO buffer input impedance 
+ 
+1 
+- 
+6 
+Ω 
+Z_In 
+RX input load impedance 
+ 
+- 
+50 
+- 
+Ω 
+F_In 
+RX frequency range 
+ 
+23 
+- 
+27 
+GHz 
+S11_RX 
+RX input return loss 
+ 
+- 
+-10 
+-8 
+dB 
+NF 
+RX noise figure 
+SSB, throughout F_In, 
+including RF, analog 
+and ADC in RX. 
+- 
+10.5 
+12 
+dB 
+IP1dB 
+RX RF Input 1 dB 
+compression point (RX 
+chain including ADC) 
+30 dB gain, 24 GHz 
+- 
+-26 
+- 
+dBm 
+24 dB gain, 24 GHz 
+- 
+-20 
+- 
+dBm 
+G_RX 
+Recommended gain range 
+of RF in RX  
+Condition 
+20 
+- 
+31 
+dB 
+
+PAGE 14
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Electrical Characteristics 
+S5KM312CL 
+Confidential | 
+ 
+13 / 32
+DS10006RN_Rev.1.3_20221109
+Table 7-9 Baseband Performance 
+Parameter 
+Description 
+Condition 
+Min. 
+Typ. 
+Max. 
+Unit 
+Res_ADC 
+ADC resolution 
+ 
+- 
+16 
+- 
+bit 
+Fs 
+ADC conversion rate 
+ 
+- 
+2.5 
+- 
+MHz 
+Table 7-10 Pattern Generator and PLL Performance 
+Parameter 
+Description 
+Condition 
+Min. 
+Typ. 
+Max. 
+Unit 
+F_Ref 
+PLL input reference 
+frequency 
+ 
+- 
+25 
+- 
+MHz 
+BW_PLL 
+PLL bandwidth 
+with off-chip filter 
+parameter as follow: 
+R1=430 Ω, C1=22 nF, 
+C2=2.2 nF 
+- 
+65 
+- 
+kHz 
+PN1MHz 
+phase noise at 1 MHz 
+offset @ TX output port 
+measured @ TX 
+output 
+-100 
+-97 
+-90 
+dBc/Hz 
+BW_Chirp 
+FMCW chirp bandwidth 
+Measured at TX 
+output 
+frequency=24GHz, 
+BW_PLL=50 K, 1 MHz 
+offset 
+- 
+0.25 
+4 
+GHz 
+R_Ramp 
+FMCW chirp ramp rate 
+@ TX output 
+- 
+- 
+15 
+MHz/µ s 
+Table 7-11 DCDC Performance 
+7.7 
+Timing and Switching Characteristics 
+7.7.1 Start-up Sequence 
+The start-up sequence is depicted in Figure 7-1. If S5KM312CL works in single power supply mode, no power 
+sequence restriction as V_T/ V_R/ V_A/ V_D are supplied by internal DCDC and those pins’ power up sequences 
+are also controlled by internal power management block. If S5KM312CL works in dual power supply mode, the 
+V_T, V_R, V_A, and V_D pins should be powered up after VDD in roughly 1.2 ms. After a rough time of 3.1 ms 
+(Tstart), the crystal oscillator starts up. An interval of roughly 0.4 ms after Tstart is needed before releasing the 
+internal RSTN. The interval of roughly 0.5 ms after Tstart, crystal oscillator stabilizes the 25 MHz clock outputs, 
+chip configuration and data communication mode has been confirmed, Pin 23 ~ Pin 25 pin mux function 
+selection control can be released. Then, after the time of Tsettling (~0.4 ms), chip configuration command can 
+be sent into S5KM312CL. Finally, after roughly 0.2 ms, all function blocks are ready. 
+The VDD power up to Pin 23 ~ Pin 25 pin mux function selection control released is roughly 3.6 ms, the VDD 
+power up to chip configuration communication ready is typically 4 ms in single power supply mode.  
+Symbol 
+Description 
+Condition 
+Min. 
+Typ. 
+Max. 
+Unit 
+fsw 
+Internal DCDC switching 
+frequency 
+Single power supply 
+mode 
+400 
+500 
+650 
+kHz 
+
+PAGE 15
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+14 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Electrical Characteristics 
+3.3 V
+1.6 V
+Crystal start up
+PLLsys enable
+50 MHz CLK stable
+RSTN 
+～1.2 ms
+Tstart: ~3.1 ms
+ ～0.5 ms
+～0.2 ms
+Tsettling: ～0.4 ms
+～0.2 ms
+Crystal Output stable
+& Pinmux done
+ ～0.4 ms
+VDD POWER UP
+RAW Data, I2C, SPI&UART Ready
+ 
+Figure 7-1 Power up time and sequence 
+7.7.2 Hardware Reset Timing 
+The S5KM312CL chip configuration can be set during both initial power up and hardware reset.  
+Hardware reset requires an external reset pulse shown in Figure 7-2. If hardware reset is active, all S5KM312CL 
+internal registers value will be reset to their default values, all the chip’s configuration needs to be re-configured 
+after the reset finishes. 
+Hardware reset activates when Pin RSTN is triggered by logic low, the Pin 23 ~ Pin 25 should be connected to 
+proper logic inputs to guarantee the chip entering target function mode (check Table 5-2 and Table 5-3) , before 
+Pin RSTN gets a logic high. The Pin 23 ~ Pin 25 should keep the logic level of 0.1 ms after the RSTN rising 
+edge of logic high. Then, Pin 23 ~ Pin 25 pin mux function selection control can be released. The chip is 
+accessible for configuration. TRST is recommended to be greater than 2 ms. 
+TRST
+PinMux control 
+Release
+0.1 ms
+RSTN
+PINMUX Release
+ 
+Figure 7-2 Reset pulse width 
+7.8 
+External Clock and Crystal Characteristics 
+S5KM312CL requires external clock source (that is, a 25 MHz crystal or external clock input) for initial boot 
+and as a reference for an internal PLL hosted in the device. Since the feedback resistance is integrated on chip, 
+
+PAGE 16
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Electrical Characteristics 
+S5KM312CL 
+Confidential | 
+ 
+15 / 32
+DS10006RN_Rev.1.3_20221109
+only a crystal and capacitors Ct1 and Ct2 need to be connected externally, in the case of fundamental mode 
+oscillation. Figure 7-3 shows the crystal implementation. 
+Ct2
+Ct1
+25 MHz
+Cp
+XIN
+XOUT
+ 
+Figure 7-3 Crystal implementation 
+The load capacitors, Ct1 and Ct2 in Figure 7-3 should be chosen such that  Equation 1 is satisfied. CL in the 
+equation is the load specified by the crystal manufacturer. All discrete components used to implement the 
+oscillator circuit should be placed as close as possible to the associated oscillator XIN and XOUT pins. 
+C𝐿=
+Ct1 x Ct2 
+Ct1+Ct2 + Cp  
+Equation 1 
+Table 7-12 shows the electrical characteristics of the clock crystal. 
+Table 7-12 Crystal Electrical Characteristics 
+Parameter 
+Description 
+Min. 
+Typ. 
+Max. 
+Unit 
+fP 
+Parallel resonance crystal frequency 
+- 
+25 
+- 
+MHz 
+CL 
+Crystal load capacitance 
+5 
+10 
+20 
+pF 
+Cp 
+Crystal shunt capacitance 
+- 
+- 
+2 
+pF 
+ESR 
+Crystal ESR 
+- 
+- 
+50 
+Ω 
+Temperature 
+range 
+Expected temperature range of operation 
+-40 
+- 
+85 
+°C 
+Frequency 
+tolerance 
+Crystal frequency tolerance [1][2][3] 
+-50 
+- 
+50 
+ppm 
+Note: 
+[1] 
+The crystal manufacturer's specification must satisfy this requirement  
+[2] 
+Includes initial tolerance of the crystal, drift over temperature, aging and frequency pulling due to incorrect load capacitance. 
+[3] 
+Crystal tolerance affects radar sensor accuracy. 
+The clock signal becomes available at the moment the crystal signal level stabilizes, typically 3 ms after the 
+supply lines to S5KM312CL are activated.  
+An external AC coupled sine wave or DC coupled square wave clock signal may be applied to S5KM312CL as 
+the clock resource, the signal is fed to XIN pin only, XOUT pin should be floated. The electrical characteristic 
+of the external clock signal is shown in Table 7-13. The incoming clock signal should be AC-coupled to the XIN 
+
+PAGE 17
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+16 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+pin, using a 2 pF capacitor.  
+Table 7-13 External Clock Signal Specifications 
+Parameter 
+Description 
+Min. 
+Typ. 
+Max. 
+Unit 
+fs 
+External clock signal frequency 
+- 
+25 
+- 
+MHz 
+Amp 
+AC clock signal amplitude 
+0.5 
+- 
+1.5 
+V(pp) 
+Duty cycle 
+Duty cycle of clock signal 
+- 
+50% 
+- 
+ 
+Frequency 
+tolerance 
+Crystal frequency tolerance 
+-20 
+- 
+20 
+ppm 
+PN 
+Phase noise at 1 kHz 
+- 
+- 
+-135 
+dBc/Hz 
+Phase noise at 100 kHz 
+- 
+- 
+-150 
+dBc/Hz 
+Phase noise at 1 MHz 
+- 
+- 
+-150 
+dBc/Hz 
+ 
+8 Interface and Peripherals 
+S5KM312CL has 2 types of digital communication interfaces: chip configuration interface and processed data 
+output interface. 
+8.1 
+Chip Configuration Communication Interface 
+S5KM312CL configuration communication interface is determined by Pin 23 and Pin 24 status during the 
+power up or hardware reset period. S5KM312CL has 3 types of configuration communication modes: I2C, SPI, 
+and UART.  
+8.1.1 I2C for Configuration 
+The I2C module works as a slave terminator, and has following features: 
+ 
+The I2C-interface is an I2C-bus compliant interface with open-drain pins;  
+ 
+The I2C-bus interface supports Fast-mode with bit rate up to 400 Kb/s; 
+ 
+Bidirectional data transfer between masters and slaves; 
+ 
+Support up to 4 I2C device addresses. 
+8.1.1.1 
+I2C Timing Characteristics 
+Table 8-1 I2C Timing Parameter 
+Symbol 
+Parameter 
+Min. 
+Typ. 
+Max. 
+Unit 
+fscl 
+SCL clock frequency  
+- 
+- 
+400 
+kHz 
+tHD;STA 
+Hold time (repeated) START condition 
+0.4 
+- 
+- 
+μs 
+tLOW 
+Low time of the SCL clock 
+0.4 
+- 
+- 
+μs 
+tHIGH 
+High time of the SCL clock  
+0.4 
+- 
+- 
+μs 
+tSU;STA 
+Set-up time for a repeated START condition 
+0.1 
+- 
+- 
+μs 
+tHD;DAT 
+Data hold time 
+0 
+- 
+- 
+ns 
+tSU;DAT 
+Data set-up time 
+50 
+- 
+- 
+ns 
+tr 
+Rise time of both SDA and SCL signals 
+20 
+- 
+300 
+ns 
+
+PAGE 18
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+S5KM312CL 
+Confidential | 
+ 
+17 / 32
+DS10006RN_Rev.1.3_20221109
+tf 
+Fall time of both SDA and SCL signals 
+20 
+- 
+300 
+ns 
+tSU;STO 
+Set-up time for STOP conditions 
+0.1 
+- 
+- 
+μs 
+tBUF 
+BUS free time between a STOP and START condition 
+1 
+- 
+- 
+μs 
+SDA
+SCL
+1/fscl
+tLOW
+     
+tf
+30%
+70%
+     
+tf
+     
+tSU;DAT
+30%
+70%
+     
+tHD;DAT
+     
+     
+tr
+     
+tHIGH
+tVD;DAT
+tSU;STO
+tBUF
+S
+P
+S
+tHD;STA
+TSU;STA
+Stop
+Start
+Start
+Repeated
+ 
+Figure 8-1 I2C timing diagram 
+The data on the SDA must be stable during the tHIGH, and can only change when the clock signal is low.  
+Table 8-2 lists the acronyms used in I2C functionality. 
+Table 8-2 I2C Abbreviations 
+Acronym 
+Description 
+SA[6:0] 
+The 7 bits slave address 
+SRN[7:0] 
+Slave Internal Register Number 
+DATA[7:0] 
+Data Word 
+R/W 
+Read/Write 
+(0 = data from master to slave, 1 = data from slave to master) 
+ACK 
+Acknowledgement 
+NACK 
+Non-Acknowledgement (=1) 
+S 
+Start condition (initiated by master) 
+Sr 
+Repeated Start condition (initiated by master) 
+P 
+Stop condition (initiated by master) 
+8.1.1.2 
+I2C Interface Data Protocol 
+The S5KM312CL Configuration_I2C interface operates in byte data format. Start and Stop condition are 
+generated by external master terminator, and depicted as S and P part in Figure 8-2. The first byte after the 
+Start condition consists of a 7-bit slave address followed by the R /W bit.  
+R /W = 0: The master writes data to the addressed slave. 
+R /W = 1: The master reads data from the slave. 
+One extra clock dedicated for acknowledgement (ACK) is inserted after each byte. If the ACK is inserted by 
+the slave after the first byte from the master, it is followed by 8 bits of data from the transmitter (master or 
+slave, depending on the R /W bit). After the data bits have been transferred, the receiver inserts an ACK bit.  
+
+PAGE 19
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+18 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+To ignore the readback message, the master terminator must send a no-acknowledge (NACK) bit at the 
+acknowledge clock time on the bus. 
+S, Sr, P (from master to Slave) 
+Data or ACK/NACK from master to slave
+Data or ACK from slave to master
+[Note]: All S can be replaced by an Sr.
+ 
+Figure 8-2 I2C color conventions 
+8.1.1.3 
+I2C Write 
+A typical I2C write for chip configuration is depicted in Figure 8-3.  
+S
+SA[6:0]
+ACK
+W
+  
+SRN[7:0]
+ACK
+P
+DATA[7:0]
+ACK
+DATA[15:8]
+ACK
+ 
+Figure 8-3 I2C configuration communication Write 
+8.1.1.4 
+I2C Read 
+In a read sequence (bit R /W = 1), after each data byte, the master responds with an acknowledgement (ACK). 
+After the last data byte, the master responds with a non-acknowledgement (NACK). A typical I2C read for chip 
+configuration is depicted in Figure 8-4.  
+S
+SA [6:0]
+ACK
+SRN [7:0]
+ACK
+ACK
+SA[6:0]
+R
+Sr
+DATA[15:8]
+P
+DATA[7:0]
+NAC
+K
+ACK
+W
+  
+ 
+Figure 8-4 I2C configuration communication Read 
+8.1.2 SPI for Configuration 
+The S5KM312CL chip configuration SPI supports full duplex transfers and has following features: 
+ 
+Maximum SPI speed of 2.08 Mbit/s; 
+ 
+Synchronous serial communication; 
+ 
+Slave operation at mode 00. 
+8.1.2.1 
+Configuration SPI Interface Timing Characteristic 
+Table 8-3 Configuration SPI timing parameter 
+Symbol 
+Parameter 
+Condition 
+Min. 
+Typ. 
+Max. 
+Unit 
+Tc(sck) 
+Clock period 
+  
+480 
+-  
+-  
+ns 
+Tsck_high 
+Clock high time 
+  
+160 
+-  
+-  
+ns 
+Tsck_low 
+Clock low time 
+  
+320 
+-  
+-  
+ns 
+Th(CSN) 
+Chip select hold time 
+  
+320 
+-  
+-  
+ns 
+Tsu(SI) 
+SPI MOSI input setup time 
+  
+40 
+-  
+-  
+ns 
+Th(SI) 
+SPI MOSI input data hold 
+time 
+ 
+40 
+- 
+- 
+ns 
+
+PAGE 20
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+S5KM312CL 
+Confidential | 
+ 
+19 / 32
+DS10006RN_Rev.1.3_20221109
+Ta(SO) 
+SPI data output access 
+time 
+ 
+0 
+- 
+- 
+ns 
+Tdis(SO) 
+SPI data output disable 
+time 
+ 
+0 
+- 
+- 
+ns 
+Th(SO) 
+SPI data output hold time 
+  
+40 
+- 
+- 
+ns 
+Tv(SO) 
+SPI MOSI data output valid 
+time 
+ 
+- 
+- 
+120 
+ns 
+Tcs_sck 
+SPI CSN setup time 
+  
+160 
+- 
+- 
+ns 
+Tsck_cs 
+SPI CSN hold time 
+  
+160 
+- 
+- 
+ns 
+Tcs_cs 
+SPI CSN disable to next 
+CSN enable time 
+ 
+320 
+- 
+- 
+ns 
+POLclk 
+SPI clock polarity (CPOL) 
+  
+- 
+0 
+- 
+  
+ϕclk 
+SPI clock phase (CPHA) 
+  
+- 
+0 
+- 
+  
+CSN
+SCK
+MOSI
+Tcs_sck
+Tc(sck)
+Tcs_cs
+Tdis(SO)
+Tsck_high
+Tsck_low
+Tsck_cs
+MISO
+Th(SI)
+Ta(SO)
+Th(SO)
+Tsu(SI)
+ 
+Figure 8-5 Configuration SPI interface timing diagram 
+8.1.2.2 
+Configuration SPI Interface Data Protocol 
+The S5KM312CL configuration SPI interface works at 4-wire communication mode, the control is based on a 
+combination of a single SPI protocol handler, with several register interfaces within each sub-block. 
+Pin nomenclature for interfacing to a host MCU is as follows: “SCLK” is serial clock input at a maximum bus 
+signaling rate of 2.08 Mbps; “MOSI” (Master Out Slave In) is the serial input to write serial data into 
+S5KM312CL; “MISO” (Master In Slave Out) is the serial output for data to be read from S5KM312CL; and 
+“CSN” (Chip Select) is the select pin for Write and Read operations. 
+The S5KM312CL SPI operates in byte data format. The data frame starts from R /W, then 7 bits A0~A6 
+follows, 2 bytes data will be read or written in communication process.  
+R /W = 0: The master writes data to the addressed slave. 
+R /W = 1: The master reads data from the slave. 
+
+PAGE 21
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+20 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+Data  Over MOSI
+Data  Over MISO
+ 
+Figure 8-6 SPI color conventions 
+8.1.2.3 
+SPI Write 
+The SPI interface can be used to write into a single 16-bit register. A typical SPI write for a chip configuration 
+data is depicted in Figure 8-7. The write operation starts with R /W bit, followed by the Register address (7 
+bits), a payload message of 16-bit. Therefore, it requires a transfer from external controler to S5KM312CL . 
+SA[6:0]
+DATA[15:0]
+MOSI
+W
+  
+ 
+Figure 8-7 SPI configuration Write 
+8.1.2.4 
+SPI Read 
+The MISO interface timing is shown in Figure 8-8. The interface protocol shown below is valid only if the first 
+bit of MOSI (R /W bit) is set to ‘1’. 
+R
+SA[6:0]
+DATA[15:0]
+MOSI
+MISO
+ 
+Figure 8-8 SPI configuration Read 
+8.1.3 UART for Configuration 
+S5KM312CL chip configuration UART interface has both TX and RX lane, and typical data communication 
+speed is 115.2 kbps. 
+8.1.3.1 
+Configuration UART Interface Timing Characteristic 
+Table 8-4 Configuration UART Interface Timing Parameter 
+Symbol  
+Parameter 
+Min. 
+Typ. 
+Max. 
+Unit 
+Bd 
+Baud Rate  
+-  
+115200 
+-  
+bps 
+8.1.3.2 
+Configuration UART Interface Data Protocol 
+S5KM312CL configuration SPI interface is based on a combination of a single UART protocol handler and 
+several register interfaces within each sub-block. 
+Pin nomenclature for interfacing to a host controller is as follows: “Configuration_UART_RX” is the serial input 
+to write serial data into S5KM312CL; “Configuration_UART_TX” is the serial output for data to be read from 
+S5KM312CL. 
+The S5KM312CL UART interface operates in asynchronous communication mode with no clock pin. The data 
+frame starts from a start bit (‘0’), then followed with 8 bits data payload with additional one parity bit, and ends 
+with one stop bit.  
+During UART configuration operation, data sent to S5KM312CL should contain one parity bit and S5KM312CL 
+will not check the parity; data sent from S5KM312CL will add 1-bit odd parity. 
+
+PAGE 22
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+S5KM312CL 
+Confidential | 
+ 
+21 / 32
+DS10006RN_Rev.1.3_20221109
+Data  to UART_RX
+Data  from UART_TX
+Idle
+ 
+Figure 8-9 UART color conventions 
+8.1.3.3 
+Configuration UART Write 
+The UART interface can be used to write into a single 16-bit register. A typical UART chip configuration is 
+depicted in Figure 8-10. The configuration operation command is composed of 3 sections, the first section 
+sends the 7-bit slave address and 1-bit R /W; the next 2 sections write the data value to the slave address. A 
+payload message of 16-bit data is divided into 2 sections (low bits and high bits) and follows the rule that 
+starts from a start bit (‘0’), with 8 bits data follows, and ends with a parity check bit and a stop bit.  
+The data write or read enable bit locates at the slave address section. 
+R /W = 0: The master writes data to the addressed slave. 
+R /W = 1: The master reads data from the slave. 
+S: start bit 
+PA: parity check bit 
+P: stop bit 
+I: idle bits 
+S
+SA[0:6]
+PA
+DATA[8:15]
+PA
+P
+I
+S
+UART_RX
+P
+I
+S
+PA
+P
+I
+DATA[0:7]
+W
+  
+ 
+Figure 8-10 UART configuration Write 
+8.1.3.4 
+Configuration UART Read 
+The Read operation timing is shown in Figure 8-11. The interface protocol shown below is valid only if the first 
+bit over UART_RX (R /W bit) is set to ‘R’. 
+S
+SA[0:6]
+R
+PA
+UART_RX
+P
+I
+S
+Data[8:15]
+PA
+UART_TX
+P
+I
+S
+Data[0:7]
+PA
+P
+I
+ 
+Figure 8-11 UART configuration Read 
+8.2 
+Chip Data Communication Interface 
+The S5KM312CL data communication is determined by Pin 25 status during the power up or hardware reset 
+period. The S5KM312CL has 3 types of data communication modes: RAW Data, SPI, and UART. RAW Data 
+interface sends the RAW data from ADC; SPI and UART interfaces send the DSP processed data out to the 
+receiver. 
+
+PAGE 23
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+22 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+8.2.1 SPI For Data Communication 
+S5KM312CL chip data communication SPI interface works in master mode, and has 2 lanes MOSI. Pin 27
+“SPI_MOSI_0” (MOSI[0]) transmits RX1’s data, Pin 28 “SPI_MOSI_1” (MOSI[1]) transmits RX2’s data.  
+It only supports data output with frames of FFT data flowing from the master to the slave, and has following 
+features: 
+• Maximum SPI speed of 16.67 Mbit/s   
+• Master operation, mode 00 
+• 2 lanes data output 
+8.2.1.1 
+Data Communication SPI Interface Timing Characteristic 
+Table 8-5 Data Communication SPI Timing Parameter 
+Symbol 
+Parameter 
+Condition 
+Min. 
+Typ. 
+Max. 
+Unit 
+Tc(sck) 
+clock period 
+  
+60 
+ 
+640 
+ns 
+Tsck_high 
+clock high time 
+  
+20 
+- 
+- 
+ns 
+Tsck_low 
+clock low time 
+  
+40 
+- 
+- 
+ns 
+T_h(MO) 
+SPI MOSI data output hold 
+time 
+  
+0 
+- 
+- 
+ns 
+T_v(MO) 
+SPI MOSI data output valid 
+time 
+  
+15 
+- 
+- 
+ns 
+Tcs_scl 
+SPI CSN setup time 
+  
+60 
+- 
+- 
+ns 
+Tscl_cs 
+SPI CSN hold time 
+  
+40 
+- 
+- 
+ns 
+Tcs_cs 
+SPI CSN disable to next CSN 
+enable time 
+  
+120 
+- 
+- 
+ns 
+POLclk 
+SPI clock polarity (CPOL) 
+  
+- 
+0 
+- 
+ 
+ϕclk 
+SPI clock phase (CPHA) 
+  
+- 
+0 
+- 
+ 
+
+PAGE 24
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+S5KM312CL 
+Confidential | 
+ 
+23 / 32
+DS10006RN_Rev.1.3_20221109
+CSN
+SCK
+MOSI 0
+Tcs_sck
+Tc(sck)
+Tcs_cs
+T_h(MO)
+Tsck_high
+Tsck_low
+Tcs_sck
+MOSI 1
+ 
+Figure 8-12 Data communication SPI interface timing diagram 
+The data SPI outputs are not guaranteed during the period of chip configuration. All the data transmitted out 
+through the DATA_SPI channel follow the format shown in Figure 8-13. 
+DW0[31:0]
+DW1[31:0]
+DWx[31:0]
+DATA_MOSI 0
+   
+DW0[31:0]
+DW1[31:0]
+DWx[31:0]
+DATA_MOSI 1
+   
+ 
+Figure 8-13 Data channel transmission 
+8.2.1.2 
+Data Communication SPI Output for Range FFT 
+When Range FFT data SPI output mode is selected by chip configuration command, the chip will transfer 
+Range FFT data. Pin nomenclature for interfacing is as follows: Pin 29 “SPI_SCLK” is the serial clock output; 
+Pin 27 “SPI_MOSI_0” and Pin 28 “SPI_MOSI_1” are the serial outputs of RX1 and RX2’s serial data from 
+S5KM312CL ; and Pin 26 “SPI_CSN” (Chip Select) is the select pin for Read operations. 
+S5KM312CL data communication SPI operates in 32 bits format. The data frame starts with the header Dword 
+(32 bits); then all the FFT data is sent out, high 16 bits represent real part of the FFT data, low 16 bits represent 
+imaginary part of the FFT data; finally, the tail Dword (32 bits) will valid the check_sum and terminate the data 
+output. 
+The transfer is under MSB first sequence and the Range FFT data type is signed integer. Table 8-6 illustrates 
+the Range FFT data format over Pin 27 and Pin 28. 
+
+PAGE 25
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+24 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+Table 8-6 Range FFT data frame format over MOSI[x] [1] 
+Header[Dword 0] 
+‘b1010 1010 
+[23: 
+22] 
+[2] 
+‘b 
+11 
+FFT_chirp_index[19:11] [3] 
+‘b 
+00 
+CFG_FFT_TX_MAX[8:0] [4] 
+Data  [Dword 1] 
+FFT real data 0 [31:16] 
+FFT Imaginary data 0 [15:0] 
+Data  [Dword 2] 
+FFT real data 1 [31:16] 
+FFT Imaginary data 1 [15:0] 
+Data  [Dword …] 
+FFT real data … [31:16] 
+FFT Imaginary data … [15:0] 
+Data  [Dword m] 
+FFT real data m-1 [31:16] 
+FFT Imaginary data m-1 [15:0] 
+Tail [Dword m+1] 
+Check_sum [31:16] [5] 
+[15: 
+14] 
+[6] 
+‘b 
+11 
+FFT_chirp 
+_index 
+[11:8] [7] 
+‘b 0101 0101 
+Note: 
+[1] 
+MOSI[x]: MOSI[0] and MOSI[1] share the same data format, x can be 0 or 1. 
+[2]  [23:22]:  value is ‘b00 if MOSI[0], value is ‘b01 if MOSI[1] 
+[3]  FFT_chirp_index[19:11]:    the chirp sequence number in one frame, start from “0” in each frame.  
+[4] 
+CFG_FFT_TX_MAX[8:0]:  the number of m (the total FFT transferred points) +1 in this chirp 
+[5] 
+Check_sum[31:16]:       sum of all data in this frame, and equals to the value of low 16 bits sum result. 
+[6]  [15:14]:  value is ‘b00 if MOSI[0], value is ‘b01 if MOSI[1] 
+[7] 
+FFT_chirp_index[11:8]:    the chirp sequence number in one frame, it equals to FFT_chirp_index[19:11]’s low 4 bits value.  
+8.2.1.3 
+Data Communication SPI Output for Doppler FFT 
+When Doppler FFT data SPI output mode is selected by chip configuration command, the chip will transfer 
+Doppler FFT data. Pin nomenclature for interfacing is as follows: Pin 29 is the serial clock output; Pin 27 and 
+Pin 28 are the serial outputs to read out serial data from S5KM312CL; and Pin 26 is the select pin for Read 
+operations. DFFT is short for “Doppler FFT” in the following diagrams and tables.  
+The S5KM312CL data communication SPI operates in 32 bits format. The data frame starts from the header 
+Dword (32 bits); then all the FFT data are sent out, the high 16 bits represent real part of the FFT data, and the 
+low 16 bits represent imaginary part of the FFT data; finally, the tail Dword (32 bits) will valid the check_sum 
+and terminate the data output. 
+The data transfer is under MSB first sequence and the Doppler FFT data type is signed integer. Table 8-7 
+illustrates the Doppler FFT data format over MOSI[0] and MOSI[1].  
+Table 8-7 Doppler FFT data frame format over MOSI[x] [1] 
+Header [Dword 0] 
+‘b 1010 1010 
+[23: 
+22] 
+[2] 
+‘b  
+11 
+‘b 1111 
+DPL_frame_cnt [15:0] [3] 
+Data  [Dword 1] 
+DFFT real data 0 [31:16] 
+DFFT imaginary data 0 [15:0] 
+Data  [Dword 2] 
+DFFT real data 1 [31:16] 
+DFFT imaginary data 1 [15:0] 
+Data  [Dword …] 
+DFFT real data … [31:16] 
+DFFT imaginary data … [15:0] 
+Data [Dword 1024] 
+DFFT real data 1023 [31:16] 
+DFFT imaginary data 1023 [15:0] 
+Tail [Dword 1025] 
+Check_sum [31:16] [4] 
+‘b 0101 0101 0101 0101 
+Note: 
+
+PAGE 26
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+S5KM312CL 
+Confidential | 
+ 
+25 / 32
+DS10006RN_Rev.1.3_20221109
+[1] 
+MOSI[x]: MOSI[0] and MOSI[1] share the same data format, x can be 0 or 1. 
+[2]  [23:22]: value is ‘b10 if MOSI[0], value is ‘b11 if MOSI[1] 
+[3] 
+DPL_frame_cnt: Doppler frame sequence number, start from 0, cycling between 0 and 0xFFFF. 
+[4] 
+Check_sum:  sum of DFFT data in this frame, and equals to the value of low 16 bits sum result. 
+8.2.1.4 
+Channel Interleaved SPI Output 
+S5KM312CL can interleave RX1 and RX2’s output data via a single SPI data lane, the data can be Range FFT 
+or Doppler FFT results. This function trades off the system SPI resource with data rate, suitable for SPI 
+resource limited scenarios. Figure 8-14 shows the timing and sequence that only Pin 27 (MOSI[0]) is used to 
+output RX1 and RX2’s results data interleaved as double words whose data format is the same as that depicted 
+in SPI output for Range FFT or Doppler FFT data correspondingly. 
+DW0[31:0] RX0 header
+DW1[31:0] RX1header
+DW2[31:0] RX0 data
+DW3[31:0] RX1 data
+...
+...
+DW(m-3)[31:0] RX0 data
+DW(m-2)[31:0] RX1 data
+DW(m-1)[31:0] RX0 Tail
+DW(m)[31:0] RX1 Tail
+ 
+Figure 8-14 Merged FFT data interleaved sequence 
+8.2.1.5 
+Data Communication SPI Output for Doppler FFT Peak 
+The S5KM312CL can transfer Doppler FFT peak data with data SPI, where Pin 27 is the data output bus MOSI[0]. 
+The transfer is under MSB first sequence and the Doppler FFT data type is signed integer. 
+Table 8-8 Doppler FFT Peak Data Frame Format 
+Header [Dword 0] 
+‘b1010 1010 
+‘b01 ‘b00 
+‘b 00 0000 0000 0000 
+CFG_LEN_RPT [5:0][1] 
+Data  [Dword 1] 
+0 
+DFFT0_MAX0_DIDX 
+[30:24] 
+0 
+DFFT0_MAX0_RIDX 
+[22:16] 
+0 
+DFFT1_MAX0_DIDX 
+[14:8] 
+0 DFFT1_MAX0_RIDX [6:0] 
+Data  [Dword 2] 
+DFFT0_MAX0_VALUE [31:0] 
+Data  [Dword 3] 
+DFFT1_MAX0_VALUE [31:0] 
+Data  [Dword 4] 
+0 
+DFFT0_MAX1_DIDX 
+[30:24] 
+0 
+DFFT0_MAX1_RIDX 
+[22:16] 
+0 
+DFFT1_MAX1_DIDX 
+[14:8] 
+0 DFFT1_MAX1_RIDX [6:0] 
+Data  [Dword 5] 
+DFFT0_MAX1_VALUE [31:0] 
+Data  [Dword 6] 
+DFFT1_MAX1_VALUE [31:0] 
+Data  [Dword …] 
+Data … 
+Data [Dword (3m-2)] 
+0 
+DFFT0_MAXm_DIDX 
+[30:24] [2] 
+0 
+DFFT0_MAXm_DIDX 
+[22:16][2] 
+0 
+DFFT1_MAXm_RIDX  
+[14:8] [3] 
+0 
+DFFT1_MAXm_RIDX  
+[6:0] [3] 
+Data [Dword (3m-1)] 
+DFFT0_MAXm_VALUE [31:0] [4] 
+Data [Dword (3m)] [5] 
+DFFT1_MAXm_VALUE [31:0] [4] 
+TAIL [Dword (3m+1)]  
+Check_sum [31:16] [6] 
+‘b01 
+‘b00 
+‘b0000 
+‘b 0101 0101 
+Note: 
+[1] 
+CFG_LEN_RPT [5:0]:  Length of Data Dwords payload; max value is 27; 
+[2] 
+DFFTX_MAXm_DIDX [6:0]:  DFFT peak location, Doppler FFT index；
+DFFT0 is RX1 channel data, DFFT1 is RX2 channel data; 
+[3] 
+DFFTX_MAXm_RIDX [6:0]:  DFFT peak location, range FFT index; DFFT0 is RX1 channel data, DFFT1 is RX2 channel data; 
+[4] 
+DFFTX_MAXm_VALUE [31:0]:  DFFTX peak value; This value is the modulus value of 2DFFT at the corresponding position; DFFT0 is 
+RX1 channel data, DFFT1 is RX2 channel data; 
+
+PAGE 27
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+26 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+[5] 
+3m: Data Dword payload max number, equals to the value of CFG_LEN_RPT [5:0]; 
+[6] 
+Check_sum:  Sum of all data in this frame, and equals to the value of low 16 bits sum result. 
+8.2.2 UART Output for Data Communication 
+The S5KM312CL data communication UART interface only has TX lane, and the electrical characteristics are 
+listed in Table 8-9. 
+Table 8-9 Data communication UART interface electrical characteristics 
+Symbol 
+Parameter 
+Min. 
+Typ. 
+Max. 
+Unit 
+Bd 
+Baud Rate 
+4.8 
+- 
+256 
+bps 
+The S5KM312CL DATA_UART_TX interface can also transfer SPI mode data_MOSI_0’s data, including Range 
+FFT data, Doppler FFT data, and Doppler FFT peak. The DATA_UART_TX sends out the data with an odd parity 
+bit. the format is from DW0’s highest byte to the lowest byte, then goes to next DW, until reach last DW. Each 
+byte is from LSB to MSB. 
+S
+DW0[24:31]
+P
+A
+DW0[16:23]
+P
+A P
+I
+S
+Data_UART_TX
+P
+I
+S
+P
+A
+P
+I
+DW0[8:15]
+I
+S
+P
+A
+P
+I
+DW0[0:7]
+   
+S
+DWx[24:31]  
+P
+A
+DWx[16:23]
+P
+A P
+I
+S
+P
+I
+S
+P
+A
+P
+I
+DWx[8:15]
+I
+S
+P
+A
+P
+I
+DWx[0:7]
+ 
+Figure 8-15 UART output data timing 
+Note: 
+[1] 
+DWx:  the last DW of the data frame. 
+8.2.3 RAW Data Output 
+The S5KM312CL chip data communication RAW data interface is selected via S5KM312CL Pin 25 state during 
+the power up or hardware reset recommended for the device debug and specific applications. RAW data can 
+only be transmitted by RAW data output ports. 
+Pin 24 “RAW_CLK” is RAW data clock output at signaling rate of 50 MHz; 4 lanes of data will be sent out 
+parallelly, Pin 26 and Pin 27 (signal: RAW_D0 and RAW_D1) send out the RX1 I channel and Q channel ADC 
+real-time data, Pin 28 and Pin 29 (signal: RAW_D2 and RAW_D3) send out the RX2’s I channel and Q channel 
+ADC real-time data. RAW_D0 to RAW_3 data message is valid when Pin 24 RAW_READY is high. 
+The RAW data output has following features: 
+• Fixed RAW data clock of 50 MHz; 
+• 4 lane data parallel output. 
+
+PAGE 28
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+S5KM312CL 
+Confidential | 
+ 
+27 / 32
+DS10006RN_Rev.1.3_20221109
+8.2.3.1 
+RAW Data Output Interface Timing Characteristic 
+Table 8-10 RAW data output timing parameter 
+Symbol 
+Parameter 
+Condition 
+Min. 
+Typ. 
+Max. 
+Unit 
+Tc(sck) 
+clock period 
+  
+- 
+20 
+- 
+ns 
+Tsck_high 
+RAW_SCK high time 
+  
+- 
+10 
+-  
+ns 
+Tsck_low 
+RAW_SCK low time 
+  
+- 
+10 
+-  
+ns 
+T_C(D) 
+RAW data output change time 
+  
+0 
+- 
+4 
+ns 
+T_V(D) 
+RAW data output valid time 
+  
+- 
+- 
+5  
+ns 
+Trdy_sck 
+RAW_READY setup time 
+  
+- 
+10 
+-  
+ns 
+Th(rdy) 
+RAW_READY hold time 
+  
+- 
+360 
+-  
+ns 
+Trdy_rdy 
+RAW_READY disable to next 
+RAW_READY enable time 
+  
+- 
+40 
+- 
+ns 
+RAW_READY
+RAW_SCK
+RAW_D0
+Trdy_sck
+T_V(D)
+Tsck_high
+Tsck_low
+T_C(D)
+RAW_D1
+RAW_D2
+RAW_D3
+ 
+Figure 8-16 RAW data output data timing 
+8.2.3.2 
+RAW Data Output Protocol 
+The S5KM312CL RAW data output data frame is shown as Figure 8-17, RAW_D0 to RAW_D3 send the RX1 
+I_ADC, RX1 Q_ADC, RX2 I_ADC, and RX2 Q_ADC data simultaneously. Each data frame starts from F-head bit 
+and C-head bit, followed by 16 bits data, and ends in 2 clocks of idle. 
+RAW Data
+Idle
+ 
+Figure 8-17 RAW data color conventions 
+RAW_Data output protocol is shown as Figure 8-18. 
+
+PAGE 29
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+28 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Interface and Peripherals 
+Data[15:0]
+RAW_D0
+   
+F
+C
+I
+F
+C
+I
+Data[15:0]
+F
+C
+I
+Data[15:0]
+Data[15:0]
+RAW_D1
+   
+F
+C
+I
+F
+C
+I
+Data[15:0]
+F
+C
+I
+Data[15:0]
+Data[15:0]
+RAW_D2
+   
+F
+C
+I
+F
+C
+I
+Data[15:0]
+F
+C
+I
+Data[15:0]
+Data[15:0]
+RAW_D3
+   
+F
+C
+I
+F
+C
+I
+Data[15:0]
+F
+C
+I
+Data[15:0]
+ 
+Figure 8-18 RAW data output protocol 
+F: Frame-head bit, 1 bit. F is 1 when this data message is the frame’s first data message; if not, F is always 0. 
+C: Chirp-head bit, 1 bit. C is 1 when this data message is the chirp’s first data message; if not, C is always 0. 
+Data[15:0]: RAW data message, 16 bits. 
+I: idle, 2 bits, fixed value：2’b 00. 
+ 
+
+PAGE 30
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Application Information 
+S5KM312CL 
+Confidential | 
+ 
+29 / 32
+DS10006RN_Rev.1.3_20221109
+9 Application Information 
+9.1 
+Application Schematic 
+ 
+Figure 9-1 mmWave sensor 1T2R application schematic 
+Table 9-1 External component suggestions 
+Component 
+Description 
+Value 
+Remarks 
+ANT 
+PCB patch antenna 
+24 GHz antenna 
+ 
+FB1 
+Ferrite bead 
+GZ1005D310TF 
+ 
+C1 
+Ceramic capacitor 
+100 nF 
+X7R 
+C2 
+DCDC output ceramic capacitor 
+22 μF 
+X5R 
+L1 
+DCDC output power inductor 
+22 μH 
+SWPA252012S220MT, ± 20%, 
+DCR < 1.7 Ω, Isat > 500 mA 
+R1 
+Loop filter resistor 
+430 Ω 
+± 5% 
+C3 
+Loop filter ceramic capacitor 
+22 nF 
+± 5%, X7R 
+C4 
+Loop filter ceramic capacitor 
+2.2 nF 
+± 5%, X7R 
+R2 
+Resistor 
+12.4 kΩ 
+± 1% 
+C5, C6 
+Capacitor 
+12 pF 
+± 5%, C0G 
+
+PAGE 31
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+30 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Package Outline 
+Y1 
+Crystal 
+25 MHz 
+<50 ppm 
+R3, R4, R5, R6 
+Resistor 
+3.3 KΩ 
+± 5% 
+ 
+10 Package Outline 
+ 
+Figure 10-1 Package description 
+ 
+ 
+
+PAGE 32
+ 
+ 
+ 
+ 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Handling Information 
+S5KM312CL 
+Confidential | 
+ 
+31 / 32
+DS10006RN_Rev.1.3_20221109
+11 Handling Information 
+ 
+12 References 
+1. AN10017: S5KM312CL Hardware Design Guide 
+2. RM10003: S5KM312CL Technical Reference Manual 
+ 
+13 Revision History 
+Revision 
+Date 
+Data Sheet Status 
+Contents 
+1.0 
+2020/7/24 
+Objective Data Sheet 
+Initial official release 
+1.01 
+2020/9/1 
+Objective Data Sheet 
+Update frequency range; 
+Update the table for Doppler FFT; 
+Update the diagram for Doppler FFT 
+1.02 
+2020/9/24 
+Objective Data Sheet 
+Update I2C timing diagram; 
+Add digital data output notice in application tips 
+1.1 
+2021/1/28 
+Objective Data Sheet 
+Update package description and introduction of cascading mode 
+1.2 
+2021/3/24 
+Objective Data Sheet 
+Update Range FFT, Doppler FFT, Doppler FFT Peak data format 
+1.2.1 
+2022/9/22 
+Objective Data Sheet 
+Merge to Application DCC template 
+1.3 
+2022/11/9 
+Product Data Sheet 
+Update data sheet structure; 
+Modify timing and sequence diagrams 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ESD CAUTION 
+ 
+ 
+ESD (electrostatic discharge) sensitive device. 
+Charged devices and circuit boards can discharge without detection. Although 
+this product features patented or proprietary protection circuitry, damage may 
+occur on devices subjected to high energy ESD. Therefore, proper ESD 
+precautions should be taken to avoid performance degradation or loss of 
+functionality. 
+
+PAGE 33
+ 
+ 
+   
+S5KM312CL
+Confidential | 
+ 
+32 / 32 
+DS10006RN_Rev.1.3_20221109 
+24 GHz mmWave Radar SOC
+S5KM312CL 
+Important Notice and Warnings 
+Important Notice and Warnings 
+Product Specification — The information and data provided in a product data sheet shall define the 
+specification of the product as agreed between ICLEGEND MICRO and its customer, unless ICLEGEND MICRO 
+and customer have explicitly agreed otherwise in writing. In no event however, shall an agreement be valid in 
+which ICLEGEND MICRO product is deemed to offer functions and qualities beyond those described in the 
+Product data sheet. 
+ 
+ICLEGEND MICRO provides information in this document which is believed to be accurate and reliable. 
+However, ICLEGEND MICRO does not give any representations or warranties, expressed or implied, as to the 
+accuracy or completeness of such information and shall have no liability for the consequences of use of 
+such information. ICLEGEND MICRO takes no responsibility for the content in this document if provided by 
+an information source outside of ICLEGEND MICRO. In no event shall ICLEGEND MICRO be liable for any 
+indirect, incidental, punitive, special or consequential damages (including -without limitation -lost profits, lost 
+savings, business interruption, costs related to the removal or replacement of any products or rework 
+charges) whether or not such damages are based on tort (including negligence), warranty, breach of contract 
+or any other legal theory. 
+ICLEGEND MICRO reserves the right to make changes to information published in this document, including 
+without limitation specifications and product descriptions, at any time and without notice. This document 
+supersedes and replaces all information supplied prior to the publication hereof.  
+These resources are intended for skilled developers designing with ICLEGEND MICRO products. You are solely 
+responsible for (1) selecting the appropriate ICLEGEND MICRO products for your application, (2) designing, 
+validating and operation of your applications and products throughout the lifecycles, and (3) ensuring your 
+application meets applicable standards, and any other safety, security, or other requirements. These resources 
+are subject to change without notice.  
+ICLEGEND MICRO grants you permission to use these resources only for development of the application that 
+uses ICLEGEND MICRO products described in this resource. Other reproduction and display of these resources 
+is prohibited. No license is granted to any other ICLEGEND MICRO intellectual property right or to any third 
+party intellectual property right. ICLEGEND MICRO disclaims responsibility for, and you will fully indemnify 
+ICLEGEND MICRO and its representatives against, any claims, damages, costs, losses, and liabilities arising 
+out of your use of these resources.  
+ICLEGEND MICRO products are provided subject to ICLEGEND MICRO’s Terms of Sale or other applicable 
+terms. ICLEGEND MICRO’s provision of these resources does not expand or otherwise alter ICLEGEND 
+MICRO’s applicable warranties or warranty disclaimers for ICLEGEND MICRO products.  
+ 
+ 

@@ -1,0 +1,44 @@
+{
+  "stream_sha256": "1c37d068b232587bb56935da3e0b227bbb79255d24d122c42975ebeb1682cfde",
+  "bytes": 126215608,
+  "complete_windows": 1881,
+  "rejected_before_eof": 0,
+  "protocol_errors": 0,
+  "parser_errors": 64,
+  "discarded_bytes": 64,
+  "partial_tail": true,
+  "abort_reasons": {},
+  "record_modes": {
+    "0": 60192
+  },
+  "first": {
+    "frame_id": 258,
+    "config_sha256": "cdc8522d33c2f58d79aa41877b7922b895f21d554bc8203d4c872c3f34b5b5f5",
+    "chirps": 16,
+    "started_us": 22990618,
+    "device_skipped": 108,
+    "device_rejected": 1,
+    "device_queue_peak": 54128,
+    "ended_us": 23008615
+  },
+  "last": {
+    "frame_id": 2669,
+    "config_sha256": "cdc8522d33c2f58d79aa41877b7922b895f21d554bc8203d4c872c3f34b5b5f5",
+    "chirps": 16,
+    "started_us": 237537982,
+    "device_skipped": 639,
+    "device_rejected": 1,
+    "device_queue_peak": 54512,
+    "ended_us": 237555979
+  },
+  "window_span_seconds": 214.547364,
+  "complete_windows_per_second": 8.762633876965275,
+  "within_window_variation_quantiles": {
+    "min": 0.020718522606139673,
+    "median": 0.12587899614149922,
+    "p90": 0.5871378092328652,
+    "max": 0.9889543292523121
+  },
+  "motion_context": "User confirmed plots kept updating while moving hand/body; exact motion start/end unmarked. Variation includes noise, drift and motion.",
+  "eof_note": "A partial final window is a recording boundary, not a firmware abort. Initial 64 bytes are reconnect resynchronization."
+}

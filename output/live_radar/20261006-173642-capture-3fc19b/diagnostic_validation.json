@@ -1,0 +1,51 @@
+{
+  "viewer_tests_passed": 15,
+  "producer_decoder_interop_tests_passed": 12,
+  "recording_sha256_verified": true,
+  "firmware_changed": false,
+  "live_state_after_update": {
+    "status": "live",
+    "source": "USB COM30",
+    "error": "",
+    "stats": {
+      "received_bytes": 41472260,
+      "complete_frames": 298,
+      "rejected_frames": 24,
+      "parser_errors": 64,
+      "discarded_bytes": 64,
+      "protocol_errors": 0,
+      "device_skipped": 90746,
+      "device_rejected": 442,
+      "device_queue_peak": 90064,
+      "processing_drops": 0,
+      "timing_outliers": 4,
+      "replay_loops": 0,
+      "wire_kbps": 645.7,
+      "frames_per_second": 5.0,
+      "truncated_tail": false,
+      "device_aborts": 24,
+      "queue_aborts": 16,
+      "cpu_aborts": 8,
+      "other_aborts": 0,
+      "invalid_frames": 0,
+      "last_abort": {
+        "reason": 3,
+        "frame_id": 103762,
+        "timestamp_us": 643627608,
+        "received_records": 125
+      }
+    },
+    "version": 299,
+    "generation": 2,
+    "last_frame_age_s": 0.01,
+    "settings": {
+      "remove_dc": true,
+      "window": "hann",
+      "remove_static": true
+    },
+    "last_abort_age_s": 11.76,
+    "recording": null,
+    "last_recording": null,
+    "reference_frame": null
+  }
+}

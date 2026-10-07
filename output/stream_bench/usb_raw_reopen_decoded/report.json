@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_raw_reopen\\stream.ldf",
+  "complete_frames": 11,
+  "rejected_frames": 1,
+  "protocol_errors": 0,
+  "parser_errors": 129,
+  "discarded_bytes": 724,
+  "received_bytes": 2949120,
+  "stream_sha256": "82502f911d1307c3c2d5e2cc43c24c5063a14ded1c22dd7082b7aea9401d45dd"
+}

@@ -1,0 +1,34 @@
+{
+  "status": "live",
+  "source": "USB COM30",
+  "error": "",
+  "stats": {
+    "received_bytes": 1464679619,
+    "complete_frames": 11210,
+    "rejected_frames": 415,
+    "parser_errors": 933,
+    "discarded_bytes": 933,
+    "protocol_errors": 0,
+    "device_skipped": 90269,
+    "device_rejected": 417,
+    "device_queue_peak": 90057,
+    "processing_drops": 0,
+    "timing_outliers": 296,
+    "replay_loops": 0,
+    "wire_kbps": 687.6,
+    "frames_per_second": 5.0,
+    "truncated_tail": false
+  },
+  "version": 11807,
+  "generation": 18,
+  "last_frame_age_s": 0.01,
+  "settings": {
+    "remove_dc": true,
+    "window": "hann",
+    "remove_static": true
+  },
+  "recording": null,
+  "last_recording": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\output\\live_radar\\20261006-173642-capture-3fc19b",
+  "reference_frame": 98164,
+  "frame": null
+}

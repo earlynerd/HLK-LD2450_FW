@@ -1,0 +1,13 @@
+{
+  "name": "raw-interval1-diagnostic",
+  "base_profile": "mode_2_ram_initial",
+  "overrides": [
+    {
+      "sequence": 46,
+      "register": "0x02",
+      "expected": "0x103C",
+      "value": "0x003C",
+      "reason": "Diagnostic: test inferred DS RAW sample-interval selector 2 to 1, preserving sample offset and all RF sweep settings. Register mapping is a hypothesis; verify frequency scaling on captured data."
+    }
+  ]
+}

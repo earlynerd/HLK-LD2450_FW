@@ -1,0 +1,11 @@
+{
+  "port": "COM30",
+  "identity": "USB VID:PID=4C4A:4155 SER=LD2450-STREAM-01 LOCATION=1-4:x.0",
+  "seconds": 4.0,
+  "stall_seconds": 0,
+  "requested_dtr": true,
+  "stop_report": true,
+  "received_bytes": 25376,
+  "read_elapsed_seconds": 4.000186299999768,
+  "stream_sha256": "5a59472c80c4d9619708bc8d0bac869266e3d52a6b29aefde167cf52d2282961"
+}

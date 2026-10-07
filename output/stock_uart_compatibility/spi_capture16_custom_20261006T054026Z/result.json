@@ -1,0 +1,15 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\spi-capture16\\update-two-wire.ufw",
+  "image_sha256": "16381b9302ccceaa48af63f7459c293fccbeb042064be85432480fbb575f6fb5",
+  "entry": "custom",
+  "result": "device reported final success",
+  "pa9_bytes": 8926,
+  "postflash_bytes": 160496,
+  "heartbeat_count": 0,
+  "elapsed_seconds": 31.803,
+  "read_requests": 417,
+  "complete": true,
+  "loader_staged": true,
+  "device_error": null,
+  "reported_size": 184320
+}

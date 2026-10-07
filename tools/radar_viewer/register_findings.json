@@ -1,0 +1,227 @@
+{
+  "_about": "Bench findings per radar register (hex keys), shown in the viewer's Radar registers panel beside the startup-table interpretation. Edit freely. Stock values and interpretations come from output/evb1122_analysis/register_write_table.json; evidence for these findings is in output/live_radar/.",
+  "61": {
+    "finding": "RX2 I DC offset trim. +1 step = +450 counts, -1 step = -433 (linear). Opposite-sense partner: 0x63. Not a gain or phase trim (mirror image unchanged).",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "62": {
+    "finding": "RX2 Q DC offset trim. +1 step = +514 counts. Opposite-sense partner: 0x64.",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "63": {
+    "finding": "RX2 I DC offset trim, opposite sense to 0x61: +1 step = -461 counts.",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "64": {
+    "finding": "RX2 Q DC offset trim, opposite sense to 0x62: +1 step = -456 counts.",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "76": {
+    "finding": "CAUTION: any +/-1 change (0x0020 or 0x0022) silences both receivers (about -50 dB, outputs ~0). Must stay 0x0021. Restoring recovers.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "5b": {
+    "finding": "+1 step: no measurable change in DC offsets, levels, mirror image or noise.",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "5c": {
+    "finding": "+1 step: no measurable change in DC offsets, levels, mirror image or noise.",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "5d": {
+    "finding": "+1 in either byte: no measurable change in DC offsets, levels, mirror image or noise.",
+    "evidence": "register_experiments_20261006.json"
+  },
+  "0d": {
+    "finding": "Writes 0x1000 -> 0x1004 read back correctly but changed nothing visible in the raw data. Probably on-chip Doppler FFT configuration, unused in DS RAW output mode. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "00": {
+    "finding": "Not written by the stock startup table. Reads 0x1207 at stock settings.",
+    "evidence": "register_dump_20261006.json"
+  },
+  "03": {
+    "finding": "Not written by the stock startup table. Reads 0x101F at stock settings.",
+    "evidence": "register_dump_20261006.json"
+  },
+  "0c": {
+    "finding": "Not written by the stock startup table. Reads 0xEA5F at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "10": {
+    "finding": "Not written by the stock startup table. Reads 0x1001 at stock settings (consistently; equals stock 0x47). Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "11": {
+    "finding": "Not written by the stock startup table. Reads 0x0003 at stock settings (consistently; equals stock 0x42). Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "16": {
+    "finding": "Not written by the stock startup table. Reads 0x0300 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "5f": {
+    "finding": "Not written by the stock startup table. Reads 0x1005 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "60": {
+    "finding": "Not written by the stock startup table. Reads 0x019C at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "6a": {
+    "finding": "Bit 4 or bit 8 set: noise floor +5 to +10 dB on both receivers, nothing else changed. Stock read 0x3C41 (not written by startup). Look for bits that LOWER noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "6b": {
+    "finding": "Not written by the stock startup table. Reads 0x6D00 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "6f": {
+    "finding": "Not written by the stock startup table. Reads 0x5500 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "71": {
+    "finding": "Bit 0 cleared (0x20A0) stopped the stream (REINIT recovered). Stock read 0x20A1 (not written by startup).",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "73": {
+    "finding": "Not written by the stock startup table. Reads 0x8000 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "74": {
+    "finding": "Not written by the stock startup table. Reads 0x0001 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "75": {
+    "finding": "Not written by the stock startup table. Reads 0x0004 at stock settings. Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "20": {
+    "finding": "0x20-0x2F (table) read much slower than other registers: several in one inter-frame gap overran DMA. Firmware now reads one register per gap.",
+    "evidence": "DEBUG_LOG.md 2026-10-06"
+  },
+  "65": {
+    "finding": "Per-channel baseband GAIN, one nibble per channel: bits 12/8/4/0 = RX1-I / RX2-I / RX1-Q / RX2-Q; +1 step = +2.6 dB on that channel only (also scales its DC offset). Stock 0x0000. Changes the mirror image exactly as an I/Q gain mismatch would: 0x0010 (RX1-Q +2.6 dB) improves RX1 from -13.8 to -15.8 dB.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "66": {
+    "finding": "Per-channel filter enables (stock 0x0F00): clearing bit 8 disabled RX2-Q's path (noise +32 dB, DC -4250).",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "67": {
+    "finding": "ADC reset/enable: clearing bit 12 (0x0E40) killed RX1-I; setting bit 8 (0x1F40) stopped the stream (REINIT recovered).",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "69": {
+    "finding": "Bit 12 set: noise floor +7 dB (RX1) / +5 dB (RX2), nothing else changed. Stock 0x0000.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "6e": {
+    "finding": "Receiver front-end gain: bit 12 set (0xD3FC) RX1 -10.6 dB; bit 4 cleared (0xC3EC) RX2 -4.7 dB; bit 8 cleared (0xC2FC) RX2 +0.9 dB. Offsets move too.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "70": {
+    "finding": "Bit 12 set (0x36A0): both receivers +1 to +2.5 dB, DC offsets shift several hundred counts. Shared analog bias/power.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "06": {
+    "finding": "Any tested bit (0, 4, 8, 12) stops the raw stream (output format/merge control); REINIT recovers.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "0e": {
+    "finding": "Bits 8 and 12 stop the raw stream (framing/chirp window); REINIT recovers.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "0f": {
+    "finding": "Bit 0 set: about +0.5 dB on RX1-I and RX2-Q. Small; fine gain?",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "5e": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "68": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "77": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "78": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "79": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "7a": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "7b": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "7c": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "7d": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "7e": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "7f": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "05": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "07": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "08": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "09": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "0a": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "0b": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "12": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "13": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "14": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "15": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "17": {
+    "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  }
+}

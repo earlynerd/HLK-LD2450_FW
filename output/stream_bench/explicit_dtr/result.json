@@ -1,0 +1,10 @@
+{
+  "low": {
+    "requested_dtr": false,
+    "bytes": 0
+  },
+  "high": {
+    "requested_dtr": true,
+    "bytes": 0
+  }
+}

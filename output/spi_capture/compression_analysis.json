@@ -1,0 +1,234 @@
+{
+  "scope": "Existing 16-chirp startup capture only; no target timing or USB validation.",
+  "overhead": "Includes original packet framing, first raw packet, per-packet mode, and block width bytes; excludes outer transport framing.",
+  "lanes": [
+    {
+      "source": "output\\spi_capture\\dual_lane_16chirps\\lane0.bin",
+      "sha256": "1346cf2b00803edf296587ab5c18263ee0ae77caaeb8f097f65f004e16e6c0d7",
+      "packets": 16,
+      "raw_bytes": 32896,
+      "methods": {
+        "first_escape8": {
+          "encoded_bytes": 18896,
+          "ratio": 1.7408975444538526,
+          "fraction_of_raw": 0.5744163424124513,
+          "packet_bytes": [
+            2057,
+            1037,
+            1179,
+            1185,
+            1147,
+            1123,
+            1047,
+            1033,
+            1087,
+            1051,
+            1147,
+            1203,
+            1049,
+            1281,
+            1039,
+            1231
+          ],
+          "roundtrip_exact": true
+        },
+        "first_block32": {
+          "encoded_bytes": 19020,
+          "ratio": 1.7295478443743428,
+          "fraction_of_raw": 0.5781857976653697,
+          "packet_bytes": [
+            2057,
+            1065,
+            1173,
+            1181,
+            1165,
+            1157,
+            1085,
+            1037,
+            1129,
+            1089,
+            1173,
+            1185,
+            1073,
+            1193,
+            1069,
+            1189
+          ],
+          "roundtrip_exact": true
+        },
+        "previous_escape8": {
+          "encoded_bytes": 18568,
+          "ratio": 1.7716501507970703,
+          "fraction_of_raw": 0.5644455252918288,
+          "packet_bytes": [
+            2057,
+            1037,
+            1069,
+            1033,
+            1033,
+            1033,
+            1043,
+            1053,
+            1035,
+            1181,
+            1217,
+            1145,
+            1095,
+            1193,
+            1187,
+            1157
+          ],
+          "roundtrip_exact": true
+        },
+        "previous_block32": {
+          "encoded_bytes": 18752,
+          "ratio": 1.7542662116040955,
+          "fraction_of_raw": 0.5700389105058365,
+          "packet_bytes": [
+            2057,
+            1065,
+            1121,
+            1041,
+            1017,
+            1005,
+            1085,
+            1093,
+            1061,
+            1173,
+            1189,
+            1169,
+            1145,
+            1177,
+            1181,
+            1173
+          ],
+          "roundtrip_exact": true
+        }
+      },
+      "first_residuals": {
+        "min": -236,
+        "max": 204,
+        "fraction_signed8": 0.95625
+      },
+      "previous_residuals": {
+        "min": -217,
+        "max": 205,
+        "fraction_signed8": 0.9669270833333333
+      }
+    },
+    {
+      "source": "output\\spi_capture\\dual_lane_16chirps\\lane1.bin",
+      "sha256": "8715a0085c45e63233afb0b710d359c9b95382b2e8319c396609ce00fc6272fc",
+      "packets": 16,
+      "raw_bytes": 32896,
+      "methods": {
+        "first_escape8": {
+          "encoded_bytes": 17606,
+          "ratio": 1.8684539361581278,
+          "fraction_of_raw": 0.5352018482490273,
+          "packet_bytes": [
+            2057,
+            1033,
+            1037,
+            1039,
+            1033,
+            1033,
+            1033,
+            1033,
+            1035,
+            1033,
+            1037,
+            1041,
+            1033,
+            1049,
+            1033,
+            1047
+          ],
+          "roundtrip_exact": true
+        },
+        "first_block32": {
+          "encoded_bytes": 17004,
+          "ratio": 1.9346036226770171,
+          "fraction_of_raw": 0.5169017509727627,
+          "packet_bytes": [
+            2057,
+            953,
+            1001,
+            1017,
+            1013,
+            997,
+            965,
+            933,
+            981,
+            981,
+            1009,
+            1037,
+            981,
+            1053,
+            989,
+            1037
+          ],
+          "roundtrip_exact": true
+        },
+        "previous_escape8": {
+          "encoded_bytes": 17554,
+          "ratio": 1.8739888344536857,
+          "fraction_of_raw": 0.5336211089494164,
+          "packet_bytes": [
+            2057,
+            1033,
+            1033,
+            1033,
+            1033,
+            1033,
+            1033,
+            1033,
+            1033,
+            1035,
+            1033,
+            1033,
+            1033,
+            1033,
+            1033,
+            1033
+          ],
+          "roundtrip_exact": true
+        },
+        "previous_block32": {
+          "encoded_bytes": 16580,
+          "ratio": 1.9840772014475272,
+          "fraction_of_raw": 0.5040126459143969,
+          "packet_bytes": [
+            2057,
+            953,
+            985,
+            929,
+            889,
+            889,
+            953,
+            969,
+            941,
+            1005,
+            1001,
+            993,
+            989,
+            1017,
+            1009,
+            1001
+          ],
+          "roundtrip_exact": true
+        }
+      },
+      "first_residuals": {
+        "min": -156,
+        "max": 123,
+        "fraction_signed8": 0.9982421875
+      },
+      "previous_residuals": {
+        "min": -144,
+        "max": 125,
+        "fraction_signed8": 0.9999348958333333
+      }
+    }
+  ]
+}

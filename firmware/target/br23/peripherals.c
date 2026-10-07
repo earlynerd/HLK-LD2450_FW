@@ -371,6 +371,23 @@ int ld2450_module_uart_set_baud(uint32_t baud)
     return LD2450_OK;
 }
 
+int ld2450_module_uart_read_nowait(uint8_t *data, size_t size)
+{
+    uint32_t available;
+    if (!status.initialized || !module_uart) return LD2450_NOT_READY;
+    if (!data || !size || size>512u) return LD2450_BAD_ARGUMENT;
+    ld_sdk_sync();
+#ifdef LD2450_HOST_TEST
+    available=(uint32_t)mock_uart_rx_size;
+#else
+    available=module_uart->kfifo.buf_in-module_uart->kfifo.buf_out;
+#endif
+    if (!available) return 0;
+    if (size>available) size=available;
+    /* SDK read only pends when FIFO is empty; ISR only adds bytes. */
+    return (int)module_uart->read(data,(uint32_t)size,1);
+}
+
 int ld2450_debug_write(const char *message)
 {
     size_t size;

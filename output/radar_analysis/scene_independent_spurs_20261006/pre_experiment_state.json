@@ -1,0 +1,33 @@
+{
+  "status": "live",
+  "stats": {
+    "received_bytes": 699255864,
+    "complete_frames": 10416,
+    "rejected_frames": 5,
+    "parser_errors": 10766,
+    "discarded_bytes": 10766,
+    "protocol_errors": 0,
+    "device_skipped": 73,
+    "device_rejected": 1,
+    "device_queue_peak": 50972,
+    "processing_drops": 0,
+    "timing_outliers": 96,
+    "replay_loops": 0,
+    "wire_kbps": 753.3,
+    "frames_per_second": 11.9,
+    "truncated_tail": false,
+    "device_aborts": 0,
+    "queue_aborts": 0,
+    "cpu_aborts": 0,
+    "other_aborts": 0,
+    "invalid_frames": 5,
+    "last_abort": null
+  },
+  "settings": {
+    "remove_dc": false,
+    "window": "hann",
+    "remove_static": true
+  },
+  "reference_frame": 949,
+  "recording": null
+}

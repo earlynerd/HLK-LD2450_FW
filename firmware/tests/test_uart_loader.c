@@ -35,6 +35,14 @@ int ld2450_module_uart_read(uint8_t *p, size_t n, uint32_t timeout)
     if (head < tail) { *p = incoming[head++]; return 1; }
     now += timeout; return 0;
 }
+#ifdef LD2450_USB_STREAM
+static unsigned stream_stops,stream_reports;
+int ld2450_module_uart_read_nowait(uint8_t *p,size_t n) {
+    CHECK(n==1);if(head<tail) {*p=incoming[head++];return 1;}return 0;
+}
+void ld2450_stream_app_stop(void) {++stream_stops;}
+void ld2450_stream_app_report(void) {++stream_reports;}
+#endif
 int ld2450_module_uart_set_baud(uint32_t n) { actual_baud=n; return 0; }
 int ld2450_debug_write(const char *p) { CHECK(p); return 0; }
 void ld2450_peripherals_deinit(void) { ++shutdowns; }
@@ -105,6 +113,17 @@ int main(void)
 {
     UPDATA_UART parameters;
     fresh(); CHECK(ld2450_uart_loader_poll() == 0);
+#ifdef LD2450_USB_STREAM
+    CHECK(now==0); /* An idle stream poll must never wait on UART. */
+    incoming[tail++]='?';CHECK(ld2450_uart_loader_poll()==0 && stream_reports==1);
+    /* READY split over many calls retains the parser's partial frame. */
+    { u8 wire[16],ready=6;size_t n=ld_update_frame(wire,sizeof(wire),&ready,1),i;
+      desired_baud=1000001;
+      for(i=0;i<n;++i) {incoming[tail++]=wire[i];CHECK(ld2450_uart_loader_poll()==(i==n-1));}
+      CHECK(stream_stops==1 && !engine_calls);
+    }
+    fresh();
+#endif
     { u8 wrong=7; queue(&wrong,1); CHECK(ld2450_uart_loader_poll() == 0); }
     fresh(); desired_baud=1000001;
     { u8 ready=6; queue(&ready,1); CHECK(ld2450_uart_loader_poll() == 1); }

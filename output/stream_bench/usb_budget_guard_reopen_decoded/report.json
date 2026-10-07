@@ -1,0 +1,10 @@
+{
+  "source": "output\\stream_bench\\usb_budget_guard_reopen_capture\\stream.ldf",
+  "complete_frames": 28,
+  "rejected_frames": 1,
+  "protocol_errors": 0,
+  "parser_errors": 65,
+  "discarded_bytes": 1880,
+  "received_bytes": 3477504,
+  "stream_sha256": "170e6d17c458f2d090f41dc9a8458ec6ba582d0c90b0668a6204761c0b112bda"
+}

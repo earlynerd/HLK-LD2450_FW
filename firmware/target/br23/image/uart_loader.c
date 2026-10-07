@@ -10,6 +10,9 @@
 #endif
 #include "ld2450_peripherals.h"
 #include "uart_update_protocol.h"
+#ifdef LD2450_USB_STREAM
+#include "ld2450_stream_app.h"
+#endif
 
 #define ENTRY_BAUD 256000u
 #define WAIT_MS 700u
@@ -186,10 +189,28 @@ static void state_changed(update_mode_info_t *info, u32 state, void *priv)
 void ld2450_uart_loader_init(void) { update_module_init(state_changed); }
 int ld2450_uart_loader_poll(void)
 {
+#ifdef LD2450_USB_STREAM
+    static uint32_t last_byte;
+    size_t n=0;
+    unsigned budget;
+    if ((uint32_t)(timer_get_ms()-last_byte)>100u) parser.used=0;
+    for (budget=0;budget<64 && !n;++budget) {
+        uint8_t byte;
+        int got=ld2450_module_uart_read_nowait(&byte,1);
+        if(got!=1) break;
+        last_byte=timer_get_ms();
+        if(byte=='?' && !parser.used) {ld2450_stream_app_report();continue;}
+        n=ld_update_feed(&parser,byte);
+    }
+#else
     size_t n = receive(20);
+#endif
     unsigned attempt;
     uint8_t start[1] = {1};
     if (n != 1 || parser.frame[4] != 6) return 0;
+#ifdef LD2450_USB_STREAM
+    ld2450_stream_app_stop();
+#endif
     ld2450_radar_power(0);
     for (attempt = 0; attempt < 6; ++attempt) {
         uint32_t proposed;

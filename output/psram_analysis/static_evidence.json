@@ -1,0 +1,202 @@
+{
+  "scope": "Static analysis only; no device connection or RAM probe",
+  "limitation": "No boot key and zero startup copy do not prove physical absence or exclude later initialization",
+  "sources": [
+    {
+      "version": "V2.04",
+      "app": {
+        "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/files/app.bin",
+        "sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5",
+        "startup": {
+          "psram_load_address": {
+            "instruction_offset": "0x14",
+            "value": 31635836,
+            "hex": "0x1e2b97c"
+          },
+          "psram_virtual_address": {
+            "instruction_offset": "0x1a",
+            "value": 8388608,
+            "hex": "0x800000"
+          },
+          "psram_copy_bytes": {
+            "instruction_offset": "0x20",
+            "value": 0,
+            "hex": "0x0"
+          },
+          "bss_address": {
+            "instruction_offset": "0x36",
+            "value": 19488,
+            "hex": "0x4c20"
+          },
+          "bss_bytes": {
+            "instruction_offset": "0x3e",
+            "value": 60900,
+            "hex": "0xede4"
+          },
+          "data_address": {
+            "instruction_offset": "0x62",
+            "value": 0,
+            "hex": "0x0"
+          },
+          "data_load_address": {
+            "instruction_offset": "0x68",
+            "value": 31618512,
+            "hex": "0x1e275d0"
+          },
+          "data_bytes": {
+            "instruction_offset": "0x6e",
+            "value": 17324,
+            "hex": "0x43ac"
+          }
+        }
+      },
+      "boot_config": {
+        "path": "output/ufw_analysis/oncstzcza54pd/flash_images/flash.bin/top/isd_config.ini",
+        "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc",
+        "entries": [
+          {
+            "offset": "0x22",
+            "key": "SPI",
+            "value_hex": "325f335f305f30"
+          },
+          {
+            "offset": "0x2e",
+            "key": "UTTX",
+            "value_hex": "50413035"
+          },
+          {
+            "offset": "0x38",
+            "key": "UTBD",
+            "value_hex": "40420f00"
+          },
+          {
+            "offset": "0x42",
+            "key": "UTRX",
+            "value_hex": "50423035"
+          },
+          {
+            "offset": "0x4c",
+            "key": "RESET",
+            "value_hex": "504230315f30385f30"
+          },
+          {
+            "offset": "0x5c",
+            "key": "UPDATE_JUMP",
+            "value_hex": "00000000"
+          },
+          {
+            "offset": "0x6d",
+            "key": "EOFFSET",
+            "value_hex": "00000000"
+          },
+          {
+            "offset": "0x7a",
+            "key": "BT_OFFSET",
+            "value_hex": "00000000"
+          }
+        ],
+        "psram_key_present": false
+      },
+      "bootloader_sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30",
+      "bootloader_psram_string_offset": 8053
+    },
+    {
+      "version": "V2.14",
+      "app": {
+        "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/files/app.bin",
+        "sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc",
+        "startup": {
+          "psram_load_address": {
+            "instruction_offset": "0x14",
+            "value": 31640288,
+            "hex": "0x1e2cae0"
+          },
+          "psram_virtual_address": {
+            "instruction_offset": "0x1a",
+            "value": 8388608,
+            "hex": "0x800000"
+          },
+          "psram_copy_bytes": {
+            "instruction_offset": "0x20",
+            "value": 0,
+            "hex": "0x0"
+          },
+          "bss_address": {
+            "instruction_offset": "0x36",
+            "value": 19552,
+            "hex": "0x4c60"
+          },
+          "bss_bytes": {
+            "instruction_offset": "0x3e",
+            "value": 50404,
+            "hex": "0xc4e4"
+          },
+          "data_address": {
+            "instruction_offset": "0x62",
+            "value": 0,
+            "hex": "0x0"
+          },
+          "data_load_address": {
+            "instruction_offset": "0x68",
+            "value": 31622884,
+            "hex": "0x1e286e4"
+          },
+          "data_bytes": {
+            "instruction_offset": "0x6e",
+            "value": 17404,
+            "hex": "0x43fc"
+          }
+        }
+      },
+      "boot_config": {
+        "path": "output/ufw_analysis/5o09fdkye1jo8/flash_images/flash.bin/top/isd_config.ini",
+        "sha256": "f47efc557096c7ecd5b9a33056926e6a05c84341e28899fbd0f9d2d8ba899cfc",
+        "entries": [
+          {
+            "offset": "0x22",
+            "key": "SPI",
+            "value_hex": "325f335f305f30"
+          },
+          {
+            "offset": "0x2e",
+            "key": "UTTX",
+            "value_hex": "50413035"
+          },
+          {
+            "offset": "0x38",
+            "key": "UTBD",
+            "value_hex": "40420f00"
+          },
+          {
+            "offset": "0x42",
+            "key": "UTRX",
+            "value_hex": "50423035"
+          },
+          {
+            "offset": "0x4c",
+            "key": "RESET",
+            "value_hex": "504230315f30385f30"
+          },
+          {
+            "offset": "0x5c",
+            "key": "UPDATE_JUMP",
+            "value_hex": "00000000"
+          },
+          {
+            "offset": "0x6d",
+            "key": "EOFFSET",
+            "value_hex": "00000000"
+          },
+          {
+            "offset": "0x7a",
+            "key": "BT_OFFSET",
+            "value_hex": "00000000"
+          }
+        ],
+        "psram_key_present": false
+      },
+      "bootloader_sha256": "b319dbb4e8ad85c39a68e4aea6f078bcdc25bfde21af6fdc3a49e47073fb6d30",
+      "bootloader_psram_string_offset": 8053
+    }
+  ]
+}

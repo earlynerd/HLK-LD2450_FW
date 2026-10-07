@@ -1,0 +1,16 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\spi-capture\\update-two-wire.ufw",
+  "image_sha256": "501d05e5b5b960c51ce360e4c0e51f6b339ec21e40ec7962583fe4435fece3e5",
+  "entry": "custom",
+  "result": "failed",
+  "error": "TimeoutError('No valid device command before deadline')",
+  "pa9_bytes": 2573,
+  "postflash_bytes": 0,
+  "heartbeat_count": 0,
+  "elapsed_seconds": 20.414,
+  "read_requests": 7,
+  "complete": false,
+  "loader_staged": false,
+  "device_error": null,
+  "reported_size": 0
+}

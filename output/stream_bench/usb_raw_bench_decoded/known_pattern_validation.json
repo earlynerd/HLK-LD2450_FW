@@ -1,0 +1,13 @@
+{
+  "complete_frames_exact": 27,
+  "raw_bytes_verified": 7105536,
+  "parser_error_locations": [
+    {
+      "input_offset": 64,
+      "new_errors": 64
+    }
+  ],
+  "incomplete_tail_bytes": 1557,
+  "final_parser_errors": 65,
+  "raw_only": true
+}

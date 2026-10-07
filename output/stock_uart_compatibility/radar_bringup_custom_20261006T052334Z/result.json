@@ -1,0 +1,15 @@
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\radar-bringup\\update-two-wire.ufw",
+  "image_sha256": "1f7e69f8d5630fcee9ea50b9d242ba95990b40aeeb5fa132e21c500bc35c7e56",
+  "entry": "custom",
+  "result": "device reported final success",
+  "pa9_bytes": 8830,
+  "postflash_bytes": 0,
+  "heartbeat_count": 0,
+  "elapsed_seconds": 25.876,
+  "read_requests": 417,
+  "complete": true,
+  "loader_staged": true,
+  "device_error": null,
+  "reported_size": 184320
+}

@@ -1,0 +1,197 @@
+Uploading SHA256 45311347bc5b34c5915a6abd1ca58b37bfbed0bd6e8b0c07a1da9c285391fc78 to COM13
+Loader staged; waiting for its firmware requests.
+{
+  "image": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\build\\stream-raw16-half-slope\\update-two-wire.ufw",
+  "sha256": "45311347bc5b34c5915a6abd1ca58b37bfbed0bd6e8b0c07a1da9c285391fc78",
+  "port": "COM13",
+  "debug_port": "COM11",
+  "started_utc": "2026-10-07T01:20:57.436498+00:00",
+  "stop_report": false,
+  "upload_complete": true,
+  "read_requests": 417,
+  "reported_size": 184320,
+  "loader_staged": true,
+  "device_error": null,
+  "pa9_bytes": 9044
+}
+5]last file_addr:3000 2ce9c
+
+[00:00:00.239]end_addr:30000
+
+
+
+FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 
+
+[00:00:00.246][Debug]: [SDFILE]sdfile mount succ
+
+[00:00:00.251][Info]: [VM]vm_info:addr:0x30000, len:0xd000, mode:0x0, max_items: 256
+
+[00:00:00.259][Info]: [VM]--func = vm_init--
+
+
+
+
+
+[00:00:00.263](error): <Error>: [VM]VM_ERR: fun:vm_init_check: line:263	err:vm_NOT_INIT
+
+
+
+
+
+[00:00:00.272][Info]: [VM]--vm_adr = 0x30000--
+
+
+
+[00:00:00.276][Info]: [VM]--vm_len = 0xd000--
+
+
+
+[00:00:00.280][Info]: [VM]--vm_mode = 0x0--
+
+
+
+[00:00:00.285][Info]: [VM]--vm_adr_ali = 0x30000--
+
+
+
+[00:00:00.289][Info]: [VM]--vm_len_ali = 0xc000--
+
+
+
+[00:00:00.294][Info]: [VM]--vm_mode = 0x0--
+
+
+
+[00:00:00.298][Info]: [VM]vm_area_a adr = 0x30000
+
+
+
+[00:00:00.303][Info]: [VM]vm_area_a len = 0x6000
+
+
+
+[00:00:00.308][Info]: [VM]vm_area_b adr = 0x36000
+
+
+
+[00:00:00.313][Info]: [VM]vm_area_b len = 0x6000
+
+
+
+[00:00:00.317][Info]: [VM]vm_area_a magic = 0xffffffff
+
+
+
+[00:00:00.322][Info]: [VM]vm_area_b magic = 0xffffffff
+
+
+
+[00:00:00.328][Info]: [VM]---vm_area_all_unused---
+
+vm_eraser
+
+
+
+[00:00:00.333][Info]: [VM]--func = vm_reset--
+
+
+
+[00:00:00.340][Info]: [VM]---VM_AREA_USING  = 0---
+
+
+
+[00:00:00.346][Info]: [VM]vm_find_all_index_last_updated_addr CRC_ERROR, maybe power down cause.
+
+
+
+[00:00:00.355][Info]: [VM]vm_crc = 0xff
+
+
+
+[00:00:00.359][Info]: [VM]crc_c = 0x1f
+
+
+
+[00:00:00.364][Info]: [VM]---VM_LAST_ADR= 0x30004---
+
+
+
+[00:00:00.369][Info]: [VM]vm_warning_line = 80 % 
+
+
+
+[00:00:00.374][Info]: [VM]VM_LAST_ADR = 0x30004     
+
+[00:00:00.379][Info]: [VM]VM_AREA_ADR(VM_AREA_USING)= 0x30000       
+
+[00:00:00.385][Info]: [VM]warning_adr = 0x4ccc
+
+
+
+[00:00:00.390][Info]: [VM]VM used 0 %
+
+
+
+[00:00:00.394][Debug]: [SDFILE]Open 0x1e0f3ce, [/cfg_tool.bin] Fail! (>_<)
+
+
+
+[00:00:00.400](error): <Error>: [CFG BIN]open mnt/sdfile/res/cfg_tool.bin fail
+
+
+
+BOOT: MCU power init
+
+[00:00:00.410][Info]: [PMU]VDDIO KEEP : 0
+
+[00:00:00.414][Info]: [PMU]VDC13 KEEP : 0
+
+[00:00:00.417][Info]: [PMU]SPI boot port : 0x0
+
+[00:00:00.422][Info]: [PMU]POWER_OSC_INFO: LRC - 00032000
+
+[00:00:00.427][Info]: [PMU]Delay n * uS: 00000240 / 00000240
+
+[00:00:00.434][Info]: [PMU]Prepare : 31(us) / Recover 4500(us) / 4500(us)
+
+[00:00:00.441][Info]: [PMU]Low power Tprp : 0x1 / Tcke : 0x90
+
+[00:00:00.446][Info]: [PMU]Low power Reserve time: 0x126 (tick) / 9187(us)
+
+[00:00:00.453][Info]: [PMU]power VDDIO : VDDIOM_VOL_32V / VDDIOW_VOL_24V
+
+BOOT: MCU power ready; radar held off
+
+BOOT: app_main reached
+
+[00:00:00.466][Info]: [UPDATE]update module init ok
+
+
+
+UPDATE: boot recovery window 3000 ms; radar held off
+
+[00:00:03.470][Info]: [USB]add desc cdc
+
+[00:00:03.473][Debug]: [USB]zalloc: usb_config_var = 24ac8
+
+
+
+[00:00:03.479]STREAM: init=0; native USB CDC; '?' stops/reports; UART recovery retained
+
+HLK-LD2450_FW radar experiment application 0.2
+
+RADAR: profile=reduced-slope-diagnostic; I2C=0x20; starting init
+
+
+
+[00:00:03.579](error): <Error>: [USB]usb reset
+
+
+
+
+
+[00:00:03.667](error): <Error>: [USB]usb reset
+
+
+
+

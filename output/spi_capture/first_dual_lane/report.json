@@ -1,0 +1,177 @@
+{
+  "lanes": {
+    "0": {
+      "size": 8192,
+      "dma_complete": true,
+      "ended": true,
+      "sha256": "eac2eb200cae108e80b8f74456d9a5e0d898784ef8f871fc6d8f27b935a5ede3",
+      "unique_bytes": 256,
+      "most_common": [
+        [
+          29,
+          375
+        ],
+        [
+          25,
+          294
+        ],
+        [
+          28,
+          274
+        ],
+        [
+          26,
+          260
+        ],
+        [
+          239,
+          244
+        ],
+        [
+          27,
+          217
+        ],
+        [
+          240,
+          183
+        ],
+        [
+          0,
+          167
+        ]
+      ],
+      "prefix_hex": "aa2002011942ee83196fee50193cee891973ee541929ee8f1978ee531937eeac196aee851961eeab1952eecc19baee8f1942ef0719aceeb01972eee71996eed5",
+      "valid_records": [
+        {
+          "offset": 0,
+          "size": 2056,
+          "header": "aa200201",
+          "rx": 0,
+          "chirp": 0,
+          "pairs": 512,
+          "checksum": "31f4",
+          "i_min": 4780,
+          "i_max": 7797,
+          "q_min": -4528,
+          "q_max": 950,
+          "iq_sha256": "b18a903049ada2f245ba4d744bd28fcaee40b20543e1427b5a3cca99913303ca"
+        },
+        {
+          "offset": 2056,
+          "size": 2056,
+          "header": "aa200a01",
+          "rx": 0,
+          "chirp": 1,
+          "pairs": 512,
+          "checksum": "3312",
+          "i_min": 4757,
+          "i_max": 7808,
+          "q_min": -4527,
+          "q_max": 968,
+          "iq_sha256": "85445e01c519ccbc46f530309e4655dc9923a6d26c32139ef577616630681331"
+        },
+        {
+          "offset": 4112,
+          "size": 2056,
+          "header": "aa201201",
+          "rx": 0,
+          "chirp": 2,
+          "pairs": 512,
+          "checksum": "346e",
+          "i_min": 4786,
+          "i_max": 7818,
+          "q_min": -4546,
+          "q_max": 948,
+          "iq_sha256": "3a7d6cf22154d702ebf9eb1ee4baf0f1c914de17ffef1c445f8dde942e7f0f4c"
+        }
+      ]
+    },
+    "1": {
+      "size": 8192,
+      "dma_complete": true,
+      "ended": true,
+      "sha256": "738c434e623315247833e08819113e9320ddac6285b82098676284c1b376dfa2",
+      "unique_bytes": 256,
+      "most_common": [
+        [
+          10,
+          957
+        ],
+        [
+          9,
+          443
+        ],
+        [
+          2,
+          210
+        ],
+        [
+          3,
+          202
+        ],
+        [
+          255,
+          198
+        ],
+        [
+          1,
+          197
+        ],
+        [
+          8,
+          183
+        ],
+        [
+          254,
+          179
+        ]
+      ],
+      "prefix_hex": "aa600201093cfd7d094afd6b093efd7d0955fd6d0938fd7e0951fd6d0946fd93095afd8d0957fd9f095cfdb40994fdb10961fdda098ffdc70977fdd80990fde6",
+      "valid_records": [
+        {
+          "offset": 0,
+          "size": 2056,
+          "header": "aa600201",
+          "rx": 1,
+          "chirp": 0,
+          "pairs": 512,
+          "checksum": "d68c",
+          "i_min": -675,
+          "i_max": 2842,
+          "q_min": -661,
+          "q_max": 5647,
+          "iq_sha256": "a27a72945d04b80b88c61b3e674f64fc0750166d3798180c6ca5c4a41cfd922e"
+        },
+        {
+          "offset": 2056,
+          "size": 2056,
+          "header": "aa600a01",
+          "rx": 1,
+          "chirp": 1,
+          "pairs": 512,
+          "checksum": "e290",
+          "i_min": -685,
+          "i_max": 2854,
+          "q_min": -661,
+          "q_max": 5675,
+          "iq_sha256": "ae36583f63414f6d392b9fe20b4e1156935c517137646bbe49890be88ca3a43d"
+        },
+        {
+          "offset": 4112,
+          "size": 2056,
+          "header": "aa601201",
+          "rx": 1,
+          "chirp": 2,
+          "pairs": 512,
+          "checksum": "db5b",
+          "i_min": -642,
+          "i_max": 2851,
+          "q_min": -671,
+          "q_max": 5646,
+          "iq_sha256": "d10479cb588b87f7342d15dd1b6318756b32f832467aa89d403a9dd2fa5dd723"
+        }
+      ]
+    }
+  },
+  "lanes_identical": false
+}

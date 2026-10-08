@@ -21,9 +21,12 @@ raw exchanges, the initial baud mismatch, and a corrupted first ACK.
 
 ## Installing from stock
 
-The intended route for V2.04 owners is to install the stock V2.14 transparent
-firmware with the existing BLE updater, then use the module UART for the first
-custom image. The V2.14-to-custom hello step has now completed on hardware.
+A stock module must run Hi-Link V2.14 before the first custom image: our
+uploader enters update mode through V2.14's 0xB2 command, which V2.04 lacks.
+Update it over Bluetooth with Hi-Link's HLKRadarTool phone app, and set the
+module UART to 256000 baud in the same app (V2.14 can come up at 9600; the
+uploader is tested only with the module at 256000). Then use the module UART for
+the first custom image. The V2.14-to-custom hello step has now completed on hardware.
 The user has accepted the one-time BLE prerequisite. Every custom image keeps
 our UART entry service, so subsequent updates use `--entry custom` (the default).
 
@@ -92,8 +95,8 @@ was gone. Evidence: `output/stock_restore/20261008-133050/`.
 
 After the restore the module UART runs at 9600, not the 256000 in the LD2450
 manual; the same happened after the user's earlier BLE update to V2.14. Set the
-rate in the HLKRadarTool app, or with the serial set-baud command, if a host
-expects 256000. Going from this state back to a custom image uses the stock
+rate in the HLKRadarTool app if a host expects 256000, and before loading a
+custom image again. Going from this state back to a custom image uses the stock
 B2 entry above (`--entry stock-b2`), which was verified with the module at
 256000.
 

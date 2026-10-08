@@ -51,6 +51,35 @@ decision: each run needs an acknowledgement. The viewer drops to minimum
 transmit power and returns to the in-band profile on a 2-30 minute timer, on
 **Restore in band now**, on a failed write, and on disconnect or shutdown.
 
+## Trying it on your module
+
+Everything below goes over the module's 4-pin UART (5V, GND, TX, RX) with a
+USB-serial adapter, and can be undone (see the next section).
+
+1. **Update the stock firmware to V2.14 first, with Hi-Link's HLKRadarTool
+   phone app** (Bluetooth). Our uploader enters the update mode through a
+   command that V2.14 has and older versions such as V2.04 lack, so an older
+   module cannot be loaded directly.
+2. **Set the module UART to 256000 baud in the same app.** V2.14 may run at
+   9600 after updating. The app offers higher rates too, but the uploader has
+   only been tested with the module at 256000.
+3. **Load the custom image** (pyserial and lz4 needed; substitute your port):
+
+   ```powershell
+   python firmware/tools/uart_upload.py firmware/releases/usb-bins40-20261008/update-two-wire.ufw --port COM13 --entry stock-b2 --initial-baud 256000 --baud 256000
+   ```
+
+4. **Connect native USB for the data.** The range-bin stream uses the MCU's own
+   USB (AC6956C pins 23/24, DM/DP), which is not on the 4-pin connector; see the
+   [hardware evidence](docs/radar_ic_and_internal_interfaces.md). It enumerates
+   as a USB serial port (VID/PID `4C4A:4155`, serial `LD2450-STREAM-01`), which
+   the viewer finds by itself.
+
+Later custom images load the same way with `--entry custom` (the default):
+every custom image keeps the UART updater. Its three-second boot window lets
+you reload a module whose application hangs, by power-cycling it while the
+uploader waits.
+
 ## Reverting to stock
 
 The original Hi-Link firmware can be put back with one command over the module
@@ -62,7 +91,9 @@ python firmware/tools/restore_stock.py --port COM13
 
 It flashes the stock V2.14 image committed in this repository and then checks
 that stock target reports and the version reply (V2.14.25112412) come back.
-Stock firmware starts at 9600 baud after the restore. See
+Stock firmware starts at 9600 baud after the restore; change it in
+HLKRadarTool if your host expects 256000, and before loading custom firmware
+again. See
 [Restoring stock firmware](firmware/docs/UART_UPDATE.md#restoring-stock-firmware)
 for what is sent and why the vendor's transfer loader needs two small fixes.
 

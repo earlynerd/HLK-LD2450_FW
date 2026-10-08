@@ -2,7 +2,7 @@
 const $ = id => document.getElementById(id);
 let registerNotes = {}, registerRows = {};
 let token = '', version = -1, generation = -1, current = null, bins = null;
-let history = [], binTrail = [], targetTrail = [], paused = false, recording = false, busy = false, messageUntil = 0;
+let history = [], binTrail = [], paused = false, recording = false, busy = false, messageUntil = 0;
 const colors = ['#55e0d4', '#ee85b0', '#f6b86b', '#ad9fff'];
 const fmt = n => Number(n || 0).toLocaleString();
 
@@ -52,10 +52,10 @@ action('iq-calibrate', async () => {
 action('iq-clear', async () => { await request('iq-calibration',{enabled:false}); notice('I/Q correction cleared.'); });
 action('record', async () => { await request(recording?'record/stop':'record/start'); await options(); });
 action('snapshot', async () => { const data = await request('snapshot'); notice('Saved latest acquired frame: ' + data.path); });
-function resetDisplay() { version=-1; current=bins=null; history=[]; binTrail=[]; targetTrail=[]; paused=false; $('pause').textContent='Freeze display'; $('pause').classList.remove('active'); acceptFrame(null); }
+function resetDisplay() { version=-1; current=bins=null; history=[]; binTrail=[]; paused=false; $('pause').textContent='Freeze display'; $('pause').classList.remove('active'); acceptFrame(null); }
 $('pause').addEventListener('click', () => {
   paused = !paused; $('pause').textContent = paused ? 'Resume display' : 'Freeze display'; $('pause').classList.toggle('active',paused);
-  if (!paused) { version=-1; history=[]; binTrail=[]; targetTrail=[]; }
+  if (!paused) { version=-1; history=[]; binTrail=[]; }
   notice(paused ? 'Display frozen. USB acquisition and recording continue; chirp selection still works.' : 'Display resumed; history starts fresh.');
 });
 // Polls issued before a settings change completes carry stale settings; they must not overwrite the controls.
@@ -196,17 +196,21 @@ function targetsView(){
   for(let r=1;r<=Math.floor(R);r++){ctx.beginPath();ctx.arc(cx,cy,r*s,-Math.PI/2-fov,-Math.PI/2+fov);ctx.stroke();ctx.fillText(r+' m',px(r*Math.sin(fov))+4,py(r*Math.cos(fov)));}
   ctx.setLineDash([4,4]);for(const a of [-fov,0,fov]){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(px(R*Math.sin(a)),py(R*Math.cos(a)));ctx.stroke();}ctx.setLineDash([]);
   ctx.beginPath();ctx.rect(p.x,p.y,p.pw,p.ph);ctx.clip();
-  targetTrail.forEach((frame,i)=>{ctx.globalAlpha=.08+.4*(i+1)/targetTrail.length;for(const t of frame){ctx.fillStyle=t.velocity_mps>=0?colors[0]:colors[2];ctx.fillRect(px(t.x_m)-1.5,py(t.y_m)-1.5,3,3);}});
-  ctx.globalAlpha=1;ctx.textAlign='left';ctx.textBaseline='bottom';
-  data.targets.forEach((t,i)=>{const r=4+Math.max(0,Math.min(10,(t.snr_db-data.threshold_db)/3));ctx.fillStyle=t.velocity_mps>=0?colors[0]:colors[2];
-    ctx.beginPath();ctx.arc(px(t.x_m),py(t.y_m),r,0,2*Math.PI);ctx.fill();ctx.fillStyle='#e5edf7';ctx.fillText(String(i+1),px(t.x_m)+r+2,py(t.y_m)-2);});
+  // This frame's raw detections: small dots. Tracks: trail, marker, id and a 1 s velocity arrow.
+  ctx.fillStyle='#8195af';for(const t of data.targets)ctx.fillRect(px(t.x_m)-1.5,py(t.y_m)-1.5,3,3);
+  const tracks=current.products.tracks?.tracks||[];ctx.textAlign='left';ctx.textBaseline='bottom';ctx.lineWidth=2;
+  for(const t of tracks){const color=t.in_place?'#8195af':t.doppler_mps>=0?colors[0]:colors[2];ctx.strokeStyle=ctx.fillStyle=color;
+    ctx.globalAlpha=.6;ctx.beginPath();t.trail.forEach(([x,y],i)=>i?ctx.lineTo(px(x),py(y)):ctx.moveTo(px(x),py(y)));ctx.stroke();
+    ctx.globalAlpha=t.coasting?.5:1;ctx.beginPath();ctx.arc(px(t.x_m),py(t.y_m),7,0,2*Math.PI);t.in_place?ctx.stroke():ctx.fill();
+    if(!t.in_place){ctx.beginPath();ctx.moveTo(px(t.x_m),py(t.y_m));ctx.lineTo(px(t.x_m+t.vx_mps),py(t.y_m+t.vy_mps));ctx.stroke();}
+    ctx.globalAlpha=1;ctx.fillStyle='#e5edf7';ctx.fillText(String(t.id),px(t.x_m)+10,py(t.y_m)-4);}
   ctx.restore();
-  const fmt2=(v,d)=>Number(v).toFixed(d);
-  $('target-rows').replaceChildren(...data.targets.map((t,i)=>{const row=document.createElement('tr');
-    row.innerHTML=`<td>${i+1}</td><td>${fmt2(t.range_m,2)}</td><td>${fmt2(t.angle_deg,1)}${t.angle_ambiguous?' ?':''}</td><td>${fmt2(t.velocity_mps,2)}</td><td>${fmt2(t.snr_db,1)}</td><td>${fmt2(t.coherence,2)}</td>`;return row;}));
-  const unc=Object.entries(data.calibrated).filter(([,v])=>!v).map(([k])=>k);
+  const fmt2=(v,d)=>v==null?'—':Number(v).toFixed(d);
+  $('target-rows').replaceChildren(...tracks.map(t=>{const row=document.createElement('tr');
+    row.innerHTML=`<td>${t.id}</td><td>${fmt2(t.range_m,2)}</td><td>${fmt2(t.angle_deg,1)}</td><td>${fmt2(t.doppler_mps,2)}</td><td>${fmt2(t.range_rate_mps,2)}</td><td>${fmt2(t.age_s,1)}</td><td>${t.in_place?'in place':'moving'}${t.coasting?' · coasting':''}</td>`;return row;}));
+  const unc=Object.entries(data.calibrated).filter(([,v])=>!v).map(([k])=>k),tk=current.products.tracks;
   $('targets-subtitle').textContent=`${data.moving_only?'Moving targets (static removal on)':'All targets (static removal off; capture a background to suppress clutter)'} · CFAR ${data.threshold_db} dB · up to ${R} m`;
-  $('targets-detail').textContent=`${data.targets.length} target${data.targets.length===1?'':'s'} · noise ${data.noise_db} dB`+(unc.length?` · uncalibrated: ${unc.join(', ')} (see tools/radar_viewer/calibration.json)`:'');
+  $('targets-detail').textContent=`${tracks.length} track${tracks.length===1?'':'s'}`+(tk?` (${tk.tentative} tentative)`:'')+` · ${data.targets.length} detection${data.targets.length===1?'':'s'} this frame · noise ${data.noise_db} dB`+(unc.length?` · uncalibrated: ${unc.join(', ')} (see tools/radar_viewer/calibration.json)`:'');
 }
 function draw(){
   for(const id of ['color-min','color-max','doppler-min','doppler-max'])$(id+'-value').textContent=$(id).value+' dB';
@@ -224,7 +228,6 @@ function acceptFrame(frame){
   const k=Number($('constellation-bin').value),points=binValues(frame,bins,k);if(points)binTrail.push({k,points});if(binTrail.length>40)binTrail.shift();
   // History rows share one bin axis; a different range (new firmware/format) restarts it.
   if(history.length&&String(history.at(-1).bins)!==String(frame.bin_range))history=[];
-  if(frame.products.targets){targetTrail.push(frame.products.targets.targets);if(targetTrail.length>30)targetTrail.shift();}
   if(frame.products.spectrum){history.push({bins:frame.bin_range,spectrum:frame.products.spectrum.db,change:frame.products.change?.db});if(history.length>160)history.shift();}
   $('frame-id').textContent=fmt(frame.frame_id);
   $('frame-detail').textContent=`${frame.chirps} chirps / RX · bins ${frame.bin_range[0]}..${frame.bin_range[1]} (${frame.bins_source==='device'?'device FFT':'host FFT of raw'}) · ${frame.processing_ms.toFixed(1)} ms DSP`;

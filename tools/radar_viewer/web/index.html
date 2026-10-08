@@ -55,11 +55,11 @@
     <article><span>Within-frame variation</span><strong id="residual">—</strong><small>RX1 / RX2 · residual amplitude</small></article>
   </div>
   <div class="charts">
-    <section class="panel wide"><div class="panel-heading"><div><h2>Targets · top view</h2><p id="targets-subtitle">Detections from the range–Doppler map · radar at bottom centre</p></div><span class="tag">DETECTIONS</span></div>
+    <section class="panel wide"><div class="panel-heading"><div><h2>Targets · top view</h2><p id="targets-subtitle">Tracks from range–Doppler detections · radar at bottom centre</p></div><span class="tag">TRACKS</span></div>
       <div class="targets-body"><canvas id="targets" aria-label="Top view of detected targets in metres"></canvas>
-        <div class="target-table-wrap"><table class="register-table target-table"><thead><tr><th>#</th><th>Range m</th><th>Angle °</th><th>Velocity m/s</th><th>SNR dB</th><th>Coherence</th></tr></thead><tbody id="target-rows"></tbody></table>
+        <div class="target-table-wrap"><table class="register-table target-table"><thead><tr><th>Track</th><th>Range m</th><th>Angle °</th><th>Doppler m/s</th><th>Range rate m/s</th><th>Age s</th><th>State</th></tr></thead><tbody id="target-rows"></tbody></table>
         <p id="targets-detail" class="hint">Waiting for a frame.</p></div></div>
-      <div class="legend"><span class="cyan">● positive velocity</span><span class="orange">● negative velocity</span><span class="right">Metres · rings every 1 m · ±60° field of view · fading trail of recent frames</span></div>
+      <div class="legend"><span class="cyan">● moving, positive Doppler</span><span class="orange">● moving, negative Doppler</span><span>○ motion in place (fan, fidgeting)</span><span>· this frame's detections</span><span class="right">Metres · rings every 1 m · ±60° · trails 3 s · arrows 1 s of travel</span></div>
     </section>
     <section class="panel"><div class="panel-heading"><div><h2>Frame spectrum</h2><p>RMS spectral amplitude over the captured chirps</p></div><span class="tag">RANGE BINS</span></div>
       <canvas id="spectrum" aria-label="Spectrum of both receivers in signed FFT bins"></canvas>

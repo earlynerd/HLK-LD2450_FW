@@ -38,7 +38,7 @@ def fixture(fast_bin=12, slow_bin=5, frame_id=7, config="ab" * 32, chirps=64):
                 device_queue_peak=100, lanes=lane_bytes, timestamps_us=[stamps, stamps])
 
 
-def from_samples(z, frame_id=7, config="ab" * 32):
+def from_samples(z, frame_id=7, config="ab" * 32, start_us=1000):
     """Raw frame from complex samples z: receivers x chirps x 512."""
     chirps = z.shape[1]
     lanes = []
@@ -51,13 +51,13 @@ def from_samples(z, frame_id=7, config="ab" * 32):
                            struct.pack(">HH", sum(struct.unpack(">1024H", iq)) & 65535,
                                        lane << 14 | 0x2000 | (chirp & 15) << 8 | 0x55))
         lanes.append(b"".join(records))
-    stamps = [1000 + 1200 * i for i in range(chirps)]
+    stamps = [(start_us + 1200 * i) & 0xffffffff for i in range(chirps)]
     return dict(chirps=chirps, frame_id=frame_id, config_sha256=config, started_us=stamps[0],
                 ended_us=stamps[-1], device_skipped=0, device_rejected=0, device_queue_peak=0,
                 lanes=lanes, timestamps_us=[stamps, stamps])
 
 
-def scene(movers=(), static=(), noise=4.0, chirps=64, seed=1, d_over_lambda=0.5):
+def scene(movers=(), static=(), noise=4.0, chirps=64, seed=1, d_over_lambda=0.5, frame_id=7, start_us=1000):
     """Point targets as (range_bin, doppler_bin, angle_deg, amplitude); RX2 leads RX1 by
     2 pi (d/lambda) sin(angle). Static targets have zero Doppler."""
     rng = np.random.default_rng(seed)
@@ -69,7 +69,7 @@ def scene(movers=(), static=(), noise=4.0, chirps=64, seed=1, d_over_lambda=0.5)
         z[0] += tone
         z[1] += tone * np.exp(1j * phase)
     z += noise * (rng.standard_normal(z.shape) + 1j * rng.standard_normal(z.shape))
-    return from_samples(z)
+    return from_samples(z, frame_id=frame_id, start_us=start_us)
 
 
 def bins_wire(frame, half=40, generation=0):
@@ -338,6 +338,78 @@ class TargetTests(unittest.TestCase):
         for x, y in zip(a, b):
             for key, tol in (("range_bin", 0.02), ("doppler_hz", 0.2), ("angle_deg", 0.2)):
                 self.assertAlmostEqual(x[key], y[key], delta=tol)
+
+
+class TrackTests(unittest.TestCase):
+    PERIOD_US = 89000
+    HZ_PER_BIN = 1 / (64 * 0.0012)
+
+    def run_frames(self, movers_at, frames, noise=40.0, seed=0, start=1000):
+        """movers_at(i, rng) -> movers for frame i; returns the tracks product per frame."""
+        pipe, rng, out = Pipeline(), np.random.default_rng(seed), []
+        for i in range(frames):
+            frame = scene(movers_at(i, rng), noise=noise, seed=seed * 1000 + i, frame_id=i,
+                          start_us=start + i * self.PERIOD_US)
+            result = pipe.process(frame, DEFAULT_SETTINGS)
+            self.assertEqual(result["stage_errors"], {})
+            out.append(result["products"]["tracks"])
+        return out
+
+    def walker(self, i, rng, speed=0.8, start_bin=9.0, angle=15.0):
+        """Approaching point target with a fluctuating (Rayleigh) echo: about a third of
+        frames fall below the detection threshold on their own."""
+        cal = load_calibration()
+        k = start_bin - speed * i * self.PERIOD_US / 1e6 / cal["range"]["m_per_bin"]
+        dop = -2 * speed / cal["wavelength_m"] / self.HZ_PER_BIN
+        return [(k, dop, angle, 2.2 * abs(rng.standard_normal() + 1j * rng.standard_normal()) / np.sqrt(2))]
+
+    def test_fluctuating_walker_is_one_continuous_track(self):
+        frames = self.run_frames(self.walker, 45)
+        cal = load_calibration()
+        seen = [f["tracks"] for f in frames]
+        first = next(i for i, t in enumerate(seen) if t)
+        self.assertLessEqual(first, 8)  # Three detections within five frames, despite fades.
+        ids = {t["id"] for tracks in seen for t in tracks}
+        self.assertEqual(len(ids), 1, ids)
+        self.assertTrue(all(len(t) == 1 for t in seen[first:]), [len(t) for t in seen])
+        end = seen[-1][0]
+        expected = cal["range"]["m_per_bin"] * (9.0 - 0.8 * 44 * .089 / cal["range"]["m_per_bin"]) + cal["range"]["offset_m"]
+        self.assertAlmostEqual(end["range_m"], expected, delta=0.25)
+        self.assertAlmostEqual(np.mean([t[0]["angle_deg"] for t in seen[first:]]), 15, delta=3)
+        self.assertAlmostEqual(end["range_rate_mps"], -0.8, delta=0.2)
+        self.assertAlmostEqual(end["doppler_mps"], -0.8, delta=0.1)
+        self.assertFalse(end["in_place"])
+        self.assertTrue(any(t["coasting"] for tracks in seen[first:] for t in tracks))  # Misses were bridged.
+
+    def test_noise_alone_confirms_no_tracks(self):
+        frames = self.run_frames(lambda i, rng: [], 25, seed=3)
+        self.assertEqual([t for f in frames for t in f["tracks"]], [])
+
+    def test_doppler_without_range_change_is_in_place(self):
+        # A fan: fixed position, alternating Doppler sign, plus the walker elsewhere.
+        def movers(i, rng):
+            return [(3.0, 8.0 if i % 2 else -8.0, -40.0, 3.0)] + self.walker(i, rng, start_bin=10.0, angle=20.0)
+        last = self.run_frames(movers, 30, seed=5)[-1]["tracks"]
+        fan = [t for t in last if t["range_m"] < 2.6]
+        walk = [t for t in last if t["range_m"] >= 2.6]
+        self.assertEqual((len(fan), len(walk)), (1, 1), last)
+        self.assertTrue(fan[0]["in_place"])
+        self.assertAlmostEqual(fan[0]["range_rate_mps"], 0, delta=0.1)
+        self.assertFalse(walk[0]["in_place"])
+
+    def test_time_gap_or_restart_clears_tracks(self):
+        pipe = Pipeline()
+        def frame(i, start):
+            return scene([(6.0, 5.0, 0.0, 3.0)], noise=40, seed=i, frame_id=i, start_us=start)
+        for i in range(6):
+            tracks = pipe.process(frame(i, 1000 + i * self.PERIOD_US), DEFAULT_SETTINGS)["products"]["tracks"]
+        self.assertEqual(len(tracks["tracks"]), 1)
+        first_id = tracks["tracks"][0]["id"]
+        tracks = pipe.process(frame(6, 1000 + 5 * self.PERIOD_US + 2_000_000), DEFAULT_SETTINGS)["products"]["tracks"]
+        self.assertEqual(tracks["tracks"], [])  # Gap over max_gap_s: start again.
+        for i in range(7, 12):
+            tracks = pipe.process(frame(i, 3_000_000 + i * self.PERIOD_US), DEFAULT_SETTINGS)["products"]["tracks"]
+        self.assertNotEqual(tracks["tracks"][0]["id"], first_id)
 
 
 class AcquisitionTests(unittest.TestCase):

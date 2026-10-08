@@ -16,7 +16,10 @@ Target detection and angle (stage "targets") run on the range-Doppler map:
 CFAR over the summed receiver power, local maxima, merging of nearby cells,
 sub-bin interpolation, then the RX2-RX1 phase at each target for its angle.
 Calibration values (range scale, wavelength, antenna spacing, phase offset,
-signs, detection parameters) come from calibration.json.
+signs, detection parameters) come from calibration.json. Stage "tracks" follows
+objects across frames (Tracker): consistency over time, not agreement between
+the two receivers, is what separates real objects from noise here; summing both
+receivers' power is already the best two-channel detector for an unknown angle.
 
 Add a stage to Pipeline.stages to publish another named product. Each stage
 receives a FrameContext and returns JSON-compatible data. Acquisition and the
@@ -303,6 +306,7 @@ def targets(ctx, cal):
             "range_bin": round(float(k), 2), "doppler_hz": round(float(f), 2),
             "phase_deg": round(float(np.degrees(np.angle(cross))), 1),
             "coherence": round(float(coherence), 3), "angle_ambiguous": bool(abs(sine) > 1)})
+    ctx.cache["targets"] = found
     return {"targets": found, "threshold_db": det["threshold_db"], "max_range_m": det["max_range_m"],
             "noise_db": round(float(np.median(10 * np.log10(noise))), 1),
             "moving_only": bool(ctx.settings["remove_static"]),
@@ -310,12 +314,171 @@ def targets(ctx, cal):
             "units": {"range": "m", "angle": "deg, positive per calibration sign", "velocity": "m/s"}}
 
 
+TRACKING_DEFAULTS = {
+    "confirm_hits": 3, "confirm_frames": 5, "coast_s": 1.0, "max_gap_s": 1.0, "accel_mps2": 3.0,
+    "initial_speed_mps": 1.5, "range_sigma_m": 0.25, "gate_chi2": 13.8, "cluster_range_m": 0.9,
+    "cluster_deg": 20.0, "history_s": 3.0, "in_place_min_mps": 0.25, "in_place_ratio": 0.35,
+    "coast_velocity_tau_s": 0.5, "max_speed_mps": 3.0, "max_angle_deg": 80.0,
+}
+
+
+def cluster_detections(found, p):
+    """One measurement per object: an object (a person's torso and limbs, a fan's blades) often
+    gives several Doppler peaks at one place. Strongest first, a detection within cluster_range_m
+    and cluster_deg of a cluster's strongest member joins it; the measurement keeps that member's
+    position, radial velocity and SNR."""
+    clusters = []
+    for t in sorted(found, key=lambda t: -t["power_db"]):
+        for c in clusters:
+            if abs(t["range_m"] - c["range_m"]) <= p["cluster_range_m"] and abs(t["angle_deg"] - c["angle_deg"]) <= p["cluster_deg"]:
+                c["members"] += 1
+                break
+        else:
+            clusters.append(dict(t, members=1))
+    return clusters
+
+
+def measurement(m, p):
+    """Position measurement (x, y) and its covariance from range and angle.
+
+    Range sigma is fixed; the angle sigma follows the RX2-RX1 phase-difference error for the
+    detection's SNR, sigma_phi ~ 1/sqrt(SNR), mapped through sin(theta) = phi / (2 pi d/lambda)
+    (d/lambda = 0.5 assumed here), between 2 and 20 degrees."""
+    r, th = m["range_m"], np.radians(m["angle_deg"])
+    snr = 10 ** (m["snr_db"] / 10)
+    s_th = float(np.clip(1 / (np.pi * max(np.cos(th), .2) * np.sqrt(snr / 2)), np.radians(2), np.radians(20)))
+    J = np.array([[np.sin(th), r * np.cos(th)], [np.cos(th), -r * np.sin(th)]])
+    return np.array([m["x_m"], m["y_m"]]), J @ np.diag([p["range_sigma_m"] ** 2, s_th ** 2]) @ J.T
+
+
+class Tracker:
+    """Constant-velocity Kalman tracks in x, y across frames.
+
+    A detection is one frame's noisy evidence; an object that is really there reappears at a
+    consistent place in later frames, noise does not. Tracks start tentative and are confirmed
+    after confirm_hits detections within confirm_frames frames; a confirmed track coasts on its
+    prediction through missed frames for up to coast_s. Association is greedy nearest-first by
+    Mahalanobis distance within gate_chi2. Velocity comes from positions; Doppler radial velocity
+    is kept separately so the two can be compared: an object whose Doppler says it moves but whose
+    range does not change (a fan, a fidgeting hand) is flagged in_place.
+    Time comes from frame start stamps; a gap over max_gap_s or a stamp going backwards
+    (replay restart) clears all tracks.
+    """
+
+    def __init__(self):
+        self.next_id = 1   # Never reused, so a restart cannot relabel an old track.
+        self.reset()
+
+    def reset(self):
+        self.tracks, self.last_us, self.time = [], None, 0.0
+
+    def update(self, found, t_us, cal):
+        p = dict(TRACKING_DEFAULTS, **cal.get("tracking", {}))
+        dt = None if self.last_us is None else ((t_us - self.last_us) & 0xffffffff) / 1e6
+        if dt is None or dt > p["max_gap_s"]:
+            self.reset()
+            dt = 0.0
+        self.last_us = t_us
+        self.time += dt
+        F = np.eye(4)
+        F[0, 2] = F[1, 3] = dt
+        g = np.array([[dt ** 2 / 2, 0], [0, dt ** 2 / 2], [dt, 0], [0, dt]])
+        Q = p["accel_mps2"] ** 2 * g @ g.T
+        H = np.eye(2, 4)
+        for tr in self.tracks:
+            tr["x"], tr["P"] = F @ tr["x"], F @ tr["P"] @ F.T + Q
+        meas = cluster_detections(found, p)
+        zs = [measurement(m, p) for m in meas]
+        pairs = []
+        for i, tr in enumerate(self.tracks):
+            for j, (z, R) in enumerate(zs):
+                nu, S = z - H @ tr["x"], H @ tr["P"] @ H.T + R
+                d2 = float(nu @ np.linalg.solve(S, nu))
+                if d2 <= p["gate_chi2"]:
+                    pairs.append((d2, i, j))
+        used_t, used_m = set(), set()
+        for d2, i, j in sorted(pairs):
+            if i in used_t or j in used_m:
+                continue
+            used_t.add(i)
+            used_m.add(j)
+            tr, (z, R), m = self.tracks[i], zs[j], meas[j]
+            S = H @ tr["P"] @ H.T + R
+            K = tr["P"] @ H.T @ np.linalg.inv(S)
+            tr["x"] = tr["x"] + K @ (z - H @ tr["x"])
+            tr["P"] = (np.eye(4) - K @ H) @ tr["P"]
+            tr.update(last_hit=self.time, snr_db=m["snr_db"], members=m["members"])
+            tr["hits"].append((self.time, m["range_m"], m["velocity_mps"]))
+        decay = np.exp(-dt / p["coast_velocity_tau_s"])
+        for i, tr in enumerate(self.tracks):
+            if i not in used_t:   # Coasting: let the velocity die away rather than extrapolate noise.
+                tr["x"][2:] *= decay
+            speed = np.hypot(*tr["x"][2:])
+            if speed > p["max_speed_mps"]:
+                tr["x"][2:] *= p["max_speed_mps"] / speed
+            tr["recent"] = (tr["recent"] + [i in used_t])[-p["confirm_frames"]:]
+            if not tr["confirmed"] and sum(tr["recent"]) >= p["confirm_hits"]:
+                tr["confirmed"] = True
+        for j, ((z, R), m) in enumerate(zip(zs, meas)):
+            if j in used_m:
+                continue
+            P0 = np.zeros((4, 4))
+            P0[:2, :2], P0[2:, 2:] = R, np.eye(2) * p["initial_speed_mps"] ** 2
+            self.tracks.append(dict(id=self.next_id, x=np.r_[z, 0.0, 0.0], P=P0, born=self.time,
+                                    last_hit=self.time, snr_db=m["snr_db"], members=m["members"],
+                                    hits=[(self.time, m["range_m"], m["velocity_mps"])],
+                                    recent=[True], confirmed=False, trail=[]))
+            self.next_id += 1
+        keep = []
+        misses_allowed = p["confirm_frames"] - p["confirm_hits"]
+        for tr in self.tracks:
+            if tr["confirmed"]:
+                alive = self.time - tr["last_hit"] <= p["coast_s"]
+            else:
+                alive = len(tr["recent"]) - sum(tr["recent"]) <= misses_allowed
+            x, y = tr["x"][:2]
+            if not (y > 0 and abs(np.degrees(np.arctan2(x, y))) <= p["max_angle_deg"]
+                    and np.hypot(x, y) <= cal["detection"]["max_range_m"] + 0.5):
+                alive = False   # Left the field of view.
+            if alive:
+                tr["hits"] = [h for h in tr["hits"] if self.time - h[0] <= p["history_s"]]
+                tr["trail"] = (tr["trail"] + [(float(tr["x"][0]), float(tr["x"][1]))])[-int(p["history_s"] * 12):]
+                keep.append(tr)
+        # Two tracks that converge on one object: keep the confirmed, then the older.
+        keep.sort(key=lambda tr: (not tr["confirmed"], tr["born"]))
+        self.tracks = []
+        for tr in keep:
+            if not any(np.hypot(*(tr["x"][:2] - o["x"][:2])) < p["cluster_range_m"] / 2 for o in self.tracks):
+                self.tracks.append(tr)
+        return [self.describe(tr, p) for tr in self.tracks if tr["confirmed"]], len(meas)
+
+    def describe(self, tr, p):
+        x, y, vx, vy = (float(v) for v in tr["x"])
+        r = float(np.hypot(x, y))
+        hits = np.array(tr["hits"])
+        rate, in_place = None, False
+        if len(hits) >= 5 and hits[-1, 0] - hits[0, 0] >= 1.0:
+            rate = float(np.polyfit(hits[:, 0], hits[:, 1], 1)[0])
+            doppler_speed = float(np.mean(np.abs(hits[:, 2])))
+            in_place = doppler_speed >= p["in_place_min_mps"] and abs(rate) < p["in_place_ratio"] * doppler_speed
+        return {"id": tr["id"], "x_m": round(x, 3), "y_m": round(y, 3), "vx_mps": round(vx, 3),
+                "vy_mps": round(vy, 3), "range_m": round(r, 3),
+                "angle_deg": round(float(np.degrees(np.arctan2(x, y))), 1),
+                "speed_mps": round(float(np.hypot(vx, vy)), 3),
+                "doppler_mps": round(float(np.mean(hits[-3:, 2])), 3),
+                "range_rate_mps": None if rate is None else round(rate, 3),
+                "in_place": bool(in_place), "coasting": self.time > tr["last_hit"],
+                "age_s": round(self.time - tr["born"], 2), "snr_db": tr["snr_db"], "members": tr["members"],
+                "trail": [[round(a, 3), round(b, 3)] for a, b in tr["trail"]]}
+
+
 class Pipeline:
     def __init__(self, calibration=None):
         self.calibration = load_calibration() if calibration is None else calibration
         self.stages = {"quality": signal_quality, "spectrum": spectrum, "change": self.change,
                        "doppler": doppler, "iq_balance": iq_balance,
-                       "targets": lambda ctx: targets(ctx, self.calibration)}
+                       "targets": lambda ctx: targets(ctx, self.calibration), "tracks": self.track}
+        self.tracker, self.tracker_key = Tracker(), None
         self.iq_cal = self.iq_cal_config = None
         self.reference = None
         self.reference_config = None
@@ -338,6 +501,20 @@ class Pipeline:
         self.average = self.average + CHANGE_ALPHA * (current - self.average)
         return {"db": db(np.sqrt(np.mean(abs(deviation) ** 2, axis=1))), "bins": ctx.bin_range(),
                 "alpha": CHANGE_ALPHA, "unit": "dB re 1 exported count"}
+
+    def track(self, ctx):
+        """Tracks across frames from this frame's detections; restarts when configuration,
+        settings or background change."""
+        if "targets" not in ctx.cache:
+            raise ValueError("No detections this frame")
+        key = (ctx.frame.get("config_id", ctx.frame["config_sha256"]), tuple(sorted(ctx.settings.items())),
+               self.reference_frame)
+        if key != self.tracker_key:
+            self.tracker.reset()
+            self.tracker_key = key
+        tracks, clusters = self.tracker.update(ctx.cache["targets"], ctx.frame["started_us"], self.calibration)
+        return {"tracks": tracks, "detections": len(ctx.cache["targets"]), "clusters": clusters,
+                "tentative": sum(not tr["confirmed"] for tr in self.tracker.tracks)}
 
     def set_reference(self, frame):
         self.reference = frame_bins(frame)[0].mean(axis=1, keepdims=True)

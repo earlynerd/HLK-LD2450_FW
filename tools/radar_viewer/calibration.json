@@ -21,12 +21,41 @@
   },
   "detection": {
     "max_range_m": 8.0,
-    "threshold_db": 13.0,
-    "guard_cells": [2, 2],
-    "training_cells": [4, 6],
+    "threshold_db": 10.0,
+    "guard_cells": [
+      2,
+      2
+    ],
+    "training_cells": [
+      4,
+      6
+    ],
     "min_doppler_bin": 1,
-    "merge_cells": [2, 4],
-    "max_targets": 6,
-    "_cells": "[range bins, Doppler bins]. Threshold is over the cell-averaging CFAR noise estimate. min_doppler_bin applies only when static removal is on."
+    "merge_cells": [
+      2,
+      4
+    ],
+    "max_targets": 16,
+    "_cells": "[range bins, Doppler bins]. Threshold is over the cell-averaging CFAR noise estimate. min_doppler_bin applies only when static removal is on.",
+    "_threshold": "2026-10-08: noise-only false alarms are rare even at 8 dB (one beyond 2.7 m in 111 frames of output/live_radar/20261008-030525-capture-51fbe3); 10 dB keeps margin and the tracker rejects one-frame alarms. Thermal noise alone would allow about 7 dB for 1e-3 per cell."
+  },
+  "tracking": {
+    "confirm_hits": 3,
+    "confirm_frames": 5,
+    "coast_s": 1.0,
+    "max_gap_s": 1.0,
+    "accel_mps2": 3.0,
+    "initial_speed_mps": 1.5,
+    "range_sigma_m": 0.25,
+    "gate_chi2": 13.8,
+    "cluster_range_m": 0.9,
+    "cluster_deg": 20.0,
+    "history_s": 3.0,
+    "in_place_min_mps": 0.25,
+    "in_place_ratio": 0.35,
+    "coast_velocity_tau_s": 0.5,
+    "max_speed_mps": 3.0,
+    "max_angle_deg": 80.0,
+    "_about": "Constant-velocity Kalman tracks (processing.Tracker). Confirmed after confirm_hits detections in confirm_frames frames; coast_s bridges missed frames; gate_chi2 is the 2-D Mahalanobis gate (13.8 = 99.9%); detections within cluster_range_m and cluster_deg count as one object; in_place marks Doppler at least in_place_min_mps with a range rate under in_place_ratio of it (fans, fidgeting). While coasting, velocity decays with coast_velocity_tau_s; speed is capped at max_speed_mps; tracks beyond max_angle_deg or max_range_m + 0.5 m end."
   }
 }

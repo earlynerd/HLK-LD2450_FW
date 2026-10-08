@@ -69,11 +69,43 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
     `|d| < min_doppler_bin` are excluded). Turning it off, after capturing an
     empty-scene background, shows static reflectors too.
 
-  The top view draws the radar at the bottom centre, 1 m rings, the +/-60 deg
-  field of view and a fading 30-frame trail. Colour is the velocity sign. The
-  table lists range, angle, velocity, SNR over the CFAR noise estimate and
-  coherence. Quantities whose calibration is marked false are labelled
-  uncalibrated. Initial values (2026-10-08): range scaled from the 204 MHz
+- **Tracks:** the `tracks` stage follows objects across frames with a
+  constant-velocity Kalman filter in x, y (`processing.Tracker`, parameters in
+  the `tracking` block of `calibration.json`).
+  - Detections within about 0.9 m and 20 deg are one measurement; a person or a
+    fan gives several Doppler peaks at one place.
+  - A track is confirmed after 3 detections in 5 frames and coasts through
+    missed frames for up to 1 s, with its velocity decaying.
+  - It is flagged *in place* when its Doppler speed is at least 0.25 m/s but
+    its range hardly changes (fans, fidgeting).
+  - Comparing Doppler speed with the fitted range rate also checks the
+    velocity sign: for a walker they should agree.
+  - Synthetic check: a walker detected in about 60% of frames stays one track
+    in every frame after confirmation, and the tracked angle spread is 3.5 deg
+    against 5.9 deg per detection.
+
+  Why tracking rather than requiring both receivers to agree (2026-10-08,
+  recorded noise from `output/live_radar/20261008-030525-capture-51fbe3` with
+  injected targets, equal false-alarm rate):
+  - The summed power |RX1|^2 + |RX2|^2 already uses both receivers. It needs
+    about 3 dB less signal than RX1 alone.
+  - Coherent combining at the best angle, (|RX1| + |RX2|)^2, gives the same
+    detection probability.
+  - Gating on 3x3 RX1/RX2 coherence lowers detection probability at equal
+    false-alarm rate. The Hann windows correlate neighbouring cells, so noise
+    already shows coherence about 0.5.
+  - Receiver noise is mostly independent (complex correlation 0.26).
+  - Noise false alarms are rare in this scene even at 8 dB. Detections there
+    come from real reflectors, which both receivers see. So the threshold is
+    10 dB (was 13), and tracking supplies the consistency check.
+
+  The top view draws the radar at the bottom centre, 1 m rings and the
+  +/-60 deg field of view.
+  - Confirmed tracks: 3 s trail, id and a 1 s velocity arrow. Hollow means in
+    place; faded means coasting.
+  - This frame's detections: small grey dots.
+  - Table: per track, range, angle, Doppler speed, range rate, age and state.
+  - Quantities whose calibration is marked false are labelled uncalibrated. Initial values (2026-10-08): range scaled from the 204 MHz
   three-point fit; d/lambda = 0.5, offset 0 and both signs assumed. The
   Range-Doppler panel circles the same detections.
 

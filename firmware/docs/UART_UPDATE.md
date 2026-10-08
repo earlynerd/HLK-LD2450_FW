@@ -97,8 +97,15 @@ After the restore the module UART runs at 9600, not the 256000 in the LD2450
 manual; the same happened after the user's earlier BLE update to V2.14. Set the
 rate in the HLKRadarTool app if a host expects 256000, and before loading a
 custom image again. Going from this state back to a custom image uses the stock
-B2 entry above (`--entry stock-b2`), which was verified with the module at
-256000.
+B2 entry above (`--entry stock-b2`).
+
+Round trip, 2026-10-08: after the restore the user set 256000 in HLKRadarTool;
+`restore_stock.py --check-only --check-baud 256000` found V2.14 reporting. The
+range-bin release (`usb-bins40-20261008`, SHA-256 `85015eb6...e714`) then went
+on with `--entry stock-b2`: 419 reads, success. Native USB came back as COM30
+and the viewer ran live at 10.9 frames/s, 542 kB/s, with no errors.
+Evidence: `output/stock_restore/20261008-133050/check-256000/` and
+`reinstall-custom/`.
 
 ## What runs where
 

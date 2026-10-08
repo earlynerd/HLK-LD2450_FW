@@ -1,0 +1,37 @@
+{
+  "usb": [
+    "COM30"
+  ],
+  "state": {
+    "status": "live",
+    "sweep": {
+      "live_step": 20,
+      "last": {
+        "mhz": 2000,
+        "reason": "revert timer",
+        "at": 1791488205.6208177
+      },
+      "max_minutes": 30,
+      "options": {
+        "240": {
+          "step": 20,
+          "top_ghz": 24.245
+        },
+        "480": {
+          "step": 40,
+          "top_ghz": 24.486
+        },
+        "1000": {
+          "step": 83,
+          "top_ghz": 25.002
+        },
+        "2000": {
+          "step": 166,
+          "top_ghz": 26.0
+        }
+      },
+      "in_band": true,
+      "active": null
+    }
+  }
+}

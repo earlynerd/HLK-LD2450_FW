@@ -70,8 +70,10 @@ USB-serial adapter, and can be undone (see the next section).
    ```
 
 4. **Connect native USB for the data.** The range-bin stream uses the MCU's own
-   USB (AC6956C pins 23/24, DM/DP), which is not on the 4-pin connector; see the
-   [hardware evidence](docs/radar_ic_and_internal_interfaces.md). It enumerates
+   USB (AC6956C pins 23/24, DM/DP), which is not on the 4-pin connector. The
+   board brings the USB pair out to header pins and to labelled test points;
+   the bench module has a USB cable (D+, D-, GND) soldered to the test points.
+   See the [hardware evidence](docs/radar_ic_and_internal_interfaces.md). It enumerates
    as a USB serial port (VID/PID `4C4A:4155`, serial `LD2450-STREAM-01`), which
    the viewer finds by itself.
 
@@ -83,7 +85,9 @@ uploader waits.
 ## Reverting to stock
 
 The original Hi-Link firmware can be put back with one command over the module
-UART (pyserial and lz4 needed), verified on 2026-10-08:
+UART (pyserial and lz4 needed). On 2026-10-08 the full round trip was verified
+on the bench: custom to stock with this command, then (after setting 256000 in
+HLKRadarTool) stock back to custom with step 3 above.
 
 ```powershell
 python firmware/tools/restore_stock.py --port COM13

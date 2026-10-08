@@ -1,44 +1,107 @@
 # HLK-LD2450 custom firmware
 
 Reverse engineering and experimental JieLi BR23/AC695N firmware for the
-HLK-LD2450 radar module. This project starts with the recovered radar init
-profiles, dual SPI acquisition support, and a documented UART update path.
+HLK-LD2450 24 GHz radar module. The custom firmware replaces the stock target
+reporting: it streams the radar's two receive channels over the module's own
+USB port, and a local browser viewer does the radar processing on the host.
 
-Start with the [image build and loading guide](firmware/docs/IMAGE_BUILD.md),
-[firmware/README.md](firmware/README.md), the
-[UART update investigation](firmware/docs/UART_UPDATE.md), and the
-[hardware evidence](docs/radar_ic_and_internal_interfaces.md).
+![Live radar viewer: one tracked person at 1.5 m in the top view, the range spectrum of both receivers, the change waterfall, the 64-chirp range-Doppler map and the constellation of one range bin](resources/Screenshot.png)
 
-The [radar processing and data export plan](DSP_plan.md) tracks the next
-milestones, acceptance evidence, resource budgets, and session handoff.
-The [lossless frame stream application](firmware/docs/FRAME_STREAM.md) integrates
-continuous dual-SPI acquisition, a bounded lossless codec, native USB CDC, and
-a Python receiver. The current experiment exports raw 16-chirp windows from both
-receivers through native CDC on COM30, avoiding the scene-dependent compression
-cost that limited the earlier 64-chirp stream during movement. Whole-frame skips
-bound the export rate. See the stream guide for the exact image, validation,
-capture tradeoffs, and earlier 64-chirp/USB benchmark evidence.
+*The live viewer (2026-10-08): one person tracked at about 1.5 m, walking
+towards the sensor at 0.4 m/s. The angle is not calibrated yet.*
 
-## Current state
+## Current state (2026-10-08)
 
-The project links a minimal BR23 UART recovery application and packages it
-into `.ufw` images using either pinned stock firmware as a layout template.
-The application uses our UART receiver, the vendor update engine and a patched
-`uart_user.bin` for the flash-writing stage. Stock V2.14 to custom hello,
-power-cycle boot, and replacement with a different custom hello build are
-bench-verified at 256000 baud. The exact working image is preserved in
-[`firmware/releases/hello-verified-20261005`](firmware/releases/hello-verified-20261005/README.md).
+| Part | State |
+|---|---|
+| Updating | Stock-to-custom and custom-to-custom UART updates work at 256000 baud, with a three-second boot recovery window. |
+| Radar setup | The S5KM312CL is started with the recovered stock profile, changed to a 240 MHz in-band sweep (24.005-24.245 GHz, about 0.64 m per range bin). Its registers are [mapped](docs/S5KM312CL_REGISTER_MAP.md). |
+| On-device processing | Both receivers are captured continuously over SPI DMA. Each chirp goes through the BR23 hardware FFT (512 points, 53 us), and bins -40..40 are kept (about 25 m). |
+| Export | All 64 chirps of every radar frame, about 11 frames/s and 540 kB/s, over native USB CDC (LDF1 codec 2). Live register reads and writes go over the same port. Installed image: [`firmware/releases/usb-bins40-20261008`](firmware/releases/usb-bins40-20261008). |
+| Host viewer | Range spectra, change waterfall, 64-chirp range-Doppler map (13 Hz bins), constellation, CFAR detection on both receivers, angle from the receiver phase difference, a clutter map and Kalman tracks. Register control, and a sweep-width control for out-of-band experiments. |
 
-The three-second boot recovery window is bench-verified: failed handshake entry
-holds off the application, and retrying from recovery replaces it successfully.
-The radar profile uses the recovered 75-write / SPI / REXT / five-write ordering.
-The MCU reports all 80 writes ACKed on hardware, and updater entry after radar
-initialization is verified. A bounded on-device SPI capture has now recovered
-distinct RX0/RX1 streams with checksum-valid 512-pair I/Q records on both lanes.
-Continuous acquisition now has an initial bench pass; RF calibration and
-restoration to stock remain unverified.
+Not yet calibrated:
+- **Angle:** live angles still jump for one object, consistent with an
+  unmeasured receiver phase offset or antenna spacing.
+- **Range:** the metre scale comes from a three-point fit at the old 204 MHz
+  sweep, rescaled to 240 MHz.
+- **Velocity sign.**
 
-## Initial snapshot
+A corner-reflector session is the next step. See the
+[processing plan](DSP_plan.md) for the work log and next actions.
+
+## Live radar viewer
+
+```powershell
+.\tools\start_radar_viewer.ps1
+```
+
+This opens http://127.0.0.1:8765. Connect to the module's native USB port
+(COM30 here), or replay a saved recording. The [viewer guide](docs/LIVE_RADAR_VIEWER.md)
+covers every panel, the detection and tracking parameters
+(`tools/radar_viewer/calibration.json`), raw recording, and how to add a
+processing stage.
+
+**Sweep width:** the radar runs in the 24.0-24.25 GHz band by default. The
+**02 / Sweep** panel can widen the sweep to 480 MHz, 1 GHz or 2 GHz (finer range
+bins, shorter range), which transmits outside that band. That is the operator's
+decision: each run needs an acknowledgement. The viewer drops to minimum
+transmit power and returns to the in-band profile on a 2-30 minute timer, on
+**Restore in band now**, on a failed write, and on disconnect or shutdown.
+
+## Documentation
+
+- [Live radar viewer](docs/LIVE_RADAR_VIEWER.md): panels, processing, tracking, clutter map, sweep width, registers.
+- [Frame stream](firmware/docs/FRAME_STREAM.md): firmware stream images, the LDF1 wire format, the LDC1 register commands and bench evidence.
+- [S5KM312CL register map](docs/S5KM312CL_REGISTER_MAP.md): registers 0x00-0x7F, sweep/timing formulas, gain tables and the hold/restart rule.
+- [BR23 hardware FFT](firmware/docs/HW_FFT.md): measured behaviour of the FFT engine.
+- [Processing plan](DSP_plan.md): milestones, acceptance evidence and session handoff.
+- [Image build and loading](firmware/docs/IMAGE_BUILD.md), [firmware foundation](firmware/README.md) and the [UART update investigation](firmware/docs/UART_UPDATE.md).
+- [Hardware evidence](docs/radar_ic_and_internal_interfaces.md) and the [PSRAM investigation](docs/PSRAM_INVESTIGATION.md).
+- [Decision log](DECISIONS.md) and [debug log](DEBUG_LOG.md).
+
+## How it got here
+
+- **2026-10-04/05:** UART recovery application packaged into stock-layout `.ufw`
+  images; first custom boot, boot recovery window and radar initialization
+  (all 80 startup writes ACKed) verified on hardware. One-shot SPI capture
+  recovered distinct, checksum-valid RX0/RX1 I/Q records.
+  ([`hello-verified-20261005`](firmware/releases/hello-verified-20261005/README.md))
+- **2026-10-06:** Continuous acquisition, a lossless chirp codec and native USB
+  CDC streaming; raw 16-chirp export; live register control over USB; the first
+  live viewer and software I/Q mismatch correction.
+- **2026-10-07/08:** Register reverse engineering completed; the in-band 240 MHz
+  sweep adopted.
+- **2026-10-08:** Hardware-FFT range-bin export for all 64 chirps installed. The
+  viewer moved to range bins and gained detection, angle, tracking, a clutter
+  map and the sweep-width control.
+
+## Radar register map
+
+[docs/S5KM312CL_REGISTER_MAP.md](docs/S5KM312CL_REGISTER_MAP.md) maps the radar SoC's
+registers 0x00-0x7F, combining the stock LD2450 startup capture, live bench
+sweeps and a static decode of ICLegend's EVBKS5 evaluation GUI. It covers
+frequency/sweep/timing formulas, sampling and SPI fields, transmit and receive
+gain tables, and the hold/restart rule for waveform registers. The vendor GUI
+package itself is third-party material and is not committed.
+
+## Checks
+
+```powershell
+python firmware/tools/test_host.py
+python firmware/tools/setup_sdk.py --download
+python firmware/tools/setup_toolchain.py --download
+python firmware/tools/build_image.py
+python -m unittest discover -s tools -p test_viewer.py
+```
+
+The image builder writes `firmware/build/image/update.ufw`, the ELF/map,
+application binary, commands and hash manifests. It never accesses a device.
+Build caches and generated images are ignored by Git. See the image guide for
+custom profiles, the experimental PC uploader and first-boot checks, and
+[FRAME_STREAM.md](firmware/docs/FRAME_STREAM.md) for the stream image options.
+
+## Provenance
 
 The initial commit contains the existing host-tested firmware foundation,
 PI32V2 component build scripts, register customization tools, and analysis
@@ -56,37 +119,6 @@ labelled cross-chip hypothesis, not a manufacturer register specification.
 Phone Bluetooth archives, unrelated upstream application files, large raw
 logic-analyzer captures, and personal attachments are not part of this repo.
 Captured binary test fixtures retain their source hashes and sample provenance.
-
-## Radar register map
-
-[docs/S5KM312CL_REGISTER_MAP.md](docs/S5KM312CL_REGISTER_MAP.md) maps the radar SoC's
-registers 0x00-0x7F, combining the stock LD2450 startup capture, live bench
-sweeps and a static decode of ICLegend's EVBKS5 evaluation GUI. It covers
-frequency/sweep/timing formulas, sampling and SPI fields, transmit and receive
-gain tables, and the hold/restart rule for waveform registers. The vendor GUI
-package itself is third-party material and is not committed.
-
-## Live radar viewer
-
-Run `./tools/start_radar_viewer.ps1` to open the local live I/Q, spectrum,
-waterfall and exploratory Doppler workspace. It supports native USB with DTR,
-saved-stream replay, background subtraction and raw recording. See
-[the viewer guide](docs/LIVE_RADAR_VIEWER.md) for controls, calibration limits,
-and the processing-stage extension interface.
-
-## Checks
-
-```powershell
-python firmware/tools/test_host.py
-python firmware/tools/setup_sdk.py --download
-python firmware/tools/setup_toolchain.py --download
-python firmware/tools/build_image.py
-```
-
-The image builder writes `firmware/build/image/update.ufw`, the ELF/map,
-application binary, commands and hash manifests. It never accesses a device.
-Build caches and generated images are ignored by Git. See the image guide for
-custom profiles, the experimental PC uploader and first-boot checks.
 
 ## Pico USB recovery entry helper
 

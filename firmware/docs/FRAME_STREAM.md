@@ -1,5 +1,9 @@
 # Lossless frame stream application
 
+**Installed image (2026-10-08):** the 64-chirp range-bin stream,
+`firmware/releases/usb-bins40-20261008/`, described in "Range-bin export"
+below. Sections after it describe earlier images, kept for their evidence.
+
 ## Previous image: raw 16-chirp, 240 MHz sweep profile (2026-10-08)
 
 The raw 16-chirp stream with live register control (LDC1) now starts the radar
@@ -83,7 +87,7 @@ frame), one start-boundary rejection, no protocol errors. Evidence:
 (see the 0x02 entry in `docs/S5KM312CL_REGISTER_MAP.md`). The 240 MHz 512-sample
 release image was reinstalled afterwards.
 
-## Current experiment: raw 16-chirp export
+## Earlier experiment: raw 16-chirp export
 
 The user selected a shorter capture window on 2026-10-06. The installed stream
 image now exports chirps 0-15 from both receivers, retaining all 512 complex

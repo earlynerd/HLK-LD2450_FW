@@ -1,6 +1,6 @@
 # Radar processing and data export plan
 
-Updated: 2026-10-06. Status: continuous acquisition, lossless compression and native USB CDC have a concurrent 30-second hardware pass: 159 complete host-validated frames, zero acquisition/queue errors. Reduced export cadence is intentional; broader scene and runtime-resource qualification remains open.
+Updated: 2026-10-08. Status: the installed image exports hardware-FFT range bins -40..40 for all 64 chirps of every radar frame (11 frames/s, about 540 kB/s over native USB). The host viewer runs detection, angle, a clutter map and Kalman tracking on them. Range, angle and velocity calibration with the corner reflector is the next step.
 
 This is the working plan and session handoff for the shared radar processing front end. Update progress and handoff notes as work proceeds; keep detailed build and bench evidence in the linked artifacts.
 
@@ -90,9 +90,9 @@ Mark stages complete only when their checkpoints have evidence. Distinguish sour
 | --- | --- | --- |
 | 1. Baseline and instrumentation | Baseline and flashed stream image archived; counters and live updater reentry checked | Runtime stack/physical heap accounting remains pending; SDK heap counter is inconsistent with physical RAM. |
 | 2. Continuous bounded acquisition | 30-second concurrent codec/USB trial passed with zero acquisition errors; backlog one | Broader scenes, long-duration qualification and CPU-backlog guard activation remain open. |
-| 3. Lossless raw frames over USB | Initial concurrent hardware pass: 159 complete frames in 30 s; raw pattern ~790 kB/s; pause/reopen recovery verified | Preserve artifacts in usb-optimized-20261006. Physical unplug and runtime stack/free-heap qualification remain open; no full-rate export claim. |
-| 4. Host workflow selection | Planned | Representative frames, calibration, performance comparisons, information losses and chosen partition. |
-| 5. Onboard early stages and reduced USB export | Planned | Same-input reference comparisons, numerical error, clipping, memory, compute and transport budgets. |
+| 3. Lossless raw frames over USB | Initial concurrent hardware pass: 159 complete frames in 30 s; raw pattern ~790 kB/s; pause/reopen recovery verified. Raw 16-chirp export used for workflow selection | Preserve artifacts in usb-optimized-20261006. Physical unplug and runtime stack/free-heap qualification remain open; no full-rate export claim. |
+| 4. Host workflow selection | Range transform chosen; host detection, angle, clutter map and tracking working live | Calibration of range (240 MHz), angle (phase offset, d/lambda, sign) and velocity sign; a recorded walk to measure tracking. |
+| 5. Onboard early stages and reduced USB export | Range transform done: hardware-FFT bins -40..40, all 64 chirps, 11.2 frames/s, matching host FFT of raw to about 1 dB; installed (`usb-bins40-20261008`) | Detection or tracking onboard is not planned yet. |
 | 6. Multiple consumers | Planned | Host evaluation, incremental target costs and information-retention choices. |
 
 USB measurement and streaming compression belong to the first capture milestone. Compression estimates from startup data are evidence of potential, not guaranteed buffer capacity or sustained throughput.
@@ -133,14 +133,14 @@ run counted 7,536 valid records per lane, with peak backlog one record and
 
 ### Resume here
 
-The first stream foundation is described in [FRAME_STREAM.md](firmware/docs/FRAME_STREAM.md). Existing radar and capture work remains uncommitted; inspect Git status and preserve it rather than treating it as disposable. No device was accessed during the stream-foundation work.
+Installed image: `firmware/releases/usb-bins40-20261008/` (range bins, 240 MHz sweep). Start the viewer with `tools/start_radar_viewer.ps1`; its guide is [docs/LIVE_RADAR_VIEWER.md](docs/LIVE_RADAR_VIEWER.md).
 
-1. Keep the preserved `firmware/build/baseline-before-stream-20261006` archive and reference capture image.
-2. Resume from `firmware/releases/usb-optimized-20261006/` and the evidence in `FRAME_STREAM.md`. The live radar stream is installed; the separate raw-pattern image is preserved.
-3. Exercise broader scenes/long captures and deliberately load the CPU-backlog guard. Qualify stack usage and physical cable reconnect. The queue and all integrity checks remain bounded.
-4. Use representative exported frames to choose the host processing workflow before committing to an onboard reduction.
+1. Calibrate with the corner reflector at known ranges and angles: the 240 MHz range scale and offset, the RX2-RX1 phase offset, d/lambda and angle sign. Live angles still jump for one object.
+2. Check the velocity sign: Doppler speed against the tracked range rate for a walker.
+3. Record a walk and tune tracking and the clutter map on it.
+4. If the user runs a wider sweep (the viewer's Sweep panel) and records it, compare range resolution and tracking with 240 MHz. Out-of-band runs are the user's decision; do not start them from scripts.
 
-Previous bench connections were COM13 for the module UART at 256000 baud and COM11 for PA9 at 115200 baud. Check port availability and device state when resuming. Controlled reflector placement needs coordination with the user.
+Bench ports: COM30 is the native USB stream, COM13 the module UART at 256000 baud (updates), COM11 PA9 at 115200 baud. Check port availability and device state when resuming. Controlled reflector placement needs coordination with the user.
 
 ### Update after each session
 
@@ -175,3 +175,5 @@ Previous bench connections were COM13 for the module UART at 256000 baud and COM
 - **2026-10-08:** Two-receiver detection checked and tracking added. Injecting targets into recorded noise at equal false-alarm rate: summing both receivers needs about 3 dB less signal than one receiver; best-angle coherent combining gives the same result; an RX1/RX2 coherence gate makes detection worse. Receiver noise is mostly independent (complex correlation 0.26), and false alarms in this scene come from real reflectors. CFAR threshold lowered from 13 to 10 dB (noise alarms rare even at 8 dB). New `tracks` stage: constant-velocity Kalman tracks in x/y, confirmed after 3 of 5 frames, coasting up to 1 s; Doppler-without-range-change is flagged in place (fan). Synthetic walker detected in 60% of frames is tracked in 100% after confirmation; 32 viewer tests pass; live 2.5 ms/frame. Live angles still jump (about -50 to +70 deg for the same object), consistent with an uncalibrated RX2-RX1 phase offset near 180 deg or d/lambda above 0.5. Next: angle and range calibration with the corner reflector, and a recorded walk to tune tracking.
 
 - **2026-10-08:** Clutter map added to detection. With nothing moving in view, tracks kept forming at 1.2-1.8 m from persistent Doppler lines at multiples of about 102 Hz (fixed range, phase not locked to the frame, not proportional to the static return, so physical and out of view). Each range-Doppler cell now keeps a 10 s exponential average of its power, starting from zero. Detections must exceed it by 10 dB. Range bins near young (<4 s), not-in-place tracks are not updated. Empty-room recording: no tracks once learned (about 8 s). Simulated walker in the real clutter: 94-99% track continuity at 0.3 and 1.0 m/s; at 0.6 m/s its Doppler lands on a clutter line. Next: angle calibration (live angles still jump) and a recorded walk.
+
+- **2026-10-08:** Sweep width selectable in the viewer (**02 / Sweep**): 240 MHz in band, or 480 MHz, 1 GHz, 2 GHz out of band at the user's choice. Out of band, the server writes minimum transmit power first, needs an acknowledgement for each run and re-inits to the in-band profile on a 1-30 minute timer, a failed write, Restore, disconnect or shutdown. Range scaling follows the live rise step (0x56). 37 viewer tests pass. Earlier static 1 GHz test: 0.158 m/bin, strongest peak 0.47 m wide against about 2 m at 240 MHz. Next: unchanged (calibration, velocity sign, recorded walk).

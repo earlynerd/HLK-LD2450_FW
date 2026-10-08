@@ -1,10 +1,14 @@
 # Live radar viewer
 
 A local browser workspace for the custom firmware's validated LDF1 feed. It
-shows both receivers' range-bin spectra, spectral history, a 64-chirp Doppler
-map, a per-bin constellation, and transport/processing health. It does not require a
-firmware change or a web service. Dependencies are NumPy and pyserial; the UI
-uses browser Canvas with no package build or external assets.
+shows tracked targets in a top view, both receivers' range-bin spectra,
+spectral history, a 64-chirp Doppler map, a per-bin constellation, and
+transport/processing health. It also controls the radar's registers and sweep
+width. It does not require a firmware change or a web service. Dependencies are
+NumPy and pyserial; the UI uses browser Canvas with no package build or
+external assets.
+
+![The viewer live on 2026-10-08: one confirmed track in the top view, spectra of both receivers, change waterfall, range-Doppler map with detections circled, and the constellation of range bin 4](../resources/Screenshot.png)
 
 ## Start
 
@@ -32,8 +36,9 @@ python tools/live_radar.py --replay output/stream_bench/usb_budget_guard_capture
 
 Only one process can own native USB COM30. The viewer discovers the matching
 VID/PID/serial identity (`4c4a:4155`, `LD2450-STREAM-01`) and asserts DTR. It never
-opens debug/updater UART ports or flashes firmware. It sends radar register
-commands only when you use the Radar registers panel.
+opens debug/updater UART ports or flashes firmware. On each live connection it
+reads the sweep step register (0x56); it writes radar registers only when you
+use the Sweep or Radar registers panels.
 An unplug or serial error stops the source and surfaces the error. Reconnect
 explicitly once the device is available. The server binds only to loopback;
 mutating requests also require a per-process token and a matching browser origin.
@@ -261,13 +266,15 @@ firmware; with older images commands go unanswered and the panel says so.
 
 ## Interpretation limits
 
-Axes stay in FFT bins. A three-point corner-reflector fit gave about 0.75 m per
-bin (+/-10%) at the stock 204 MHz sweep, so about 0.64 m per bin at the
-installed 240 MHz sweep. The sample window covers about 98% of the up-ramp
-(register map, 0x02). The Doppler map is exploratory, not a calibrated
-range/velocity map. Neither
-receiver phase nor an amplitude peak is reported as bearing or an identified
-target. The spectra are not dBm measurements.
+Spectrum and heatmap axes stay in FFT bins; only the targets view uses metres.
+A three-point corner-reflector fit gave about 0.75 m per bin (+/-10%) at the
+stock 204 MHz sweep, so about 0.64 m per bin at the installed 240 MHz sweep,
+scaled again for wider sweeps. The sample window covers about 98% of the
+up-ramp (register map, 0x02). Target range, angle and velocity are marked
+uncalibrated until `calibration.json` says otherwise: the 240 MHz range scale,
+the receiver phase offset, antenna spacing and angle sign, and the velocity
+sign have not been measured. Live angles still jump for one object. The
+spectra are not dBm measurements.
 
 The 2026-10-06 sampling/slope experiment confirms that the prominent outer
 features must not be treated as range peaks. Changing only inferred RAW
@@ -360,3 +367,8 @@ background/config changes, static rejection, stage-failure isolation, device
 codec-2 bins matching the host conversion of raw frames (with I/Q correction),
 endianness, corruption recovery, bounded display backlog, port identity,
 recording hashes, replay/snapshot lifecycle, and local HTTP control protection.
+Detection, angle and tracking tests use synthetic scenes (two targets, a
+fluctuating walker, a fan, noise alone). Sweep tests use a simulated device:
+the acknowledgement and timer checks, the order of the writes (minimum power
+first), range scaling to the live step, and the return to in band on the
+timer, a failed write, Restore and disconnect. 37 tests pass (2026-10-08).

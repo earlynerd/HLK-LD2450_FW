@@ -260,3 +260,22 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Evidence:** Viewer tests (23) include device-format bins matching host conversion of raw frames within 0.05 dB for spectrum, Doppler and change, with and without I/Q mismatch. Live: 64 chirps, bins -39..39 displayed, 10.9 frames/s, 542 kB/s, 1.35 ms processing per frame, no stage errors.
 - **Supersedes:** "Range-bin export ... Not installed" status in the previous entry, and the raw 16-chirp image as the installed image.
 - **Affects:** tools/radar_viewer (processing.py, web/app.js, web/index.html, test_viewer.py), docs/LIVE_RADAR_VIEWER.md, firmware/releases.
+
+
+## 2026-10-08 - Host detection with tracking and a clutter map; both receivers summed
+
+- **Decision:** The viewer detects targets with CA-CFAR on the summed power of both receivers (threshold 10 dB, was 13) over the 64-chirp range-Doppler map. It measures angle from the RX2-RX1 phase, follows objects with a constant-velocity Kalman tracker (confirmed after 3 of 5 frames, coasting up to 1 s) and rejects persistent returns with a per-cell clutter map (10 s average, 10 dB margin). Parameters live in `tools/radar_viewer/calibration.json`.
+- **Why:** The user asked whether requiring both receivers to see a target would cut noise. Injected targets in recorded noise, at equal false-alarm rate: summed power needs about 3 dB less signal than one receiver; best-angle coherent combining is no better; an RX1/RX2 coherence gate is worse (the Hann window already gives noise coherence about 0.5). False tracks in an empty room came from real but out-of-view returns (Doppler lines at multiples of about 102 Hz at 1.2-1.8 m), which both receivers see. So consistency over time and against the long-term average does the job instead.
+- **Rules:** The clutter map starts empty and is not updated near confirmed, moving tracks younger than 4 s, so walkers are not learned. A person who stays put is eventually learned.
+- **Evidence:** `output/live_radar/20261008-030525-capture-51fbe3` (noise), `20261008-113257-capture-7cd819` (empty room: no tracks once learned). Synthetic walker in that clutter: 94-99% of frames tracked at 0.3 and 1.0 m/s, about 50% at 0.6 m/s (on a clutter line).
+- **Affects:** tools/radar_viewer (processing.py, calibration.json, web/), docs/LIVE_RADAR_VIEWER.md, DSP_plan.md.
+
+
+## 2026-10-08 - Sweep width is the user's choice in the viewer
+
+- **Decision:** The viewer's **02 / Sweep** panel sets the sweep to 240 MHz (in band, default) or 480 MHz, 1 GHz or 2 GHz (out of band) from 24.005 GHz. Out-of-band runs need the user's acknowledgement each time; the server writes minimum transmit power (0x6D 0x9740 / 0x70 0x26A0) before widening, and re-inits to the in-band build profile on a 1-30 minute timer, a failed write, **Restore in band now**, disconnect or shutdown. Each connection reads 0x56 and flags a radar left out of band.
+- **Why:** 0.64 m range bins are coarse for indoor use; the user wanted to see wider-sweep performance and to decide "if and when to safely bend the rules" themselves, rather than have experiments started from scripts. The default stays in band at stock power.
+- **Supersedes:** In the 240 MHz entry above, "transmission outside 24.0-24.25 GHz or above stock power needs the user's explicit approval for that experiment" is now met by the per-run acknowledgement in the viewer. Scripts still do not start out-of-band runs.
+- **Limits:** A killed server cannot restore the sweep; power-cycling the module re-applies the in-band profile.
+- **Evidence:** Viewer tests (37) with a simulated device cover write order, minimum power, range scaling to the live step and every restore path. Commit 2d0a2dc.
+- **Affects:** tools/radar_viewer (server.py, processing.py, web/), docs/LIVE_RADAR_VIEWER.md.

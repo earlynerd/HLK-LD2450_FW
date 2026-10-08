@@ -24,6 +24,44 @@ by live writes on a static scene on 2026-10-07; see `DECISIONS.md` and
 stock-sweep control image is archived in
 `firmware/releases/usb-raw16-control-20261006/`.
 
+## Range-bin export: all 64 chirps via the hardware FFT (2026-10-08)
+
+`--fft-bins K` (stream, 64-chirp export) replaces raw records with codec-2
+range bins. Each validated record goes through the BR23 FFT engine in place: a
+512-point complex FFT, unscaled, about 53 us (`firmware/docs/HW_FFT.md`). Only
+bins -K..K are exported. With K = 40 (about 25 m at 0.64 m/bin) a record is 338
+payload bytes, and a 64-chirp, two-receiver frame is about 48 KB.
+
+```powershell
+python firmware/tools/build_image.py --application stream --fft-bins 40 --radar-config firmware/config/radar_sweep240_mode2.json --out firmware/build/stream-bins40
+python firmware/tools/patch_stock_uart_loader.py --input firmware/build/stream-bins40/update.ufw --out firmware/build/stream-bins40/update-two-wire.ufw
+```
+
+The format is described under "Wire format v1" below (codec 2, BEGIN version 2).
+The quantization was chosen offline on 240 MHz recordings: block shift with DC
+sent separately; its error is 41-55 dB below the chirp-to-chirp changes. The
+C-to-Python round trip (`range_bins_*` CTests, a reference DFT standing in for
+the engine) matches NumPy within 0.70 LSB on every bin.
+
+Bench 2026-10-08, image SHA-256
+`85015eb67aa15f7f15711aa2523e7c1bf54bc1ede8eac0a6e3a3b45fce34e714`, static scene:
+- **Throughput:** 337 complete 64-chirp frames in 30 s, every radar frame
+  (11.2/s). The output queue peaked at 840 bytes; USB drains each frame as it
+  is produced.
+- **Device report:** 27,735 valid records per lane, with zero corrupt records,
+  DMA overruns, sequence errors, CPU-guard aborts, queue overflows or FFT
+  errors. DMA backlog peaked at 1; the longest record took 897 us.
+- **Agreement with raw:** compared with a raw capture taken minutes earlier,
+  the device bins match the host FFT of raw records to about 1 dB per bin in
+  the static profile. The chirp-to-chirp noise floor agrees within 0.3 dB.
+  The block shift was 4 throughout.
+- **Doppler:** 13.0 Hz bins (64 chirps) instead of 52.1 Hz (16 chirps).
+
+Evidence: `output/range_bins/20261008-013448-*` (stream hashes in report.json,
+PA9 report in `-pa9.txt`). The live viewer cannot display range-bin frames yet,
+so the raw 16-chirp release image was reinstalled after the test.
+`frame_stream.py` decodes and saves them (`lane*.bins.bin`).
+
 ## Radar record size and FFT self-test build options (2026-10-08)
 
 `--raw-pairs 512|256|128` (stream only) sets the radar record size the firmware
@@ -373,10 +411,12 @@ lengths. Maximum message size is 2,093 bytes. Empty payload CRC is zero.
 | 24 | 4 | CRC-32 of reconstructed 2,056-byte record; zero for control |
 | 28 | 4 | Header CRC-32 |
 
-BEGIN has 52 payload bytes: configuration SHA-256 (32), cumulative skipped
-frames (u32), rejected frames (u32), prior queue peak (u32), pairs=512 (u16),
-chirps=64 (u16), receivers=2 (u8), codec version=1 (u8), register generation
-(u16). The last field was reserved zero before live register control; images
+BEGIN has 52 payload bytes (56 in range-bin images): configuration SHA-256 (32), cumulative skipped
+frames (u32), rejected frames (u32), prior queue peak (u32), pairs (u16:
+512, or 256/128 with matching radar profiles), chirps (u16: 16 or 64),
+receivers=2 (u8), codec version (u8: 1 raw/residual, 2 range bins),
+register generation (u16). Version 2 appends FFT points (u16, equal to pairs),
+K (u8, bins -K..K exported) and bin format (u8, 1). The last field was reserved zero before live register control; images
 without control still send zero. The generation counts every live WRITE and
 REINIT since boot (mod 65536), so frames with different live register
 settings never share an identity. The build configuration hash is unchanged
@@ -410,6 +450,16 @@ failed), register (u8), value count (u8), register generation after the
 command (u16), driver error (i16), then the values (u16 each). A queued reply
 delays the next export because BEGIN still requires an empty queue. Older
 hosts ignore REPLY between frames; a REPLY inside a frame is a protocol error.
+
+Range-bin images (BEGIN version 2) send RECORD messages with header codec 2.
+The payload is: mode 2 (u8), original radar header (4), original trailer (4),
+shift (u8), bin 0 re/im (int32 LE each), then bins -K..-1 and 1..K as re/im
+int16 LE. Each int16 value is the unscaled FFT bin, right-shifted by `shift`,
+rounded half up and saturated. `shift` is the smallest value that fits every
+non-DC kept bin. The radar checksum was verified on the device before the
+transform; the host checks the header/trailer identity, message CRCs and
+sequence. The raw CRC field holds the CRC-32 of the original radar record, for
+provenance only; the host cannot verify it.
 
 RECORD payload starts with mode (u8), original header (4 bytes), original
 trailer (4 bytes), then encoded I/Q. Mode 0 is 2,048 verbatim I/Q bytes.

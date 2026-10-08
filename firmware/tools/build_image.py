@@ -53,6 +53,8 @@ def main():
                     help='Live export window; 16 selects fixed-size raw records, radar acquisition remains 64 chirps')
     ap.add_argument('--raw-pairs',type=int,choices=(512,256,128),default=512,
                     help='Complex samples per radar record; must match the radar profile register 0x04 size code')
+    ap.add_argument('--fft-bins',type=int,default=0,
+                    help='Export hardware-FFT range bins -K..K for all 64 chirps (codec 2) instead of raw records')
     ap.add_argument('--fft-selftest',action='store_true',
                     help='Run the BR23 hardware FFT self-test at stream start-up and print results on PA9')
     ap.add_argument('--radar-config', type=Path, default=ROOT / 'config/radar_baseline_mode2.json')
@@ -60,8 +62,10 @@ def main():
     a = ap.parse_args(); sdk=a.sdk.resolve(); tc=a.toolchain.resolve()
     if a.raw_usb_bench and a.application!='usb-bench':ap.error('--raw-usb-bench requires --application usb-bench')
     if a.stream_chirps!=64 and a.application!='stream':ap.error('--stream-chirps 16 requires --application stream')
-    if (a.raw_pairs!=512 or a.fft_selftest) and a.application!='stream':
-        ap.error('--raw-pairs and --fft-selftest require --application stream')
+    if (a.raw_pairs!=512 or a.fft_selftest or a.fft_bins) and a.application!='stream':
+        ap.error('--raw-pairs, --fft-bins and --fft-selftest require --application stream')
+    if a.fft_bins and not (0<a.fft_bins<a.raw_pairs//2 and a.stream_chirps==64):
+        ap.error('--fft-bins K needs 0 < K < raw-pairs/2 and the 64-chirp export')
     out=(a.out or ROOT / {'hello':'build/hello', 'radar':'build/image', 'capture':'build/capture', 'usb-bench':'build/usb-bench', 'stream':'build/stream'}[a.application]).resolve()
     out.mkdir(parents=True,exist_ok=True)
     verify_sdk(sdk,load_lock()); provenance=toolchain_provenance(tc)
@@ -90,6 +94,7 @@ def main():
         if a.stream_chirps==16:flags += ['-DLD_STREAM_CHIRPS=16','-DLD2450_STREAM_RAW_ONLY']
         if a.raw_pairs!=512:flags += [f'-DLD_RADAR_PAIRS={a.raw_pairs}u']
         if a.fft_selftest:flags += ['-DLD2450_FFT_SELFTEST']
+        if a.fft_bins:flags += [f'-DLD_STREAM_FFT_BINS={a.fft_bins}']
         # The radar's own record size (0x04 bits 10:8: 64<<code pairs) must
         # match the firmware's record parser, or every record is rejected.
         writes=re.findall(r'\{0x04, 0x([0-9A-F]{4})\}',(out/'generated/radar_config_generated.c').read_text())
@@ -103,6 +108,9 @@ def main():
                   'radar_control':'ldc1-v1'}
         if a.raw_usb_bench:identity['encoding_policy']='raw-only-synthetic-paced'
         if a.fft_selftest:identity['startup_selftest']='br23-hw-fft-v1'
+        if a.fft_bins:
+            identity.update(codec='LDF1-rangebins-v1',encoding_policy='hw-fft-range-bins',
+                            fft_points=a.raw_pairs,fft_bins=a.fft_bins,bin_format='int16-block-shift-int32-dc')
         if a.stream_chirps==16:
             identity.update(encoding_policy='raw-only-live-prefix16',acquisition_chirps=64,first_chirp=0)
         identity_bytes=json.dumps(identity,sort_keys=True,separators=(',',':')).encode()

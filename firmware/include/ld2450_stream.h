@@ -23,6 +23,21 @@
 #error Unsupported export window
 #endif
 #define LD_STREAM_PAYLOAD_MAX (LD_STREAM_IQ_BYTES + 9u)
+/* Range-bin export (codec 2), selected by LD_STREAM_FFT_BINS = K. Each validated
+ * record is converted to interleaved int32 I/Q, transformed in place by an
+ * injected LD_RADAR_PAIRS-point complex FFT (unscaled, natural bin order, as the
+ * BR23 engine computes it), and bins -K..K are exported:
+ *   mode(2) | radar header(4) | radar trailer(4) | shift (u8) |
+ *   bin 0 re, im (int32 LE) | bins -K..-1, 1..K: re, im (int16 LE, value >> shift)
+ * shift is the smallest right shift that fits every non-DC kept bin in int16
+ * (rounded half up, saturated). BEGIN declares codec version 2. */
+#ifdef LD_STREAM_FFT_BINS
+#if LD_STREAM_FFT_BINS < 1 || LD_STREAM_FFT_BINS >= LD_RADAR_PAIRS / 2
+#error Unsupported range-bin count
+#endif
+#define LD_STREAM_BIN_PAYLOAD (18u + 8u * LD_STREAM_FFT_BINS)
+typedef int (*ld_stream_transform_fn)(void *context, int32_t *data, unsigned points);
+#endif
 #define LD_STREAM_HEADER_BYTES 32u
 #define LD_STREAM_MESSAGE_MAX (32u + LD_STREAM_PAYLOAD_MAX + 4u)
 
@@ -39,7 +54,13 @@ struct ld_stream {
     uint8_t *queue;
     size_t capacity, head, used;
     uint8_t config_sha256[32];
+#ifdef LD_STREAM_FFT_BINS
+    int32_t work[2u * LD_RADAR_PAIRS];        /* interleaved I/Q, FFT in place */
+    ld_stream_transform_fn transform;
+    void *transform_context;
+#else
     uint8_t previous[2][LD_STREAM_IQ_BYTES];
+#endif
     uint8_t scratch[LD_STREAM_MESSAGE_MAX];
     uint32_t sequence, frame;
     uint16_t next_chirp[2];
@@ -55,6 +76,14 @@ size_t ld_stream_encode(const uint8_t record[LD_STREAM_RECORD_BYTES],
                         const uint8_t *previous_iq, uint8_t *out, size_t capacity);
 int ld_stream_init(struct ld_stream *s, uint8_t *queue, size_t capacity,
                    const uint8_t config_sha256[32]);
+#ifdef LD_STREAM_FFT_BINS
+/* Required before the first frame in range-bin builds (after ld_stream_init). */
+void ld_stream_set_transform(struct ld_stream *s, ld_stream_transform_fn fn, void *context);
+/* Codec 2 payload for one validated record; 0 if the transform fails. */
+size_t ld_stream_encode_bins(const uint8_t record[LD_STREAM_RECORD_BYTES], int32_t *work,
+                             ld_stream_transform_fn fn, void *context,
+                             uint8_t *out, size_t capacity);
+#endif
 /* Call once at an observed paired frame boundary. Returns 1 when selected,
  * 0 when intentionally skipped (backlog), -1 on API misuse. Frame IDs must
  * count observed radar frames, including skips; timestamp is local us. */

@@ -46,6 +46,28 @@ static uint8_t control_reply[LD_CONTROL_REPLY_MAX];
 static uint32_t gap_seen_dma,gap_start_us;
 static uint8_t gap_open;
 
+#ifdef LD_STREAM_FFT_BINS
+/* BR23 FFT engine, in place, polled (firmware/docs/HW_FFT.md). The engine reads
+ * {config, in, out} from RAM; config packing follows the SDK's hw_fft_config. */
+static struct {uint32_t config; int32_t *in; int32_t *out;} fft_ctx;
+static uint32_t fft_errors;
+static int hw_fft(void *context,int32_t *data,unsigned points) {
+    unsigned log2n=0,n;
+    (void)context;
+    while((1u<<log2n)<points) ++log2n;
+    fft_ctx.config=(points<<16)|((log2n-1u)<<8)|((log2n-2u)<<4)|1u; /* complex, forward, same address */
+    fft_ctx.in=fft_ctx.out=data;
+    __asm__ volatile("csync" ::: "memory");
+    JL_FFT->CON=0;JL_FFT->CON|=BIT(8);
+    JL_FFT->CADR=(uint32_t)&fft_ctx;
+    JL_FFT->CON|=BIT(0);
+    for(n=0;n<100000u && !(JL_FFT->CON&BIT(7));++n) {}
+    JL_FFT->CON|=BIT(6);
+    __asm__ volatile("csync" ::: "memory");
+    if(n<100000u) return 0;
+    ++fft_errors;return -1;
+}
+#endif
 ___interrupt static void clock_irq(void) {JL_TIMER3->CON|=BIT(14);clock_base+=1000;}
 uint32_t ld2450_stream_clock_us(void) {
     uint32_t base,count;
@@ -83,6 +105,9 @@ int ld2450_stream_app_init(void) {
     request_irq(IRQ_TIME3_IDX,4,clock_irq,0);
     JL_TIMER3->CON=(1u<<4)|BIT(3)|BIT(0); /* timer clock /4, counting */
     if(ld_stream_init(&stream,output_queue,sizeof(output_queue),ld_stream_config_hash)) return -2;
+#ifdef LD_STREAM_FFT_BINS
+    ld_stream_set_transform(&stream,hw_fft,NULL);
+#endif
     ld_acquisition_init(&acquisition,&stream);
     ld_radar_control_init(&control);
 #ifdef LD2450_FFT_SELFTEST
@@ -255,6 +280,10 @@ void ld2450_stream_app_report(void) {
     ld2450_debug_write(text);
     snprintf(text,sizeof(text),"STREAM cpu_rejections=%u queue_overflows=%u\r\n",cpu_rejections,stream.stats.queue_overflows);
     ld2450_debug_write(text);
+#ifdef LD_STREAM_FFT_BINS
+    snprintf(text,sizeof(text),"STREAM fft_bins=%u fft_errors=%u\r\n",(unsigned)LD_STREAM_FFT_BINS,fft_errors);
+    ld2450_debug_write(text);
+#endif
     snprintf(text,sizeof(text),"USB irq_calls=%u irq_us=%u irq_max_us=%u\r\n",usb.irq_calls,usb.irq_us,usb.irq_max_us);
     ld2450_debug_write(text);
     if(acquisition.corrupt) {
@@ -278,7 +307,11 @@ void ld2450_stream_app_report(void) {
         for(n=0;n<16;++n) value^=ld_stream_crc32(acquisition.first[0],DMA_BYTES);
         crc_us=ld2450_stream_clock_us()-before;
         before=ld2450_stream_clock_us();
+#ifdef LD_STREAM_FFT_BINS
+        for(n=0;n<16;++n) size+=ld_stream_encode_bins(acquisition.first[0],stream.work,hw_fft,NULL,stream.scratch,LD_STREAM_PAYLOAD_MAX);
+#else
         for(n=0;n<16;++n) size+=ld_stream_encode(acquisition.first[0],stream.previous[0],stream.scratch,LD_STREAM_PAYLOAD_MAX);
+#endif
         encode_us=ld2450_stream_clock_us()-before;
         snprintf(text,sizeof(text),"KERNEL runs=16 crc_us=%u encode_us=%u validate_us=%u encoded_bytes=%u check=%u\r\n",crc_us,encode_us,validate_us,(unsigned)size,value);
         ld2450_debug_write(text);

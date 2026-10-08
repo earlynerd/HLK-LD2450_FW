@@ -172,6 +172,56 @@ CRC_CODE uint32_t ld_stream_crc32(const uint8_t *data, size_t size)
     while(size--) crc=(crc>>8)^table[0][(crc^*data++)&255u];
     return crc^0xffffffffu;
 }
+#ifdef LD_STREAM_FFT_BINS
+#define RECORD_CODEC 2u
+#define BEGIN_VERSION 2u
+#define BEGIN_BYTES 56u
+void ld_stream_set_transform(struct ld_stream *s, ld_stream_transform_fn fn, void *context)
+{
+    if (s) { s->transform=fn; s->transform_context=context; }
+}
+static int16_t shifted(int32_t v, unsigned shift)
+{
+    int64_t r=shift ? (((int64_t)v+((int64_t)1<<(shift-1)))>>shift) : v;
+    return (int16_t)(r>32767 ? 32767 : r<-32768 ? -32768 : r);
+}
+size_t ld_stream_encode_bins(const uint8_t *r, int32_t *w, ld_stream_transform_fn fn,
+                             void *context, uint8_t *out, size_t cap)
+{
+    const int k_max=(int)LD_STREAM_FFT_BINS, n=(int)LD_RADAR_PAIRS;
+    unsigned j, shift=0;
+    uint32_t peak=0;
+    size_t pos=18;
+    int k;
+    if (!r || !w || !fn || !out || cap<LD_STREAM_BIN_PAYLOAD) return 0;
+    for (j=0;j<LD_STREAM_VALUES;++j) w[j]=signed_be16(r+4+2*j);
+    if (fn(context,w,LD_RADAR_PAIRS)) return 0;
+    for (k=-k_max;k<=k_max;++k) {
+        const int32_t *b=w+2*((k+n)%n);
+        uint32_t a=(uint32_t)(b[0]<0 ? -(int64_t)b[0] : b[0]);
+        uint32_t c=(uint32_t)(b[1]<0 ? -(int64_t)b[1] : b[1]);
+        if (!k) continue;
+        if (a>peak) peak=a;
+        if (c>peak) peak=c;
+    }
+    while ((peak>>shift)>32767u) ++shift;
+    out[0]=2; memcpy(out+1,r,4); memcpy(out+5,r+LD_STREAM_RECORD_BYTES-4u,4);
+    out[9]=(uint8_t)shift;
+    le32(out+10,(uint32_t)w[0]); le32(out+14,(uint32_t)w[1]);
+    for (k=-k_max;k<=k_max;++k) {
+        const int32_t *b=w+2*((k+n)%n);
+        if (!k) continue;
+        le16(out+pos,(uint16_t)shifted(b[0],shift));
+        le16(out+pos+2,(uint16_t)shifted(b[1],shift));
+        pos+=4;
+    }
+    return pos;
+}
+#else
+#define RECORD_CODEC 1u
+#define BEGIN_VERSION 1u
+#define BEGIN_BYTES 52u
+#endif
 static uint32_t residual(const uint8_t *a, const uint8_t *b)
 {
     int32_t d=signed_be16(a)-signed_be16(b);
@@ -232,7 +282,7 @@ static void message(struct ld_stream *s, uint8_t type, uint8_t lane,
                     uint16_t chirp, uint32_t time, size_t payload, uint32_t raw_crc)
 {
     uint8_t *p=s->scratch;
-    memcpy(p,"LDF1",4); p[4]=1; p[5]=type; p[6]=(uint8_t)(type==2); p[7]=lane;
+    memcpy(p,"LDF1",4); p[4]=1; p[5]=type; p[6]=(uint8_t)(type==2 ? RECORD_CODEC : 0u); p[7]=lane;
     le16(p+8,(uint16_t)payload); le16(p+10,chirp);
     le32(p+12,s->sequence++); le32(p+16,s->frame); le32(p+20,time);
     le32(p+24,raw_crc); le32(p+28,ld_stream_crc32(p,28));
@@ -271,8 +321,11 @@ int ld_stream_begin(struct ld_stream *s, uint32_t frame, uint32_t time)
     p=s->scratch+32; memcpy(p,s->config_sha256,32);
     le32(p+32,s->stats.frames_skipped); le32(p+36,s->stats.frames_rejected);
     le32(p+40,s->stats.queue_peak); le16(p+44,LD_RADAR_PAIRS); le16(p+46,LD_STREAM_CHIRPS);
-    p[48]=2; p[49]=1; le16(p+50,s->register_generation);
-    message(s,1,255,65535,time,52,0); return 1;
+    p[48]=2; p[49]=(uint8_t)BEGIN_VERSION; le16(p+50,s->register_generation);
+#ifdef LD_STREAM_FFT_BINS
+    le16(p+52,LD_RADAR_PAIRS); p[54]=(uint8_t)LD_STREAM_FFT_BINS; p[55]=1; /* bin format 1 */
+#endif
+    message(s,1,255,65535,time,BEGIN_BYTES,0); return 1;
 }
 int ld_stream_record(struct ld_stream *s, const uint8_t *r, size_t size, uint32_t time)
 {
@@ -297,14 +350,23 @@ int ld_stream_record_validated(struct ld_stream *s,const uint8_t *r,size_t size,
         ++s->stats.invalid_records; ld_stream_abort(s,2,time); return -1;
     }
     lane=decoded->rx_index;
+#ifdef LD_STREAM_FFT_BINS
+    encoded=ld_stream_encode_bins(r,s->work,s->transform,s->transform_context,
+                                  s->scratch+32,LD_STREAM_PAYLOAD_MAX);
+    if (!encoded) { ++s->stats.invalid_records; ld_stream_abort(s,2,time); return -1; }
+#else
     encoded=ld_stream_encode(r,s->next_chirp[lane] ? s->previous[lane] : NULL,
                             s->scratch+32,LD_STREAM_PAYLOAD_MAX);
+#endif
     if (encoded+36+ABORT_RESERVE>s->capacity-s->used) {
         ++s->stats.queue_overflows; ld_stream_abort(s,3,time); return -1;
     }
     if (s->scratch[32]) ++s->stats.compressed_records; else ++s->stats.raw_records;
     message(s,2,lane,decoded->chirp,time,encoded,ld_stream_crc32(r,size));
-    memcpy(s->previous[lane],r+4,LD_STREAM_IQ_BYTES); ++s->next_chirp[lane];
+#ifndef LD_STREAM_FFT_BINS
+    memcpy(s->previous[lane],r+4,LD_STREAM_IQ_BYTES);
+#endif
+    ++s->next_chirp[lane];
     if (s->next_chirp[0]==LD_STREAM_CHIRPS && s->next_chirp[1]==LD_STREAM_CHIRPS) {
         message(s,3,255,65535,time,0,0);
         s->active=0; s->pending_complete=1; ++s->stats.frames_completed;

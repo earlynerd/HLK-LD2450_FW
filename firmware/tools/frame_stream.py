@@ -88,6 +88,38 @@ def decode_record(payload, previous=None, pairs=512):
     return record
 
 
+def decode_bins(payload, pairs, bins_half):
+    """Codec 2 range-bin record -> (radar header+trailer bytes, bins).
+
+    bins: bytes of int32 LE (re, im) pairs for FFT bins -K..K in ascending order,
+    rescaled to the unscaled pairs-point DFT of the original record.
+    """
+    count = 2 * bins_half
+    if len(payload) != 18 + 4 * count or payload[0] != 2:
+        raise ValueError('Invalid range-bin record length/mode')
+    shift = payload[9]
+    if shift > 24:
+        raise ValueError('Invalid range-bin shift')
+    dc = struct.unpack_from('<ii', payload, 10)
+    values = struct.unpack_from(f'<{2 * count}h', payload, 18)
+    scaled = [v << shift for v in values]
+    ordered = scaled[:count] + list(dc) + scaled[count:]
+    header, trailer = payload[1:5], payload[5:9]
+    validate_header(header + trailer, pairs)
+    return header + trailer, struct.pack(f'<{len(ordered)}i', *ordered), shift
+
+
+def validate_header(header_trailer, pairs):
+    """Radar record identity without the I/Q checksum (the device checked it before transforming)."""
+    header = int.from_bytes(header_trailer[:4], 'big')
+    lane, chirp = (header >> 22) & 3, (header >> 11) & 511
+    if header >> 24 != 0xaa or lane > 1 or (header >> 20) & 3 != 2 or header & 2047 != pairs + 1 or chirp >= 64:
+        raise ValueError('Unexpected DS RAW header')
+    if struct.unpack('>H', header_trailer[6:8])[0] != (lane << 14) | 0x2000 | ((chirp & 15) << 8) | 0x55:
+        raise ValueError('Invalid radar trailer')
+    return lane, chirp
+
+
 def validate_record(record, pairs=512):
     if len(record) != record_bytes(pairs):
         raise ValueError('Wrong raw length')
@@ -191,15 +223,21 @@ class Frames:
     def _accept(self, m):
         if m.kind == 1:
             self.invalidate()
-            if (m.codec, m.lane, m.chirp, m.raw_crc, len(m.payload)) != (0, 255, 65535, 0, 52):
+            if (m.codec, m.lane, m.chirp, m.raw_crc) != (0, 255, 65535, 0) or len(m.payload) not in (52, 56):
                 raise ValueError('Invalid BEGIN')
-            skipped, rejected, peak, pairs, chirps, lanes, version, generation = struct.unpack('<IIIHHBBH', m.payload[32:])
-            if pairs not in SUPPORTED_PAIRS or (lanes, version) != (2, 1) or chirps not in (16, 64):
+            skipped, rejected, peak, pairs, chirps, lanes, version, generation = struct.unpack('<IIIHHBBH', m.payload[32:52])
+            if pairs not in SUPPORTED_PAIRS or lanes != 2 or chirps not in (16, 64) or                     (version, len(m.payload)) not in ((1, 52), (2, 56)):
                 raise ValueError('Unsupported frame configuration')
+            bins_half = None
+            if version == 2:
+                fft_points, bins_half, bin_format = struct.unpack('<HBB', m.payload[52:56])
+                if fft_points != pairs or bin_format != 1 or not 0 < bins_half < pairs // 2:
+                    raise ValueError('Unsupported range-bin configuration')
             self.latest_device_stats = dict(device_skipped=skipped, device_rejected=rejected,
                                             device_queue_peak=peak)
             self.current = dict(frame_id=m.frame, config_sha256=m.payload[:32].hex(),
                                 chirps=chirps, pairs=pairs, register_generation=generation,
+                                codec_version=version, bins_half=bins_half,
                                 started_us=m.timestamp_us, device_skipped=skipped,
                                 device_rejected=rejected, device_queue_peak=peak,
                                 lanes=[[], []], timestamps_us=[[], []], next_sequence=(m.sequence + 1) & 0xffffffff)
@@ -219,9 +257,17 @@ class Frames:
             raise ValueError('Frame/message sequence discontinuity')
         f['next_sequence'] = (m.sequence + 1) & 0xffffffff
         if m.kind == 2:
-            if m.codec != 1 or m.lane > 1 or m.chirp != len(f['lanes'][m.lane]) or m.chirp >= f['chirps']:
+            if m.codec != f['codec_version'] or m.lane > 1 or m.chirp != len(f['lanes'][m.lane]) or                     m.chirp >= f['chirps']:
                 raise ValueError('Record order mismatch')
             records = f['lanes'][m.lane]
+            if f['codec_version'] == 2:
+                identity, bins, shift = decode_bins(m.payload, f['pairs'], f['bins_half'])
+                if validate_header(identity, f['pairs']) != (m.lane, m.chirp):
+                    raise ValueError('Record identity mismatch')
+                records.append(bins)
+                f.setdefault('shifts', [[], []])[m.lane].append(shift)
+                f['timestamps_us'][m.lane].append(m.timestamp_us)
+                return None
             if not records and m.payload[:1] != b'\x00':
                 raise ValueError('First chirp must be raw')
             raw = decode_record(m.payload, records[-1][4:-4] if records else None, f['pairs'])
@@ -260,9 +306,12 @@ def save_frame(frame, out, ordinal):
     dest = out / f'frame-{ordinal:06d}-id-{frame["frame_id"]:010d}'
     dest.mkdir()  # Never replace previously accepted evidence.
     lanes = frame.pop('lanes')
+    # Raw frames: original radar records. Range-bin frames (codec_version 2):
+    # int32 LE re/im for bins -K..K per chirp, rescaled to the unscaled DFT.
+    suffix = 'bins.bin' if frame.get('codec_version') == 2 else 'bin'
     frame['lane_sha256'] = [hashlib.sha256(lane).hexdigest() for lane in lanes]
     for lane, raw in enumerate(lanes):
-        (dest / f'lane{lane}.bin').write_bytes(raw)
+        (dest / f'lane{lane}.{suffix}').write_bytes(raw)
     (dest / 'frame.json').write_text(json.dumps(frame, indent=2) + '\n')
 
 

@@ -84,6 +84,17 @@ if(BUILD_TESTING)
   add_test(NAME raw16_p256_acquisition COMMAND test_stream16_p256)
   add_test(NAME raw16_p256_interop COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/stream16_interop.py" "$<TARGET_FILE:test_stream16_p256>" 256)
+  # Range-bin export (codec 2) with a reference DFT standing in for the BR23 FFT engine.
+  add_executable(test_stream_bins tests/test_stream_bins.c src/stream.c src/acquisition.c)
+  target_compile_definitions(test_stream_bins PRIVATE LD_STREAM_FFT_BINS=40)
+  target_include_directories(test_stream_bins PRIVATE include)
+  target_link_libraries(test_stream_bins PRIVATE radar_wire)
+  if(NOT MSVC)
+    target_link_libraries(test_stream_bins PRIVATE m)
+  endif()
+  add_test(NAME range_bins_acquisition COMMAND test_stream_bins)
+  add_test(NAME range_bins_interop COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/tests/stream_bins_interop.py" "$<TARGET_FILE:test_stream_bins>")
   add_executable(test_radar_control tests/test_radar_control.c src/radar_control.c src/stream.c src/acquisition.c)
   target_compile_definitions(test_radar_control PRIVATE LD_STREAM_CHIRPS=16 LD2450_STREAM_RAW_ONLY)
   target_include_directories(test_radar_control PRIVATE include)

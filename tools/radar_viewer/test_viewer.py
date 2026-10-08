@@ -14,7 +14,7 @@ from unittest.mock import patch
 
 import numpy as np
 
-from .processing import Pipeline, DEFAULT_SETTINGS, unpack_iq
+from .processing import Pipeline, DEFAULT_SETTINGS, unpack_iq, load_calibration
 from . import server
 from frame_stream import HEADER, crc, Parser, Frames, Message
 
@@ -36,6 +36,40 @@ def fixture(fast_bin=12, slow_bin=5, frame_id=7, config="ab" * 32, chirps=64):
     return dict(chirps=chirps, frame_id=frame_id, config_sha256=config, started_us=stamps[0],
                 ended_us=stamps[-1], device_skipped=2, device_rejected=0,
                 device_queue_peak=100, lanes=lane_bytes, timestamps_us=[stamps, stamps])
+
+
+def from_samples(z, frame_id=7, config="ab" * 32):
+    """Raw frame from complex samples z: receivers x chirps x 512."""
+    chirps = z.shape[1]
+    lanes = []
+    for lane in range(2):
+        records = []
+        for chirp in range(chirps):
+            iq = np.clip(np.stack((z[lane, chirp].real, z[lane, chirp].imag), axis=-1).round(), -32768, 32767)
+            iq = iq.astype(">i2").tobytes()
+            records.append(struct.pack(">I", 0xaa200201 | lane << 22 | chirp << 11) + iq +
+                           struct.pack(">HH", sum(struct.unpack(">1024H", iq)) & 65535,
+                                       lane << 14 | 0x2000 | (chirp & 15) << 8 | 0x55))
+        lanes.append(b"".join(records))
+    stamps = [1000 + 1200 * i for i in range(chirps)]
+    return dict(chirps=chirps, frame_id=frame_id, config_sha256=config, started_us=stamps[0],
+                ended_us=stamps[-1], device_skipped=0, device_rejected=0, device_queue_peak=0,
+                lanes=lanes, timestamps_us=[stamps, stamps])
+
+
+def scene(movers=(), static=(), noise=4.0, chirps=64, seed=1, d_over_lambda=0.5):
+    """Point targets as (range_bin, doppler_bin, angle_deg, amplitude); RX2 leads RX1 by
+    2 pi (d/lambda) sin(angle). Static targets have zero Doppler."""
+    rng = np.random.default_rng(seed)
+    n, c = np.arange(512)[None, :], np.arange(chirps)[:, None]
+    z = np.zeros((2, chirps, 512), complex) + (900 - 400j)
+    for k, dop, angle, amp in list(movers) + [(k, 0, a, amp) for k, a, amp in static]:
+        tone = amp * np.exp(2j * np.pi * (k * n / 512 + dop * c / chirps))
+        phase = 2 * np.pi * d_over_lambda * np.sin(np.radians(angle))
+        z[0] += tone
+        z[1] += tone * np.exp(1j * phase)
+    z += noise * (rng.standard_normal(z.shape) + 1j * rng.standard_normal(z.shape))
+    return from_samples(z)
 
 
 def bins_wire(frame, half=40, generation=0):
@@ -244,6 +278,66 @@ class ProcessingTests(unittest.TestCase):
         for settings in ({}, dict(DEFAULT_SETTINGS, remove_dc=1), dict(DEFAULT_SETTINGS, detrend=False), dict(DEFAULT_SETTINGS, window="bad")):
             with self.assertRaises(ValueError):
                 Pipeline().process(fixture(), settings)
+
+
+class TargetTests(unittest.TestCase):
+    MOVERS = ((6.3, 5.4, 20.0, 1500), (11.0, -8.0, -35.0, 1200))
+    STATIC = ((3.0, 5.0, 6000),)
+
+    def detect(self, frame, settings=DEFAULT_SETTINGS, calibration=None):
+        result = Pipeline(calibration).process(frame, settings)
+        self.assertEqual(result["stage_errors"], {})
+        return result["products"]["targets"]
+
+    def test_moving_targets_range_velocity_and_angle(self):
+        cal = load_calibration()
+        out = self.detect(scene(self.MOVERS, self.STATIC), calibration=cal)
+        found = sorted(out["targets"], key=lambda t: t["range_bin"])
+        self.assertEqual(len(found), 2, found)
+        hz_per_bin = 1 / (64 * 0.0012)
+        for t, (k, dop, angle, _) in zip(found, self.MOVERS):
+            self.assertAlmostEqual(t["range_bin"], k, delta=0.25)
+            self.assertAlmostEqual(t["doppler_hz"] / hz_per_bin, dop, delta=0.3)
+            self.assertAlmostEqual(t["angle_deg"], angle, delta=1.5)
+            self.assertAlmostEqual(t["range_m"], cal["range"]["m_per_bin"] * t["range_bin"] + cal["range"]["offset_m"], places=2)
+            self.assertAlmostEqual(t["velocity_mps"], t["doppler_hz"] * cal["wavelength_m"] / 2, places=3)
+            self.assertAlmostEqual(np.hypot(t["x_m"], t["y_m"]), t["range_m"], places=2)
+            self.assertGreater(t["coherence"], 0.95)
+            self.assertFalse(t["angle_ambiguous"])
+        self.assertTrue(out["moving_only"])
+        self.assertFalse(out["calibrated"]["angle"])
+
+    def test_noise_alone_gives_no_detections(self):
+        for seed in range(5):
+            self.assertEqual(self.detect(scene(seed=seed))["targets"], [])
+
+    def test_static_reflector_needs_static_mode(self):
+        frame = scene(static=self.STATIC)
+        self.assertEqual(self.detect(frame)["targets"], [])
+        found = self.detect(frame, dict(DEFAULT_SETTINGS, remove_static=False))["targets"]
+        self.assertEqual(len(found), 1)
+        self.assertAlmostEqual(found[0]["range_bin"], 3.0, delta=0.25)
+        self.assertAlmostEqual(found[0]["angle_deg"], 5.0, delta=1.0)
+
+    def test_max_range_and_angle_calibration(self):
+        cal = load_calibration()
+        cal["detection"]["max_range_m"] = cal["range"]["m_per_bin"] * 9 + cal["range"]["offset_m"]
+        found = self.detect(scene(self.MOVERS), calibration=cal)["targets"]
+        self.assertEqual([round(t["range_bin"]) for t in found], [6])
+        # A boresight offset equal to the target's phase puts it straight ahead; the sign mirrors.
+        cal["angle"].update(phase_offset_deg=float(np.degrees(np.pi * np.sin(np.radians(20)))))
+        self.assertAlmostEqual(self.detect(scene(self.MOVERS), calibration=cal)["targets"][0]["angle_deg"], 0, delta=1.5)
+        cal["angle"].update(phase_offset_deg=0.0, sign=-1)
+        self.assertAlmostEqual(self.detect(scene(self.MOVERS), calibration=cal)["targets"][0]["angle_deg"], -20, delta=1.5)
+
+    def test_device_bins_give_the_same_targets(self):
+        raw = scene(self.MOVERS, self.STATIC)
+        a = sorted(self.detect(raw)["targets"], key=lambda t: t["range_bin"])
+        b = sorted(self.detect(decode_one(bins_wire(raw)))["targets"], key=lambda t: t["range_bin"])
+        self.assertEqual(len(a), len(b))
+        for x, y in zip(a, b):
+            for key, tol in (("range_bin", 0.02), ("doppler_hz", 0.2), ("angle_deg", 0.2)):
+                self.assertAlmostEqual(x[key], y[key], delta=tol)
 
 
 class AcquisitionTests(unittest.TestCase):

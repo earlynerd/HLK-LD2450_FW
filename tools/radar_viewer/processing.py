@@ -12,12 +12,20 @@ published spectra cover bins -(K-1)..(K-1). Views that need time samples
 (waveform, within-chirp spectrogram, linear-trend removal) were removed when
 the device moved to range-bin export.
 
+Target detection and angle (stage "targets") run on the range-Doppler map:
+CFAR over the summed receiver power, local maxima, merging of nearby cells,
+sub-bin interpolation, then the RX2-RX1 phase at each target for its angle.
+Calibration values (range scale, wavelength, antenna spacing, phase offset,
+signs, detection parameters) come from calibration.json.
+
 Add a stage to Pipeline.stages to publish another named product. Each stage
 receives a FrameContext and returns JSON-compatible data. Acquisition and the
 LDF1 integrity boundary do not need to change when adding a stage.
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import base64
+import json
+from pathlib import Path
 import time
 
 import numpy as np
@@ -27,6 +35,12 @@ DEFAULT_SETTINGS = {"remove_dc": True, "window": "hann", "remove_static": True}
 CHANGE_ALPHA = 0.1   # Running-average weight per processed frame (about 10-frame memory).
 RAW_BINS_HALF = 40   # Raw frames are reduced to the same bins the device exports.
 MIRROR_BINS = np.arange(2, 13)  # Signed FFT bins where the scene dominates the noise.
+CALIBRATION_PATH = Path(__file__).with_name("calibration.json")
+
+
+def load_calibration(path=CALIBRATION_PATH):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
 
 
 def validate_settings(values):
@@ -109,6 +123,7 @@ class FrameContext:
     chirp_interval_s: float
     points: int
     iq_correction: dict = None
+    cache: dict = field(default_factory=dict)
 
     @property
     def bin_lo(self):
@@ -186,23 +201,121 @@ def spectrum(ctx):
             "bins": ctx.bin_range(), "unit": "dB re 1 exported count"}
 
 
+def range_doppler(ctx):
+    """Complex range-Doppler maps (receivers x Doppler x range bins) and Doppler Hz, cached per frame.
+
+    Hann across chirps, fftshifted (Doppler index d is bin d - chirps//2). Optional
+    static removal subtracts the within-frame mean before the slow-time FFT.
+    """
+    if "rd" not in ctx.cache:
+        values = ctx.spectra
+        if ctx.settings["remove_static"]:
+            values = values - values.mean(axis=1, keepdims=True)
+        chirps = ctx.spectra.shape[1]
+        window = np.hanning(chirps)
+        rd = np.fft.fftshift(np.fft.fft(values * window[None, :, None], axis=1), axes=1) / window.sum()
+        ctx.cache["rd"] = rd, np.fft.fftshift(np.fft.fftfreq(chirps, ctx.chirp_interval_s))
+    return ctx.cache["rd"]
+
+
 def doppler(ctx):
-    values = ctx.spectra
-    if ctx.settings["remove_static"]:
-        values = values - values.mean(axis=1, keepdims=True)
-    chirps = ctx.spectra.shape[1]
-    window = np.hanning(chirps)
-    transformed = np.fft.fftshift(np.fft.fft(values * window[None, :, None], axis=1), axes=1)
-    transformed /= window.sum()
-    freq = np.fft.fftshift(np.fft.fftfreq(chirps, ctx.chirp_interval_s))
+    transformed, freq = range_doppler(ctx)
     return {"db": db(abs(transformed)), "fast_bins": ctx.bin_range(),
             "hz": np.round(freq, 3).tolist(), "unit": "dB re 1 exported count"}
 
 
+def box_sum(power, half_range, half_doppler):
+    """Sum over a (2*half_doppler+1) x (2*half_range+1) box around every cell.
+
+    The Doppler axis is circular (wraps); range edges reflect.
+    """
+    p = np.pad(power, ((half_doppler, half_doppler), (0, 0)), mode="wrap")
+    p = np.pad(p, ((0, 0), (half_range, half_range)), mode="reflect")
+    c = np.pad(p, ((1, 0), (1, 0))).cumsum(axis=0).cumsum(axis=1)
+    d, r = power.shape
+    hd, hr = 2 * half_doppler + 1, 2 * half_range + 1
+    return c[hd:hd + d, hr:hr + r] - c[:d, hr:hr + r] - c[hd:hd + d, :r] + c[:d, :r]
+
+
+def _vertex(a, b, c):
+    """Parabolic peak offset (bins) from three log-power samples, clipped to +/-0.5."""
+    den = a - 2 * b + c
+    return float(np.clip(0.5 * (a - c) / den, -0.5, 0.5)) if den else 0.0
+
+
+def targets(ctx, cal):
+    """Detect targets on the range-Doppler map and measure range, velocity and angle.
+
+    Cell-averaging CFAR on |RX1|^2 + |RX2|^2 (guard and training cells from the
+    calibration file), positive range bins up to max_range_m only (negative bins
+    hold the I/Q mirror and leakage), local maxima, strongest-first merging of
+    cells within merge_cells. Angle: phase of sum(RX2 * conj(RX1)) over the 3x3
+    cells around the peak, minus the boresight offset, gives
+    sin(theta) = sign * dphi / (2 pi d/lambda). |sin| > 1 is clipped and flagged.
+    """
+    rd, freq = range_doppler(ctx)
+    det, rng, ang, vel = cal["detection"], cal["range"], cal["angle"], cal["velocity"]
+    power = np.sum(np.abs(rd) ** 2, axis=0)
+    n_doppler, n_range = power.shape
+    (gr, gd), (tr, td) = det["guard_cells"], det["training_cells"]
+    outer, inner = box_sum(power, gr + tr, gd + td), box_sum(power, gr, gd)
+    count = (2 * (gr + tr) + 1) * (2 * (gd + td) + 1) - (2 * gr + 1) * (2 * gd + 1)
+    noise = np.maximum((outer - inner) / count, 1e-30)
+    log_power = 10 * np.log10(np.maximum(power, 1e-30))
+    snr = log_power - 10 * np.log10(noise)
+    bins = np.arange(ctx.bin_lo, ctx.bin_lo + n_range)
+    max_bin = (det["max_range_m"] - rng["offset_m"]) / rng["m_per_bin"]
+    doppler_bins = np.arange(n_doppler) - n_doppler // 2
+    valid = (bins >= 1)[None, :] & (bins <= max_bin)[None, :] & (snr >= det["threshold_db"])
+    if ctx.settings["remove_static"]:
+        valid &= (np.abs(doppler_bins) >= det["min_doppler_bin"])[:, None]
+    valid[:, [0, -1]] = False
+    neighbours = np.max([np.roll(np.roll(power, a, axis=0), b, axis=1)
+                         for a in (-1, 0, 1) for b in (-1, 0, 1) if a or b], axis=0)
+    cells = sorted(zip(*np.nonzero(valid & (power >= neighbours))), key=lambda c: -power[c])
+    picked, (mr, md) = [], det["merge_cells"]
+    for d, r in cells:
+        if any(abs(r - r2) <= mr and min(abs(d - d2), n_doppler - abs(d - d2)) <= md for d2, r2 in picked):
+            continue
+        picked.append((d, r))
+        if len(picked) >= det["max_targets"]:
+            break
+    bin_hz = 1 / (n_doppler * ctx.chirp_interval_s)
+    k_angle = 2 * np.pi * ang["d_over_lambda"]
+    found = []
+    for d, r in picked:
+        rows = [(d + a) % n_doppler for a in (-1, 0, 1)]
+        block = rd[:, rows][:, :, r - 1:r + 2]
+        cross = np.sum(block[1] * np.conj(block[0]))
+        coherence = abs(cross) / np.sqrt(np.sum(abs(block[0]) ** 2) * np.sum(abs(block[1]) ** 2))
+        dphi = np.angle(cross * np.exp(-1j * np.radians(ang["phase_offset_deg"])))
+        sine = ang["sign"] * dphi / k_angle
+        theta = float(np.degrees(np.arcsin(np.clip(sine, -1, 1))))
+        k = bins[r] + _vertex(log_power[d, r - 1], log_power[d, r], log_power[d, r + 1])
+        f = freq[d] + bin_hz * _vertex(log_power[rows[0], r], log_power[d, r], log_power[rows[2], r])
+        range_m = rng["m_per_bin"] * k + rng["offset_m"]
+        found.append({
+            "range_m": round(float(range_m), 3), "angle_deg": round(theta, 1),
+            "velocity_mps": round(float(vel["sign"] * f * cal["wavelength_m"] / 2), 3),
+            "x_m": round(float(range_m * np.sin(np.radians(theta))), 3),
+            "y_m": round(float(range_m * np.cos(np.radians(theta))), 3),
+            "snr_db": round(float(snr[d, r]), 1), "power_db": round(float(log_power[d, r]), 1),
+            "range_bin": round(float(k), 2), "doppler_hz": round(float(f), 2),
+            "phase_deg": round(float(np.degrees(np.angle(cross))), 1),
+            "coherence": round(float(coherence), 3), "angle_ambiguous": bool(abs(sine) > 1)})
+    return {"targets": found, "threshold_db": det["threshold_db"], "max_range_m": det["max_range_m"],
+            "noise_db": round(float(np.median(10 * np.log10(noise))), 1),
+            "moving_only": bool(ctx.settings["remove_static"]),
+            "calibrated": {"range": rng["calibrated"], "angle": ang["calibrated"], "velocity": vel["calibrated"]},
+            "units": {"range": "m", "angle": "deg, positive per calibration sign", "velocity": "m/s"}}
+
+
 class Pipeline:
-    def __init__(self):
+    def __init__(self, calibration=None):
+        self.calibration = load_calibration() if calibration is None else calibration
         self.stages = {"quality": signal_quality, "spectrum": spectrum, "change": self.change,
-                       "doppler": doppler, "iq_balance": iq_balance}
+                       "doppler": doppler, "iq_balance": iq_balance,
+                       "targets": lambda ctx: targets(ctx, self.calibration)}
         self.iq_cal = self.iq_cal_config = None
         self.reference = None
         self.reference_config = None

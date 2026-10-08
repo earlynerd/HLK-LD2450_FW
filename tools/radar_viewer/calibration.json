@@ -1,0 +1,32 @@
+{
+  "_about": "Target-measurement calibration for the live viewer (processing.targets). Edit and restart the viewer server. Values marked calibrated=false are assumptions, and the UI labels results from them as uncalibrated.",
+  "range": {
+    "m_per_bin": 0.6376,
+    "offset_m": 0.14,
+    "calibrated": false,
+    "basis": "Three-point corner-reflector fit 2026-10-07 at the stock 204.3 MHz sweep: distance = 0.75 m x bin + 0.14 m (+/-10%). Scaled by 204.3/240.3 for the installed 240 MHz sweep (stretch x1.18 measured). Re-measure at 240 MHz."
+  },
+  "wavelength_m": 0.012427,
+  "angle": {
+    "d_over_lambda": 0.5,
+    "phase_offset_deg": 0.0,
+    "sign": 1,
+    "calibrated": false,
+    "basis": "Assumed half-wavelength receiver spacing; boresight offset and sign not yet measured (RX2-RX1 phase was -5 to +9 deg for a reflector straight ahead on 2026-10-07)."
+  },
+  "velocity": {
+    "sign": 1,
+    "calibrated": false,
+    "basis": "Positive Doppler bin reported as positive velocity; which direction that is has not been checked."
+  },
+  "detection": {
+    "max_range_m": 8.0,
+    "threshold_db": 13.0,
+    "guard_cells": [2, 2],
+    "training_cells": [4, 6],
+    "min_doppler_bin": 1,
+    "merge_cells": [2, 4],
+    "max_targets": 6,
+    "_cells": "[range bins, Doppler bins]. Threshold is over the cell-averaging CFAR noise estimate. min_doppler_bin applies only when static removal is on."
+  }
+}

@@ -50,6 +50,37 @@ the complex waveform, the within-chirp spectrogram, linear-trend removal and
 the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
 8 m is about bin 12.
 
+- **Targets (top view):** detections from the range-Doppler map (`targets`
+  stage). Cell-averaging CFAR runs on the summed receiver power, with guard and
+  training cells, a threshold and a maximum range taken from
+  `tools/radar_viewer/calibration.json`. Only positive range bins are searched
+  (negative bins hold the I/Q mirror and leakage). The detector keeps local
+  maxima, merges cells close in range and Doppler (strongest first, up to
+  `max_targets`), and interpolates range and Doppler parabolically.
+  - Range: `m_per_bin x bin + offset_m`.
+  - Velocity: Doppler Hz x wavelength / 2.
+  - Angle: the phase of sum(RX2 x conj(RX1)) over the 3x3 cells around the
+    peak, minus `phase_offset_deg`, gives
+    sin(theta) = sign x dphi / (2 pi d/lambda). Values beyond +/-1 are clipped
+    and marked `?`.
+  - Coherence (0-1) is the normalised magnitude of that cross product: low
+    values mean the phase is not from one point source.
+  - With static removal on, only moving targets appear (Doppler bins
+    `|d| < min_doppler_bin` are excluded). Turning it off, after capturing an
+    empty-scene background, shows static reflectors too.
+
+  The top view draws the radar at the bottom centre, 1 m rings, the +/-60 deg
+  field of view and a fading 30-frame trail. Colour is the velocity sign. The
+  table lists range, angle, velocity, SNR over the CFAR noise estimate and
+  coherence. Quantities whose calibration is marked false are labelled
+  uncalibrated. Initial values (2026-10-08): range scaled from the 204 MHz
+  three-point fit; d/lambda = 0.5, offset 0 and both signs assumed. The
+  Range-Doppler panel circles the same detections.
+
+  First live use: detections at about 1.3-1.6 m with symmetric Doppler lines at
+  +/-104, +/-208 and +/-417 Hz. The same lines are the strongest in the earlier
+  raw-firmware recordings, so they come from the room, not the range-bin
+  firmware; the pattern is typical of a rotating fan.
 - **Frame spectrum:** RMS range-bin amplitude across chirps, normalized by the
   window sum, in dB relative to one exported sample count. Hann/rectangular
   window and per-chirp DC removal are selectable. The Hann window is applied in

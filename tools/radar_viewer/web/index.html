@@ -55,6 +55,12 @@
     <article><span>Within-frame variation</span><strong id="residual">—</strong><small>RX1 / RX2 · residual amplitude</small></article>
   </div>
   <div class="charts">
+    <section class="panel wide"><div class="panel-heading"><div><h2>Targets · top view</h2><p id="targets-subtitle">Detections from the range–Doppler map · radar at bottom centre</p></div><span class="tag">DETECTIONS</span></div>
+      <div class="targets-body"><canvas id="targets" aria-label="Top view of detected targets in metres"></canvas>
+        <div class="target-table-wrap"><table class="register-table target-table"><thead><tr><th>#</th><th>Range m</th><th>Angle °</th><th>Velocity m/s</th><th>SNR dB</th><th>Coherence</th></tr></thead><tbody id="target-rows"></tbody></table>
+        <p id="targets-detail" class="hint">Waiting for a frame.</p></div></div>
+      <div class="legend"><span class="cyan">● positive velocity</span><span class="orange">● negative velocity</span><span class="right">Metres · rings every 1 m · ±60° field of view · fading trail of recent frames</span></div>
+    </section>
     <section class="panel"><div class="panel-heading"><div><h2>Frame spectrum</h2><p>RMS spectral amplitude over the captured chirps</p></div><span class="tag">RANGE BINS</span></div>
       <canvas id="spectrum" aria-label="Spectrum of both receivers in signed FFT bins"></canvas>
       <div class="legend"><span class="cyan">RX1</span><span class="orange">RX2</span><span class="right" id="spectrum-span-detail">Bins -16 to +16 · dB re 1 count</span></div>
@@ -63,7 +69,7 @@
       <canvas id="waterfall" aria-label="History of spectral amplitude"></canvas>
       <div class="legend"><span id="history-count">0 displayed frames</span><span class="right" id="history-detail">Signed FFT bin · relative amplitude</span></div>
     </section>
-    <section class="panel"><div class="panel-heading"><div><h2>Within-frame Doppler <span class="rx-label">RX1</span></h2><p>Exploratory · full-record FFT · no range or velocity calibration</p></div><span class="tag" id="doppler-tag">CHIRP FFT</span></div>
+    <section class="panel"><div class="panel-heading"><div><h2>Range–Doppler <span class="rx-label">RX1</span></h2><p>Range bin × Doppler across the frame's chirps · detections circled</p></div><span class="tag" id="doppler-tag">CHIRP FFT</span></div>
       <canvas id="doppler" aria-label="Exploratory Doppler frequency versus fast-time FFT bin"></canvas>
       <div class="legend"><span id="doppler-detail">Waiting for timing</span><span class="right">Fast-time bin · slow-time Hz</span></div>
     </section>

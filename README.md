@@ -2,8 +2,10 @@
 
 Reverse engineering and experimental JieLi BR23/AC695N firmware for the
 HLK-LD2450 24 GHz radar module. The custom firmware replaces the stock target
-reporting: it streams the radar's two receive channels over the module's own
-USB port, and a local browser viewer does the radar processing on the host.
+reporting. It runs each chirp of both receive channels through the JieLi chip's
+hardware FFT engine and streams the resulting range bins over the module's own
+USB port. A local browser viewer does the rest of the radar processing on the
+host: Doppler, detection, angle and tracking.
 
 ![Live radar viewer: one tracked person at 1.5 m in the top view, the range spectrum of both receivers, the change waterfall, the 64-chirp range-Doppler map and the constellation of one range bin](resources/Screenshot.png)
 
@@ -16,7 +18,7 @@ towards the sensor at 0.4 m/s. The angle is not calibrated yet.*
 |---|---|
 | Updating | Stock-to-custom and custom-to-custom UART updates work at 256000 baud, with a three-second boot recovery window. |
 | Radar setup | The S5KM312CL is started with the recovered stock profile, changed to a 240 MHz in-band sweep (24.005-24.245 GHz, about 0.64 m per range bin). Its registers are [mapped](docs/S5KM312CL_REGISTER_MAP.md). |
-| On-device processing | Both receivers are captured continuously over SPI DMA. Each chirp goes through the BR23 hardware FFT (512 points, 53 us), and bins -40..40 are kept (about 25 m). |
+| On-device processing | Both receivers are captured continuously over SPI DMA. Each chirp goes through the JieLi BR23's hardware FFT engine (512-point complex, unscaled, 53 us; [characterised here](firmware/docs/HW_FFT.md)), and bins -40..40 are kept (about 25 m). This replaced raw export, which could only fit 16 of the 64 chirps per frame. |
 | Export | All 64 chirps of every radar frame, about 11 frames/s and 540 kB/s, over native USB CDC (LDF1 codec 2). Live register reads and writes go over the same port. Installed image: [`firmware/releases/usb-bins40-20261008`](firmware/releases/usb-bins40-20261008). |
 | Host viewer | Range spectra, change waterfall, 64-chirp range-Doppler map (13 Hz bins), constellation, CFAR detection on both receivers, angle from the receiver phase difference, a clutter map and Kalman tracks. Register control, and a sweep-width control for out-of-band experiments. |
 

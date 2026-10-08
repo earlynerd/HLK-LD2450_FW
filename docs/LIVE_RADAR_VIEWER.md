@@ -1,8 +1,8 @@
 # Live radar viewer
 
 A local browser workspace for the custom firmware's validated LDF1 feed. It
-shows both receivers' I/Q waveforms and spectra, spectral history, an exploratory
-within-frame Doppler map, and transport/processing health. It does not require a
+shows both receivers' range-bin spectra, spectral history, a 64-chirp Doppler
+map, a per-bin constellation, and transport/processing health. It does not require a
 firmware change or a web service. Dependencies are NumPy and pyserial; the UI
 uses browser Canvas with no package build or external assets.
 
@@ -41,108 +41,77 @@ An open page refreshes its token and retries once if the server was restarted.
 
 ## Explore
 
-- **Complex waveform:** choose a chirp or the mean of all captured chirps. The
-  slider and mean adapt to the declared 16- or 64-chirp export. Both I and Q
-  from both receivers are shown. DC removal follows the frame's processing
-  setting; background subtraction does not alter this source-data plot.
-- **Frame spectrum:** 512-point complex FFT, normalized by the window sum, RMS
-  spectral amplitude across chirps, in dB relative to one exported sample count.
-  Hann/rectangular and per-chirp complex DC removal are selectable.
-- **Spectrum / history span:** defaults to bins -16 through +16 so low-frequency
-  detail is visible. Select positive bins 0 through +32 or the full -256 through
-  +255 spectrum as needed. This crops the plotted bins only: no samples, FFT
-  coefficients, history, or raw recording data are discarded. It does not
-  improve FFT resolution or calibrate distance. The fixed outer features remain
-  accessible in Full view.
-- **Spectrum history:** the last 160 spectra displayed in this browser. Newest
+Since 2026-10-08 the viewer works on **range bins**: the unwindowed, unscaled
+512-point FFT bins -40..+40 of each chirp. The installed firmware exports
+exactly these (`--fft-bins 40`, LDF1 codec 2, all 64 chirps of every frame).
+Older raw recordings are converted to the same bins on the host, so they still
+replay. Views that need time samples were removed with the move to range bins:
+the complex waveform, the within-chirp spectrogram, linear-trend removal and
+the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
+8 m is about bin 12.
+
+- **Frame spectrum:** RMS range-bin amplitude across chirps, normalized by the
+  window sum, in dB relative to one exported sample count. Hann/rectangular
+  window and per-chirp DC removal are selectable. The Hann window is applied in
+  the bin domain (0.5 X[k] - 0.25 X[k-1] - 0.25 X[k+1]), so the displayed bins
+  are -39..+39.
+- **Spectrum / history span:** defaults to bins -16 through +16. Positive bins
+  0 through +32 or all exported bins are selectable. This crops the plotted bins
+  only.
+- **Spectrum history:** the last 160 spectra displayed in this browser, newest
   at the bottom. The default **Change from running average** mode shows the RMS
   deviation of each frame's complex spectrum from an exponential average of
-  previous frames (weight 0.1 per processed frame, so about 10 frames of memory).
+  previous frames (weight 0.1 per processed frame, about 10 frames of memory).
   Static leakage and clutter dominate the absolute magnitude spectrum while
   motion mostly changes phase, so this mode is where movement is visible.
   The average restarts on configuration, setting or background changes.
-  **Absolute spectrum** shows the original magnitude history. Rows are displayed frames, not a uniform time axis: firmware
-  intentionally skips export frames, and browser refresh can skip views too.
-- **Constellation:** I versus Q on equal axes for both receivers. **FFT bin
-  over time** plots the complex value of one signed bin (-64 to +64) for every
-  chirp of the last 40 displayed frames, older frames faded; it uses the
-  frame's window and DC settings but not background subtraction. A static
-  reflector stays a tight cluster; motion at that bin appears as rotation or an
-  arc. Changing the bin restarts the trail. **Raw samples** plots the selected
-  chirp's (or mean) 512 exported samples, exposing DC offset, I/Q imbalance or
-  clipping. The axis range grows immediately to keep every point visible and
-  shrinks by 4% per new frame (roughly 3 s to halve), restarting on a mode or
-  bin change.
+  **Absolute spectrum** shows the magnitude history. Rows are displayed frames,
+  not a uniform time axis. A change of bin range (for example after reflashing)
+  restarts the history.
+- **Constellation:** the complex value of one signed range bin for every chirp
+  of the last 40 displayed frames, older frames faded. Background, I/Q
+  correction, DC and window settings apply. A static reflector stays a tight
+  cluster; motion at that bin appears as rotation or an arc. Changing the bin
+  restarts the trail. The axis range grows immediately to keep every point
+  visible and shrinks by 4% per new frame.
 - **I/Q correction:** **Calibrate I/Q** fits each receiver's Q-versus-I gain
   and phase error from the latest frame, assuming a static scene with a strong
   reflector: a mismatch puts a conjugated copy of each positive-frequency
   component at the matching negative frequency, X(-k) = alpha * conj(X(k)), and
-  alpha = (1 - u) / (1 + u) with u = g * exp(-j*phi). It then applies
-  Q_ideal = (Q/g - I*sin(phi)) / cos(phi) to every frame before DC/trend removal
-  and all FFTs. The raw waveform and constellation stay uncorrected. Cleared
-  when the settings identity changes (gain registers alter the mismatch).
-  Session-local, like the background. The `iq_balance` product reports the
-  mirror the model still finds (bins 2-12 of the coherent mean chirp) and how
-  much negative-bin energy it fails to explain (fit residual near 1 means what
-  remains is not a mirror). Bench 2026-10-06, corner reflector: Q gain
-  -2.19 / -0.83 dB and phase -18.2 / -15.1 deg (RX1 / RX2); negative-to-positive
-  energy over bins 2-12 fell from -13.7 / -16.9 dB to -28.3 / -33.1 dB. RX1's -4
-  bin (-8 dB relative to +4) is unchanged: genuine negative-frequency content
-  or drift leakage, not mirror.
-- **Linear trend removal:** optional (off by default). Subtracts a least-squares
-  straight line from each chirp's complex record before every FFT, and from the
-  browser-side waveform and constellation. It removes the large slow drift
-  whose leakage otherwise dominates the central bins. It also removes any
-  genuine content that is linear across the record.
-- **Within-chirp spectrogram:** short-time spectrum along each chirp to test
-  whether the 512-sample record is one ramp. 128-sample Hann segments every 16
-  samples, zero-padded to 512 points so bins share the frame spectrum's axis
-  (true resolution 4 bins), RMS over chirps, signed bins -64 through +64. Rows
-  are segment centres, chirp start at the top. A reflector on a single linear
-  ramp is a vertical line; segment joins, fold-over or settling appear as
-  jumps or slopes. Uses `ctx.signal`, so DC, trend and background settings apply.
-  A white trace marks the strongest bin in each row (ignoring |bin| < 2,
-  parabolic sub-bin estimate); the legend gives its mean bin, start-to-end
-  tilt and scatter. Auto colour shows only the top 40 dB below the 99.9th
-  percentile. The trace follows whatever is strongest: with the drift present
-  that may be leakage, not a reflector.
-  First bench result (2026-10-06 capture `20261006-182335-capture-16da54`):
-  each chirp carries a large slow trend; a straight-line fit removes about 96%
-  (RX1) / 98% (RX2) of the DC-removed power. Its leakage dominates the central
-  bins and gives the near-DC energy a U shape along the record. It is not
-  evidence of ramp segmentation.
-- **Scaling:** by default the spectrum axis and both heatmaps auto-scale to
-  the visible bins (spectrum: range of the displayed history; heatmaps: 2nd to
-  99.5th percentile, at least 10 dB). In a fully static scene this stretches
-  noise across the palette. Untick auto-scale for separate manual waterfall
-  and Doppler colour ranges.
-- **Doppler:** 16- or 64-chirp Hann FFT across fast-time bins -64 through +64. Optional
-  static removal subtracts the within-frame mean complex spectrum before the
-  slow-time FFT. Frequency uses the median reported chirp interval (typically
-  1200 us: about 52.1 Hz/bin for 16 chirps, or 13.0 Hz/bin for 64).
+  alpha = (1 - u) / (1 + u) with u = g * exp(-j*phi). The correction
+  Q_ideal = (Q/g - I*sin(phi)) / cos(phi) is applied in the bin domain as
+  X'(k) = A X(k) + B conj(X(-k)), before DC removal and windowing. It is
+  cleared when the settings identity changes (gain registers alter the
+  mismatch), and is session-local like the background. The `iq_balance` product
+  reports the mirror the model still finds (bins 2-12 of the coherent mean) and
+  how much negative-bin energy it fails to explain. Bench 2026-10-06, corner
+  reflector: Q gain -2.19 / -0.83 dB and phase -18.2 / -15.1 deg (RX1 / RX2);
+  negative-to-positive energy over bins 2-12 fell from -13.7 / -16.9 dB to
+  -28.3 / -33.1 dB.
+- **Scaling:** by default the spectrum axis and both heatmaps auto-scale to the
+  visible bins (spectrum: range of the displayed history; heatmaps: 2nd to
+  99.5th percentile, at least 10 dB). Untick auto-scale for manual waterfall and
+  Doppler colour ranges.
+- **Doppler:** Hann FFT across the frame's chirps for every displayed range bin.
+  Optional static removal subtracts the within-frame mean before the slow-time
+  FFT. Frequency uses the median reported chirp interval: 1200 us gives
+  13.0 Hz/bin with 64 chirps (52.1 Hz/bin for older 16-chirp recordings).
   Timing outliers are reported, not silently repaired.
-- **Background:** capture the mean complex waveform of the latest acquired
-  frame for each receiver, then subtract it before spectrum/Doppler processing.
-  Source changes, configuration changes and replay loops clear the reference.
-  The capture is session-local. It is not saved as a calibration.
+- **Background:** capture the mean complex range bins of the latest acquired
+  frame for each receiver, then subtract them before spectrum/Doppler
+  processing. Source changes, configuration changes and replay loops clear the
+  reference. Session-local; not saved as a calibration.
 - **Freeze display:** continues reading, decoding and optional recording while
-  holding the displayed frame. Chirp/receiver/heatmap controls still work.
-  Resume starts a fresh history. Processing changes apply to newly processed
-  frames, not the frozen view. **Save latest acquired frame** and **Capture
-  background** always act on the current acquisition, even when display is frozen.
+  holding the displayed frame. Receiver/heatmap controls still work. Resume
+  starts a fresh history. **Save latest acquired frame** and **Capture
+  background** always act on the current acquisition, even when frozen.
 - **Raw recording:** retains original wire bytes plus a SHA-256 manifest in a
-  new `output/live_radar/*-capture-*` folder. Stops at 1 GiB or disconnect. Starts
-  and ends can be mid-frame; replay resynchronizes and only publishes complete
-  frames. Refresh the recording list after creating captures in another client.
-- **Save latest acquired frame:** exports two exact validated lane binaries and
-  their hash manifest, source and processing settings, to a new snapshot folder.
-  It does not modify the frame in memory. The raw data is retained unchanged.
-
-Recordings loop at approximately their original timestamp spacing, with very
-long gaps capped at two seconds. Known capture directories are listed; an
-arbitrary file can be supplied on the trusted command line with `--replay`.
-Older diagnostic captures named `raw` may contain synthetic benchmark data;
-their configuration identities and source names remain visible.
+  new `output/live_radar/*-capture-*` folder. Stops at 1 GiB or disconnect.
+  Starts and ends can be mid-frame; replay resynchronizes and only publishes
+  complete frames.
+- **Save latest acquired frame:** exports the frame's validated lane data
+  (range bins as int32 re/im, `lane*.bins.bin`, or raw records, `lane*.bin`)
+  with a hash manifest, source and processing settings, to a new snapshot folder.
 
 ## Radar registers
 
@@ -179,9 +148,11 @@ firmware; with older images commands go unanswered and the panel says so.
 
 ## Interpretation limits
 
-FFT bin is not distance. Full-record FFTs may combine multiple ramp segments;
-sample rate, chirp slope and sample-to-ramp alignment still need calibration.
-The Doppler map is exploratory, not a calibrated range/velocity map. Neither
+Axes stay in FFT bins. A three-point corner-reflector fit gave about 0.75 m per
+bin (+/-10%) at the stock 204 MHz sweep, so about 0.64 m per bin at the
+installed 240 MHz sweep. The sample window covers about 98% of the up-ramp
+(register map, 0x02). The Doppler map is exploratory, not a calibrated
+range/velocity map. Neither
 receiver phase nor an amplitude peak is reported as bearing or an identified
 target. The spectra are not dBm measurements.
 
@@ -201,10 +172,10 @@ are explicitly named diagnostics under `firmware/config/`. Exact sweep/sample
 alignment, calibrated distance, and identification of individual range peaks
 remain separate validation work.
 
-Within-frame variation is RMS residual after subtracting the frame's mean
-DC-centered waveform, divided by the DC-centered RMS amplitude. It includes
-noise, drift and motion; it is not target SNR. ADC saturation cannot be ruled
-out just because the exported int16 samples do not reach the numerical rails.
+Within-frame variation is the RMS chirp-to-chirp residual within the exported
+bins (DC excluded) after subtracting the frame mean, divided by the in-band RMS
+amplitude. It includes noise, drift and motion; it is not target SNR. Range
+bins carry no time samples, so the viewer cannot report ADC rail hits.
 
 Health counters distinguish host parser/protocol failures, rejected complete
 frame candidates, firmware skips/rejections (cumulative since boot), and dropped
@@ -230,12 +201,9 @@ counters diagnose this; they do not resolve the firmware's motion-dependent
 compression/queue/CPU limits of that 64-chirp image. Evidence is in
 `output/live_radar/20261006-173642-capture-3fc19b/analysis.json`.
 
-The subsequent raw 16-chirp firmware exports chirps 0-15 from both receivers,
-with all 512 complex samples per chirp. Its complete 67,100-byte wire export fits
-the existing producer queue without compression or concurrent USB draining.
-The radar still produces 64 physical chirps; exports deliberately cover only the
-first 16, and whole physical frames can be skipped while USB output drains.
-See `firmware/docs/FRAME_STREAM.md` for the installed image and bench evidence.
+The installed range-bin firmware exports all 64 chirps of every radar frame
+(about 48 KB/frame, 11 frames/s); export skips occur only while no host reads
+the port. See `firmware/docs/FRAME_STREAM.md` for the image and bench evidence.
 
 ## Extend processing
 
@@ -250,7 +218,8 @@ The viewer neither weakens checks nor introduces another wire decoder.
 2. Decoder produces verified frames. The one-frame processing queue replaces an
    older pending display frame if necessary; the drop is counted independently
    of device export loss. Recording remains independent of display work.
-3. `processing.Pipeline` unpacks `(receiver, chirp, sample, I/Q)` and constructs
+3. `processing.Pipeline` obtains complex range bins `(receiver, chirp, bin)`
+   (device codec-2 bins, or a host FFT of raw records) and constructs
    `FrameContext`. Its named `stages` mapping publishes JSON-compatible products.
    Stage exceptions appear as named errors; other stages can still render.
 4. The browser polls the latest result. Slow/frozen/closed browsers never block
@@ -261,9 +230,10 @@ The viewer neither weakens checks nor introduces another wire decoder.
 To add a range estimator, phase/coherence stage, motion detector or angle solver:
 implement a function taking `FrameContext`, add it to `Pipeline.stages`, and add
 a corresponding plot in `web/app.js` / `web/index.html`. Retain units and
-calibration identity with each new product. Use `ctx.raw` for unchanged complex
-samples, `ctx.signal` for optional DC/background removal, or `ctx.spectra` for
-the normalized fast-time FFT. Stage execution must stay bounded; heavy work can
+calibration identity with each new product. Use `ctx.raw` for the unchanged
+bins -K..K (unscaled DFT units), `ctx.signal` after background, I/Q correction
+and DC removal, or `ctx.spectra` for the windowed, normalized bins
+`ctx.bin_range()`. Stage execution must stay bounded; heavy work can
 drop display frames but must not alter the acquisition integrity contract.
 
 Tests from the repository root:
@@ -273,6 +243,7 @@ python -m unittest discover -s tools -p test_viewer.py -v
 ```
 
 Tests cover complex FFT sign/amplitude, Doppler frequency, timestamp rollover,
-background/config changes, static rejection, stage-failure isolation, endian
-roundtrip, corruption recovery, bounded display backlog, port identity,
+background/config changes, static rejection, stage-failure isolation, device
+codec-2 bins matching the host conversion of raw frames (with I/Q correction),
+endianness, corruption recovery, bounded display backlog, port identity,
 recording hashes, replay/snapshot lifecycle, and local HTTP control protection.

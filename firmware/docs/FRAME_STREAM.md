@@ -1,6 +1,6 @@
 # Lossless frame stream application
 
-## Installed image: 240 MHz sweep profile (2026-10-08)
+## Previous image: raw 16-chirp, 240 MHz sweep profile (2026-10-08)
 
 The raw 16-chirp stream with live register control (LDC1) now starts the radar
 with `firmware/config/radar_sweep240_mode2.json`: 24.005-24.245 GHz, about
@@ -58,9 +58,13 @@ Bench 2026-10-08, image SHA-256
 - **Doppler:** 13.0 Hz bins (64 chirps) instead of 52.1 Hz (16 chirps).
 
 Evidence: `output/range_bins/20261008-013448-*` (stream hashes in report.json,
-PA9 report in `-pa9.txt`). The live viewer cannot display range-bin frames yet,
-so the raw 16-chirp release image was reinstalled after the test.
-`frame_stream.py` decodes and saves them (`lane*.bins.bin`).
+PA9 report in `-pa9.txt`). `frame_stream.py` decodes and saves range-bin frames
+(`lane*.bins.bin`).
+
+**Installed image since 2026-10-08:** `firmware/releases/usb-bins40-20261008/`
+(same SHA-256 as above). The live viewer was rewritten to work on range bins only
+(`docs/LIVE_RADAR_VIEWER.md`); live, it showed 64-chirp frames at 10.9/s and
+542 kB/s. The raw 16-chirp image below is the previous installed image.
 
 ## Radar record size and FFT self-test build options (2026-10-08)
 

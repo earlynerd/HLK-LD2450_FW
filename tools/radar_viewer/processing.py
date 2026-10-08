@@ -1,4 +1,16 @@
-"""Processing stages operate on complete frames; axes stay uncalibrated.
+"""Range-bin processing for the live viewer; axes stay uncalibrated.
+
+Every frame is handled as range bins: the unwindowed, unscaled FFT bins -K..K
+of each chirp. Range-bin frames (LDF1 codec 2) arrive that way from the device's
+hardware FFT. Raw frames (older images and recordings) are converted on the host
+with the same transform (512-point FFT, K = RAW_BINS_HALF), so one pipeline
+serves both.
+
+DC removal, background subtraction, I/Q correction and the Hann window are
+exact bin-domain operations. The Hann window combines neighbouring bins, so the
+published spectra cover bins -(K-1)..(K-1). Views that need time samples
+(waveform, within-chirp spectrogram, linear-trend removal) were removed when
+the device moved to range-bin export.
 
 Add a stage to Pipeline.stages to publish another named product. Each stage
 receives a FrameContext and returns JSON-compatible data. Acquisition and the
@@ -11,29 +23,76 @@ import time
 import numpy as np
 
 
-DEFAULT_SETTINGS = {"remove_dc": True, "detrend": False, "window": "hann", "remove_static": True}
-CHANGE_ALPHA = 0.1  # Running-average weight per processed frame (about 10-frame memory).
-STFT_SEGMENT, STFT_HOP, STFT_BINS = 128, 16, 64  # Samples, samples, published signed bins each side.
+DEFAULT_SETTINGS = {"remove_dc": True, "window": "hann", "remove_static": True}
+CHANGE_ALPHA = 0.1   # Running-average weight per processed frame (about 10-frame memory).
+RAW_BINS_HALF = 40   # Raw frames are reduced to the same bins the device exports.
+MIRROR_BINS = np.arange(2, 13)  # Signed FFT bins where the scene dominates the noise.
 
 
 def validate_settings(values):
     if set(values) != set(DEFAULT_SETTINGS):
-        raise ValueError("Settings must contain remove_dc, detrend, window and remove_static")
-    if any(type(values[key]) is not bool for key in ("remove_dc", "detrend", "remove_static")):
-        raise ValueError("DC, trend and static removal must be booleans")
+        raise ValueError("Settings must contain remove_dc, window and remove_static")
+    if any(type(values[key]) is not bool for key in ("remove_dc", "remove_static")):
+        raise ValueError("DC and static removal must be booleans")
     if values["window"] not in ("hann", "rectangular"):
         raise ValueError("Unknown window")
     return dict(values)
 
 
 def unpack_iq(frame):
-    chirps, pairs = frame.get('chirps', 64), frame.get('pairs', 512)
-    if chirps not in (16, 64) or any(len(lane) != chirps * (8 + 4 * pairs) for lane in frame['lanes']):
-        raise ValueError('Invalid complete export window')
+    """Raw frame -> receivers x chirps x samples x (I, Q) int16."""
+    chirps, pairs = frame.get("chirps", 64), frame.get("pairs", 512)
+    if chirps not in (16, 64) or any(len(lane) != chirps * (8 + 4 * pairs) for lane in frame["lanes"]):
+        raise ValueError("Invalid complete export window")
     return np.stack([
         np.frombuffer(lane, dtype=">i2").reshape(chirps, 4 + 2 * pairs)[:, 2:-2].reshape(chirps, pairs, 2)
         for lane in frame["lanes"]
     ]).astype("<i2")
+
+
+def unpack_bins(frame):
+    """Range-bin frame -> complex receivers x chirps x bins (-K..K), unscaled DFT units."""
+    chirps, half = frame.get("chirps", 64), frame.get("bins_half") or 0
+    width = 2 * half + 1
+    if chirps not in (16, 64) or half < 1 or any(len(lane) != chirps * width * 8 for lane in frame["lanes"]):
+        raise ValueError("Invalid complete range-bin frame")
+    values = np.stack([np.frombuffer(lane, dtype="<i4").reshape(chirps, width, 2)
+                       for lane in frame["lanes"]]).astype(np.float64)
+    return values[..., 0] + 1j * values[..., 1]
+
+
+def frame_bins(frame):
+    """(bins -K..K, FFT points, source) for either frame format."""
+    if frame.get("codec_version") == 2:
+        return unpack_bins(frame), frame["pairs"], "device"
+    iq = unpack_iq(frame).astype(np.float64)
+    points = iq.shape[2]
+    ks = np.arange(-RAW_BINS_HALF, RAW_BINS_HALF + 1)
+    return np.fft.fft(iq[..., 0] + 1j * iq[..., 1], axis=-1)[..., ks % points], points, "host"
+
+
+def window_bins(bins, hann, points):
+    """Window unwindowed DFT bins -K..K in the bin domain; returns bins -(K-1)..(K-1).
+
+    Periodic Hann is w = 0.5 - 0.5 cos(2 pi n / N), so the windowed DFT is
+    0.5 X[k] - 0.25 X[k-1] - 0.25 X[k+1]. Normalised by the window sum (N/2 or N):
+    a full-scale tone of amplitude A reads A.
+    """
+    if hann:
+        return (0.5 * bins[..., 1:-1] - 0.25 * bins[..., :-2] - 0.25 * bins[..., 2:]) / (points / 2)
+    return bins[..., 1:-1] / points
+
+
+def iq_correct_bins(bins, gain, phase):
+    """Bin-domain form of Q_ideal = (Q/g - I sin(phi)) / cos(phi), per receiver.
+
+    In time samples the correction is A x + B conj(x); the DFT of conj(x) at bin k
+    is conj(X[-k]). Bins are in -K..K order, so reversing them maps k to -k.
+    """
+    t, c = np.tan(phase), np.cos(phase)
+    a = (1 - 1j * t) / 2 + 1 / (2 * gain * c)
+    b = (1 - 1j * t) / 2 - 1 / (2 * gain * c)
+    return a[:, None, None] * bins + b[:, None, None] * np.conj(bins[..., ::-1])
 
 
 def db(value):
@@ -43,20 +102,29 @@ def db(value):
 @dataclass
 class FrameContext:
     frame: dict
-    iq: np.ndarray
-    raw: np.ndarray
-    signal: np.ndarray
-    spectra: np.ndarray
+    raw: np.ndarray       # bins -K..K as received (or host-converted), unscaled
+    signal: np.ndarray    # after background, I/Q correction and DC removal, unwindowed
+    spectra: np.ndarray   # windowed and normalised, bins -(K-1)..(K-1)
     settings: dict
     chirp_interval_s: float
+    points: int
     iq_correction: dict = None
+
+    @property
+    def bin_lo(self):
+        return -((self.spectra.shape[-1] - 1) // 2)
+
+    def bin_range(self):
+        return [self.bin_lo, -self.bin_lo]
 
 
 def signal_quality(ctx):
-    centered = ctx.raw - ctx.raw.mean(axis=-1, keepdims=True)
+    """Chirp-to-chirp variation within the exported band (DC excluded), via Parseval."""
+    centered = ctx.raw.copy()
+    centered[..., centered.shape[-1] // 2] = 0
     residual = centered - centered.mean(axis=1, keepdims=True)
-    rms = np.sqrt(np.mean(abs(centered) ** 2, axis=(1, 2)))
-    residual_rms = np.sqrt(np.mean(abs(residual) ** 2, axis=(1, 2)))
+    rms = np.sqrt(np.sum(abs(centered) ** 2, axis=2).mean(axis=1)) / ctx.points
+    residual_rms = np.sqrt(np.sum(abs(residual) ** 2, axis=2).mean(axis=1)) / ctx.points
     intervals = (np.diff(np.asarray(ctx.frame["timestamps_us"], dtype=np.int64), axis=1)
                  & 0xffffffff)
     median = float(np.median(intervals))
@@ -64,31 +132,28 @@ def signal_quality(ctx):
         "ac_rms": np.round(rms, 2).tolist(),
         "residual_rms": np.round(residual_rms, 2).tolist(),
         "residual_percent": np.round(100 * residual_rms / np.maximum(rms, 1e-9), 2).tolist(),
-        "rail_samples": int(np.count_nonzero((ctx.iq == -32768) | (ctx.iq == 32767))),
         "chirp_interval_us": median,
         "timing_outliers": int(np.count_nonzero(abs(intervals - median) > median * .1)),
     }
 
 
-MIRROR_BINS = np.arange(2, 13)  # Signed FFT bins where the scene dominates the noise.
-
-
-def mirror_factor(z):
+def mirror_factor(bins, points):
     """Mirror-image factor per receiver from a static scene.
 
-    z: receivers x 512 complex (one chirp, or a coherent mean over chirps).
-    Fits X(-k) = alpha * conj(X(k)) over MIRROR_BINS after DC/drift removal:
-    I/Q gain and phase mismatch put a scaled, conjugated copy of every
-    positive-frequency component at the matching negative frequency.
+    bins: receivers x (2K+1) coherent mean over chirps (-K..K, unwindowed).
+    After DC removal and a Hann window, fits X(-k) = alpha * conj(X(k)) over
+    MIRROR_BINS: I/Q gain and phase mismatch put a scaled, conjugated copy of
+    every positive-frequency component at the matching negative frequency.
     Returns alpha (complex, per receiver), the unexplained fraction of the
     negative-bin energy, and the positive-bin level in dB.
     """
-    n = np.arange(z.shape[-1]) - (z.shape[-1] - 1) / 2
-    zc = z - z.mean(axis=-1, keepdims=True)
-    zc = zc - (zc @ n / (n @ n))[..., None] * n
-    w = np.hanning(z.shape[-1])
-    X = np.fft.fft(zc * w, axis=-1) / w.sum()
-    pos, neg = X[..., MIRROR_BINS], X[..., -MIRROR_BINS]
+    half = (bins.shape[-1] - 1) // 2
+    if half - 1 < MIRROR_BINS[-1]:
+        raise ValueError("The I/Q mirror fit needs K >= 13")
+    zeroed = bins.copy()
+    zeroed[..., half] = 0
+    X, zero = window_bins(zeroed, True, points), half - 1
+    pos, neg = X[..., zero + MIRROR_BINS], X[..., zero - MIRROR_BINS]
     power = np.sum(np.abs(pos) ** 2, axis=-1)
     alpha = np.sum(neg * pos, axis=-1) / np.maximum(power, 1e-12)
     residual = (np.sum(np.abs(neg - alpha[..., None] * np.conj(pos)) ** 2, axis=-1)
@@ -108,7 +173,7 @@ def iq_correction(alpha):
 
 
 def iq_balance(ctx):
-    alpha, residual, level = mirror_factor(ctx.signal.mean(axis=1))
+    alpha, residual, level = mirror_factor(ctx.signal.mean(axis=1), ctx.points)
     return {"image_db": np.round(20 * np.log10(np.maximum(abs(alpha), 1e-9)), 2).tolist(),
             "image_deg": np.round(np.degrees(np.angle(alpha)), 1).tolist(),
             "fit_residual": np.round(residual, 3).tolist(), "level_db": np.round(level, 1).tolist(),
@@ -118,45 +183,26 @@ def iq_balance(ctx):
 
 def spectrum(ctx):
     return {"db": db(np.sqrt(np.mean(abs(ctx.spectra) ** 2, axis=1))),
-            "bins": [-256, 255], "unit": "dB re 1 exported count"}
+            "bins": ctx.bin_range(), "unit": "dB re 1 exported count"}
 
 
 def doppler(ctx):
-    # Full-record fast-time FFT is exploratory until ramp alignment is known.
-    values = ctx.spectra[:, :, 192:321]  # Signed fast-time bins -64 through +64.
+    values = ctx.spectra
     if ctx.settings["remove_static"]:
         values = values - values.mean(axis=1, keepdims=True)
-    chirps = ctx.iq.shape[1]
+    chirps = ctx.spectra.shape[1]
     window = np.hanning(chirps)
     transformed = np.fft.fftshift(np.fft.fft(values * window[None, :, None], axis=1), axes=1)
     transformed /= window.sum()
     freq = np.fft.fftshift(np.fft.fftfreq(chirps, ctx.chirp_interval_s))
-    return {"db": db(abs(transformed)), "fast_bins": [-64, 64],
+    return {"db": db(abs(transformed)), "fast_bins": ctx.bin_range(),
             "hz": np.round(freq, 3).tolist(), "unit": "dB re 1 exported count"}
-
-
-def spectrogram(ctx):
-    """Short-time spectrum along each chirp: does a reflector keep one beat frequency?
-
-    A single linear ramp gives a constant beat frequency (a vertical line here);
-    segment joins, fold-over or settling appear as jumps or changes along the record.
-    Segments are zero-padded to 512 points so bins share the frame spectrum's axis;
-    true resolution is 512 / STFT_SEGMENT = 4 bins. RMS over chirps, Hann per segment.
-    """
-    starts = np.arange(0, 512 - STFT_SEGMENT + 1, STFT_HOP)
-    window = np.hanning(STFT_SEGMENT)
-    segments = np.stack([ctx.signal[..., a:a + STFT_SEGMENT] for a in starts], axis=2)
-    spectra = np.fft.fftshift(np.fft.fft(segments * window, n=512, axis=-1), axes=-1) / window.sum()
-    power = np.mean(abs(spectra[..., 256 - STFT_BINS:256 + STFT_BINS + 1]) ** 2, axis=1)
-    return {"db": db(np.sqrt(power)), "bins": [-STFT_BINS, STFT_BINS],
-            "centers": (starts + STFT_SEGMENT // 2).tolist(), "segment": STFT_SEGMENT,
-            "hop": STFT_HOP, "resolution_bins": 512 // STFT_SEGMENT, "unit": "dB re 1 exported count"}
 
 
 class Pipeline:
     def __init__(self):
         self.stages = {"quality": signal_quality, "spectrum": spectrum, "change": self.change,
-                       "doppler": doppler, "spectrogram": spectrogram, "iq_balance": iq_balance}
+                       "doppler": doppler, "iq_balance": iq_balance}
         self.iq_cal = self.iq_cal_config = None
         self.reference = None
         self.reference_config = None
@@ -177,12 +223,11 @@ class Pipeline:
             self.average, self.average_key = current, key
         deviation = ctx.spectra - self.average[:, None, :]
         self.average = self.average + CHANGE_ALPHA * (current - self.average)
-        return {"db": db(np.sqrt(np.mean(abs(deviation) ** 2, axis=1))), "bins": [-256, 255],
+        return {"db": db(np.sqrt(np.mean(abs(deviation) ** 2, axis=1))), "bins": ctx.bin_range(),
                 "alpha": CHANGE_ALPHA, "unit": "dB re 1 exported count"}
 
     def set_reference(self, frame):
-        iq = unpack_iq(frame)
-        self.reference = (iq[..., 0] + 1j * iq[..., 1]).mean(axis=1, keepdims=True)
+        self.reference = frame_bins(frame)[0].mean(axis=1, keepdims=True)
         self.reference_config = frame.get("config_id", frame["config_sha256"])
         self.reference_frame = frame["frame_id"]
         self.average = self.average_key = None
@@ -192,9 +237,9 @@ class Pipeline:
         self.average = self.average_key = None
 
     def set_iq_calibration(self, frame):
-        """Fit per-receiver I/Q gain/phase from a static frame (raw samples, no correction)."""
-        iq = unpack_iq(frame)
-        alpha, residual, level = mirror_factor((iq[..., 0] + 1j * iq[..., 1]).astype(complex).mean(axis=1))
+        """Fit per-receiver I/Q gain/phase from a static frame (uncorrected bins)."""
+        bins, points, _ = frame_bins(frame)
+        alpha, residual, level = mirror_factor(bins.mean(axis=1), points)
         g, phi = iq_correction(alpha)
         self.iq_cal = dict(frame_id=frame["frame_id"], gain=g, phase=phi,
                            summary=dict(frame=frame["frame_id"],
@@ -214,34 +259,25 @@ class Pipeline:
     def process(self, frame, settings):
         started = time.perf_counter()
         settings = validate_settings(settings)
-        iq = unpack_iq(frame)
-        raw = iq[..., 0].astype(np.float32) + 1j * iq[..., 1].astype(np.float32)
         config_id = frame.get("config_id", frame["config_sha256"])
         if self.reference is not None and self.reference_config != config_id:
             self.clear_reference()
         if self.iq_cal is not None and self.iq_cal_config != config_id:
             self.clear_iq_calibration()  # Gain registers change the mismatch.
-        signal = raw.copy()
-        if self.reference is not None:
-            signal -= self.reference
-        if self.iq_cal is not None:
-            # Linear: Q_ideal = (Q/g - I*sin(phi)) / cos(phi), per receiver.
-            g = self.iq_cal["gain"][:, None, None]
-            phi = self.iq_cal["phase"][:, None, None]
-            signal = signal.real + 1j * ((signal.imag / g - signal.real * np.sin(phi)) / np.cos(phi))
-        if settings["remove_dc"] or settings["detrend"]:
-            signal -= signal.mean(axis=-1, keepdims=True)
-        if settings["detrend"]:
-            # Least-squares straight line per chirp; the slow drift otherwise leaks over the central bins.
-            n = np.arange(512) - 255.5
-            signal -= (signal @ n / (n @ n))[..., None] * n
-        window = np.hanning(512) if settings["window"] == "hann" else np.ones(512)
-        spectra = np.fft.fftshift(np.fft.fft(signal * window, axis=-1), axes=-1) / window.sum()
         intervals = np.diff(np.asarray(frame["timestamps_us"], dtype=np.int64), axis=1) & 0xffffffff
         interval_s = float(np.median(intervals)) / 1e6
         if not 0 < interval_s < 1:
             raise ValueError("Invalid chirp interval; cannot form a Doppler frequency axis")
-        ctx = FrameContext(frame, iq, raw, signal, spectra, settings, interval_s,
+        raw, points, source = frame_bins(frame)
+        signal = raw.copy()
+        if self.reference is not None and self.reference.shape[-1] == raw.shape[-1]:
+            signal -= self.reference
+        if self.iq_cal is not None:
+            signal = iq_correct_bins(signal, self.iq_cal["gain"], self.iq_cal["phase"])
+        if settings["remove_dc"]:
+            signal[..., signal.shape[-1] // 2] = 0   # Bin 0 is N times the chirp mean.
+        spectra = window_bins(signal, settings["window"] == "hann", points)
+        ctx = FrameContext(frame, raw, signal, spectra, settings, interval_s, points,
                            None if self.iq_cal is None else self.iq_cal["summary"])
         products, errors = {}, {}
         for name, stage in self.stages.items():
@@ -249,14 +285,17 @@ class Pipeline:
                 products[name] = stage(ctx)
             except Exception as exc:
                 errors[name] = str(exc)
+        # Processed, window-normalised bins for per-bin views (constellation).
+        values = np.stack([spectra.real, spectra.imag], axis=-1).astype("<f4")
         return {
             "frame_id": frame["frame_id"], "config_sha256": frame["config_sha256"],
             "config_id": config_id, "register_generation": frame.get("register_generation", 0),
             "started_us": frame["started_us"], "settings": settings,
             "reference_frame": self.reference_frame,
             "iq_calibration": None if self.iq_cal is None else self.iq_cal["summary"],
-            "chirps": int(iq.shape[1]), "iq_shape": list(iq.shape), "iq_dtype": "int16-le",
-            "iq_base64": base64.b64encode(iq.tobytes()).decode("ascii"),
+            "chirps": int(spectra.shape[1]), "bin_range": ctx.bin_range(), "fft_points": points,
+            "bins_source": source, "bins_shape": list(values.shape), "bins_dtype": "float32-le",
+            "bins_base64": base64.b64encode(values.tobytes()).decode("ascii"),
             "products": products, "stage_errors": errors,
             "processing_ms": round((time.perf_counter() - started) * 1000, 2),
         }

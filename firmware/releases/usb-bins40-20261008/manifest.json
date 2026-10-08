@@ -1,0 +1,22 @@
+{
+  "flashed_ufw_sha256": "85015eb67aa15f7f15711aa2523e7c1bf54bc1ede8eac0a6e3a3b45fce34e714",
+  "build_input_hashes_verified": true,
+  "files_sha256": {
+    "build-result.json": "536eaf4a7e46eea792105ff3821fe0004353dc2a14d7f938145dea6154c673f9",
+    "commands.json": "185f95df9c2666dc377b3006e41a77ab92e0c35aa820d42d9a170ed05e99f0da",
+    "generated/radar_config_generated.c": "e46f59fd037c07081365ebb69eff2f81b67692613c0af444caf8e6c06bb16a28",
+    "generated/radar_config_generated.h": "7203c5ecf091f571f3c477050ff95d27c5eb3d72d9661bb2917dabe022bd9045",
+    "generated/radar_config_provenance.json": "c1db7ce9425d44fd2a8767ec6c7995586de5f5f1db386d61732098394d1f4f4b",
+    "generated/radar_config_records.bin": "dac10072e18b741f48d6379ceb7d4204f0dfb8c50489dd6dc187e938a45b8830",
+    "generated/radar_config_wire_inferred.bin": "c387fd4ed4d26fe95806458f49f682cce21e7aadcff70057d411323f7e0518ac",
+    "generated/stream-config.json": "c01dfc7e92366a8e9fc44418896d1959207a6362c632317ce393832c5413acab",
+    "generated/stream_config_generated.h": "1964e927bd5c5507b756df9864a8fec5a46aab601c7a290776968243eb4e1c1a",
+    "generated/usb_config_stream.c": "7ea09a20ab809d556faad38757799596a7ec53de788f667b31a43434f9ee6c8a",
+    "README.md": "a6c7263936e2244b97f6b72b6f1b5a8fa8a6171e9f666fbafd6c02616990ed9c",
+    "sdk.elf": "64e1636e998e989ac3a8a616fa9e3e7e9defe2b536506f0bb704123a0f6bf296",
+    "sdk.map": "2665ba1996abfcbd58e908637465e13ee2e61ad7e14a1c793bd0ac1428ccd202",
+    "update-two-wire.manifest.json": "93dd0f7da7c8916e24a086f002b12ee1f6dd7385133fc7da9b2a8e0b63a27f19",
+    "update-two-wire.ufw": "85015eb67aa15f7f15711aa2523e7c1bf54bc1ede8eac0a6e3a3b45fce34e714"
+  },
+  "source_files_sha256": {}
+}

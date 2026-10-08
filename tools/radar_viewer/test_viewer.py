@@ -38,6 +38,46 @@ def fixture(fast_bin=12, slow_bin=5, frame_id=7, config="ab" * 32, chirps=64):
                 device_queue_peak=100, lanes=lane_bytes, timestamps_us=[stamps, stamps])
 
 
+def bins_wire(frame, half=40, generation=0):
+    """Codec-2 LDF1 stream for a raw fixture, encoded exactly as the firmware does."""
+    sequence = 0
+    def packet(kind, payload, codec=0, lane=255, chirp=65535, raw_crc=0):
+        nonlocal sequence
+        head = HEADER.pack(b"LDF1", 1, kind, codec, lane, len(payload), chirp, sequence, frame["frame_id"],
+                           frame["started_us"] if chirp == 65535 else frame["timestamps_us"][lane][chirp], raw_crc, 0)
+        sequence += 1
+        return head[:28] + struct.pack("<I", crc(head[:28])) + payload + struct.pack("<I", crc(payload))
+    begin = bytes.fromhex(frame["config_sha256"]) + struct.pack("<IIIHHBBH", 2, 0, 100, 512, frame["chirps"], 2, 2, generation)
+    output = packet(1, begin + struct.pack("<HBB", 512, half, 1))
+    ks = np.arange(-half, half + 1)
+    for chirp in range(frame["chirps"]):
+        for lane in range(2):
+            record = frame["lanes"][lane][chirp * 2056:(chirp + 1) * 2056]
+            v = np.frombuffer(record[4:-4], ">i2").astype(np.int64)
+            X = np.fft.fft(v[0::2] + 1j * v[1::2])[ks % 512]
+            re, im = np.round(X.real).astype(np.int64), np.round(X.imag).astype(np.int64)
+            others = np.concatenate([np.delete(re, half), np.delete(im, half)])
+            shift = 0
+            while (int(np.max(np.abs(others))) >> shift) > 32767:
+                shift += 1
+            q = lambda a: np.clip((a + ((1 << shift) >> 1)) >> shift, -32768, 32767) if shift else a
+            body = np.empty(4 * half, dtype="<i2")
+            body[0::2], body[1::2] = q(np.delete(re, half)), q(np.delete(im, half))
+            payload = (b"\x02" + record[:4] + record[-4:] + bytes([shift]) +
+                       struct.pack("<ii", int(re[half]), int(im[half])) + body.tobytes())
+            output += packet(2, payload, 2, lane, chirp, crc(record))
+    return output + packet(3, b"")
+
+
+def decode_one(stream):
+    parser, frames, accepted = Parser(), Frames(), None
+    for message in parser.feed(stream):
+        result = frames.accept(message)
+        if result:
+            accepted = result
+    return accepted
+
+
 def wire(frame, generation=0):
     sequence = 0
     def packet(kind, payload, lane=255, chirp=65535, raw_crc=0):
@@ -65,30 +105,59 @@ class ProcessingTests(unittest.TestCase):
         self.assertIsNotNone(accepted)
         self.assertEqual(accepted["chirps"],16)
         result = Pipeline().process(accepted,DEFAULT_SETTINGS)
-        self.assertEqual(result["iq_shape"],[2,16,512,2])
-        self.assertEqual(len(base64.b64decode(result["iq_base64"])),65536)
+        self.assertEqual((result["bins_shape"], result["bins_source"]), ([2,16,79,2], "host"))
+        self.assertEqual(len(base64.b64decode(result["bins_base64"])),2*16*79*2*4)
         doppler = result["products"]["doppler"]
-        row, col = np.unravel_index(np.argmax(doppler["db"][0]),(16,129))
-        self.assertEqual((row-8,col-64),(2,12))
+        row, col = np.unravel_index(np.argmax(doppler["db"][0]),(16,79))
+        self.assertEqual((row-8,col-39),(2,12))
         self.assertAlmostEqual(doppler["hz"][row],2/(16*.0012),places=3)
 
     def test_complex_fft_sign_amplitude_and_doppler_frequency(self):
         result = Pipeline().process(fixture(), DEFAULT_SETTINGS)
         spectrum = np.asarray(result["products"]["spectrum"]["db"])
-        self.assertEqual(int(np.argmax(spectrum[0])) - 256, 12)
-        self.assertAlmostEqual(spectrum[0, 268], 60, delta=.03)
+        self.assertEqual(result["bin_range"], [-39, 39])
+        self.assertEqual(int(np.argmax(spectrum[0])) - 39, 12)
+        self.assertAlmostEqual(spectrum[0, 39 + 12], 60, delta=.03)
         doppler = result["products"]["doppler"]
-        row, col = np.unravel_index(np.argmax(doppler["db"][0]), (64, 129))
-        self.assertEqual((row - 32, col - 64), (5, 12))
+        row, col = np.unravel_index(np.argmax(doppler["db"][0]), (64, 79))
+        self.assertEqual((row - 32, col - 39), (5, 12))
         self.assertAlmostEqual(doppler["hz"][row], 5 / (64 * .0012), places=3)
         self.assertEqual(result["products"]["quality"]["timing_outliers"], 0)  # Includes uint32 rollover.
 
-    def test_wire_iq_endianness_roundtrip(self):
+    def test_wire_iq_endianness_and_published_bins(self):
         frame = fixture()
-        result = Pipeline().process(frame, DEFAULT_SETTINGS)
-        decoded = np.frombuffer(base64.b64decode(result["iq_base64"]), dtype="<i2").reshape(2, 64, 512, 2)
-        np.testing.assert_array_equal(decoded, unpack_iq(frame))
-        self.assertEqual(tuple(decoded[0, 0, 0]), (4000, -1500))
+        self.assertEqual(tuple(unpack_iq(frame)[0, 0, 0]), (4000, -1500))
+        result = Pipeline().process(frame, dict(DEFAULT_SETTINGS, window="rectangular"))
+        bins = np.frombuffer(base64.b64decode(result["bins_base64"]), dtype="<f4").reshape(result["bins_shape"])
+        z = bins[..., 0] + 1j * bins[..., 1]
+        # Rectangular window: the tone at bin 12 reads its amplitude, chirp phase advances 5/64 cycle.
+        self.assertAlmostEqual(abs(z[0, 0, 39 + 12]), 1000, delta=1)
+        self.assertAlmostEqual(np.angle(z[0, 1, 39 + 12] / z[0, 0, 39 + 12]), 2 * np.pi * 5 / 64, places=3)
+
+    def test_device_range_bins_match_host_conversion_of_raw(self):
+        """Codec-2 frames (firmware encoding) process like the raw frame, within quantization."""
+        for gain_db, phase_deg in ((0, 0), (-2.2, -18.2)):
+            raw = self.imbalanced(gain_db, phase_deg, chirps=64)
+            device = decode_one(bins_wire(raw))
+            self.assertEqual((device["codec_version"], device["bins_half"], device["chirps"]), (2, 40, 64))
+            for settings in (DEFAULT_SETTINGS, dict(DEFAULT_SETTINGS, window="rectangular", remove_dc=False)):
+                results = []
+                for frame in (raw, device):
+                    pipeline = Pipeline()
+                    pipeline.set_iq_calibration(frame)
+                    pipeline.set_reference(frame)
+                    pipeline.clear_reference()
+                    results.append(pipeline.process(frame, settings))
+                host, dev = results
+                self.assertEqual((host["bins_source"], dev["bins_source"]), ("host", "device"))
+                self.assertEqual(host["bin_range"], dev["bin_range"])
+                for name in ("spectrum", "doppler", "change"):
+                    a, b = np.array(host["products"][name]["db"]), np.array(dev["products"][name]["db"])
+                    strong = a > np.max(a) - 60
+                    self.assertLess(np.max(np.abs(a - b)[strong]), 0.05, (name, settings))
+                self.assertAlmostEqual(dev["iq_calibration"]["phase_deg"][0], host["iq_calibration"]["phase_deg"][0], delta=0.05)
+                self.assertEqual(host["stage_errors"], {})
+                self.assertEqual(dev["stage_errors"], {})
 
     def test_reference_cancels_static_and_clears_on_config_change(self):
         frame = fixture(slow_bin=0)
@@ -116,41 +185,10 @@ class ProcessingTests(unittest.TestCase):
         settled = pipeline.process(static, DEFAULT_SETTINGS)["products"]["change"]["db"]
         self.assertLess(np.max(settled), -100)
         moved = pipeline.process(fixture(fast_bin=20, slow_bin=0), DEFAULT_SETTINGS)
-        self.assertGreater(moved["products"]["change"]["db"][0][256 + 20], 50)
+        self.assertGreater(moved["products"]["change"]["db"][0][39 + 20], 50)
         # A settings change restarts the average rather than mixing modes.
         restarted = pipeline.process(static, dict(DEFAULT_SETTINGS, window="rectangular"))
         self.assertLess(np.max(restarted["products"]["change"]["db"]), -100)
-
-    def test_spectrogram_locates_a_mid_record_frequency_step(self):
-        frame = fixture(fast_bin=10, slow_bin=0, chirps=16)
-        n = np.arange(512)
-        z = np.where(n < 256, np.exp(2j * np.pi * 10 * n / 512), np.exp(2j * np.pi * 30 * n / 512)) * 1000
-        iq = np.stack((z.real, z.imag), axis=-1).round().astype(">i2").tobytes()
-        lanes = []
-        for lane in frame["lanes"]:
-            records = [lane[c * 2056:(c + 1) * 2056] for c in range(16)]
-            lanes.append(b"".join(r[:4] + iq + struct.pack(">HH", sum(struct.unpack(">1024H", iq)) & 65535, struct.unpack(">HH", r[-4:])[1])
-                                  for r in records))
-        result = Pipeline().process(dict(frame, lanes=lanes), DEFAULT_SETTINGS)["products"]["spectrogram"]
-        peaks = np.argmax(result["db"][0], axis=1) + result["bins"][0]
-        self.assertEqual((peaks[0], peaks[-1]), (10, 30))
-        self.assertEqual(len(result["centers"]), len(peaks))
-        self.assertEqual(result["centers"][0], 64)
-
-    def test_detrend_removes_linear_drift_but_keeps_a_tone(self):
-        frame = fixture(fast_bin=20, slow_bin=0, chirps=16)
-        n = np.arange(512)
-        z = 1000 * np.exp(2j * np.pi * 20 * n / 512) + (n - 255.5) * (12 - 5j)
-        iq = np.stack((z.real, z.imag), axis=-1).round().astype(">i2").tobytes()
-        lanes = [b"".join(lane[c * 2056:c * 2056 + 4] + iq + struct.pack(">HH", sum(struct.unpack(">1024H", iq)) & 65535,
-                                                                            struct.unpack(">HH", lane[(c + 1) * 2056 - 4:(c + 1) * 2056])[1])
-                          for c in range(16)) for lane in frame["lanes"]]
-        frame = dict(frame, lanes=lanes)
-        kept = np.array(Pipeline().process(frame, DEFAULT_SETTINGS)["products"]["spectrum"]["db"])
-        removed = np.array(Pipeline().process(frame, dict(DEFAULT_SETTINGS, detrend=True))["products"]["spectrum"]["db"])
-        self.assertGreater(kept[0, 256 + 1], 50)            # Drift leakage next to DC.
-        self.assertLess(removed[0, 256 + 1], kept[0, 256 + 1] - 30)
-        self.assertAlmostEqual(removed[0, 256 + 20], kept[0, 256 + 20], delta=0.5)
 
     @staticmethod
     def imbalanced(gain_db, phase_deg, config="ab" * 32, bins=(6, 9), chirps=16):
@@ -182,10 +220,8 @@ class ProcessingTests(unittest.TestCase):
         self.assertTrue(after["products"]["iq_balance"]["corrected"])
         self.assertLess(max(after["products"]["iq_balance"]["image_db"]), -45)
         spec = np.array(after["products"]["spectrum"]["db"])
-        self.assertGreater(spec[0, 256 + 6] - spec[0, 256 - 6], 45)
+        self.assertGreater(spec[0, 39 + 6] - spec[0, 39 - 6], 45)
         self.assertEqual(after["iq_calibration"]["frame"], frame["frame_id"])
-        # The raw samples sent to the browser are never altered.
-        self.assertEqual(after["iq_base64"], uncorrected["iq_base64"])
 
     def test_iq_calibration_clears_on_settings_identity_change(self):
         pipeline = Pipeline()
@@ -204,7 +240,8 @@ class ProcessingTests(unittest.TestCase):
         self.assertEqual(result["stage_errors"], {"experimental": "deliberate test failure"})
 
     def test_settings_reject_unexpected_or_wrong_types(self):
-        for settings in ({}, dict(DEFAULT_SETTINGS, remove_dc=1), dict(DEFAULT_SETTINGS, detrend="yes"), dict(DEFAULT_SETTINGS, window="bad")):
+        # detrend was removed with the move to range bins; an old client sending it is refused.
+        for settings in ({}, dict(DEFAULT_SETTINGS, remove_dc=1), dict(DEFAULT_SETTINGS, detrend=False), dict(DEFAULT_SETTINGS, window="bad")):
             with self.assertRaises(ValueError):
                 Pipeline().process(fixture(), settings)
 

@@ -20,11 +20,9 @@
   </section>
   <section><h2>02 / Processing</h2>
     <label for="receiver">Heatmap receiver</label><select id="receiver"><option value="0">RX 1</option><option value="1">RX 2</option></select>
-    <label for="spectrum-span">Spectrum / history span</label><select id="spectrum-span"><option value="center">Center: -16 to +16 bins</option><option value="positive">Positive: 0 to +32 bins</option><option value="full">Full: -256 to +255 bins</option></select>
-    <p class="hint">Zoom shows the original FFT bins. No filtering or extra range resolution. Full view retains the fixed outer peaks.</p>
+    <label for="spectrum-span">Spectrum / history span</label><select id="spectrum-span"><option value="center">Center: -16 to +16 bins</option><option value="positive">Positive: 0 to +32 bins</option><option value="full">All exported bins</option></select>
+    <p class="hint">Range bins: the device exports bins -40..+40 of a 512-point FFT per chirp (about 0.64 m per bin at the 240 MHz sweep). Older raw recordings are converted to the same bins on the host.</p>
     <label class="check"><input id="remove_dc" type="checkbox" checked> Remove each chirp’s DC offset</label>
-    <label class="check"><input id="detrend" type="checkbox"> Remove each chirp’s linear trend</label>
-    <p class="hint">Subtracts a straight-line fit from every chirp. Clears the slow drift that floods the central bins.</p>
     <label for="window">Fast-time window</label><select id="window"><option value="hann">Hann</option><option value="rectangular">Rectangular</option></select>
     <label class="check"><input id="remove_static" type="checkbox" checked> Remove static Doppler component</label>
     <div class="inline"><button id="reference">Capture background</button><button id="clear-reference">Clear</button></div>
@@ -35,8 +33,8 @@
     <p class="hint">Change subtracts a slowly updated complex mean spectrum, so static leakage and clutter fade and motion stands out.</p>
     <label class="check"><input id="auto-scale" type="checkbox" checked> Auto-scale plots to visible data</label>
     <div id="manual-scale" hidden>
-      <label for="color-min">Waterfall / spectrogram floor <span id="color-min-value">−30 dB</span></label><input type="range" id="color-min" min="-80" max="20" value="-30" step="5">
-      <label for="color-max">Waterfall / spectrogram ceiling <span id="color-max-value">60 dB</span></label><input type="range" id="color-max" min="0" max="100" value="60" step="5">
+      <label for="color-min">Waterfall floor <span id="color-min-value">−30 dB</span></label><input type="range" id="color-min" min="-80" max="20" value="-30" step="5">
+      <label for="color-max">Waterfall ceiling <span id="color-max-value">60 dB</span></label><input type="range" id="color-max" min="0" max="100" value="60" step="5">
       <label for="doppler-min">Doppler floor <span id="doppler-min-value">−20 dB</span></label><input type="range" id="doppler-min" min="-80" max="20" value="-20" step="5">
       <label for="doppler-max">Doppler ceiling <span id="doppler-max-value">20 dB</span></label><input type="range" id="doppler-max" min="-20" max="100" value="20" step="5">
     </div>
@@ -46,7 +44,7 @@
     <button id="record">Start raw recording</button><button id="snapshot">Save latest acquired frame</button>
     <p id="record-state" class="hint">Original USB bytes and SHA-256 manifest. Recording stops automatically at 1 GiB.</p>
   </section>
-  <details><summary>How to read these views</summary><p>The waveform is one chirp or the mean of the captured chirps. Each receiver supplies 512 complex samples per chirp.</p><p>Spectrum averages power over the captured chirps. The waterfall keeps the most recent displayed spectra.</p><p>Doppler explores changes within a frame, using the median chirp interval. Exported frames have gaps; the waterfall is indexed by displayed frame, not continuous time.</p><p>Range, velocity and angle need further calibration. Full-record FFTs may combine multiple ramp segments. Features are not yet identified targets.</p><p>Residual RMS measures chirp-to-chirp variation after removing the frame mean. It includes noise, drift and motion; it is not target SNR.</p></details>
+  <details><summary>How to read these views</summary><p>Each chirp arrives as range bins: the device's 512-point FFT of that chirp, bins -40..+40, so time samples are not available. Spectrum averages power over the captured chirps. The waterfall keeps the most recent displayed spectra.</p><p>Doppler explores changes within a frame, using the median chirp interval. Exported frames have gaps; the waterfall is indexed by displayed frame, not continuous time.</p><p>Range, velocity and angle need further calibration. Features are not yet identified targets.</p><p>Residual RMS measures chirp-to-chirp variation within the exported bins after removing the frame mean. It includes noise, drift and motion; it is not target SNR.</p></details>
 </aside>
 <main>
   <div id="notice" role="status" hidden></div>
@@ -57,12 +55,7 @@
     <article><span>Within-frame variation</span><strong id="residual">—</strong><small>RX1 / RX2 · residual amplitude</small></article>
   </div>
   <div class="charts">
-    <section class="panel"><div class="panel-heading"><div><h2>Complex waveform</h2><p>Exported I/Q samples · DC follows setting · background not subtracted</p></div><span class="tag">FAST TIME</span></div>
-      <div class="wave-controls"><label for="chirp">Chirp <b id="chirp-label">0</b></label><input id="chirp" type="range" min="0" max="63" value="0"><label class="check"><input id="mean" type="checkbox"> <span id="mean-label">Mean of capture</span></label></div>
-      <canvas id="wave" aria-label="In-phase and quadrature samples for both receivers"></canvas>
-      <div class="legend"><span class="cyan">RX1 I</span><span class="pink">RX1 Q</span><span class="orange">RX2 I</span><span class="purple">RX2 Q</span><span class="right">Sample index · exported counts</span></div>
-    </section>
-    <section class="panel"><div class="panel-heading"><div><h2>Frame spectrum</h2><p>RMS spectral amplitude over the captured chirps</p></div><span class="tag">512 POINT FFT</span></div>
+    <section class="panel"><div class="panel-heading"><div><h2>Frame spectrum</h2><p>RMS spectral amplitude over the captured chirps</p></div><span class="tag">RANGE BINS</span></div>
       <canvas id="spectrum" aria-label="Spectrum of both receivers in signed FFT bins"></canvas>
       <div class="legend"><span class="cyan">RX1</span><span class="orange">RX2</span><span class="right" id="spectrum-span-detail">Bins -16 to +16 · dB re 1 count</span></div>
     </section>
@@ -75,13 +68,9 @@
       <div class="legend"><span id="doppler-detail">Waiting for timing</span><span class="right">Fast-time bin · slow-time Hz</span></div>
     </section>
     <section class="panel"><div class="panel-heading"><div><h2>Constellation</h2><p id="constellation-subtitle">I versus Q · equal axes</p></div><span class="tag">I/Q PLANE</span></div>
-      <div class="wave-controls"><label for="constellation-mode">Show</label><select id="constellation-mode"><option value="bin">FFT bin over time</option><option value="raw">Raw samples, selected chirp</option></select><label for="constellation-bin">Bin <b id="constellation-bin-label">4</b></label><input id="constellation-bin" type="range" min="-64" max="64" value="4"></div>
+      <div class="wave-controls"><label for="constellation-bin">Range bin <b id="constellation-bin-label">4</b></label><input id="constellation-bin" type="range" min="-39" max="39" value="4"></div>
       <canvas id="constellation" aria-label="In-phase versus quadrature constellation for both receivers"></canvas>
       <div class="legend"><span class="cyan">RX1</span><span class="orange">RX2</span><span class="right" id="constellation-detail">Exported counts</span></div>
-    </section>
-    <section class="panel"><div class="panel-heading"><div><h2>Within-chirp spectrogram <span class="rx-label">RX1</span></h2><p id="spectrogram-subtitle">Beat frequency along each chirp · a steady reflector is a vertical line</p></div><span class="tag">STFT</span></div>
-      <canvas id="spectrogram" aria-label="Short-time spectrum versus sample position within the chirp"></canvas>
-      <div class="legend"><span id="spectrogram-detail">Waiting for a complete frame</span><span class="right">Signed FFT bin · sample position (start at top)</span></div>
     </section>
   </div>
   <section class="health"><div><h2>Stream health</h2><p id="health-summary">Only complete frames that pass transport and radar integrity checks are displayed.</p></div>

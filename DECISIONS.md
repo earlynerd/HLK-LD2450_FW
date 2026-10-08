@@ -251,3 +251,12 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Integrity:** The radar checksum is verified on the device before the transform; the host verifies record identity, message CRCs, sequence and frame completeness. Raw-sample checks (raw CRC, radar checksum) are not possible for range-bin frames. Use a raw image for raw evidence.
 - **Status:** Implemented, tested (21 CTest suites including C-to-Python round trip against NumPy) and bench-validated, but not installed. The viewer cannot display range-bin frames yet; the raw 16-chirp 240 MHz release stays installed until it can.
 - **Affects:** firmware/include/ld2450_stream.h, src/stream.c, target/br23/image/stream_app.c, firmware/tools/build_image.py, firmware/tools/frame_stream.py, firmware/tests, firmware/docs/FRAME_STREAM.md, DSP_plan.md.
+
+
+## 2026-10-08 - Install the range-bin image; the viewer is range-bin only
+
+- **Decision:** The installed image is the 64-chirp range-bin stream (`firmware/releases/usb-bins40-20261008/`, K = 40, 240 MHz sweep). The live viewer processes only range bins: device codec-2 bins, or a host FFT of older raw recordings (same 512 points, K = 40), through one bin-domain pipeline. DC removal, background, I/Q correction and the Hann window are exact bin-domain operations. Views and tools that need time samples are deleted: complex waveform, within-chirp spectrogram, linear-trend removal, raw-sample constellation, and `tools/register_sweep.py` (its results remain under output/ and in the register map; the tool is in git history before this change).
+- **Why:** The user chose not to keep features that can no longer work with the installed format ("there's not likely to be steps backwards"). Raw firmware images remain buildable for raw evidence, and raw recordings remain replayable as bins.
+- **Evidence:** Viewer tests (23) include device-format bins matching host conversion of raw frames within 0.05 dB for spectrum, Doppler and change, with and without I/Q mismatch. Live: 64 chirps, bins -39..39 displayed, 10.9 frames/s, 542 kB/s, 1.35 ms processing per frame, no stage errors.
+- **Supersedes:** "Range-bin export ... Not installed" status in the previous entry, and the raw 16-chirp image as the installed image.
+- **Affects:** tools/radar_viewer (processing.py, web/app.js, web/index.html, test_viewer.py), docs/LIVE_RADAR_VIEWER.md, firmware/releases.

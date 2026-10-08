@@ -1,7 +1,7 @@
 'use strict';
 const $ = id => document.getElementById(id);
 let registerNotes = {}, registerRows = {};
-let token = '', version = -1, generation = -1, current = null, iq = null;
+let token = '', version = -1, generation = -1, current = null, bins = null;
 let history = [], binTrail = [], paused = false, recording = false, busy = false, messageUntil = 0;
 const colors = ['#55e0d4', '#ee85b0', '#f6b86b', '#ad9fff'];
 const fmt = n => Number(n || 0).toLocaleString();
@@ -52,7 +52,7 @@ action('iq-calibrate', async () => {
 action('iq-clear', async () => { await request('iq-calibration',{enabled:false}); notice('I/Q correction cleared.'); });
 action('record', async () => { await request(recording?'record/stop':'record/start'); await options(); });
 action('snapshot', async () => { const data = await request('snapshot'); notice('Saved latest acquired frame: ' + data.path); });
-function resetDisplay() { version=-1; current=iq=null; history=[]; binTrail=[]; paused=false; $('pause').textContent='Freeze display'; $('pause').classList.remove('active'); acceptFrame(null); }
+function resetDisplay() { version=-1; current=bins=null; history=[]; binTrail=[]; paused=false; $('pause').textContent='Freeze display'; $('pause').classList.remove('active'); acceptFrame(null); }
 $('pause').addEventListener('click', () => {
   paused = !paused; $('pause').textContent = paused ? 'Resume display' : 'Freeze display'; $('pause').classList.toggle('active',paused);
   if (!paused) { version=-1; history=[]; binTrail=[]; }
@@ -60,13 +60,13 @@ $('pause').addEventListener('click', () => {
 });
 // Polls issued before a settings change completes carry stale settings; they must not overwrite the controls.
 let settingsPending = 0, settingsChangedAt = 0;
-for (const id of ['remove_dc','detrend','window','remove_static']) $(id).addEventListener('change', async () => {
+for (const id of ['remove_dc','window','remove_static']) $(id).addEventListener('change', async () => {
   settingsPending++;
-  try { await request('settings',{remove_dc:$('remove_dc').checked,detrend:$('detrend').checked,window:$('window').value,remove_static:$('remove_static').checked}); }
+  try { await request('settings',{remove_dc:$('remove_dc').checked,window:$('window').value,remove_static:$('remove_static').checked}); }
   catch (err) { notice(err.message,true); }
   finally { settingsPending--; settingsChangedAt = performance.now(); }
 });
-for (const id of ['receiver','chirp','mean','color-min','color-max','doppler-min','doppler-max','history-mode','auto-scale','constellation-mode']) $(id).addEventListener('input', draw);
+for (const id of ['receiver','color-min','color-max','doppler-min','doppler-max','history-mode','auto-scale']) $(id).addEventListener('input', draw);
 new ResizeObserver(() => draw()).observe(document.querySelector('main'));
 
 function setup(id, margins={l:48,r:12,t:12,b:29}) {
@@ -91,32 +91,15 @@ function line(p,values,ymin,ymax,color){
   values.forEach((v,i)=>{const xx=x+i/(values.length-1)*pw,yy=y+ph-(v-ymin)/(ymax-ymin)*ph;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);});ctx.stroke();ctx.restore();
 }
 function empty(p){p.ctx.fillStyle='#708299';p.ctx.textAlign='center';p.ctx.fillText('Waiting for a complete frame',p.w/2,p.h/2);}
-const TREND_NORM=Array.from({length:512},(_,n)=>(n-255.5)**2).reduce((a,b)=>a+b,0);
-// Applies the frame's DC and linear-trend settings to one real 512-sample part in place.
-function clean(values,settings){
-  if(!settings.remove_dc&&!settings.detrend)return values;
-  let mean=0;for(let n=0;n<512;n++)mean+=values[n];mean/=512;
-  let slope=0;if(settings.detrend){for(let n=0;n<512;n++)slope+=(values[n]-mean)*(n-255.5);slope/=TREND_NORM;}
-  for(let n=0;n<512;n++)values[n]-=mean+slope*(n-255.5);
-  return values;
-}
-function wave(){
-  const p=setup('wave');if(!iq || !current){empty(p);return;}
-  const chirps=current.chirps, chirp=Number($('chirp').value), mean=$('mean').checked, traces=[];
-  $('chirp-label').textContent=mean?'mean':chirp; $('chirp').disabled=mean;
-  for(let rx=0;rx<2;rx++)for(let part=0;part<2;part++){
-    const values=new Float32Array(512);
-    for(let n=0;n<512;n++){if(mean){for(let c=0;c<chirps;c++)values[n]+=iq[((rx*chirps+c)*512+n)*2+part]/chirps;}else values[n]=iq[((rx*chirps+chirp)*512+n)*2+part];}
-    traces.push(clean(values,current.settings));
-  }
-  let lo=Infinity,hi=-Infinity;for(const values of traces)for(const v of values){lo=Math.min(lo,v);hi=Math.max(hi,v);}
-  const span=Math.max(hi-lo,10),step=Math.pow(10,Math.floor(Math.log10(span/4))),ymin=Math.floor((lo-span*.08)/step)*step,ymax=Math.ceil((hi+span*.08)/step)*step;
-  const ticks=Array.from({length:5},(_,i)=>Math.round(ymin+(ymax-ymin)*i/4));
-  axes(p,0,511,ymin,ymax,[0,128,256,384,511],ticks);traces.forEach((v,i)=>line(p,v,ymin,ymax,colors[i]));
-}
+// Every product carries its own signed bin range; slice a requested span out of it.
+function sliceBins(values,range,s){return values.slice(s.min-range[0],s.max-range[0]+1);}
+// Spans are clamped to the bins the frame carries (range bins -(K-1)..(K-1)).
 function spectrumSpan(){
-  const spans={center:{min:-16,max:16,ticks:[-16,-8,0,8,16]},positive:{min:0,max:32,ticks:[0,8,16,24,32]},full:{min:-256,max:255,ticks:[-256,-128,0,128,255]}};
-  return spans[$('spectrum-span').value];
+  const r=current?.bin_range||[-39,39],h=r[1];
+  const spans={center:{min:-16,max:16},positive:{min:0,max:32},full:{min:r[0],max:r[1]}};
+  const s=spans[$('spectrum-span').value],min=Math.max(s.min,r[0]),max=Math.min(s.max,r[1]);
+  const ticks=$('spectrum-span').value==='full'?[min,Math.round(min/2),0,Math.round(max/2),max]:[min,min+(max-min)/4,min+(max-min)/2,min+3*(max-min)/4,max].map(Math.round);
+  return {min,max,ticks:[...new Set(ticks)]};
 }
 $('spectrum-span').addEventListener('change',draw);
 // Auto ranges follow the visible bins; the spectrum axis uses the whole history so it does not jitter.
@@ -129,11 +112,12 @@ function percentileRange(rows,lo=.02,hi=.995,minSpan=10){
 function niceTicks(min,max){const step=[5,10,20,30,50].find(s=>(max-min)/s<=6)||100,ticks=[];for(let v=Math.ceil(min/step)*step;v<=max;v+=step)ticks.push(v);return ticks;}
 function spectrumRange(s){
   if(!$('auto-scale').checked)return [-60,90];
-  const rows=(history.length?history.map(h=>h.spectrum):[current.products.spectrum.db]).flatMap(rx=>rx.map(v=>v.slice(s.min+256,s.max+257)));
+  const range=current.products.spectrum.bins;
+  const rows=(history.length?history.map(h=>h.spectrum):[current.products.spectrum.db]).flatMap(rx=>rx.map(v=>sliceBins(v,range,s)));
   const [lo,hi]=percentileRange(rows,0,1,20);
   return [Math.floor((lo-3)/10)*10,Math.ceil((hi+3)/10)*10];
 }
-function spectrum(){const p=setup('spectrum');const data=current?.products.spectrum;if(!data){empty(p);return;}const s=spectrumSpan(),[ymin,ymax]=spectrumRange(s);axes(p,s.min,s.max,ymin,ymax,s.ticks,niceTicks(ymin,ymax));data.db.forEach((v,i)=>line(p,v.slice(s.min+256,s.max+257),ymin,ymax,colors[i*2]));$('spectrum-span-detail').textContent=`Bins ${s.min} to ${s.max} · ${ymin} to ${ymax} dB re 1 count`;}
+function spectrum(){const p=setup('spectrum');const data=current?.products.spectrum;if(!data){empty(p);return;}const s=spectrumSpan(),[ymin,ymax]=spectrumRange(s);axes(p,s.min,s.max,ymin,ymax,s.ticks,niceTicks(ymin,ymax));data.db.forEach((v,i)=>line(p,sliceBins(v,data.bins,s),ymin,ymax,colors[i*2]));$('spectrum-span-detail').textContent=`Bins ${s.min} to ${s.max} · ${ymin} to ${ymax} dB re 1 count`;}
 const stops=[[16,24,45],[35,69,108],[36,143,158],[99,214,178],[239,225,139],[255,151,102]];
 function heatColor(v,min,max){const t=Math.max(0,Math.min(.99999,(v-min)/(max-min)))*(stops.length-1),i=Math.floor(t),f=t-i;return stops[i].map((a,c)=>Math.round(a+(stops[i+1][c]-a)*f));}
 function heat(p,rows,min,max){
@@ -155,23 +139,12 @@ function waterfall(){
   $('history-subtitle').textContent=(fallback?'Absolute spectrum (restart the viewer server for change mode)':mode==='change'?'Change from running average':'Absolute spectrum')+' · newest at the bottom · last 160 views';
   const rows=history.filter(h=>h[mode]).map(h=>h[mode][Number($('receiver').value)]);
   if(!rows.length){empty(p);return;}
-  const s=spectrumSpan(),visible=rows.map(r=>r.slice(s.min+256,s.max+257)),[min,max]=heatRange(visible,'color-min','color-max');
+  const s=spectrumSpan(),range=current.products.spectrum.bins,visible=rows.map(r=>sliceBins(r,range,s)),[min,max]=heatRange(visible,'color-min','color-max');
   heat(p,visible,min,max);axes(p,s.min-.5,s.max+.5,0,rows.length,s.ticks,[0,Math.round(rows.length/2),rows.length],false);
   $('history-count').textContent=rows.length+' displayed frames · age in rows';
-  $('history-detail').textContent=`Signed FFT bin · colour ${min.toFixed(0)} to ${max.toFixed(0)} dB`;
+  $('history-detail').textContent=`Signed range bin · colour ${min.toFixed(0)} to ${max.toFixed(0)} dB`;
 }
-function doppler(){const p=setup('doppler');const data=current?.products.doppler;if(!data){empty(p);return;}const rx=Number($('receiver').value),rows=[...data.db[rx]].reverse(),[min,max]=heatRange(rows,'doppler-min','doppler-max');heat(p,rows,min,max);const ymin=data.hz[0],ymax=data.hz.at(-1),bound=Math.floor(Math.min(-ymin,ymax)/100)*100;axes(p,-64,64,ymin,ymax,[-64,-32,0,32,64],[-bound,-bound/2,0,bound/2,bound],false);const quality=current.products.quality;$('doppler-detail').textContent=(quality?`${quality.chirp_interval_us} µs / chirp · ${(1e6/quality.chirp_interval_us/current.chirps).toFixed(1)} Hz / bin${quality.timing_outliers?' · timing outliers':''} · `:'')+`colour ${min.toFixed(0)} to ${max.toFixed(0)} dB`;}
-// Complex value of one signed FFT bin per chirp, matching the server's window/DC settings (no background).
-function binValues(frame,samples,k){
-  const chirps=frame.chirps,hann=frame.settings.window==='hann',out=[];let wsum=0;const w=new Float32Array(512);
-  for(let n=0;n<512;n++){w[n]=hann?.5-.5*Math.cos(2*Math.PI*n/511):1;wsum+=w[n];}
-  for(let rx=0;rx<2;rx++){const points=[];for(let c=0;c<chirps;c++){
-    const base=(rx*chirps+c)*512*2,I=new Float32Array(512),Q=new Float32Array(512);
-    for(let n=0;n<512;n++){I[n]=samples[base+2*n];Q[n]=samples[base+2*n+1];}clean(I,frame.settings);clean(Q,frame.settings);
-    let re=0,im=0;for(let n=0;n<512;n++){const a=-2*Math.PI*k*n/512,i=I[n]*w[n],q=Q[n]*w[n];re+=i*Math.cos(a)-q*Math.sin(a);im+=i*Math.sin(a)+q*Math.cos(a);}
-    points.push([re/wsum,im/wsum]);}out.push(points);}
-  return out;
-}
+function doppler(){const p=setup('doppler');const data=current?.products.doppler;if(!data){empty(p);return;}const rx=Number($('receiver').value),rows=[...data.db[rx]].reverse(),[min,max]=heatRange(rows,'doppler-min','doppler-max');heat(p,rows,min,max);const ymin=data.hz[0],ymax=data.hz.at(-1),bound=Math.floor(Math.min(-ymin,ymax)/100)*100;const [b0,b1]=data.fast_bins;axes(p,b0-.5,b1+.5,ymin,ymax,[b0,Math.round(b0/2),0,Math.round(b1/2),b1],[-bound,-bound/2,0,bound/2,bound],false);const quality=current.products.quality;$('doppler-detail').textContent=(quality?`${quality.chirp_interval_us} µs / chirp · ${(1e6/quality.chirp_interval_us/current.chirps).toFixed(1)} Hz / bin${quality.timing_outliers?' · timing outliers':''} · `:'')+`colour ${min.toFixed(0)} to ${max.toFixed(0)} dB`;}
 // Constellation scale grows at once so no point leaves the plot, then shrinks slowly.
 // Shrinking is per new frame (about 8/s), not per redraw: 4% per frame, roughly 3 s to halve.
 let constellationScale={key:null,frame:null,r:0};
@@ -183,23 +156,22 @@ function constellationRange(peak,key){
   s.frame=current.frame_id;
   return s.r;
 }
+// Complex value of one signed range bin per chirp, from the server's processed bins
+// (background, I/Q correction, DC and window settings applied).
+function binValues(frame,data,k){
+  const [rx,chirps,width]=frame.bins_shape,lo=frame.bin_range[0],out=[];
+  if(k<lo||k>frame.bin_range[1])return null;
+  for(let r=0;r<rx;r++){const points=[];for(let c=0;c<chirps;c++){const b=((r*chirps+c)*width+(k-lo))*2;points.push([data[b],data[b+1]]);}out.push(points);}
+  return out;
+}
 function constellation(){
-  const p=setup('constellation',{l:48,r:12,t:12,b:29}),mode=$('constellation-mode').value,k=Number($('constellation-bin').value);
-  $('constellation-bin-label').textContent=k;$('constellation-bin').disabled=mode!=='bin';
-  if(!iq||!current){empty(p);return;}
-  let sets;
-  if(mode==='raw'){
-    const chirps=current.chirps,chirp=Number($('chirp').value),mean=$('mean').checked;
-    sets=[0,1].map(rx=>{const pts=[];for(let n=0;n<512;n++){let i=0,q=0;if(mean){for(let c=0;c<chirps;c++){const b=((rx*chirps+c)*512+n)*2;i+=iq[b]/chirps;q+=iq[b+1]/chirps;}}else{const b=((rx*chirps+chirp)*512+n)*2;i=iq[b];q=iq[b+1];}pts.push([i,q]);}
-      const I=clean(Float32Array.from(pts,v=>v[0]),current.settings),Q=clean(Float32Array.from(pts,v=>v[1]),current.settings);
-      return [Array.from(I,(v,n)=>[v,Q[n]])];});
-    $('constellation-subtitle').textContent=`Raw I versus Q · ${mean?'mean of chirps':'chirp '+chirp} · DC/trend follow settings`;
-  } else {
-    sets=[0,1].map(rx=>binTrail.filter(t=>t.k===k).map(t=>t.points[rx]));
-    $('constellation-subtitle').textContent=`Bin ${k} per chirp · last ${sets[0].length} frames, oldest faded · motion appears as rotation`;
-  }
+  const p=setup('constellation',{l:48,r:12,t:12,b:29}),k=Number($('constellation-bin').value);
+  $('constellation-bin-label').textContent=k;
+  if(!bins||!current){empty(p);return;}
+  const sets=[0,1].map(rx=>binTrail.filter(t=>t.k===k).map(t=>t.points[rx]));
+  $('constellation-subtitle').textContent=`Range bin ${k} per chirp · last ${sets[0].length} frames, oldest faded · motion appears as rotation`;
   let r=1;for(const rx of sets)for(const pts of rx)for(const [i,q] of pts)r=Math.max(r,Math.abs(i),Math.abs(q));
-  r=constellationRange(r*1.08,mode+(mode==='bin'?k:''));
+  r=constellationRange(r*1.08,'bin'+k);
   const side=Math.min(p.pw,p.ph),sq={...p,x:p.x+(p.pw-side)/2,pw:side,ph:side};
   const t=Math.pow(10,Math.floor(Math.log10(r))),step=r/t>=5?t*2:r/t>=2?t:t/2,ticks=[];for(let v=-Math.floor(r/step)*step;v<=r;v+=step)ticks.push(Number(v.toPrecision(6)));
   axes(sq,-r,r,-r,r,ticks.length>7?ticks.filter((_,i)=>i%2===0):ticks,ticks.length>7?ticks.filter((_,i)=>i%2===0):ticks);
@@ -207,57 +179,35 @@ function constellation(){
   sets.forEach((frames,rx)=>frames.forEach((pts,f)=>{ctx.globalAlpha=frames.length>1?.12+.88*(f+1)/frames.length:.8;ctx.fillStyle=colors[rx*2];
     for(const [i,q] of pts){ctx.fillRect(sq.x+(i+r)/(2*r)*side-1.25,sq.y+side-(q+r)/(2*r)*side-1.25,2.5,2.5);}}));
   ctx.restore();
-  $('constellation-detail').textContent=`±${Number(r.toPrecision(3))} ${mode==='raw'?'exported counts':'counts (FFT, window-normalized)'}`;
+  $('constellation-detail').textContent=`±${Number(r.toPrecision(3))} counts (range bin, window-normalized)`;
 }
-$('constellation-bin').addEventListener('input',()=>{binTrail=[];if(current&&iq)binTrail.push({k:Number($('constellation-bin').value),points:binValues(current,iq,Number($('constellation-bin').value))});draw();});
-function spectrogram(){
-  const p=setup('spectrogram');const data=current?.products.spectrogram;if(!data){empty(p);return;}
-  // The published STFT covers bins -64..64; wider spans are clamped to it.
-  const s=spectrumSpan(),lo=Math.max(s.min,data.bins[0]),hi=Math.min(s.max,data.bins[1]);
-  const ticks=s.ticks.filter(t=>t>=lo&&t<=hi);if(lo!==s.min||hi!==s.max)ticks.splice(0,ticks.length,lo,lo/2,0,hi/2,hi);
-  const rows=data.db[Number($('receiver').value)].map(r=>r.slice(lo-data.bins[0],hi-data.bins[0]+1));
-  // Auto: the strongest 40 dB only, so the dominant structure stands out instead of saturating.
-  let [min,max]=heatRange(rows,'color-min','color-max');if($('auto-scale').checked){max=percentileRange(rows,.999,.999,0)[1];min=max-40;}
-  heat(p,rows,min,max);
-  const c=data.centers,half=data.hop/2,ymin=c.at(-1)+half,ymax=c[0]-half;
-  axes(p,lo-.5,hi+.5,ymin,ymax,ticks,[c[0],256,c.at(-1)],false);
-  // Peak trace: strongest bin per row, ignoring |bin| < 2 (DC residue), parabolic sub-bin estimate.
-  const peaks=rows.map(r=>{let best=-1;r.forEach((v,i)=>{if(Math.abs(lo+i)>=2&&(best<0||v>r[best]))best=i;});
-    const d=best>0&&best<r.length-1?(r[best-1]-r[best+1])/(2*(r[best-1]-2*r[best]+r[best+1])||1):0;return lo+best+(Number.isFinite(d)?Math.max(-.5,Math.min(.5,d)):0);});
-  const {ctx}=p,px=b=>p.x+(b-(lo-.5))/(hi-lo+1)*p.pw,py=v=>p.y+p.ph-(v-ymin)/(ymax-ymin)*p.ph;
-  ctx.save();ctx.strokeStyle='#ffffff';ctx.fillStyle='#ffffff';ctx.lineWidth=1.5;ctx.beginPath();
-  peaks.forEach((b,i)=>i?ctx.lineTo(px(b),py(c[i])):ctx.moveTo(px(b),py(c[i])));ctx.stroke();
-  peaks.forEach((b,i)=>{ctx.beginPath();ctx.arc(px(b),py(c[i]),2.5,0,2*Math.PI);ctx.fill();});ctx.restore();
-  const mc=c.reduce((a,b)=>a+b,0)/c.length,mb=peaks.reduce((a,b)=>a+b,0)/peaks.length;
-  const slope=c.reduce((a,x,i)=>a+(x-mc)*(peaks[i]-mb),0)/c.reduce((a,x)=>a+(x-mc)**2,0);
-  const spread=Math.sqrt(peaks.reduce((a,b)=>a+(b-mb)**2,0)/peaks.length);
-  $('spectrogram-subtitle').textContent=`Beat frequency along each chirp · ${data.segment}-sample Hann segments every ${data.hop} · a steady reflector gives a straight vertical white trace`;
-  $('spectrogram-detail').textContent=`White trace: peak at bin ${mb.toFixed(1)} · tilt ${(slope*(c.at(-1)-c[0])).toFixed(1)} bins start→end · scatter ±${spread.toFixed(1)} · resolution ${data.resolution_bins} bins · colour ${min.toFixed(0)}–${max.toFixed(0)} dB${lo!==s.min||hi!==s.max?' · clamped to ±64':''}`;
-}
+$('constellation-bin').addEventListener('input',()=>{binTrail=[];const k=Number($('constellation-bin').value),points=current&&bins?binValues(current,bins,k):null;if(points)binTrail.push({k,points});draw();});
 function draw(){
   for(const id of ['color-min','color-max','doppler-min','doppler-max'])$(id+'-value').textContent=$(id).value+' dB';
   $('manual-scale').hidden=$('auto-scale').checked;
   document.querySelectorAll('.rx-label').forEach(e=>e.textContent='RX'+(Number($('receiver').value)+1));
-  wave();spectrum();waterfall();doppler();constellation();spectrogram();
+  spectrum();waterfall();doppler();constellation();
 }
 function acceptFrame(frame){
-  current=frame;if(!frame){iq=null;$('frame-id').textContent='—';$('frame-detail').textContent='Waiting for capture dimensions';$('residual').textContent='—';$('config').textContent='Configuration identity: waiting';$('history-count').textContent='0 displayed frames';$('doppler-detail').textContent='Waiting for timing';draw();return;}
-  $('chirp').max=frame.chirps-1; $('chirp').value=Math.min(Number($('chirp').value),frame.chirps-1);
-  $('mean-label').textContent='Mean of '+frame.chirps; $('doppler-tag').textContent=frame.chirps+' CHIRP FFT';
-  const bytes=Uint8Array.from(atob(frame.iq_base64),c=>c.charCodeAt(0));
+  current=frame;if(!frame){bins=null;$('frame-id').textContent='—';$('frame-detail').textContent='Waiting for capture dimensions';$('residual').textContent='—';$('config').textContent='Configuration identity: waiting';$('history-count').textContent='0 displayed frames';$('doppler-detail').textContent='Waiting for timing';draw();return;}
+  $('doppler-tag').textContent=frame.chirps+' CHIRP FFT';
+  $('constellation-bin').min=frame.bin_range[0];$('constellation-bin').max=frame.bin_range[1];
+  const bytes=Uint8Array.from(atob(frame.bins_base64),c=>c.charCodeAt(0));
   // Explicit little-endian interpretation also works on a big-endian browser host.
-  const view=new DataView(bytes.buffer);iq=new Int16Array(bytes.length/2);for(let i=0;i<iq.length;i++)iq[i]=view.getInt16(i*2,true);
-  const k=Number($('constellation-bin').value);binTrail.push({k,points:binValues(frame,iq,k)});if(binTrail.length>40)binTrail.shift();
-  if(frame.products.spectrum){history.push({spectrum:frame.products.spectrum.db,change:frame.products.change?.db});if(history.length>160)history.shift();}
+  const view=new DataView(bytes.buffer);bins=new Float32Array(bytes.length/4);for(let i=0;i<bins.length;i++)bins[i]=view.getFloat32(i*4,true);
+  const k=Number($('constellation-bin').value),points=binValues(frame,bins,k);if(points)binTrail.push({k,points});if(binTrail.length>40)binTrail.shift();
+  // History rows share one bin axis; a different range (new firmware/format) restarts it.
+  if(history.length&&String(history.at(-1).bins)!==String(frame.bin_range))history=[];
+  if(frame.products.spectrum){history.push({bins:frame.bin_range,spectrum:frame.products.spectrum.db,change:frame.products.change?.db});if(history.length>160)history.shift();}
   $('frame-id').textContent=fmt(frame.frame_id);
-  $('frame-detail').textContent=`${frame.chirps} chirps / RX - ${frame.processing_ms.toFixed(1)} ms DSP`;
+  $('frame-detail').textContent=`${frame.chirps} chirps / RX · bins ${frame.bin_range[0]}..${frame.bin_range[1]} (${frame.bins_source==='device'?'device FFT':'host FFT of raw'}) · ${frame.processing_ms.toFixed(1)} ms DSP`;
   const quality=frame.products.quality;
   $('residual').textContent=quality?quality.residual_percent.map(v=>v.toFixed(1)+'%').join(' / '):'—';
   $('config').textContent='Configuration: '+frame.config_sha256;
   const balance=frame.products.iq_balance, cal=frame.iq_calibration;
   const mirror=balance?`Mirror now ${balance.image_db.map(v=>v.toFixed(1)).join(' / ')} dB (RX1 / RX2, fit residual ${balance.fit_residual.map(v=>v.toFixed(2)).join(' / ')}).`:'';
   $('iq-state').textContent=cal
-    ?`Correcting: Q gain ${cal.q_gain_db.map(v=>v.toFixed(2)).join(' / ')} dB, phase ${cal.phase_deg.map(v=>v.toFixed(1)).join(' / ')} deg from frame ${cal.frame} (was ${cal.image_before_db.map(v=>v.toFixed(1)).join(' / ')} dB). ${mirror} Cleared when settings or registers change. Raw waveform and constellation stay uncorrected.`
+    ?`Correcting: Q gain ${cal.q_gain_db.map(v=>v.toFixed(2)).join(' / ')} dB, phase ${cal.phase_deg.map(v=>v.toFixed(1)).join(' / ')} deg from frame ${cal.frame} (was ${cal.image_before_db.map(v=>v.toFixed(1)).join(' / ')} dB). ${mirror} Cleared when settings or registers change.`
     :`No I/Q correction. ${mirror} Calibrate on a static scene with a strong reflector; the fit uses the latest frame.`;
   draw();
 }
@@ -350,7 +300,7 @@ function updateState(state,polledAt=Infinity){
   $('record-state').textContent=recording?`${(state.recording.bytes/1e6).toFixed(1)} MB recorded · ${state.recording.path}`:state.last_recording?'Saved: '+state.last_recording:'Original USB bytes and SHA-256 manifest. Recording stops automatically at 1 GiB.';
   $('reference-state').textContent=state.reference_frame===null?'No background reference. Subtraction affects spectrum and Doppler.':'Background: frame '+state.reference_frame+'. Applied to spectrum and Doppler.';
   if(!busy && !settingsPending && polledAt>settingsChangedAt && document.activeElement!==$('window')){
-    $('remove_dc').checked=state.settings.remove_dc;$('detrend').checked=!!state.settings.detrend;$('window').value=state.settings.window;$('remove_static').checked=state.settings.remove_static;
+    $('remove_dc').checked=state.settings.remove_dc;$('window').value=state.settings.window;$('remove_static').checked=state.settings.remove_static;
   }
   if(state.error) notice(state.error,true,true);
   else if(state.frame && Object.keys(state.frame.stage_errors).length)notice('Processing stage error: '+JSON.stringify(state.frame.stage_errors),true,true);

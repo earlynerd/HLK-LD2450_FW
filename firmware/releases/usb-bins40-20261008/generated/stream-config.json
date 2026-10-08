@@ -1,0 +1,18 @@
+{
+  "application": "stream",
+  "table_sha256": "dac10072e18b741f48d6379ceb7d4204f0dfb8c50489dd6dc187e938a45b8830",
+  "pairs": 512,
+  "chirps": 64,
+  "receivers": 2,
+  "codec": "LDF1-rangebins-v1",
+  "queue_bytes": 90112,
+  "dma_slots_per_lane": 4,
+  "dma_bytes": 2056,
+  "usb_transport": "cdc-irq-ring-v1",
+  "usb_tx_queue_bytes": 4096,
+  "radar_control": "ldc1-v1",
+  "encoding_policy": "hw-fft-range-bins",
+  "fft_points": 512,
+  "fft_bins": 40,
+  "bin_format": "int16-block-shift-int32-dc"
+}

@@ -186,10 +186,10 @@ size_t ld_stream_encode(const uint8_t *r, const uint8_t *prev, uint8_t *out, siz
 #ifdef LD2450_STREAM_RAW_ONLY
     prev=NULL; /* Explicit USB-only diagnostic; wire raw mode is unchanged. */
 #endif
-    memcpy(out+1,r,4); memcpy(out+5,r+2052,4);
+    memcpy(out+1,r,4); memcpy(out+5,r+LD_STREAM_RECORD_BYTES-4u,4);
     if (!prev) goto raw;
     out[0]=1;
-    for (block=0;block<32;++block) {
+    for (block=0;block<LD_STREAM_BLOCKS;++block) {
         uint32_t bits=0,maximum=0;
         unsigned pending=0;
         /* Cache one block's residuals instead of reading and decoding the
@@ -201,7 +201,7 @@ size_t ld_stream_encode(const uint8_t *r, const uint8_t *prev, uint8_t *out, siz
         }
         width=0;while(maximum) {++width;maximum>>=1;}
         /* Stop before exceeding scratch capacity; raw wins ties too. */
-        if(pos+1+4*width>=2057) goto raw;
+        if(pos+1+4*width>=LD_STREAM_PAYLOAD_MAX) goto raw;
         out[pos++]=(uint8_t)width;
         if(!width) continue;
         for (j=0;j<32;++j) {
@@ -216,7 +216,7 @@ size_t ld_stream_encode(const uint8_t *r, const uint8_t *prev, uint8_t *out, siz
     }
     return pos;
 raw:
-    out[0]=0;memcpy(out+9,r+4,2048);return 2057;
+    out[0]=0;memcpy(out+9,r+4,LD_STREAM_IQ_BYTES);return LD_STREAM_PAYLOAD_MAX;
 }
 static void enqueue(struct ld_stream *s, const uint8_t *p, size_t size)
 {
@@ -270,7 +270,7 @@ int ld_stream_begin(struct ld_stream *s, uint32_t frame, uint32_t time)
     s->frame=frame; s->active=1; s->next_chirp[0]=s->next_chirp[1]=0;
     p=s->scratch+32; memcpy(p,s->config_sha256,32);
     le32(p+32,s->stats.frames_skipped); le32(p+36,s->stats.frames_rejected);
-    le32(p+40,s->stats.queue_peak); le16(p+44,512); le16(p+46,LD_STREAM_CHIRPS);
+    le32(p+40,s->stats.queue_peak); le16(p+44,LD_RADAR_PAIRS); le16(p+46,LD_STREAM_CHIRPS);
     p[48]=2; p[49]=1; le16(p+50,s->register_generation);
     message(s,1,255,65535,time,52,0); return 1;
 }
@@ -278,7 +278,7 @@ int ld_stream_record(struct ld_stream *s, const uint8_t *r, size_t size, uint32_
 {
     struct radar_record decoded;
     if (!s || !s->active) return 0;
-    if (size!=2056 || radar_record_decode(r,size,&decoded)!=RADAR_RECORD_VALID) {
+    if (size!=LD_STREAM_RECORD_BYTES || radar_record_decode(r,size,&decoded)!=RADAR_RECORD_VALID) {
         ++s->stats.invalid_records;ld_stream_abort(s,2,time);return -1;
     }
     return ld_stream_record_validated(s,r,size,&decoded,time);
@@ -289,10 +289,10 @@ int ld_stream_record_validated(struct ld_stream *s,const uint8_t *r,size_t size,
     size_t encoded;
     uint8_t lane;
     if (!s || !s->active) return 0;
-    if (!r || size!=2056 || !decoded || decoded->iq!=r+4 ||
+    if (!r || size!=LD_STREAM_RECORD_BYTES || !decoded || decoded->iq!=r+4 ||
         !decoded->packet_valid || !decoded->checksum_checked ||
         decoded->checksum_calculated!=decoded->checksum_stored ||
-        decoded->declared_pairs!=512 || decoded->rx_index>1 || decoded->chirp>=LD_STREAM_CHIRPS ||
+        decoded->declared_pairs!=LD_RADAR_PAIRS || decoded->rx_index>1 || decoded->chirp>=LD_STREAM_CHIRPS ||
         decoded->chirp!=s->next_chirp[decoded->rx_index]) {
         ++s->stats.invalid_records; ld_stream_abort(s,2,time); return -1;
     }
@@ -304,7 +304,7 @@ int ld_stream_record_validated(struct ld_stream *s,const uint8_t *r,size_t size,
     }
     if (s->scratch[32]) ++s->stats.compressed_records; else ++s->stats.raw_records;
     message(s,2,lane,decoded->chirp,time,encoded,ld_stream_crc32(r,size));
-    memcpy(s->previous[lane],r+4,2048); ++s->next_chirp[lane];
+    memcpy(s->previous[lane],r+4,LD_STREAM_IQ_BYTES); ++s->next_chirp[lane];
     if (s->next_chirp[0]==LD_STREAM_CHIRPS && s->next_chirp[1]==LD_STREAM_CHIRPS) {
         message(s,3,255,65535,time,0,0);
         s->active=0; s->pending_complete=1; ++s->stats.frames_completed;

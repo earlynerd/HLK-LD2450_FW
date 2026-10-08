@@ -3,14 +3,14 @@
 #include "ld2450_stream.h"
 struct ld_acquisition {
     struct ld_stream *stream;
-    uint8_t candidate[2][2056], first[2][2056];
+    uint8_t candidate[2][LD_STREAM_RECORD_BYTES], first[2][LD_STREAM_RECORD_BYTES];
     size_t used[2];
     uint32_t first_time[2], last_record, frame_id;
     uint32_t valid[2], corrupt, sync_bytes, unpaired, timeouts;
     uint32_t complete_pairs,sequence_errors;
     uint16_t next[2];
     uint8_t tracking;
-    uint8_t bad_snapshot[2056];
+    uint8_t bad_snapshot[LD_STREAM_RECORD_BYTES];
     uint32_t bad_status;
     uint8_t first_mask;
 };

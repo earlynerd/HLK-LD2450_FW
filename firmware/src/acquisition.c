@@ -20,7 +20,7 @@ static void record(struct ld_acquisition *a,unsigned lane,uint32_t time,int enab
         if(a->tracking) {++a->sequence_errors;a->tracking=0;}
         if(a->stream->active) ld_stream_abort(a->stream,1,time);
         if(a->first_mask&(1u<<lane)) ++a->unpaired;
-        memcpy(a->first[lane],p,2056);a->first_time[lane]=time;
+        memcpy(a->first[lane],p,LD_STREAM_RECORD_BYTES);a->first_time[lane]=time;
         a->first_mask|=(uint8_t)(1u<<lane);
         if(a->first_mask==3) {
             uint32_t delta=time-a->first_time[1-lane];
@@ -31,8 +31,8 @@ static void record(struct ld_acquisition *a,unsigned lane,uint32_t time,int enab
             a->tracking=1;a->next[0]=a->next[1]=1;
             if(!enabled) {++a->stream->stats.frames_skipped;return;}
             if(ld_stream_begin(a->stream,a->frame_id,time)==1) {
-                ld_stream_record(a->stream,a->first[0],2056,a->first_time[0]);
-                ld_stream_record(a->stream,a->first[1],2056,a->first_time[1]);
+                ld_stream_record(a->stream,a->first[0],LD_STREAM_RECORD_BYTES,a->first_time[0]);
+                ld_stream_record(a->stream,a->first[1],LD_STREAM_RECORD_BYTES,a->first_time[1]);
             }
         }
     } else {
@@ -44,7 +44,7 @@ static void record(struct ld_acquisition *a,unsigned lane,uint32_t time,int enab
         /* Acquisition still validates all 64 physical chirps. An export may
          * retain only the first 16; never feed later chirps into that window. */
         if(a->stream->active && r->chirp<LD_STREAM_CHIRPS)
-            ld_stream_record_validated(a->stream,p,2056,r,time);
+            ld_stream_record_validated(a->stream,p,LD_STREAM_RECORD_BYTES,r,time);
     }
 }
 void ld_acquisition_feed(struct ld_acquisition *a,unsigned lane,const uint8_t *p,size_t n,
@@ -53,24 +53,24 @@ void ld_acquisition_feed(struct ld_acquisition *a,unsigned lane,const uint8_t *p
     while(n) {
         uint8_t *b=a->candidate[lane];
         size_t *used=&a->used[lane];
-        size_t take=(*used<4 ? 4 : 2056)-*used;
+        size_t take=(*used<4 ? 4 : LD_STREAM_RECORD_BYTES)-*used;
         if(take>n) take=n;
         memcpy(b+*used,p,take);*used+=take;p+=take;n-=take;
         while(*used>=4) {
             uint32_t h=((uint32_t)b[0]<<24)|((uint32_t)b[1]<<16)|((uint32_t)b[2]<<8)|b[3];
             int header=(h>>24)==0xaa && ((h>>22)&3)==lane && ((h>>20)&3)==2 &&
-                       (h&2047)==513 && ((h>>11)&511)<64;
-            if(header && *used<2056) break;
+                       (h&2047)==LD_RADAR_PAIRS+1u && ((h>>11)&511)<64;
+            if(header && *used<LD_STREAM_RECORD_BYTES) break;
             if(header) {
                 struct radar_record r;
-                enum radar_record_status status=radar_record_decode(b,2056,&r);
+                enum radar_record_status status=radar_record_decode(b,LD_STREAM_RECORD_BYTES,&r);
                 if(status==RADAR_RECORD_VALID) {
                     record(a,lane,time,enabled,&r);*used=0;break;
                 }
-                if(!a->corrupt) {memcpy(a->bad_snapshot,b,2056);a->bad_status=(uint32_t)status;}
+                if(!a->corrupt) {memcpy(a->bad_snapshot,b,LD_STREAM_RECORD_BYTES);a->bad_status=(uint32_t)status;}
                 ++a->corrupt;ld_stream_abort(a->stream,2,time);a->first_mask=0;a->tracking=0;
             }
-            /* Search without repeatedly moving a 2 KiB corrupt candidate.
+            /* Search without repeatedly moving a whole corrupt candidate.
              * Keep at most the final three bytes if no next header is found. */
             {
                 size_t skip=1;
@@ -78,7 +78,7 @@ void ld_acquisition_feed(struct ld_acquisition *a,unsigned lane,const uint8_t *p
                     uint32_t next=((uint32_t)b[skip]<<24)|((uint32_t)b[skip+1]<<16)|
                                   ((uint32_t)b[skip+2]<<8)|b[skip+3];
                     if((next>>24)==0xaa && ((next>>22)&3)==lane && ((next>>20)&3)==2 &&
-                       (next&2047)==513 && ((next>>11)&511)<64) break;
+                       (next&2047)==LD_RADAR_PAIRS+1u && ((next>>11)&511)<64) break;
                     ++skip;
                 }
                 *used-=skip;memmove(b,b+skip,*used);a->sync_bytes+=(uint32_t)skip;

@@ -12,7 +12,7 @@
 #include "stream_config_generated.h"
 
 #define SLOTS 4u
-#define DMA_BYTES 2056u
+#define DMA_BYTES LD_STREAM_RECORD_BYTES
 static uint8_t dma[2][SLOTS][DMA_BYTES] __attribute__((aligned(4)));
 static volatile uint32_t produced[2],consumed[2],overruns,stopped;
 static volatile uint32_t stamp[2][SLOTS],clock_base,last_dma_us;
@@ -85,6 +85,10 @@ int ld2450_stream_app_init(void) {
     if(ld_stream_init(&stream,output_queue,sizeof(output_queue),ld_stream_config_hash)) return -2;
     ld_acquisition_init(&acquisition,&stream);
     ld_radar_control_init(&control);
+#ifdef LD2450_FFT_SELFTEST
+    /* The DMA ring is idle until the radar is armed: reuse it as scratch. */
+    ld2450_fft_selftest(dma,sizeof(dma));
+#endif
     return ld2450_usb_init();
 }
 int ld2450_stream_app_arm(void) {
@@ -167,15 +171,15 @@ void ld2450_stream_app_poll(void) {
 #ifdef LD2450_USB_BENCH
     /* Deterministic LDF1 frames: benchmark codec + USB without powering radar. */
     {
-        static uint8_t raw[2056];static unsigned chirp,lane_id;static uint32_t frame;
+        static uint8_t raw[LD_STREAM_RECORD_BYTES];static unsigned chirp,lane_id;static uint32_t frame;
         uint32_t h,sum=0;unsigned j;
         if(ready && !stream.active && !stream.used) {ld_stream_begin(&stream,++frame,time);chirp=lane_id=0;}
         if(stream.active && stream.capacity-stream.used>4200) {
-            h=0xaa200201u|(lane_id<<22)|(chirp<<11);
+            h=0xaa200000u|(LD_RADAR_PAIRS+1u)|(lane_id<<22)|(chirp<<11);
             raw[0]=(uint8_t)(h>>24);raw[1]=(uint8_t)(h>>16);raw[2]=(uint8_t)(h>>8);raw[3]=(uint8_t)h;
-            for(j=0;j<1024;++j) {uint16_t v=(uint16_t)(j*17+chirp+lane_id);raw[4+2*j]=(uint8_t)(v>>8);raw[5+2*j]=(uint8_t)v;sum+=v;}
-            raw[2052]=(uint8_t)(sum>>8);raw[2053]=(uint8_t)sum;
-            raw[2054]=(uint8_t)((lane_id<<6)|0x20|(chirp&15));raw[2055]=0x55;
+            for(j=0;j<LD_STREAM_VALUES;++j) {uint16_t v=(uint16_t)(j*17+chirp+lane_id);raw[4+2*j]=(uint8_t)(v>>8);raw[5+2*j]=(uint8_t)v;sum+=v;}
+            raw[DMA_BYTES-4]=(uint8_t)(sum>>8);raw[DMA_BYTES-3]=(uint8_t)sum;
+            raw[DMA_BYTES-2]=(uint8_t)((lane_id<<6)|0x20|(chirp&15));raw[DMA_BYTES-1]=0x55;
             ld_stream_record(&stream,raw,sizeof(raw),time);
             if(++lane_id==2) {lane_id=0;++chirp;}
         }
@@ -256,9 +260,9 @@ void ld2450_stream_app_report(void) {
     if(acquisition.corrupt) {
         unsigned offset,j;
         static const char hex[]="0123456789abcdef";
-        for(offset=0;offset<2056;offset+=32) {
+        for(offset=0;offset<DMA_BYTES;offset+=32) {
             int at=snprintf(text,sizeof(text),"BAD %04x ",offset);
-            for(j=offset;j<offset+32 && j<2056;++j) {uint8_t b=acquisition.bad_snapshot[j];text[at++]=hex[b>>4];text[at++]=hex[b&15];}
+            for(j=offset;j<offset+32 && j<DMA_BYTES;++j) {uint8_t b=acquisition.bad_snapshot[j];text[at++]=hex[b>>4];text[at++]=hex[b&15];}
             text[at++]='\r';text[at++]='\n';text[at]=0;ld2450_debug_write(text);
         }
     }
@@ -268,10 +272,10 @@ void ld2450_stream_app_report(void) {
         uint32_t before,crc_us,encode_us,validate_us,value=0;unsigned n;size_t size=0;
         struct radar_record decoded;
         before=ld2450_stream_clock_us();
-        for(n=0;n<16;++n)value+=(uint32_t)radar_record_decode(acquisition.first[0],2056,&decoded);
+        for(n=0;n<16;++n)value+=(uint32_t)radar_record_decode(acquisition.first[0],DMA_BYTES,&decoded);
         validate_us=ld2450_stream_clock_us()-before;
         before=ld2450_stream_clock_us();
-        for(n=0;n<16;++n) value^=ld_stream_crc32(acquisition.first[0],2056);
+        for(n=0;n<16;++n) value^=ld_stream_crc32(acquisition.first[0],DMA_BYTES);
         crc_us=ld2450_stream_clock_us()-before;
         before=ld2450_stream_clock_us();
         for(n=0;n<16;++n) size+=ld_stream_encode(acquisition.first[0],stream.previous[0],stream.scratch,LD_STREAM_PAYLOAD_MAX);

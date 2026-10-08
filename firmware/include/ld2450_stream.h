@@ -3,15 +3,26 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define LD_STREAM_RECORD_BYTES 2056u
-#define LD_STREAM_VALUES 1024u
+/* Complex samples per radar DS RAW record (radar register 0x04 bits 10:8).
+ * The stock profile uses 512; builds may select 256 or 128 with a matching
+ * radar profile. Records are header(4) + 4*pairs I/Q bytes + trailer(4). */
+#ifndef LD_RADAR_PAIRS
+#define LD_RADAR_PAIRS 512u
+#endif
+#if LD_RADAR_PAIRS != 512 && LD_RADAR_PAIRS != 256 && LD_RADAR_PAIRS != 128
+#error Unsupported radar record size
+#endif
+#define LD_STREAM_IQ_BYTES (4u * LD_RADAR_PAIRS)
+#define LD_STREAM_RECORD_BYTES (LD_STREAM_IQ_BYTES + 8u)
+#define LD_STREAM_VALUES (2u * LD_RADAR_PAIRS)
+#define LD_STREAM_BLOCKS (LD_STREAM_VALUES / 32u)
 #ifndef LD_STREAM_CHIRPS
 #define LD_STREAM_CHIRPS 64u
 #endif
 #if LD_STREAM_CHIRPS != 16 && LD_STREAM_CHIRPS != 64
 #error Unsupported export window
 #endif
-#define LD_STREAM_PAYLOAD_MAX 2057u
+#define LD_STREAM_PAYLOAD_MAX (LD_STREAM_IQ_BYTES + 9u)
 #define LD_STREAM_HEADER_BYTES 32u
 #define LD_STREAM_MESSAGE_MAX (32u + LD_STREAM_PAYLOAD_MAX + 4u)
 
@@ -28,7 +39,7 @@ struct ld_stream {
     uint8_t *queue;
     size_t capacity, head, used;
     uint8_t config_sha256[32];
-    uint8_t previous[2][2048];
+    uint8_t previous[2][LD_STREAM_IQ_BYTES];
     uint8_t scratch[LD_STREAM_MESSAGE_MAX];
     uint32_t sequence, frame;
     uint16_t next_chirp[2];
@@ -48,7 +59,7 @@ int ld_stream_init(struct ld_stream *s, uint8_t *queue, size_t capacity,
  * 0 when intentionally skipped (backlog), -1 on API misuse. Frame IDs must
  * count observed radar frames, including skips; timestamp is local us. */
 int ld_stream_begin(struct ld_stream *s, uint32_t frame, uint32_t timestamp_us);
-/* Only complete, checksum-valid 512-pair records, chirps 0..LD_STREAM_CHIRPS-1 per RX.
+/* Only complete, checksum-valid LD_RADAR_PAIRS-pair records, chirps 0..LD_STREAM_CHIRPS-1 per RX.
  * Any invalid/missing/reordered record rejects the entire active frame. */
 int ld_stream_record(struct ld_stream *s, const uint8_t *record, size_t size,
                      uint32_t timestamp_us);

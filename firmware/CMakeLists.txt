@@ -76,6 +76,14 @@ if(BUILD_TESTING)
   add_test(NAME raw16_acquisition COMMAND test_stream16)
   add_test(NAME raw16_interop COMMAND "${Python3_EXECUTABLE}"
       "${CMAKE_CURRENT_SOURCE_DIR}/tests/stream16_interop.py" "$<TARGET_FILE:test_stream16>")
+  # Same window with the radar's 256-sample record format (0x04 size code 2).
+  add_executable(test_stream16_p256 tests/test_stream16.c src/stream.c src/acquisition.c)
+  target_compile_definitions(test_stream16_p256 PRIVATE LD_STREAM_CHIRPS=16 LD2450_STREAM_RAW_ONLY LD_RADAR_PAIRS=256u)
+  target_include_directories(test_stream16_p256 PRIVATE include)
+  target_link_libraries(test_stream16_p256 PRIVATE radar_wire)
+  add_test(NAME raw16_p256_acquisition COMMAND test_stream16_p256)
+  add_test(NAME raw16_p256_interop COMMAND "${Python3_EXECUTABLE}"
+      "${CMAKE_CURRENT_SOURCE_DIR}/tests/stream16_interop.py" "$<TARGET_FILE:test_stream16_p256>" 256)
   add_executable(test_radar_control tests/test_radar_control.c src/radar_control.c src/stream.c src/acquisition.c)
   target_compile_definitions(test_radar_control PRIVATE LD_STREAM_CHIRPS=16 LD2450_STREAM_RAW_ONLY)
   target_include_directories(test_radar_control PRIVATE include)

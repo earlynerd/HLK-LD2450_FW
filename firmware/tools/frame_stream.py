@@ -19,7 +19,12 @@ import zlib
 
 HEADER = struct.Struct('<4sBBBBHHIIIII')
 MAX_PAYLOAD = 2057
-RECORD_BYTES = 2056
+RECORD_BYTES = 2056          # 512-pair records (stock radar profile)
+SUPPORTED_PAIRS = (512, 256, 128)
+
+
+def record_bytes(pairs):
+    return 8 + 4 * pairs
 
 
 def crc(data):
@@ -47,19 +52,20 @@ def decode_reply(payload):
                 driver_error=error, values=list(struct.unpack(f'<{count}H', payload[12:])))
 
 
-def decode_record(payload, previous=None):
+def decode_record(payload, previous=None, pairs=512):
+    values_count = 2 * pairs
     if len(payload) < 9 or payload[0] not in (0, 1):
         raise ValueError('Invalid codec mode/length')
     if payload[0] == 0:
-        if len(payload) != 2057:
+        if len(payload) != 9 + 4 * pairs:
             raise ValueError('Invalid raw record length')
         iq = payload[9:]
     else:
-        if previous is None or len(previous) != 2048:
+        if previous is None or len(previous) != 4 * pairs:
             raise ValueError('Residual without reference chirp')
-        reference = struct.unpack('>1024h', previous)
+        reference = struct.unpack(f'>{values_count}h', previous)
         values, pos = [], 9
-        for block in range(32):
+        for block in range(values_count // 32):
             if pos >= len(payload):
                 raise ValueError('Truncated block')
             width = payload[pos]
@@ -76,23 +82,23 @@ def decode_record(payload, previous=None):
                 values.append(value)
         if pos != len(payload):
             raise ValueError('Trailing codec data')
-        iq = struct.pack('>1024h', *values)
+        iq = struct.pack(f'>{values_count}h', *values)
     record = payload[1:5] + iq + payload[5:9]
-    validate_record(record)
+    validate_record(record, pairs)
     return record
 
 
-def validate_record(record):
-    if len(record) != RECORD_BYTES:
+def validate_record(record, pairs=512):
+    if len(record) != record_bytes(pairs):
         raise ValueError('Wrong raw length')
     header = int.from_bytes(record[:4], 'big')
     lane, chirp = (header >> 22) & 3, (header >> 11) & 511
-    if header >> 24 != 0xaa or lane > 1 or (header >> 20) & 3 != 2 or header & 2047 != 513 or chirp >= 64:
+    if header >> 24 != 0xaa or lane > 1 or (header >> 20) & 3 != 2 or header & 2047 != pairs + 1 or chirp >= 64:
         raise ValueError('Unexpected DS RAW header')
     checksum, trailer = struct.unpack('>HH', record[-4:])
     if trailer != (lane << 14) | 0x2000 | ((chirp & 15) << 8) | 0x55:
         raise ValueError('Invalid radar trailer')
-    if sum(struct.unpack('>1024H', record[4:-4])) & 65535 != checksum:
+    if sum(struct.unpack(f'>{2 * pairs}H', record[4:-4])) & 65535 != checksum:
         raise ValueError('Radar checksum mismatch')
     return lane, chirp
 
@@ -188,12 +194,12 @@ class Frames:
             if (m.codec, m.lane, m.chirp, m.raw_crc, len(m.payload)) != (0, 255, 65535, 0, 52):
                 raise ValueError('Invalid BEGIN')
             skipped, rejected, peak, pairs, chirps, lanes, version, generation = struct.unpack('<IIIHHBBH', m.payload[32:])
-            if (pairs, lanes, version) != (512, 2, 1) or chirps not in (16, 64):
+            if pairs not in SUPPORTED_PAIRS or (lanes, version) != (2, 1) or chirps not in (16, 64):
                 raise ValueError('Unsupported frame configuration')
             self.latest_device_stats = dict(device_skipped=skipped, device_rejected=rejected,
                                             device_queue_peak=peak)
             self.current = dict(frame_id=m.frame, config_sha256=m.payload[:32].hex(),
-                                chirps=chirps, register_generation=generation,
+                                chirps=chirps, pairs=pairs, register_generation=generation,
                                 started_us=m.timestamp_us, device_skipped=skipped,
                                 device_rejected=rejected, device_queue_peak=peak,
                                 lanes=[[], []], timestamps_us=[[], []], next_sequence=(m.sequence + 1) & 0xffffffff)
@@ -218,8 +224,8 @@ class Frames:
             records = f['lanes'][m.lane]
             if not records and m.payload[:1] != b'\x00':
                 raise ValueError('First chirp must be raw')
-            raw = decode_record(m.payload, records[-1][4:-4] if records else None)
-            if validate_record(raw) != (m.lane, m.chirp) or crc(raw) != m.raw_crc:
+            raw = decode_record(m.payload, records[-1][4:-4] if records else None, f['pairs'])
+            if validate_record(raw, f['pairs']) != (m.lane, m.chirp) or crc(raw) != m.raw_crc:
                 raise ValueError('Record identity/integrity mismatch')
             records.append(raw)
             f['timestamps_us'][m.lane].append(m.timestamp_us)

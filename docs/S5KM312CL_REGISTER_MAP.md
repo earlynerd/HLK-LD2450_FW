@@ -85,7 +85,7 @@ project's current 240 MHz profile are marked †.
 |---|---|---|---|
 | 0x00 | r 0x1207 | Unknown, possibly an ID or revision word. A write with bit 15 set returned an error. | B, I |
 | 0x01 | 0x8222 | Output data type. Bit 1 = DS RAW, bit 2 = range FFT, bit 12 = Doppler FFT, bit 4 = peak list. The vendor writes 0x8222 for raw and 0x8E24 for 1D-FFT; it is 0 while stopped. Bits 0-4 and 15 stop the raw stream. | V, S, B |
-| 0x02 | 0x103C | [13:12] raw sample step 1/2/4/8 (codes 0-3); [9:0] sample offset in 2.5 MHz counts from chirp start (stock 60 = 24 us). The offset applies live; the step needs a hold and restart. | V, B |
+| 0x02 | 0x103C | [13:12] raw sample step 1/2/4/8 (codes 0-3); [9:0] sample offset in 2.5 MHz counts from chirp start (stock 60 = 24 us). The offset applies live; the step needs a hold and restart. The step **drops samples without filtering**: 256 samples at step 4 matched a sample-skipping simulation (interference tone folded at full strength, same noise shape), not a 2-sample average. | V, B |
 | 0x03 | r 0x101F | Not written by stock or the vendor. Bits 6-11 corrupt or mute individual paths (mirror image +35 to +38 dB): bit 6 RX2, 7 RX1, 8 RX2-Q, 9 RX2-I, 10 RX1-Q, 11 RX1-I. Other bits: no effect. | B |
 | 0x04 | 0x030C | [10:8] raw sample size 64/128/256/512/1024 (codes 0-4); low byte 0x0C (0x1B for 2D peak output). Other sizes change the record length. | V, B |
 | 0x05 | 0x0010 | On-chip 1D-FFT output size (1..256). No effect on raw. | V, B |

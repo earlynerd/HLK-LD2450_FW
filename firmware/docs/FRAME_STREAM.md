@@ -24,6 +24,23 @@ by live writes on a static scene on 2026-10-07; see `DECISIONS.md` and
 stock-sweep control image is archived in
 `firmware/releases/usb-raw16-control-20261006/`.
 
+## Radar record size and FFT self-test build options (2026-10-08)
+
+`--raw-pairs 512|256|128` (stream only) sets the radar record size the firmware
+accepts (`LD_RADAR_PAIRS`; records are 8 + 4 x pairs bytes). The build refuses
+a radar profile whose register 0x04 size code disagrees. BEGIN carries the pair
+count; `frame_stream.py` and the viewer's I/Q unpacking accept 512, 256 and 128.
+The other viewer stages still assume 512. The default stays 512, and the 512
+build's configuration identity is unchanged. `--fft-selftest` runs the hardware
+FFT characterisation at start-up and prints it on PA9 (`firmware/docs/HW_FFT.md`).
+
+Bench 2026-10-08, `radar_sweep240_raw256_step4_diagnostic.json` (256 samples at
+step 4, same 410 us window): 337 complete windows in 30 s (11.2/s, every radar
+frame), one start-boundary rejection, no protocol errors. Evidence:
+`output/raw256_step4/20261008-012401/`. The chip drops samples without filtering
+(see the 0x02 entry in `docs/S5KM312CL_REGISTER_MAP.md`). The 240 MHz 512-sample
+release image was reinstalled afterwards.
+
 ## Current experiment: raw 16-chirp export
 
 The user selected a shorter capture window on 2026-10-06. The installed stream

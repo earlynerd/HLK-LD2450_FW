@@ -27,11 +27,11 @@ def validate_settings(values):
 
 
 def unpack_iq(frame):
-    chirps = frame.get('chirps', 64)
-    if chirps not in (16, 64) or any(len(lane) != chirps * 2056 for lane in frame['lanes']):
+    chirps, pairs = frame.get('chirps', 64), frame.get('pairs', 512)
+    if chirps not in (16, 64) or any(len(lane) != chirps * (8 + 4 * pairs) for lane in frame['lanes']):
         raise ValueError('Invalid complete export window')
     return np.stack([
-        np.frombuffer(lane, dtype=">i2").reshape(chirps, 1028)[:, 2:-2].reshape(chirps, 512, 2)
+        np.frombuffer(lane, dtype=">i2").reshape(chirps, 4 + 2 * pairs)[:, 2:-2].reshape(chirps, pairs, 2)
         for lane in frame["lanes"]
     ]).astype("<i2")
 

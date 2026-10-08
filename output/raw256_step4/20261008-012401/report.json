@@ -1,0 +1,10 @@
+{
+  "source": "COM30",
+  "complete_frames": 337,
+  "rejected_frames": 1,
+  "protocol_errors": 0,
+  "parser_errors": 1,
+  "discarded_bytes": 159,
+  "received_bytes": 11571200,
+  "stream_sha256": "37667de8d01a059d65c8e9b19a6acfff78493bda7e1fe593b6bae458a30bb759"
+}

@@ -1,0 +1,402 @@
+{
+ "output\\live_radar\\20261008-010934-capture-7d4e96\\stream.ldf": {
+  "fir-4": {
+   "rx1": {
+    "static_err": -90.3,
+    "change_err": -29.1,
+    "noise_delta": 0.01,
+    "doppler_err": -29.7
+   },
+   "rx2": {
+    "static_err": -90.1,
+    "change_err": -28.0,
+    "noise_delta": 0.01,
+    "doppler_err": -28.6
+   },
+   "mean": {
+    "static_err": -90.2,
+    "change_err": -28.55,
+    "noise_delta": 0.01,
+    "doppler_err": -29.15
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "fir-4:33": {
+   "rx1": {
+    "static_err": -114.3,
+    "change_err": -29.1,
+    "noise_delta": 0.01,
+    "doppler_err": -29.6
+   },
+   "rx2": {
+    "static_err": -109.9,
+    "change_err": -28.0,
+    "noise_delta": 0.01,
+    "doppler_err": -28.6
+   },
+   "mean": {
+    "static_err": -112.1,
+    "change_err": -28.55,
+    "noise_delta": 0.01,
+    "doppler_err": -29.1
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "fir-8": {
+   "rx1": {
+    "static_err": -31.2,
+    "change_err": -22.7,
+    "noise_delta": 0.06,
+    "doppler_err": -24.0
+   },
+   "rx2": {
+    "static_err": -31.2,
+    "change_err": -22.8,
+    "noise_delta": 0.06,
+    "doppler_err": -23.7
+   },
+   "mean": {
+    "static_err": -31.2,
+    "change_err": -22.75,
+    "noise_delta": 0.06,
+    "doppler_err": -23.85
+   },
+   "bytes_per_frame": 32768,
+   "clip_fraction": 0.0
+  },
+  "fir-8:33": {
+   "rx1": {
+    "static_err": -22.8,
+    "change_err": -16.7,
+    "noise_delta": 0.37,
+    "doppler_err": -17.7
+   },
+   "rx2": {
+    "static_err": -22.8,
+    "change_err": -17.8,
+    "noise_delta": 0.35,
+    "doppler_err": -18.5
+   },
+   "mean": {
+    "static_err": -22.8,
+    "change_err": -17.25,
+    "noise_delta": 0.36,
+    "doppler_err": -18.1
+   },
+   "bytes_per_frame": 32768,
+   "clip_fraction": 0.0
+  },
+  "skip-2": {
+   "rx1": {
+    "static_err": -54.7,
+    "change_err": -7.1,
+    "noise_delta": 0.78,
+    "doppler_err": -7.6
+   },
+   "rx2": {
+    "static_err": -48.7,
+    "change_err": -7.9,
+    "noise_delta": 0.65,
+    "doppler_err": -8.4
+   },
+   "mean": {
+    "static_err": -51.7,
+    "change_err": -7.5,
+    "noise_delta": 0.72,
+    "doppler_err": -8.0
+   },
+   "bytes_per_frame": 131072,
+   "clip_fraction": 0.0
+  },
+  "avg-2": {
+   "rx1": {
+    "static_err": -50.3,
+    "change_err": -20.0,
+    "noise_delta": -0.04,
+    "doppler_err": -24.1
+   },
+   "rx2": {
+    "static_err": -45.6,
+    "change_err": -20.1,
+    "noise_delta": -0.04,
+    "doppler_err": -24.0
+   },
+   "mean": {
+    "static_err": -47.95,
+    "change_err": -20.05,
+    "noise_delta": -0.04,
+    "doppler_err": -24.05
+   },
+   "bytes_per_frame": 131072,
+   "clip_fraction": 0.0
+  },
+  "skip-4": {
+   "rx1": {
+    "static_err": -45.1,
+    "change_err": -0.4,
+    "noise_delta": 2.64,
+    "doppler_err": -0.7
+   },
+   "rx2": {
+    "static_err": -39.2,
+    "change_err": -1.3,
+    "noise_delta": 2.37,
+    "doppler_err": -1.7
+   },
+   "mean": {
+    "static_err": -42.15,
+    "change_err": -0.85,
+    "noise_delta": 2.5,
+    "doppler_err": -1.2
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "avg-4": {
+   "rx1": {
+    "static_err": -40.8,
+    "change_err": -11.1,
+    "noise_delta": -0.19,
+    "doppler_err": -15.5
+   },
+   "rx2": {
+    "static_err": -36.0,
+    "change_err": -11.2,
+    "noise_delta": -0.21,
+    "doppler_err": -15.7
+   },
+   "mean": {
+    "static_err": -38.4,
+    "change_err": -11.15,
+    "noise_delta": -0.2,
+    "doppler_err": -15.6
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "fftsel": {
+   "rx1": {
+    "static_err": -115.8,
+    "change_err": -26.1,
+    "noise_delta": 0.01,
+    "doppler_err": -26.7
+   },
+   "rx2": {
+    "static_err": -109.9,
+    "change_err": -25.0,
+    "noise_delta": 0.02,
+    "doppler_err": -25.6
+   },
+   "mean": {
+    "static_err": -112.85,
+    "change_err": -25.55,
+    "noise_delta": 0.01,
+    "doppler_err": -26.15
+   },
+   "bytes_per_frame": 25088,
+   "clip_fraction": 0.0
+  }
+ },
+ "output\\live_radar\\20261008-011009-capture-d25c19\\stream.ldf": {
+  "fir-4": {
+   "rx1": {
+    "static_err": -90.2,
+    "change_err": -45.3,
+    "noise_delta": 0.0,
+    "doppler_err": -55.9
+   },
+   "rx2": {
+    "static_err": -90.1,
+    "change_err": -43.9,
+    "noise_delta": 0.0,
+    "doppler_err": -54.6
+   },
+   "mean": {
+    "static_err": -90.15,
+    "change_err": -44.6,
+    "noise_delta": 0.0,
+    "doppler_err": -55.25
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "fir-4:33": {
+   "rx1": {
+    "static_err": -114.8,
+    "change_err": -45.3,
+    "noise_delta": 0.0,
+    "doppler_err": -55.9
+   },
+   "rx2": {
+    "static_err": -109.3,
+    "change_err": -43.9,
+    "noise_delta": 0.0,
+    "doppler_err": -54.7
+   },
+   "mean": {
+    "static_err": -112.05,
+    "change_err": -44.6,
+    "noise_delta": 0.0,
+    "doppler_err": -55.3
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "fir-8": {
+   "rx1": {
+    "static_err": -31.2,
+    "change_err": -31.5,
+    "noise_delta": 0.02,
+    "doppler_err": -32.1
+   },
+   "rx2": {
+    "static_err": -31.2,
+    "change_err": -31.5,
+    "noise_delta": 0.03,
+    "doppler_err": -32.2
+   },
+   "mean": {
+    "static_err": -31.2,
+    "change_err": -31.5,
+    "noise_delta": 0.03,
+    "doppler_err": -32.15
+   },
+   "bytes_per_frame": 32768,
+   "clip_fraction": 0.0
+  },
+  "fir-8:33": {
+   "rx1": {
+    "static_err": -22.8,
+    "change_err": -23.0,
+    "noise_delta": 0.39,
+    "doppler_err": -23.2
+   },
+   "rx2": {
+    "static_err": -22.8,
+    "change_err": -23.1,
+    "noise_delta": 0.37,
+    "doppler_err": -23.3
+   },
+   "mean": {
+    "static_err": -22.8,
+    "change_err": -23.05,
+    "noise_delta": 0.38,
+    "doppler_err": -23.25
+   },
+   "bytes_per_frame": 32768,
+   "clip_fraction": 0.0
+  },
+  "skip-2": {
+   "rx1": {
+    "static_err": -52.8,
+    "change_err": -22.5,
+    "noise_delta": 0.58,
+    "doppler_err": -32.7
+   },
+   "rx2": {
+    "static_err": -49.1,
+    "change_err": -23.1,
+    "noise_delta": 0.48,
+    "doppler_err": -33.2
+   },
+   "mean": {
+    "static_err": -50.95,
+    "change_err": -22.8,
+    "noise_delta": 0.53,
+    "doppler_err": -32.95
+   },
+   "bytes_per_frame": 131072,
+   "clip_fraction": 0.0
+  },
+  "avg-2": {
+   "rx1": {
+    "static_err": -49.6,
+    "change_err": -32.7,
+    "noise_delta": -0.01,
+    "doppler_err": -36.9
+   },
+   "rx2": {
+    "static_err": -45.8,
+    "change_err": -32.6,
+    "noise_delta": -0.02,
+    "doppler_err": -36.7
+   },
+   "mean": {
+    "static_err": -47.7,
+    "change_err": -32.65,
+    "noise_delta": -0.01,
+    "doppler_err": -36.8
+   },
+   "bytes_per_frame": 131072,
+   "clip_fraction": 0.0
+  },
+  "skip-4": {
+   "rx1": {
+    "static_err": -43.2,
+    "change_err": -16.0,
+    "noise_delta": 1.91,
+    "doppler_err": -25.3
+   },
+   "rx2": {
+    "static_err": -39.6,
+    "change_err": -16.4,
+    "noise_delta": 1.75,
+    "doppler_err": -25.8
+   },
+   "mean": {
+    "static_err": -41.4,
+    "change_err": -16.2,
+    "noise_delta": 1.83,
+    "doppler_err": -25.55
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "avg-4": {
+   "rx1": {
+    "static_err": -40.0,
+    "change_err": -23.5,
+    "noise_delta": -0.06,
+    "doppler_err": -27.4
+   },
+   "rx2": {
+    "static_err": -36.1,
+    "change_err": -23.3,
+    "noise_delta": -0.07,
+    "doppler_err": -27.2
+   },
+   "mean": {
+    "static_err": -38.05,
+    "change_err": -23.4,
+    "noise_delta": -0.07,
+    "doppler_err": -27.3
+   },
+   "bytes_per_frame": 65536,
+   "clip_fraction": 0.0
+  },
+  "fftsel": {
+   "rx1": {
+    "static_err": -115.1,
+    "change_err": -42.3,
+    "noise_delta": 0.01,
+    "doppler_err": -52.9
+   },
+   "rx2": {
+    "static_err": -108.1,
+    "change_err": -40.9,
+    "noise_delta": 0.01,
+    "doppler_err": -51.7
+   },
+   "mean": {
+    "static_err": -111.6,
+    "change_err": -41.6,
+    "noise_delta": 0.01,
+    "doppler_err": -52.3
+   },
+   "bytes_per_frame": 25088,
+   "clip_fraction": 0.0
+  }
+ }
+}

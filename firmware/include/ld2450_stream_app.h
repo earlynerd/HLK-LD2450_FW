@@ -3,6 +3,10 @@
 #include <stddef.h>
 #include <stdint.h>
 int ld2450_stream_app_init(void);
+#ifdef LD2450_FFT_SELFTEST
+/* Hardware FFT characterisation on idle scratch memory; prints on PA9. */
+void ld2450_fft_selftest(void *scratch, size_t size);
+#endif
 int ld2450_stream_app_arm(void);
 void ld2450_stream_app_poll(void);
 void ld2450_stream_app_stop(void);

@@ -13,6 +13,8 @@ node_modules/
 /output/stream_bench/**/frame-*/
 /output/live_radar/**/*.ldf
 /output/live_radar/**/frame-*/
+/output/raw256_step4/**/*.ldf
+/output/raw256_step4/**/frame-*/
 /output/radar_analysis/**/*.npz
 /output/live_radar/**/*.npy
 
@@ -23,3 +25,4 @@ node_modules/
 
 # Third-party ICLegend EVBKS5 GUI package (vendor terms restrict redistribution).
 /20230524-EVBKS5-Waveform-Config-and-Demo.zip
+/ac695n_soundbox_sdk-master.zip

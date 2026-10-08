@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import struct
@@ -50,11 +51,17 @@ def main():
     ap.add_argument('--raw-usb-bench',action='store_true',help='Disable compression in the paced, radar-off USB bench profile')
     ap.add_argument('--stream-chirps',type=int,choices=(16,64),default=64,
                     help='Live export window; 16 selects fixed-size raw records, radar acquisition remains 64 chirps')
+    ap.add_argument('--raw-pairs',type=int,choices=(512,256,128),default=512,
+                    help='Complex samples per radar record; must match the radar profile register 0x04 size code')
+    ap.add_argument('--fft-selftest',action='store_true',
+                    help='Run the BR23 hardware FFT self-test at stream start-up and print results on PA9')
     ap.add_argument('--radar-config', type=Path, default=ROOT / 'config/radar_baseline_mode2.json')
     ap.add_argument('--template',type=Path,default=ROOT.parent/'5o09fdkye1jo8.ufw')
     a = ap.parse_args(); sdk=a.sdk.resolve(); tc=a.toolchain.resolve()
     if a.raw_usb_bench and a.application!='usb-bench':ap.error('--raw-usb-bench requires --application usb-bench')
     if a.stream_chirps!=64 and a.application!='stream':ap.error('--stream-chirps 16 requires --application stream')
+    if (a.raw_pairs!=512 or a.fft_selftest) and a.application!='stream':
+        ap.error('--raw-pairs and --fft-selftest require --application stream')
     out=(a.out or ROOT / {'hello':'build/hello', 'radar':'build/image', 'capture':'build/capture', 'usb-bench':'build/usb-bench', 'stream':'build/stream'}[a.application]).resolve()
     out.mkdir(parents=True,exist_ok=True)
     verify_sdk(sdk,load_lock()); provenance=toolchain_provenance(tc)
@@ -81,13 +88,21 @@ def main():
         if a.application == 'usb-bench': flags += ['-DLD2450_USB_BENCH']
         if a.raw_usb_bench:flags += ['-DLD2450_STREAM_RAW_ONLY']
         if a.stream_chirps==16:flags += ['-DLD_STREAM_CHIRPS=16','-DLD2450_STREAM_RAW_ONLY']
+        if a.raw_pairs!=512:flags += [f'-DLD_RADAR_PAIRS={a.raw_pairs}u']
+        if a.fft_selftest:flags += ['-DLD2450_FFT_SELFTEST']
+        # The radar's own record size (0x04 bits 10:8: 64<<code pairs) must
+        # match the firmware's record parser, or every record is rejected.
+        writes=re.findall(r'\{0x04, 0x([0-9A-F]{4})\}',(out/'generated/radar_config_generated.c').read_text())
+        if not writes or 64<<((int(writes[-1],16)>>8)&7)!=a.raw_pairs:
+            raise SystemExit(f'radar profile 0x04 size does not match --raw-pairs {a.raw_pairs}')
         identity={'application':a.application, 'table_sha256':profile['table_sha256'],
-                  'pairs':512,'chirps':a.stream_chirps,'receivers':2,'codec':'LDF1-block32-v1',
-                  'queue_bytes':90112,'dma_slots_per_lane':4,'dma_bytes':2056,
+                  'pairs':a.raw_pairs,'chirps':a.stream_chirps,'receivers':2,'codec':'LDF1-block32-v1',
+                  'queue_bytes':90112,'dma_slots_per_lane':4,'dma_bytes':8+4*a.raw_pairs,
                   'usb_transport':'cdc-irq-ring-v1','usb_tx_queue_bytes':4096,
                   # Live LDC1 register control; BEGIN's former reserved field is the register generation.
                   'radar_control':'ldc1-v1'}
         if a.raw_usb_bench:identity['encoding_policy']='raw-only-synthetic-paced'
+        if a.fft_selftest:identity['startup_selftest']='br23-hw-fft-v1'
         if a.stream_chirps==16:
             identity.update(encoding_policy='raw-only-live-prefix16',acquisition_chirps=64,first_chirp=0)
         identity_bytes=json.dumps(identity,sort_keys=True,separators=(',',':')).encode()
@@ -129,6 +144,7 @@ def main():
     if streaming:
         sources += [ROOT/p for p in ['src/stream.c','src/acquisition.c','src/radar_control.c',
                     'target/br23/image/usb_stream.c','target/br23/image/stream_app.c']]
+        if a.fft_selftest: sources += [ROOT/'target/br23/image/fft_selftest.c']
         sources += [out/'generated/usb_config_stream.c', sdk/'apps/common/usb/device/usb_device.c']
     sources += [sdk/p for p in ['cpu/br23/setup.c','cpu/br23/uart_dev.c',
         'cpu/br23/charge.c','cpu/br23/pwm_led.c',

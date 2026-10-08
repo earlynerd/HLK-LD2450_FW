@@ -313,8 +313,36 @@ function updateRegisters(r) {
     }));
   }
 }
+// Sweep width: the server enforces minimum power, the revert timer and restore on disconnect.
+const sweepName=mhz=>mhz>=1000?mhz/1000+' GHz':mhz+' MHz';
+$('sweep').addEventListener('change',()=>{$('sweep-oob').hidden=$('sweep').value==='240';});
+action('sweep-apply',async()=>{
+  const mhz=Number($('sweep').value),accept=$('sweep-ack').checked;
+  if(mhz!==240&&!accept)throw new Error('Tick the acknowledgement to transmit outside 24.0–24.25 GHz.');
+  await request('sweep',{mhz,minutes:Number($('sweep-minutes').value),accept});
+  $('sweep-ack').checked=false;   // Acknowledge each out-of-band run.
+  notice(mhz===240?'Restoring the in-band build profile…':`Applying the ${sweepName(mhz)} sweep at minimum power…`);
+});
+action('sweep-restore',async()=>{await request('sweep',{mhz:240});notice('Restoring the in-band build profile…');});
+function updateSweep(w){
+  const badge=$('sweep-badge');
+  if(!w){badge.hidden=true;return;}
+  const a=w.active,last=w.last?` Last out-of-band sweep (${sweepName(w.last.mhz)}) ended at ${new Date(w.last.at*1000).toLocaleTimeString()}: ${w.last.reason}.`:'';
+  badge.hidden=!a&&w.in_band;
+  if(a){
+    const left=`${Math.floor(a.remaining_s/60)}:${String(a.remaining_s%60).padStart(2,'0')}`;
+    badge.textContent=`OUT OF BAND · ${sweepName(a.mhz)} · ${left}`;
+    $('sweep-state').textContent={applying:'Applying',active:'Active',failed:'A write failed; restoring',restoring:'Restoring in band'}[a.phase]+
+      `: ${sweepName(a.mhz)} sweep, 24.005–${a.top_ghz.toFixed(3)} GHz, minimum power. Returns to in band in ${left}`+
+      (a.restore_attempts>1?` (restore attempt ${a.restore_attempts})`:'')+'.';
+  }else if(!w.in_band){
+    badge.textContent='RADAR NOT IN BAND';
+    $('sweep-state').textContent=`The radar reports rise step ${w.live_step} (in band is 20), set before this connection. Use Restore in band now.`;
+  }else $('sweep-state').textContent='In band: 240 MHz sweep (24.005–24.245 GHz), stock power.'+last;
+}
 function updateState(state,polledAt=Infinity){
   updateRegisters(state.registers);
+  updateSweep(state.status==='live'?state.sweep:null);
   const s=state.stats,stale=state.last_frame_age_s===null || state.last_frame_age_s>2;
   const limited=stale && state.last_abort_age_s!==null && state.last_abort_age_s<3;
   $('status').textContent=state.status==='live'?(limited?'LIVE · EXPORT LIMITED':stale?'LIVE · WAITING':'LIVE · USB'):state.status.toUpperCase();

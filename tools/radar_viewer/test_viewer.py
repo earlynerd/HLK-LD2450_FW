@@ -594,6 +594,8 @@ class FakeDevice:
         self.primed = False
         self.in_flight = False
         self.drop_next = False
+        self.fail_registers = set()   # Writes to these reply "bus error".
+        self.initial = dict(self.registers)
 
     def open(self):
         pass
@@ -619,15 +621,20 @@ class FakeDevice:
             return len(data)
         magic, op, count, reg, _, value, _, tag = struct.unpack("<4sBBBBHHI", data[:16])
         self.commands.append((op, reg, count, value))
-        values = []
+        values, status = [], 0
         if op == 1:
             values = [self.registers[reg + n] for n in range(count)]
+        elif op == 2 and reg in self.fail_registers:
+            status = 1
         elif op == 2:
             self.registers[reg] = value
             self.generation += 1
             values = [value]
+        elif op == 3:   # Re-init: the build profile again.
+            self.registers = dict(self.initial)
+            self.generation += 1
         with self.lock:
-            self.outgoing += control_reply(tag, op, 0, reg, self.generation, values)
+            self.outgoing += control_reply(tag, op, status, reg, self.generation, values)
             self.outgoing += wire(fixture(frame_id=10 + len(self.commands)), self.generation)
             self.in_flight = False
         return len(data)
@@ -665,14 +672,16 @@ class RegisterControlTests(unittest.TestCase):
             history_generation = viewer.generation
             # A 10-register read is split into device-sized chunks of 4, 4 and 2.
             viewer.register_read(0x60, 10)
-            self.wait(lambda: len(viewer.register_state()["values"]) == 11)
-            self.assertEqual([c[1:3] for c in device.commands[1:]], [(0x60, 4), (0x64, 4), (0x68, 2)])
+            self.wait(lambda: len(viewer.register_state()["values"]) == 12)  # Plus the 0x56 read.
+            # commands[0] is the rise-step read every live connection makes.
+            self.assertEqual(device.commands[0][:3], (1, 0x56, 1))
+            self.assertEqual([c[1:3] for c in device.commands[2:]], [(0x60, 4), (0x64, 4), (0x68, 2)])
             state = viewer.register_state()
             self.assertEqual(state["values"]["53"]["value"], 0xBEEF)
             self.assertEqual(state["values"]["61"]["value"], 0x1061)
             self.assertEqual(state["generation"], 1)
             self.assertEqual(state["pending"] + state["timed_out"], 0)
-            self.assertEqual([e["status"] for e in state["log"]], ["ok"] * 4)
+            self.assertEqual([e["status"] for e in state["log"]], ["ok"] * 5)
             # Reads do not change settings identity; a write resets display history.
             self.assertEqual(viewer.generation, history_generation)
             viewer.register_write(0x61, 0x0022)
@@ -712,6 +721,78 @@ class RegisterControlTests(unittest.TestCase):
                      lambda: viewer.register_write(0x10, 0x10000), lambda: viewer.register_read(0, 0)):
             with self.assertRaises(ValueError):
                 call()
+
+
+class SweepTests(unittest.TestCase):
+    wait = RegisterControlTests.wait
+
+    def live(self, device):
+        viewer = server.Viewer()
+        with patch.object(server, "usb_ports", return_value=["COM30"]), \
+                patch.object(server.serial, "Serial", return_value=device):
+            viewer.connect(port="COM30")
+        self.wait(lambda: "56" in viewer.register_state()["values"])
+        return viewer
+
+    def test_out_of_band_needs_acknowledgement_timer_and_live_usb(self):
+        viewer = server.Viewer()
+        with self.assertRaises(ValueError):
+            viewer.set_sweep(1000, 5, True)   # Not connected.
+        viewer.status, viewer.transport = "live", FakeDevice()
+        for args in ((1000, 5, False), (1000, 0, True), (1000, 31, True), (1000, "5", True), (300, 5, True)):
+            with self.assertRaises(ValueError):
+                viewer.set_sweep(*args)
+        self.assertIsNone(viewer.sweep)
+
+    def test_sweep_uses_minimum_power_scales_range_and_reverts_on_timer(self):
+        device = FakeDevice()
+        viewer = self.live(device)
+        try:
+            viewer.set_sweep(1000, 1, True)
+            self.wait(lambda: viewer.sweep_state()["active"]["phase"] == "active")
+            writes = [(c[1], c[3]) for c in device.commands if c[0] == 2]
+            self.assertEqual(writes, server.sweep_writes(83))
+            self.assertEqual(writes[:2], [(0x6D, 0x9740), (0x70, 0x26A0)])   # Power down first.
+            self.assertEqual(device.registers[0x56], 83)
+            state = viewer.sweep_state()
+            self.assertFalse(state["in_band"])
+            self.assertEqual((state["active"]["mhz"], state["active"]["top_ghz"]), (1000, 25.002))
+            self.assertGreater(state["active"]["remaining_s"], 50)
+            # Frames carry the live step, so range bins are scaled for the wider sweep.
+            self.wait(lambda: viewer.latest and viewer.latest.get("products", {}).get("targets", {}).get("sweep_step") == 83)
+            cal = load_calibration()["range"]
+            self.assertAlmostEqual(viewer.latest["products"]["targets"]["m_per_bin"], cal["m_per_bin"] * 20 / 83, places=4)
+            viewer.sweep["until"] = time.monotonic() - 1      # The user's timer runs out.
+            self.wait(lambda: viewer.sweep is None)
+            self.assertEqual(device.commands[-1][0], 3)
+            self.assertEqual(device.registers, device.initial)
+            self.assertEqual(viewer.sweep_state()["last"]["reason"], "revert timer")
+            self.assertTrue(viewer.sweep_state()["in_band"])
+        finally:
+            viewer.disconnect()
+
+    def test_failed_write_restore_and_disconnect_all_return_in_band(self):
+        device = FakeDevice()
+        viewer = self.live(device)
+        try:
+            device.fail_registers = {0x58}
+            viewer.set_sweep(2000, 5, True)
+            self.wait(lambda: viewer.sweep is None)
+            self.assertEqual(viewer.sweep_last["reason"], "a sweep register write failed")
+            self.assertEqual(device.registers, device.initial)
+            device.fail_registers = set()
+            viewer.set_sweep(480, 5, True)
+            self.wait(lambda: viewer.sweep_state()["active"]["phase"] == "active")
+            viewer.set_sweep(240)                               # Restore in band now.
+            self.wait(lambda: viewer.sweep is None)
+            self.assertEqual(viewer.sweep_last["reason"], "restored by user")
+            viewer.set_sweep(1000, 5, True)
+            self.wait(lambda: viewer.sweep_state()["active"]["phase"] == "active")
+        finally:
+            viewer.disconnect()
+        self.assertEqual(device.commands[-1][0], 3)               # Re-init before the port closed.
+        self.assertEqual(device.registers, device.initial)
+        self.assertEqual(viewer.sweep_last["reason"], "viewer disconnected")
 
 
 class HTTPTests(unittest.TestCase):

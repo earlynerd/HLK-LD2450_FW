@@ -39,6 +39,27 @@ REPLY_TIMEOUT_S = 1.5   # A 4-register READ may span several frame gaps.
 REINIT_TIMEOUT_S = 3.0
 COMMAND_ATTEMPTS = 4
 
+# Sweep width, chosen by the user in the viewer. Start stays at the profile's 24.005 GHz; the
+# rise step (0x56, falling step 0x58 = -step) sets the width over the 420 us ramp: step x 84000
+# ticks x 143.05 Hz. Only 240 MHz stays inside the 24.0-24.25 GHz band. Out-of-band sweeps run
+# at the vendor table's minimum TX setting (nominal -2.0 dBm; stock 5.0 dBm) and always end in
+# a re-init to the in-band build profile: on the user's timer, a failed write, Restore, or
+# disconnect/shutdown. A killed server cannot restore; power-cycling the module also does.
+SWEEP_STEPS = {240: 20, 480: 40, 1000: 83, 2000: 166}
+IN_BAND_MHZ = 240
+SWEEP_START_GHZ = 24.005
+GHZ_PER_STEP = 84000 * 143.05e-9
+SWEEP_MAX_MINUTES = 30
+MIN_TX_POWER = ((0x6D, 0x9740), (0x70, 0x26A0))
+RESTORE_ATTEMPTS = 3
+
+
+def sweep_writes(step):
+    """Register writes for an out-of-band sweep: minimum power first, then the steps, then
+    hold/release of the sweep generator (0x40 bit 14) so the waveform registers latch."""
+    return list(MIN_TX_POWER) + [(0x55, 0x0000), (0x57, 0xFFFF), (0x58, (-step) & 0xFFFF), (0x56, step),
+                                 (0x40, 0x4207), (0x40, 0x0207)]
+
 
 def usb_ports():
     return [p.device for p in list_ports.comports()
@@ -98,6 +119,8 @@ class Viewer:
         self.sources = self.discover_sources()
         self.write_lock = threading.Lock()
         self.notes = register_notes()
+        self.sweep = None             # Active out-of-band sweep, or None (in band / unknown).
+        self.sweep_last = None        # How the last out-of-band sweep ended.
         self.reset_registers()
         self.reset_stats()
 
@@ -144,7 +167,7 @@ class Viewer:
                               "path": str(self.record["folder"]), "bytes": self.record["bytes"]},
                           last_recording=self.record_result,
                           reference_frame=self.pipeline.reference_frame,
-                          registers=self.register_state())
+                          registers=self.register_state(), sweep=self.sweep_state())
             if since != self.version:
                 result["frame"] = self.latest
             return result
@@ -154,6 +177,7 @@ class Viewer:
             self._disconnect()
 
     def _disconnect(self):
+        self._restore_before_close()
         self.stop_event.set()
         for thread in self.threads:
             thread.join(timeout=5)
@@ -221,6 +245,9 @@ class Viewer:
                                                   daemon=True, name="radar-usb")]
             for thread in self.threads:
                 thread.start()
+            if replay is None:
+                # The radar may still run a sweep set before this connection: read the rise step.
+                self.send_command(CONTROL_READ, 0x56, 1)
 
     def fail(self, exc):
         with self.lock:
@@ -283,6 +310,10 @@ class Viewer:
                         ok=reply["status"] == 0, generation=reply["generation"], at=time.time())
                 if reply["op"] == CONTROL_REINIT and reply["status"] == 0:
                     self.registers = {}  # Build profile re-applied: earlier readings are stale.
+                    if self.sweep is not None:
+                        self.sweep_last = dict(mhz=self.sweep["mhz"], reason=self.sweep.get("reason") or "re-init",
+                                               at=time.time())
+                        self.sweep = None
                 self.register_log.append(dict(
                     at=time.time(), tag=reply["tag"], op=reply["op"], register=reply["register"],
                     values=reply["values"], status=CONTROL_STATUS.get(reply["status"], str(reply["status"])),
@@ -309,6 +340,7 @@ class Viewer:
             try:
                 tag = commands.get(timeout=.1)
             except queue.Empty:
+                self._check_sweep()
                 continue
             with self.lock:
                 request = self.pending.get(tag)
@@ -357,6 +389,99 @@ class Viewer:
 
     def register_reinit(self):
         return [self.send_command(CONTROL_REINIT)]
+
+    def set_sweep(self, mhz, minutes=None, accept=False):
+        """Apply a sweep width. 240 MHz restores the in-band build profile (re-init); wider sweeps
+        need accept=True and a revert time of 1..SWEEP_MAX_MINUTES minutes."""
+        if mhz == IN_BAND_MHZ:
+            return self.restore_in_band("restored by user")
+        if mhz not in SWEEP_STEPS:
+            raise ValueError(f"Sweep must be one of {sorted(SWEEP_STEPS)} MHz")
+        if accept is not True:
+            raise ValueError("An out-of-band sweep needs the responsibility acknowledgement")
+        if type(minutes) not in (int, float) or not 1 <= minutes <= SWEEP_MAX_MINUTES:
+            raise ValueError(f"Revert time must be 1-{SWEEP_MAX_MINUTES} minutes")
+        step = SWEEP_STEPS[mhz]
+        tags = [self.send_command(CONTROL_WRITE, reg, 1, value) for reg, value in sweep_writes(step)]
+        with self.lock:
+            self.sweep = dict(mhz=mhz, step=step, top_ghz=round(SWEEP_START_GHZ + step * GHZ_PER_STEP, 3),
+                              minutes=minutes, started=time.time(), until=time.monotonic() + 60 * minutes,
+                              tags=tags, restoring=None, restore_attempts=0, reason=None)
+        return tags
+
+    def restore_in_band(self, reason):
+        """Re-init to the in-band build profile (an active sweep clears when the re-init succeeds)."""
+        with self.lock:
+            if self.sweep is not None:
+                self.sweep["reason"] = reason
+                self.sweep["restore_attempts"] += 1
+        tag = self.send_command(CONTROL_REINIT)
+        with self.lock:
+            if self.sweep is not None:
+                self.sweep["restoring"] = tag
+        return [tag]
+
+    def _log_status(self, tag):
+        for entry in reversed(self.register_log):
+            if entry["tag"] == tag:
+                return entry["status"]
+        return None
+
+    def _check_sweep(self):
+        """Command-thread housekeeping: end an out-of-band sweep on its timer or a failed write,
+        and retry a failed restore."""
+        with self.lock:
+            sweep = self.sweep
+            if sweep is None:
+                return
+            if sweep["restoring"] is not None:
+                status = self._log_status(sweep["restoring"])
+                retry = status is not None and status != "ok" and sweep["restore_attempts"] < RESTORE_ATTEMPTS
+                reason = sweep["reason"] if retry else None
+            else:
+                failed = [s for s in map(self._log_status, sweep["tags"]) if s is not None and s != "ok"]
+                reason = ("a sweep register write failed" if failed else
+                          "revert timer" if time.monotonic() >= sweep["until"] else None)
+        if reason:
+            try:
+                self.restore_in_band(reason)
+            except ValueError:
+                pass
+
+    def _restore_before_close(self):
+        """On disconnect or shutdown, put an out-of-band radar back in band before the port closes."""
+        with self.lock:
+            active = self.sweep is not None and self.status == "live" and self.transport is not None
+        if not active:
+            return
+        try:
+            tag = self.restore_in_band("viewer disconnected")[0]
+        except ValueError:
+            return
+        end = time.monotonic() + REINIT_TIMEOUT_S + 2
+        while time.monotonic() < end:
+            with self.lock:
+                if self.sweep is None or self._log_status(tag) is not None:
+                    return
+            time.sleep(.05)
+
+    def sweep_state(self):
+        with self.lock:
+            live_step = self.registers.get(0x56, {}).get("value")
+            s = self.sweep
+            common = dict(live_step=live_step, last=self.sweep_last, max_minutes=SWEEP_MAX_MINUTES,
+                          options={str(k): dict(step=v, top_ghz=round(SWEEP_START_GHZ + v * GHZ_PER_STEP, 3))
+                                   for k, v in SWEEP_STEPS.items()})
+            if s is None:
+                return dict(common, in_band=live_step in (None, SWEEP_STEPS[IN_BAND_MHZ]), active=None)
+            statuses = [self._log_status(t) for t in s["tags"]]
+            phase = ("restoring" if s["restoring"] is not None else
+                     "failed" if any(x not in (None, "ok") for x in statuses) else
+                     "applying" if None in statuses else "active")
+            return dict(common, in_band=False,
+                        active=dict(mhz=s["mhz"], step=s["step"], top_ghz=s["top_ghz"], phase=phase,
+                                    remaining_s=max(0, round(s["until"] - time.monotonic())),
+                                    restore_attempts=s["restore_attempts"]))
 
     def register_state(self):
         now = time.monotonic()
@@ -639,6 +764,9 @@ def make_handler(viewer, token):
                     return self.respond(200, {"tags": tags})
                 elif self.path == "/api/register/write":
                     return self.respond(200, {"tags": viewer.register_write(int(data["register"]), int(data["value"]))})
+                elif self.path == "/api/sweep":
+                    return self.respond(200, {"tags": viewer.set_sweep(data.get("mhz"), data.get("minutes"),
+                                                                      data.get("accept", False))})
                 elif self.path == "/api/register/reinit":
                     return self.respond(200, {"tags": viewer.register_reinit()})
                 elif self.path == "/api/snapshot":

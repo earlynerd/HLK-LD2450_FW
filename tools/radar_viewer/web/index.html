@@ -7,7 +7,7 @@
 <body>
 <header>
   <div class="brand"><span class="mark">◉</span><div><h1>Radar Observatory</h1><p>LD2450 · two receivers · live signal workspace</p></div></div>
-  <div class="header-actions"><span id="status" class="badge">DISCONNECTED</span><button id="pause">Freeze display</button></div>
+  <div class="header-actions"><span id="sweep-badge" class="badge error" hidden></span><span id="status" class="badge">DISCONNECTED</span><button id="pause">Freeze display</button></div>
 </header>
 <div class="layout">
 <aside>
@@ -18,7 +18,24 @@
     <label for="replay">Saved wire recording</label><select id="replay"></select><button id="play">Replay recording</button>
     <p id="source" class="source">Waiting for a source</p>
   </section>
-  <section><h2>02 / Processing</h2>
+  <section><h2>02 / Sweep</h2>
+    <label for="sweep">Sweep width (start 24.005 GHz)</label>
+    <select id="sweep">
+      <option value="240">240 MHz · to 24.245 GHz · in band · ~64 cm bins · ~25 m shown</option>
+      <option value="480">480 MHz · to 24.49 GHz · OUT OF BAND · ~32 cm bins · ~12 m</option>
+      <option value="1000">1 GHz · to 25.00 GHz · OUT OF BAND · ~15 cm bins · ~6 m</option>
+      <option value="2000">2 GHz · to 26.00 GHz · OUT OF BAND · ~8 cm bins · ~3 m</option>
+    </select>
+    <div id="sweep-oob" hidden>
+      <p class="hint warn">Transmits outside the 24.0–24.25 GHz band. The viewer drops to minimum transmit power (nominal −2 dBm) and returns to the in-band profile when the timer ends, on Restore, or when it disconnects or shuts down. If the server is killed, power-cycle the module to restore it.</p>
+      <label for="sweep-minutes">Return to in band after</label>
+      <select id="sweep-minutes"><option value="2">2 minutes</option><option value="5" selected>5 minutes</option><option value="10">10 minutes</option><option value="30">30 minutes</option></select>
+      <label class="check"><input id="sweep-ack" type="checkbox"> I take responsibility for this out-of-band transmission</label>
+    </div>
+    <div class="inline"><button id="sweep-apply" class="primary">Apply sweep</button><button id="sweep-restore">Restore in band now</button></div>
+    <p id="sweep-state" class="hint">Sweep state appears when connected to the radar.</p>
+  </section>
+  <section><h2>03 / Processing</h2>
     <label for="receiver">Heatmap receiver</label><select id="receiver"><option value="0">RX 1</option><option value="1">RX 2</option></select>
     <label for="spectrum-span">Spectrum / history span</label><select id="spectrum-span"><option value="center">Center: -16 to +16 bins</option><option value="positive">Positive: 0 to +32 bins</option><option value="full">All exported bins</option></select>
     <p class="hint">Range bins: the device exports bins -40..+40 of a 512-point FFT per chirp (about 0.64 m per bin at the 240 MHz sweep). Older raw recordings are converted to the same bins on the host.</p>
@@ -40,7 +57,7 @@
     </div>
     <div class="colorbar"></div><p class="hint">Amplitude in dB relative to one exported count. These are not calibrated power measurements. Auto uses the 2nd–99.5th percentile of the visible data.</p>
   </section>
-  <section><h2>03 / Keep evidence</h2>
+  <section><h2>04 / Keep evidence</h2>
     <button id="record">Start raw recording</button><button id="snapshot">Save latest acquired frame</button>
     <p id="record-state" class="hint">Original USB bytes and SHA-256 manifest. Recording stops automatically at 1 GiB.</p>
   </section>

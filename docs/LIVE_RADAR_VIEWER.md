@@ -200,6 +200,32 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
   (range bins as int32 re/im, `lane*.bins.bin`, or raw records, `lane*.bin`)
   with a hash manifest, source and processing settings, to a new snapshot folder.
 
+## Sweep width
+
+The **02 / Sweep** section chooses the sweep width while live. The start stays
+at 24.005 GHz; the rise step (0x56, falling step 0x58 = -step) sets the width.
+The range axis follows the live step (`range.sweep_step` in `calibration.json`).
+
+| Sweep | Top | Band | Bin | Exported range |
+|---|---|---|---|---|
+| 240 MHz | 24.245 GHz | inside 24.0-24.25 GHz (build profile) | ~0.64 m | ~25 m |
+| 480 MHz | 24.49 GHz | out of band | ~0.32 m | ~12 m |
+| 1 GHz | 25.00 GHz | out of band | ~0.15 m | ~6 m |
+| 2 GHz | 26.00 GHz | out of band | ~0.08 m | ~3 m |
+
+Out-of-band sweeps are the user's decision and need the acknowledgement box
+ticked for each run. The server enforces the rest:
+- Minimum vendor TX setting (0x6D 0x9740 / 0x70 0x26A0, nominal -2.0 dBm
+  against 5.0 dBm stock), written before the sweep widens.
+- A revert timer of 1-30 minutes, then a re-init to the in-band build profile.
+  The same happens if a sweep write fails, on **Restore in band now**, and on
+  disconnect or server shutdown. A failed re-init is retried up to 3 times.
+- A red header badge counts down while out of band.
+- Each live connection reads 0x56. A radar left out of band by an earlier
+  session shows **RADAR NOT IN BAND**.
+- A killed server process cannot restore anything. Power-cycling the module
+  re-applies the in-band profile.
+
 ## Radar registers
 
 Live I2C access to the radar chip's registers through the native USB port

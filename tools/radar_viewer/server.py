@@ -375,6 +375,8 @@ class Viewer:
         # Settings identity: build configuration plus live register generation.
         frame["config_id"] = f'{frame["config_sha256"]}:{frame.get("register_generation", 0)}'
         with self.lock:
+            # Registers read or written since the last re-init (which clears them): their live values.
+            frame["live_registers"] = {r: e["value"] for r, e in self.registers.items() if e["ok"]}
             self.raw_frame = frame
             self.stats["complete_frames"] += 1
             for key in ("device_skipped", "device_rejected", "device_queue_peak"):

@@ -4,7 +4,9 @@
     "m_per_bin": 0.6376,
     "offset_m": 0.14,
     "calibrated": false,
-    "basis": "Three-point corner-reflector fit 2026-10-07 at the stock 204.3 MHz sweep: distance = 0.75 m x bin + 0.14 m (+/-10%). Scaled by 204.3/240.3 for the installed 240 MHz sweep (stretch x1.18 measured). Re-measure at 240 MHz."
+    "basis": "Three-point corner-reflector fit 2026-10-07 at the stock 204.3 MHz sweep: distance = 0.75 m x bin + 0.14 m (+/-10%). Scaled by 204.3/240.3 for the installed 240 MHz sweep (stretch x1.18 measured). Re-measure at 240 MHz.",
+    "sweep_step": 20,
+    "_sweep_step": "Rise step (register 0x56) at which m_per_bin applies. When the viewer has read or written a different live 0x56 since the last re-init, m_per_bin is scaled by sweep_step/live step."
   },
   "wavelength_m": 0.012427,
   "angle": {
@@ -50,7 +52,6 @@
     "max_gap_s": 1.0,
     "accel_mps2": 3.0,
     "initial_speed_mps": 1.5,
-    "range_sigma_m": 0.25,
     "gate_chi2": 13.8,
     "cluster_range_m": 0.9,
     "cluster_deg": 20.0,
@@ -60,6 +61,8 @@
     "coast_velocity_tau_s": 0.5,
     "max_speed_mps": 3.0,
     "max_angle_deg": 80.0,
-    "_about": "Constant-velocity Kalman tracks (processing.Tracker). Confirmed after confirm_hits detections in confirm_frames frames; coast_s bridges missed frames; gate_chi2 is the 2-D Mahalanobis gate (13.8 = 99.9%); detections within cluster_range_m and cluster_deg count as one object; in_place marks Doppler at least in_place_min_mps with a range rate under in_place_ratio of it (fans, fidgeting). While coasting, velocity decays with coast_velocity_tau_s; speed is capped at max_speed_mps; tracks beyond max_angle_deg or max_range_m + 0.5 m end."
+    "_about": "Constant-velocity Kalman tracks (processing.Tracker). Confirmed after confirm_hits detections in confirm_frames frames; coast_s bridges missed frames; gate_chi2 is the 2-D Mahalanobis gate (13.8 = 99.9%); detections within cluster_range_m and cluster_deg count as one object; in_place marks Doppler at least in_place_min_mps with a range rate under in_place_ratio of it (fans, fidgeting). While coasting, velocity decays with coast_velocity_tau_s; speed is capped at max_speed_mps; tracks beyond max_angle_deg or max_range_m + 0.5 m end.",
+    "range_sigma_bins": 0.4,
+    "range_sigma_min_m": 0.1
   }
 }

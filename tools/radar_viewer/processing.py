@@ -323,12 +323,14 @@ def targets(ctx, cal, clutter=None):
             "noise_db": round(float(np.median(10 * np.log10(noise))), 1),
             "moving_only": bool(ctx.settings["remove_static"]), "clutter_map": over_clutter is not None,
             "calibrated": {"range": rng["calibrated"], "angle": ang["calibrated"], "velocity": vel["calibrated"]},
+            "m_per_bin": round(rng["m_per_bin"], 4), "sweep_step": rng.get("sweep_step"),
             "units": {"range": "m", "angle": "deg, positive per calibration sign", "velocity": "m/s"}}
 
 
 TRACKING_DEFAULTS = {
     "confirm_hits": 3, "confirm_frames": 5, "coast_s": 1.0, "max_gap_s": 1.0, "accel_mps2": 3.0,
-    "initial_speed_mps": 1.5, "range_sigma_m": 0.25, "gate_chi2": 13.8, "cluster_range_m": 0.9,
+    "initial_speed_mps": 1.5, "range_sigma_bins": 0.4, "range_sigma_min_m": 0.1, "gate_chi2": 13.8,
+    "cluster_range_m": 0.9,
     "cluster_deg": 20.0, "history_s": 3.0, "in_place_min_mps": 0.25, "in_place_ratio": 0.35,
     "coast_velocity_tau_s": 0.5, "max_speed_mps": 3.0, "max_angle_deg": 80.0,
 }
@@ -350,17 +352,18 @@ def cluster_detections(found, p):
     return clusters
 
 
-def measurement(m, p):
+def measurement(m, p, m_per_bin):
     """Position measurement (x, y) and its covariance from range and angle.
 
-    Range sigma is fixed; the angle sigma follows the RX2-RX1 phase-difference error for the
+    Range sigma is range_sigma_bins of a range bin, at least range_sigma_min_m; the angle sigma follows the RX2-RX1 phase-difference error for the
     detection's SNR, sigma_phi ~ 1/sqrt(SNR), mapped through sin(theta) = phi / (2 pi d/lambda)
     (d/lambda = 0.5 assumed here), between 2 and 20 degrees."""
     r, th = m["range_m"], np.radians(m["angle_deg"])
     snr = 10 ** (m["snr_db"] / 10)
     s_th = float(np.clip(1 / (np.pi * max(np.cos(th), .2) * np.sqrt(snr / 2)), np.radians(2), np.radians(20)))
     J = np.array([[np.sin(th), r * np.cos(th)], [np.cos(th), -r * np.sin(th)]])
-    return np.array([m["x_m"], m["y_m"]]), J @ np.diag([p["range_sigma_m"] ** 2, s_th ** 2]) @ J.T
+    s_r = max(p["range_sigma_bins"] * m_per_bin, p["range_sigma_min_m"])
+    return np.array([m["x_m"], m["y_m"]]), J @ np.diag([s_r ** 2, s_th ** 2]) @ J.T
 
 
 class Tracker:
@@ -400,7 +403,7 @@ class Tracker:
         for tr in self.tracks:
             tr["x"], tr["P"] = F @ tr["x"], F @ tr["P"] @ F.T + Q
         meas = cluster_detections(found, p)
-        zs = [measurement(m, p) for m in meas]
+        zs = [measurement(m, p, cal["range"]["m_per_bin"]) for m in meas]
         pairs = []
         for i, tr in enumerate(self.tracks):
             for j, (z, R) in enumerate(zs):
@@ -487,6 +490,7 @@ class Tracker:
 class Pipeline:
     def __init__(self, calibration=None):
         self.calibration = load_calibration() if calibration is None else calibration
+        self.cal = self.calibration   # This frame's calibration (range scaled to the live sweep).
         self.stages = {"quality": signal_quality, "spectrum": spectrum, "change": self.change,
                        "doppler": doppler, "iq_balance": iq_balance,
                        "targets": self.detect, "tracks": self.track}
@@ -529,8 +533,8 @@ class Pipeline:
     def detect(self, ctx):
         """Detections against the clutter map of earlier frames (the tracks stage updates it)."""
         self.scene_key(ctx)
-        tau = self.calibration["detection"].get("clutter_tau_s", 0)
-        result = targets(ctx, self.calibration, self.clutter if tau > 0 else None)
+        tau = self.cal["detection"].get("clutter_tau_s", 0)
+        result = targets(ctx, self.cal, self.clutter if tau > 0 else None)
         result["clutter_tau_s"] = tau
         return result
 
@@ -545,7 +549,7 @@ class Pipeline:
         clutter indefinitely; position-based tests fail there because clutter tracks jump in
         angle and range. A person who stays longer in one place is learned too.
         """
-        tau = self.calibration["detection"].get("clutter_tau_s", 0)
+        tau = self.cal["detection"].get("clutter_tau_s", 0)
         power, now = ctx.cache.get("power"), ctx.frame["started_us"]
         if tau <= 0 or power is None:
             return
@@ -553,13 +557,14 @@ class Pipeline:
             # Start empty: everything is visible at first and persistent returns fade out
             # (one started from the first frame would hide anyone present at start-up).
             self.clutter, self.clutter_us, self.clutter_age = np.zeros_like(power), None, 0.0
-        rng = self.calibration["range"]
+        rng = self.cal["range"]
         bins = np.arange(ctx.bin_lo, ctx.bin_lo + power.shape[1])
         update = np.ones(power.shape[1], bool)
-        det = self.calibration["detection"]
+        det = self.cal["detection"]
         for t in tracks:
             if not t["in_place"] and t["age_s"] < det.get("censor_s", 4.0):
-                update &= np.abs(bins - (t["range_m"] - rng["offset_m"]) / rng["m_per_bin"]) > 1.5
+                half = max(1.5, 0.5 / rng["m_per_bin"])   # At least 0.5 m either side.
+                update &= np.abs(bins - (t["range_m"] - rng["offset_m"]) / rng["m_per_bin"]) > half
         dt = 0.1 if self.clutter_us is None else min(((now - self.clutter_us) & 0xffffffff) / 1e6, 1.0)
         self.clutter[:, update] += (1 - np.exp(-dt / tau)) * (power[:, update] - self.clutter[:, update])
         self.clutter_us = now
@@ -570,9 +575,9 @@ class Pipeline:
         if "targets" not in ctx.cache:
             raise ValueError("No detections this frame")
         self.scene_key(ctx)
-        tracks, clusters = self.tracker.update(ctx.cache["targets"], ctx.frame["started_us"], self.calibration)
+        tracks, clusters = self.tracker.update(ctx.cache["targets"], ctx.frame["started_us"], self.cal)
         self.update_clutter(ctx, tracks)
-        tau = self.calibration["detection"].get("clutter_tau_s", 0)
+        tau = self.cal["detection"].get("clutter_tau_s", 0)
         age = None if self.clutter is None else round(self.clutter_age, 2)
         return {"tracks": tracks, "detections": len(ctx.cache["targets"]), "clusters": clusters,
                 "clutter_age_s": age, "clutter_learning": bool(tau > 0 and (age is None or age < tau)),
@@ -608,9 +613,25 @@ class Pipeline:
         self.iq_cal = self.iq_cal_config = None
         self.average = self.average_key = None
 
+    def frame_calibration(self, frame):
+        """Calibration for this frame: the range scale follows the live rise step (0x56).
+
+        m_per_bin in calibration.json applies at range.sweep_step; the sweep width, and so the
+        bin size, is proportional to the step. Register values come from the server
+        (live_registers: read or written since the last re-init).
+        """
+        rng = self.calibration["range"]
+        step, ref = (frame.get("live_registers") or {}).get(0x56), rng.get("sweep_step")
+        if not step or not ref or step == ref or step >= 0x8000:
+            return self.calibration
+        scaled = dict(rng, m_per_bin=rng["m_per_bin"] * ref / step, calibrated=False, sweep_step=step,
+                      basis=f"Scaled from step {ref} to the live step {step} (0x56).")
+        return dict(self.calibration, range=scaled)
+
     def process(self, frame, settings):
         started = time.perf_counter()
         settings = validate_settings(settings)
+        self.cal = self.frame_calibration(frame)
         config_id = frame.get("config_id", frame["config_sha256"])
         if self.reference is not None and self.reference_config != config_id:
             self.clear_reference()

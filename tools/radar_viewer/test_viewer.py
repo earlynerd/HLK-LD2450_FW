@@ -330,6 +330,22 @@ class TargetTests(unittest.TestCase):
         cal["angle"].update(phase_offset_deg=0.0, sign=-1)
         self.assertAlmostEqual(self.detect(scene(self.MOVERS), calibration=cal)["targets"][0]["angle_deg"], -20, delta=1.5)
 
+    def test_range_scale_follows_live_sweep_step(self):
+        cal = load_calibration()
+        frame = scene(self.MOVERS)
+        base = sorted(self.detect(frame)["targets"], key=lambda t: t["range_bin"])
+        frame["live_registers"] = {0x56: 83}   # 1 GHz sweep: bins 83/20 times finer.
+        out = self.detect(frame)
+        wide = sorted(out["targets"], key=lambda t: t["range_bin"])
+        self.assertAlmostEqual(out["m_per_bin"], cal["range"]["m_per_bin"] * 20 / 83, places=4)
+        self.assertEqual(out["sweep_step"], 83)
+        self.assertFalse(out["calibrated"]["range"])
+        for a, b in zip(base, wide):
+            self.assertAlmostEqual(b["range_bin"], a["range_bin"], places=2)
+            self.assertAlmostEqual(b["range_m"], out["m_per_bin"] * b["range_bin"] + cal["range"]["offset_m"], places=2)
+        frame["live_registers"] = {0x56: 20}
+        self.assertAlmostEqual(self.detect(frame)["m_per_bin"], cal["range"]["m_per_bin"], places=4)
+
     def test_device_bins_give_the_same_targets(self):
         raw = scene(self.MOVERS, self.STATIC)
         a = sorted(self.detect(raw)["targets"], key=lambda t: t["range_bin"])

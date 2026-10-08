@@ -14,8 +14,12 @@ node_modules/
 /output/live_radar/**/*.ldf
 /output/live_radar/**/frame-*/
 /output/radar_analysis/**/*.npz
+/output/live_radar/**/*.npy
 
 # Transient live-viewer process state.
 /output/live_radar/server.pid
 /output/live_radar/server.stdout.log
 /output/live_radar/server.stderr.log
+
+# Third-party ICLegend EVBKS5 GUI package (vendor terms restrict redistribution).
+/20230524-EVBKS5-Waveform-Config-and-Demo.zip

@@ -1,20 +1,20 @@
 {
   "_about": "Bench findings per radar register (hex keys), shown in the viewer's Radar registers panel beside the startup-table interpretation. Edit freely. Stock values and interpretations come from output/evb1122_analysis/register_write_table.json; evidence for these findings is in output/live_radar/.",
   "61": {
-    "finding": "RX2 I DC offset trim. +1 step = +450 counts, -1 step = -433 (linear). Opposite-sense partner: 0x63. Not a gain or phase trim (mirror image unchanged).",
-    "evidence": "register_experiments_20261006.json"
+    "finding": "RX2 I DC offset trim. +1 step = +450 counts, -1 step = -433 (linear). Opposite-sense partner: 0x63. Not a gain or phase trim (mirror image unchanged). Vendor RX gain table writes the same value to 0x61-0x64: 0x02B5/0x0021/0x03EF/0x10EF for RX gain codes 0-3 (29.5/27.4/24.0/19.8 dB); stock 0x0021 = code 1.",
+    "evidence": "register_experiments_20261006.json; EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   },
   "62": {
-    "finding": "RX2 Q DC offset trim. +1 step = +514 counts. Opposite-sense partner: 0x64.",
-    "evidence": "register_experiments_20261006.json"
+    "finding": "RX2 Q DC offset trim. +1 step = +514 counts. Opposite-sense partner: 0x64. Vendor RX gain table writes the same value to 0x61-0x64: 0x02B5/0x0021/0x03EF/0x10EF for RX gain codes 0-3 (29.5/27.4/24.0/19.8 dB); stock 0x0021 = code 1.",
+    "evidence": "register_experiments_20261006.json; EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   },
   "63": {
-    "finding": "RX2 I DC offset trim, opposite sense to 0x61: +1 step = -461 counts.",
-    "evidence": "register_experiments_20261006.json"
+    "finding": "RX2 I DC offset trim, opposite sense to 0x61: +1 step = -461 counts. Vendor RX gain table writes the same value to 0x61-0x64: 0x02B5/0x0021/0x03EF/0x10EF for RX gain codes 0-3 (29.5/27.4/24.0/19.8 dB); stock 0x0021 = code 1.",
+    "evidence": "register_experiments_20261006.json; EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   },
   "64": {
-    "finding": "RX2 Q DC offset trim, opposite sense to 0x62: +1 step = -456 counts.",
-    "evidence": "register_experiments_20261006.json"
+    "finding": "RX2 Q DC offset trim, opposite sense to 0x62: +1 step = -456 counts. Vendor RX gain table writes the same value to 0x61-0x64: 0x02B5/0x0021/0x03EF/0x10EF for RX gain codes 0-3 (29.5/27.4/24.0/19.8 dB); stock 0x0021 = code 1.",
+    "evidence": "register_experiments_20261006.json; EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   },
   "76": {
     "finding": "CAUTION: any +/-1 change (0x0020 or 0x0022) silences both receivers (about -50 dB, outputs ~0). Must stay 0x0021. Restoring recovers.",
@@ -101,8 +101,8 @@
     "evidence": "DEBUG_LOG.md 2026-10-06"
   },
   "65": {
-    "finding": "Per-channel baseband GAIN, one nibble per channel: bits 12/8/4/0 = RX1-I / RX2-I / RX1-Q / RX2-Q; +1 step = +2.6 dB on that channel only (also scales its DC offset). Stock 0x0000. Changes the mirror image exactly as an I/Q gain mismatch would: 0x0010 (RX1-Q +2.6 dB) improves RX1 from -13.8 to -15.8 dB.",
-    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+    "finding": "Per-channel baseband GAIN, one nibble per channel: bits 12/8/4/0 = RX1-I / RX2-I / RX1-Q / RX2-Q; +1 step = +2.6 dB on that channel only (also scales its DC offset). Stock 0x0000. Changes the mirror image exactly as an I/Q gain mismatch would: 0x0010 (RX1-Q +2.6 dB) improves RX1 from -13.8 to -15.8 dB. SNR is unchanged from +2.6 to +15.6 dB (signal and floor rise together): noise enters before this gain, so it buys headroom only.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl); register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
   },
   "66": {
     "finding": "Per-channel filter enables (stock 0x0F00): clearing bit 8 disabled RX2-Q's path (noise +32 dB, DC -4250).",
@@ -117,16 +117,16 @@
     "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
   },
   "6e": {
-    "finding": "Receiver front-end gain: bit 12 set (0xD3FC) RX1 -10.6 dB; bit 4 cleared (0xC3EC) RX2 -4.7 dB; bit 8 cleared (0xC2FC) RX2 +0.9 dB. Offsets move too.",
-    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+    "finding": "Receiver front-end gain: bit 12 set (0xD3FC) RX1 -10.6 dB; bit 4 cleared (0xC3EC) RX2 -4.7 dB; bit 8 cleared (0xC2FC) RX2 +0.9 dB. Offsets move too. Vendor RX gain table: 0xC3FC (codes 0,1), 0xC390 (code 2), 0xEBB4 (code 3); bits 15:14 enable RX1/RX2.",
+    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl); EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   },
   "70": {
-    "finding": "Bit 12 set (0x36A0): both receivers +1 to +2.5 dB, DC offsets shift several hundred counts. Shared analog bias/power.",
-    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+    "finding": "TX power partner of 0x6D (vendor table). Stock 0x26A0. TXOFF clears bits 13 and 9. Bit 12 set (0x36A0): both receivers +1 to +2.5 dB, DC offsets shift several hundred counts. Shared analog bias/power. SNR effect: RX1 +1.1 dB, RX2 +0.1 dB (marginal).",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md); TX ladder 2026-10-08 (register_tuning_20261007.jsonl, kind tx_power); bitsweep 2026-10-06 (register_sweep_20261006.jsonl); register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
   },
   "06": {
-    "finding": "Any tested bit (0, 4, 8, 12) stops the raw stream (output format/merge control); REINIT recovers.",
-    "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+    "finding": "SPI output clock: 50 MHz / SPIClockDiv (vendor range 3..31). With d=div-1: 0x06 = 0x100 | SPIMerged<<13 | (d&0x10)<<8 | max(2,d>>1)<<4 | (d&0xF). Stock 0x0122 = div 3 = 16.7 MHz, the documented maximum and the measured rate.",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   },
   "0e": {
     "finding": "Bits 8 and 12 stop the raw stream (framing/chirp window); REINIT recovers.",
@@ -223,5 +223,57 @@
   "17": {
     "finding": "Bit flips 0x0001/0x0010/0x0100/0x1000: no measurable change in offsets, levels, mirror or noise.",
     "evidence": "bitsweep 2026-10-06 (register_sweep_20261006.jsonl)"
+  },
+  "40": {
+    "finding": "Bit 14 holds the sweep generator (0x4207); clearing it (0x0207) restarts it. Waveform/timing registers (0x02 interval bits, 0x42-0x58) take effect only after this hold/release; written live they read back but change nothing. 0x02's sample offset applies live.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "02": {
+    "finding": "Low 10 bits = sample-window start in 0.4 us (2.5 MHz) counts from chirp start (T0 start). Stock 60 = 24 us: window 24-434 us on the 20-440 us up-sweep, so it already covers ~98% of the sweep. Offset 30/90: <=3 dB changes, no drift improvement. Bits 13:12 = sampling interval: code 0 (2.5 MS/s) halves the swept span in the window; code 2 makes the 512-sample window ~820 us, past the up-sweep. Both left the stream stopped after restore; REINIT recovered.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "45": {
+    "finding": "T0 (pre-sweep settle) high word; pair 0x45/0x46 = 4000 counts = 20 us at 200 counts/us. Needs 0x40 hold/release. Longer T0 must be paired with +offset in 0x02, otherwise the window lands on the flat pre-sweep (T0 160 us: floor +12 dB). T0 80 us with offset 260: drift share 0.46 -> 0.43, near-DC -0.4 to -0.9 dB only; drift is in-sweep, not settling.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "46": {
+    "finding": "T0 low word; see 0x45. Compensate in T3 (0x4B/0x4C) to keep the 0x42/0x43 total.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "53": {
+    "finding": "Start-frequency word high (with 0x54; 0x0A02AAAB = 24.025 GHz under the inferred 143.05 Hz/code scale). 0x0A00/0x8889 (24.005 GHz) with step +/-20 (0x56=0x0014, 0x58=0xFFEC): spectrum stretched x1.18/1.165 (predicted 1.176) = ~240 MHz sweep, ~0.64 m/bin. Repeatable. Needs 0x40 hold/release. Absolute frequency rests on the inferred scale.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "54": {
+    "finding": "Start-frequency word low; see 0x53.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "56": {
+    "finding": "Rising step (stock 17). 20 with start 24.005 GHz: ~240 MHz, x1.18 bins/m, verified twice. Needs 0x40 hold/release.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "58": {
+    "finding": "Falling step low word (stock 0xFFEF = -17). Set -20 (0xFFEC) together with rising step 20 to keep the triangle symmetric.",
+    "evidence": "register_tuning_20261007.jsonl (2026-10-07, live, static scene)"
+  },
+  "6c": {
+    "finding": "Fixed 0x9990 in the vendor generator for every TX gain setting; not part of the power choice.",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
+  },
+  "6d": {
+    "finding": "TX power, paired with 0x70 (vendor table entry = {0x6D, 0x70, dBm}). Stock 0x9580 with 0x70=0x26A0 = vendor 5.0 dBm; max 0x9DC0/0x3EA0 = 12.0 dBm. Live write, no hold needed. Bench: 1->12 dBm table range moved returns only ~4.5 dB, and near-range chirp-to-chirp noise rose with it; SNR gain at max about +1.6/+0.3 dB.",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md); TX ladder 2026-10-08 (register_tuning_20261007.jsonl, kind tx_power)"
+  },
+  "72": {
+    "finding": "TX start/stop control: stop 0x0650; start 0x0793 on the vendor new-gain path, 0x0653 on the legacy path the LD2450 uses.",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
+  },
+  "04": {
+    "finding": "Bits 10:8 raw sample size: 64/128/256/512/1024 -> 0..4 (stock 3 = 512); low byte 0x0C. Changing it changes the record length, which the current firmware rejects.",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md); "
+  },
+  "44": {
+    "finding": "Chirps per frame, low 10 bits (stock 64).",
+    "evidence": "EVBKS5 vendor GUI disassembly (output/radar_analysis/evbks5_vendor_package/README.md)"
   }
 }

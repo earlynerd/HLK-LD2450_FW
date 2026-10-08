@@ -1,5 +1,29 @@
 # Lossless frame stream application
 
+## Installed image: 240 MHz sweep profile (2026-10-08)
+
+The raw 16-chirp stream with live register control (LDC1) now starts the radar
+with `firmware/config/radar_sweep240_mode2.json`: 24.005-24.245 GHz, about
+0.64 m per FFT bin instead of 0.75 m. Firmware source and wire format are
+unchanged; only the radar startup table and the stream configuration identity
+differ. Build:
+
+```powershell
+python firmware/tools/build_image.py --application stream --stream-chirps 16 --radar-config firmware/config/radar_sweep240_mode2.json --out firmware/build/stream-raw16-sweep240
+python firmware/tools/patch_stock_uart_loader.py --input firmware/build/stream-raw16-sweep240/update.ufw --out firmware/build/stream-raw16-sweep240/update-two-wire.ufw
+```
+
+Flashed UFW SHA-256 `413aaf0f7c5d76f1e07c041cadf4b1a7e65c557a25e47f1bf0f02540bb1d1b56`;
+stream configuration SHA-256
+`c8dd4388ad2e37ecc13482b3d5df19322a73a655f963d64823e73b920d5320af`. After the
+COM13 update the viewer reconnected on COM30 at register generation 0, and
+0x53-0x58 read back the profile values. The x1.18 spectrum stretch was verified
+by live writes on a static scene on 2026-10-07; see `DECISIONS.md` and
+`docs/S5KM312CL_REGISTER_MAP.md`. Archive:
+`firmware/releases/usb-raw16-sweep240-20261008/`. The previously installed
+stock-sweep control image is archived in
+`firmware/releases/usb-raw16-control-20261006/`.
+
 ## Current experiment: raw 16-chirp export
 
 The user selected a shorter capture window on 2026-10-06. The installed stream

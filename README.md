@@ -57,6 +57,15 @@ Phone Bluetooth archives, unrelated upstream application files, large raw
 logic-analyzer captures, and personal attachments are not part of this repo.
 Captured binary test fixtures retain their source hashes and sample provenance.
 
+## Radar register map
+
+[docs/S5KM312CL_REGISTER_MAP.md](docs/S5KM312CL_REGISTER_MAP.md) maps the radar SoC's
+registers 0x00-0x7F, combining the stock LD2450 startup capture, live bench
+sweeps and a static decode of ICLegend's EVBKS5 evaluation GUI. It covers
+frequency/sweep/timing formulas, sampling and SPI fields, transmit and receive
+gain tables, and the hold/restart rule for waveform registers. The vendor GUI
+package itself is third-party material and is not committed.
+
 ## Live radar viewer
 
 Run `./tools/start_radar_viewer.ps1` to open the local live I/Q, spectrum,

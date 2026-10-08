@@ -1,0 +1,64 @@
+{
+  "profile_name": "sweep-240mhz-mode2",
+  "base_profile": "mode_2_ram_initial",
+  "config_file": "C:\\Users\\mmsyl\\Documents\\HLK-LD2450\\HLK-LD2450_FW\\firmware\\config\\radar_sweep240_mode2.json",
+  "config_sha256": "50b16cd9001cf9854324d123c42de62e775c251aab7f0fc6b58ced28855d6fd7",
+  "baseline_table_sha256": "ff0a3715d077a864283e1222cf6746d9736749644bf5b5a4eb1ebd1fe89c5ec5",
+  "table_sha256": "dac10072e18b741f48d6379ceb7d4204f0dfb8c50489dd6dc187e938a45b8830",
+  "write_count": 80,
+  "pre_spi_count": 75,
+  "post_spi_count": 5,
+  "i2c_address_7bit": 32,
+  "changes": [
+    {
+      "sequence": 24,
+      "stage": "pre_spi",
+      "register": "0x53",
+      "old": "0x0A02",
+      "new": "0x0A00",
+      "reason": "Start frequency word 0x0A02AAAB (24.025 GHz) -> 0x0A008889 (24.005 GHz), the start the vendor EVBKS5 manual recommends for a 240 MHz sweep (24005-24245 MHz)."
+    },
+    {
+      "sequence": 25,
+      "stage": "pre_spi",
+      "register": "0x54",
+      "old": "0xAAAB",
+      "new": "0x8889",
+      "reason": "Low word of the 24.005 GHz start frequency."
+    },
+    {
+      "sequence": 27,
+      "stage": "pre_spi",
+      "register": "0x56",
+      "old": "0x0011",
+      "new": "0x0014",
+      "reason": "Rising step 17 -> 20 over the unchanged 420 us ramp: ~204 -> ~240 MHz, ending ~24.245 GHz. Bench 2026-10-07: spectrum stretched x1.18/1.165 (predicted 1.176), ~0.64 m per bin."
+    },
+    {
+      "sequence": 29,
+      "stage": "pre_spi",
+      "register": "0x58",
+      "old": "0xFFEF",
+      "new": "0xFFEC",
+      "reason": "Falling step -17 -> -20, keeping the symmetric triangle returning to the start frequency."
+    }
+  ],
+  "extraction_manifest_sha256": "612f2995c3e1c243fc421dfa06613e01ef38305545f46c3634f3953fab294213",
+  "sources": [
+    {
+      "version": "V2.04",
+      "stem": "oncstzcza54pd",
+      "ufw_sha256": "a1b090ccb9aeaede130bec24d4414c09b5aa85ba81020f6ce123d1c9d6b4a277",
+      "app_sha256": "a982ebd9030d4927c2777cd94f93ddd162a61a947e2bce008df24461a72157d5"
+    },
+    {
+      "version": "V2.14",
+      "stem": "5o09fdkye1jo8",
+      "ufw_sha256": "b50856945e587f02e04e693002e8ff23640412d048464e2ceeb041a17b95c093",
+      "app_sha256": "af7303edd409e18cebd38b7a06ca38f82a7cffc41907a582b2fd3eacc6dc03dc"
+    }
+  ],
+  "generator_sha256": "dbd72b9101987ea6231f78bf9c3179e3313ac02d6c73fe258251c3a7e9b58802",
+  "target_built": false,
+  "device_tested": false
+}

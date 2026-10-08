@@ -1,0 +1,23 @@
+{
+  "source_sha256": "0e9c6a98fcd8b1ef8565c5be04d76bc6518825c76fd55258c199d5f7a79e03bf",
+  "ufw_sha256": "413aaf0f7c5d76f1e07c041cadf4b1a7e65c557a25e47f1bf0f02540bb1d1b56",
+  "stock_loader_sha256": "96e6fff47bf911e9a02f7ee62fb398fb37ccf44204a1e77ae782f5d1b3ab294e",
+  "patched_loader_sha256": "c2f79a161743879655ea4d42f2588e66ef93783a5de419766a393b3c289bc9f7",
+  "decompressed_loader_sha256": "7be82d29b2a3794a3b44ad9934ff8fa9873c56673d988cef913cfcd655fc8162",
+  "instructions": [
+    {
+      "vma": "0xa40e",
+      "before": "d0ec4018",
+      "after": "41210000"
+    },
+    {
+      "vma": "0xa482",
+      "before": "62e13020",
+      "after": "42200000"
+    }
+  ],
+  "old_loader_size": 18212,
+  "new_loader_size": 17953,
+  "application_unchanged": true,
+  "hardware_validated": false
+}

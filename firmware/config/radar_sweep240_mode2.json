@@ -1,0 +1,34 @@
+{
+  "name": "sweep-240mhz-mode2",
+  "base_profile": "mode_2_ram_initial",
+  "overrides": [
+    {
+      "sequence": 24,
+      "register": "0x53",
+      "expected": "0x0A02",
+      "value": "0x0A00",
+      "reason": "Start frequency word 0x0A02AAAB (24.025 GHz) -> 0x0A008889 (24.005 GHz), the start the vendor EVBKS5 manual recommends for a 240 MHz sweep (24005-24245 MHz)."
+    },
+    {
+      "sequence": 25,
+      "register": "0x54",
+      "expected": "0xAAAB",
+      "value": "0x8889",
+      "reason": "Low word of the 24.005 GHz start frequency."
+    },
+    {
+      "sequence": 27,
+      "register": "0x56",
+      "expected": "0x0011",
+      "value": "0x0014",
+      "reason": "Rising step 17 -> 20 over the unchanged 420 us ramp: ~204 -> ~240 MHz, ending ~24.245 GHz. Bench 2026-10-07: spectrum stretched x1.18/1.165 (predicted 1.176), ~0.64 m per bin."
+    },
+    {
+      "sequence": 29,
+      "register": "0x58",
+      "expected": "0xFFEF",
+      "value": "0xFFEC",
+      "reason": "Falling step -17 -> -20, keeping the symmetric triangle returning to the start frequency."
+    }
+  ]
+}

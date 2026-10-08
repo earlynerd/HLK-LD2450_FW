@@ -69,6 +69,30 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
     `|d| < min_doppler_bin` are excluded). Turning it off, after capturing an
     empty-scene background, shows static reflectors too.
 
+- **Clutter map:** a detection must also exceed the long-term average power
+  of its range-Doppler cell by `clutter_threshold_db` (10 dB). The average is
+  per cell, maximised over +/-1 Doppler bin, with `clutter_tau_s` = 10 s.
+  - It removes returns that never go away. Bench case (2026-10-08): with
+    nothing moving in view, persistent Doppler lines at multiples of about
+    102 Hz sat at 1.2-1.8 m. They were at a fixed range, not locked to the
+    chirp timing and not tied to the static return strength, so they come
+    from something real but out of view (vibration, an out-of-view fan or
+    pickup). Evidence: `output/live_radar/20261008-113257-capture-7cd819`.
+  - It starts empty after start-up or a settings change. Persistent returns
+    show for the first ~8 s while it learns; the subtitle says so.
+  - Range bins near a confirmed, not-in-place track younger than `censor_s`
+    (4 s) are not learned, so walkers are not absorbed. The age limit stops a
+    track sitting on clutter from protecting its own cells forever.
+    Position-based rules failed because clutter tracks jump in angle and
+    range.
+  - Limits: a person who stays put, or keeps pacing the same path, is
+    eventually learned. Walkers whose Doppler lands on a clutter line
+    (multiples of about 0.64 m/s at 0.8-2 m here) are hidden there.
+  - Check: a simulated walker added to that recording stays tracked in
+    94-99% of frames at 0.3 and 1.0 m/s. At 0.6 m/s it falls to about 50%,
+    because that speed lands on a clutter line. Once learned, the empty room
+    gives no tracks (about 1.2 tracks per frame before).
+
 - **Tracks:** the `tracks` stage follows objects across frames with a
   constant-velocity Kalman filter in x, y (`processing.Tracker`, parameters in
   the `tracking` block of `calibration.json`).

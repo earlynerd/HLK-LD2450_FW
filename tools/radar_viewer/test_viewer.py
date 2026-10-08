@@ -344,9 +344,9 @@ class TrackTests(unittest.TestCase):
     PERIOD_US = 89000
     HZ_PER_BIN = 1 / (64 * 0.0012)
 
-    def run_frames(self, movers_at, frames, noise=40.0, seed=0, start=1000):
+    def run_frames(self, movers_at, frames, noise=40.0, seed=0, start=1000, calibration=None):
         """movers_at(i, rng) -> movers for frame i; returns the tracks product per frame."""
-        pipe, rng, out = Pipeline(), np.random.default_rng(seed), []
+        pipe, rng, out = Pipeline(calibration), np.random.default_rng(seed), []
         for i in range(frames):
             frame = scene(movers_at(i, rng), noise=noise, seed=seed * 1000 + i, frame_id=i,
                           start_us=start + i * self.PERIOD_US)
@@ -385,11 +385,14 @@ class TrackTests(unittest.TestCase):
         frames = self.run_frames(lambda i, rng: [], 25, seed=3)
         self.assertEqual([t for f in frames for t in f["tracks"]], [])
 
-    def test_doppler_without_range_change_is_in_place(self):
+    def fan_and_walker(self, i, rng):
         # A fan: fixed position, alternating Doppler sign, plus the walker elsewhere.
-        def movers(i, rng):
-            return [(3.0, 8.0 if i % 2 else -8.0, -40.0, 3.0)] + self.walker(i, rng, start_bin=10.0, angle=20.0)
-        last = self.run_frames(movers, 30, seed=5)[-1]["tracks"]
+        return [(3.0, 8.0 if i % 2 else -8.0, -40.0, 3.0)] + self.walker(i, rng, start_bin=10.0, angle=20.0)
+
+    def test_doppler_without_range_change_is_in_place(self):
+        cal = load_calibration()
+        cal["detection"]["clutter_tau_s"] = 0   # Tracker behaviour alone.
+        last = self.run_frames(self.fan_and_walker, 30, seed=5, calibration=cal)[-1]["tracks"]
         fan = [t for t in last if t["range_m"] < 2.6]
         walk = [t for t in last if t["range_m"] >= 2.6]
         self.assertEqual((len(fan), len(walk)), (1, 1), last)
@@ -397,8 +400,22 @@ class TrackTests(unittest.TestCase):
         self.assertAlmostEqual(fan[0]["range_rate_mps"], 0, delta=0.1)
         self.assertFalse(walk[0]["in_place"])
 
+    def test_clutter_map_learns_the_fan_but_not_the_walker(self):
+        self.assertGreater(load_calibration()["detection"]["clutter_tau_s"], 0)
+        frames = self.run_frames(self.fan_and_walker, 70, seed=5)
+        fan = [[t for t in f["tracks"] if t["angle_deg"] < 0] for f in frames]      # Fan at -40 deg.
+        walker = [[t for t in f["tracks"] if t["angle_deg"] >= 0] for f in frames]  # Walker at +20 deg.
+        self.assertTrue(any(fan[:20]))       # Visible at first...
+        self.assertFalse(any(fan[-20:]))     # ...then learned as clutter.
+        self.assertTrue(all(len(w) == 1 for w in walker[10:]), [len(w) for w in walker])
+        self.assertEqual(len({w[0]["id"] for w in walker[10:]}), 1)
+        self.assertTrue(frames[0]["clutter_learning"])
+        self.assertAlmostEqual(frames[-1]["clutter_age_s"], 69 * self.PERIOD_US / 1e6 + 0.1, delta=0.01)
+
     def test_time_gap_or_restart_clears_tracks(self):
-        pipe = Pipeline()
+        cal = load_calibration()
+        cal["detection"]["clutter_tau_s"] = 0   # A fixed mover would be learned as clutter.
+        pipe = Pipeline(cal)
         def frame(i, start):
             return scene([(6.0, 5.0, 0.0, 3.0)], noise=40, seed=i, frame_id=i, start_us=start)
         for i in range(6):

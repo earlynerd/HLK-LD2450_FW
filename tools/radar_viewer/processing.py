@@ -246,7 +246,7 @@ def _vertex(a, b, c):
     return float(np.clip(0.5 * (a - c) / den, -0.5, 0.5)) if den else 0.0
 
 
-def targets(ctx, cal):
+def targets(ctx, cal, clutter=None):
     """Detect targets on the range-Doppler map and measure range, velocity and angle.
 
     Cell-averaging CFAR on |RX1|^2 + |RX2|^2 (guard and training cells from the
@@ -255,10 +255,16 @@ def targets(ctx, cal):
     cells within merge_cells. Angle: phase of sum(RX2 * conj(RX1)) over the 3x3
     cells around the peak, minus the boresight offset, gives
     sin(theta) = sign * dphi / (2 pi d/lambda). |sin| > 1 is clipped and flagged.
+
+    clutter: optional long-term mean power per range-Doppler cell (Pipeline keeps it). A cell
+    must also exceed it, maximised over +/-1 Doppler bin for slowly drifting lines, by
+    clutter_threshold_db. That removes persistent movers such as fans, which are real
+    reflectors and so pass the CFAR test in every frame.
     """
     rd, freq = range_doppler(ctx)
     det, rng, ang, vel = cal["detection"], cal["range"], cal["angle"], cal["velocity"]
     power = np.sum(np.abs(rd) ** 2, axis=0)
+    ctx.cache["power"] = power
     n_doppler, n_range = power.shape
     (gr, gd), (tr, td) = det["guard_cells"], det["training_cells"]
     outer, inner = box_sum(power, gr + tr, gd + td), box_sum(power, gr, gd)
@@ -272,6 +278,11 @@ def targets(ctx, cal):
     valid = (bins >= 1)[None, :] & (bins <= max_bin)[None, :] & (snr >= det["threshold_db"])
     if ctx.settings["remove_static"]:
         valid &= (np.abs(doppler_bins) >= det["min_doppler_bin"])[:, None]
+    over_clutter = None
+    if clutter is not None and clutter.shape == power.shape:
+        level = np.maximum(clutter, np.maximum(np.roll(clutter, 1, axis=0), np.roll(clutter, -1, axis=0)))
+        over_clutter = log_power - 10 * np.log10(np.maximum(level, 1e-30))
+        valid &= over_clutter >= det["clutter_threshold_db"]
     valid[:, [0, -1]] = False
     neighbours = np.max([np.roll(np.roll(power, a, axis=0), b, axis=1)
                          for a in (-1, 0, 1) for b in (-1, 0, 1) if a or b], axis=0)
@@ -303,13 +314,14 @@ def targets(ctx, cal):
             "x_m": round(float(range_m * np.sin(np.radians(theta))), 3),
             "y_m": round(float(range_m * np.cos(np.radians(theta))), 3),
             "snr_db": round(float(snr[d, r]), 1), "power_db": round(float(log_power[d, r]), 1),
+            "over_clutter_db": None if over_clutter is None else round(float(over_clutter[d, r]), 1),
             "range_bin": round(float(k), 2), "doppler_hz": round(float(f), 2),
             "phase_deg": round(float(np.degrees(np.angle(cross))), 1),
             "coherence": round(float(coherence), 3), "angle_ambiguous": bool(abs(sine) > 1)})
     ctx.cache["targets"] = found
     return {"targets": found, "threshold_db": det["threshold_db"], "max_range_m": det["max_range_m"],
             "noise_db": round(float(np.median(10 * np.log10(noise))), 1),
-            "moving_only": bool(ctx.settings["remove_static"]),
+            "moving_only": bool(ctx.settings["remove_static"]), "clutter_map": over_clutter is not None,
             "calibrated": {"range": rng["calibrated"], "angle": ang["calibrated"], "velocity": vel["calibrated"]},
             "units": {"range": "m", "angle": "deg, positive per calibration sign", "velocity": "m/s"}}
 
@@ -477,8 +489,10 @@ class Pipeline:
         self.calibration = load_calibration() if calibration is None else calibration
         self.stages = {"quality": signal_quality, "spectrum": spectrum, "change": self.change,
                        "doppler": doppler, "iq_balance": iq_balance,
-                       "targets": lambda ctx: targets(ctx, self.calibration), "tracks": self.track}
+                       "targets": self.detect, "tracks": self.track}
         self.tracker, self.tracker_key = Tracker(), None
+        self.clutter = self.clutter_us = None
+        self.clutter_age = 0.0
         self.iq_cal = self.iq_cal_config = None
         self.reference = None
         self.reference_config = None
@@ -502,18 +516,66 @@ class Pipeline:
         return {"db": db(np.sqrt(np.mean(abs(deviation) ** 2, axis=1))), "bins": ctx.bin_range(),
                 "alpha": CHANGE_ALPHA, "unit": "dB re 1 exported count"}
 
-    def track(self, ctx):
-        """Tracks across frames from this frame's detections; restarts when configuration,
-        settings or background change."""
-        if "targets" not in ctx.cache:
-            raise ValueError("No detections this frame")
+    def scene_key(self, ctx):
+        """Tracks and the clutter map restart when configuration, settings or background change."""
         key = (ctx.frame.get("config_id", ctx.frame["config_sha256"]), tuple(sorted(ctx.settings.items())),
                self.reference_frame)
         if key != self.tracker_key:
             self.tracker.reset()
+            self.clutter = self.clutter_us = None
+            self.clutter_age = 0.0
             self.tracker_key = key
+
+    def detect(self, ctx):
+        """Detections against the clutter map of earlier frames (the tracks stage updates it)."""
+        self.scene_key(ctx)
+        tau = self.calibration["detection"].get("clutter_tau_s", 0)
+        result = targets(ctx, self.calibration, self.clutter if tau > 0 else None)
+        result["clutter_tau_s"] = tau
+        return result
+
+    def update_clutter(self, ctx, tracks):
+        """Exponential average of each range-Doppler cell's power, time constant clutter_tau_s
+        (0 disables it), starting from zero. A return must persist for roughly a tenth of that
+        time for the map to come within the 10 dB margin and stop detecting it.
+
+        Range bins within 1.5 bins of a confirmed track that is not in place and younger than
+        censor_s are not updated (censored), so a person walking slowly through a range bin is
+        not learned as clutter. The age limit stops a track on clutter from shielding its own
+        clutter indefinitely; position-based tests fail there because clutter tracks jump in
+        angle and range. A person who stays longer in one place is learned too.
+        """
+        tau = self.calibration["detection"].get("clutter_tau_s", 0)
+        power, now = ctx.cache.get("power"), ctx.frame["started_us"]
+        if tau <= 0 or power is None:
+            return
+        if self.clutter is None or self.clutter.shape != power.shape:
+            # Start empty: everything is visible at first and persistent returns fade out
+            # (one started from the first frame would hide anyone present at start-up).
+            self.clutter, self.clutter_us, self.clutter_age = np.zeros_like(power), None, 0.0
+        rng = self.calibration["range"]
+        bins = np.arange(ctx.bin_lo, ctx.bin_lo + power.shape[1])
+        update = np.ones(power.shape[1], bool)
+        det = self.calibration["detection"]
+        for t in tracks:
+            if not t["in_place"] and t["age_s"] < det.get("censor_s", 4.0):
+                update &= np.abs(bins - (t["range_m"] - rng["offset_m"]) / rng["m_per_bin"]) > 1.5
+        dt = 0.1 if self.clutter_us is None else min(((now - self.clutter_us) & 0xffffffff) / 1e6, 1.0)
+        self.clutter[:, update] += (1 - np.exp(-dt / tau)) * (power[:, update] - self.clutter[:, update])
+        self.clutter_us = now
+        self.clutter_age += dt
+
+    def track(self, ctx):
+        """Tracks across frames from this frame's detections."""
+        if "targets" not in ctx.cache:
+            raise ValueError("No detections this frame")
+        self.scene_key(ctx)
         tracks, clusters = self.tracker.update(ctx.cache["targets"], ctx.frame["started_us"], self.calibration)
+        self.update_clutter(ctx, tracks)
+        tau = self.calibration["detection"].get("clutter_tau_s", 0)
+        age = None if self.clutter is None else round(self.clutter_age, 2)
         return {"tracks": tracks, "detections": len(ctx.cache["targets"]), "clusters": clusters,
+                "clutter_age_s": age, "clutter_learning": bool(tau > 0 and (age is None or age < tau)),
                 "tentative": sum(not tr["confirmed"] for tr in self.tracker.tracks)}
 
     def set_reference(self, frame):

@@ -37,7 +37,11 @@
     ],
     "max_targets": 16,
     "_cells": "[range bins, Doppler bins]. Threshold is over the cell-averaging CFAR noise estimate. min_doppler_bin applies only when static removal is on.",
-    "_threshold": "2026-10-08: noise-only false alarms are rare even at 8 dB (one beyond 2.7 m in 111 frames of output/live_radar/20261008-030525-capture-51fbe3); 10 dB keeps margin and the tracker rejects one-frame alarms. Thermal noise alone would allow about 7 dB for 1e-3 per cell."
+    "_threshold": "2026-10-08: noise-only false alarms are rare even at 8 dB (one beyond 2.7 m in 111 frames of output/live_radar/20261008-030525-capture-51fbe3); 10 dB keeps margin and the tracker rejects one-frame alarms. Thermal noise alone would allow about 7 dB for 1e-3 per cell.",
+    "clutter_tau_s": 10.0,
+    "clutter_threshold_db": 10.0,
+    "_clutter": "Clutter map: exponential average of each range-Doppler cell's power from zero (time constant clutter_tau_s, 0 disables). Range bins near a confirmed, not-in-place track younger than censor_s are not updated, so walkers are not learned. A detection must exceed the map by clutter_threshold_db. Persistent returns fade out within about 8 s of start or a settings change. 2026-10-08: removes persistent lines at multiples of ~102 Hz at 1.2-1.8 m (output/live_radar/20261008-113257-capture-7cd819; nothing moving in view).",
+    "censor_s": 4.0
   },
   "tracking": {
     "confirm_hits": 3,

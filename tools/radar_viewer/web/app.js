@@ -209,7 +209,7 @@ function targetsView(){
   $('target-rows').replaceChildren(...tracks.map(t=>{const row=document.createElement('tr');
     row.innerHTML=`<td>${t.id}</td><td>${fmt2(t.range_m,2)}</td><td>${fmt2(t.angle_deg,1)}</td><td>${fmt2(t.doppler_mps,2)}</td><td>${fmt2(t.range_rate_mps,2)}</td><td>${fmt2(t.age_s,1)}</td><td>${t.in_place?'in place':'moving'}${t.coasting?' · coasting':''}</td>`;return row;}));
   const unc=Object.entries(data.calibrated).filter(([,v])=>!v).map(([k])=>k),tk=current.products.tracks;
-  $('targets-subtitle').textContent=`${data.moving_only?'Moving targets (static removal on)':'All targets (static removal off; capture a background to suppress clutter)'} · CFAR ${data.threshold_db} dB · up to ${R} m`;
+  $('targets-subtitle').textContent=`${data.moving_only?'Moving targets (static removal on)':'All targets (static removal off; capture a background to suppress clutter)'} · CFAR ${data.threshold_db} dB`+(data.clutter_tau_s>0?(tk?.clutter_learning?` · learning persistent clutter (${(tk.clutter_age_s??0).toFixed(0)} of ~${data.clutter_tau_s} s)`:` · clutter map ${data.clutter_tau_s} s`):'')+` · up to ${R} m`;
   $('targets-detail').textContent=`${tracks.length} track${tracks.length===1?'':'s'}`+(tk?` (${tk.tentative} tentative)`:'')+` · ${data.targets.length} detection${data.targets.length===1?'':'s'} this frame · noise ${data.noise_db} dB`+(unc.length?` · uncalibrated: ${unc.join(', ')} (see tools/radar_viewer/calibration.json)`:'');
 }
 function draw(){

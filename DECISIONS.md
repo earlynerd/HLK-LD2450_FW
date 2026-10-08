@@ -279,3 +279,12 @@ When a decision is reversed or superseded, append a new entry rather than rewrit
 - **Limits:** A killed server cannot restore the sweep; power-cycling the module re-applies the in-band profile.
 - **Evidence:** Viewer tests (37) with a simulated device cover write order, minimum power, range scaling to the live step and every restore path. Commit 2d0a2dc.
 - **Affects:** tools/radar_viewer (server.py, processing.py, web/), docs/LIVE_RADAR_VIEWER.md.
+
+
+## 2026-10-08 - One-command restore to stock V2.14
+
+- **Decision:** `firmware/tools/restore_stock.py --port COMx` flashes the committed stock V2.14 UFW through the custom image's UART updater and checks that stock answers (report frames and version at 9600 baud). Only the transfer loader inside the UFW carries the two-wire fixes; the stock application and configuration are sent unchanged, and the resulting image hash is pinned.
+- **Why:** The user wants others to be able to try the custom firmware on their own modules without risk, which needs an easy, verified way back. The unmodified vendor loader cannot receive on the two-wire module UART, so the transfer would otherwise fail and leave the custom image installed.
+- **Evidence:** 2026-10-08 from `usb-bins40-20261008`: 417 reads, success; stock V2.14.25112412 then reported targets at 9600 baud and COM30 disappeared (`output/stock_restore/20261008-133050/`). Host tests: `firmware/tests/test_restore_stock.py`.
+- **Open:** Stock comes back at 9600 baud; reinstalling custom from that state (stock B2 entry) was verified only with the module at 256000.
+- **Affects:** firmware/tools/restore_stock.py, firmware/docs/UART_UPDATE.md, README.md.

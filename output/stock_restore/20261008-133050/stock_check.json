@@ -1,0 +1,61 @@
+{
+  "port": "COM13",
+  "usb_ports": [
+    "COM9 0x1a86:0x55d5 0123456789",
+    "COM11 0x1a86:0x55d5 0123456789",
+    "COM14 0x1a86:0x55d5 0123456789",
+    "COM29 0x403:0x6001 A10JO345A",
+    "COM48 0x403:0x6001 BG03STIBA",
+    "COM13 0x1a86:0x55d5 0123456789"
+  ],
+  "passive_bytes": 4096,
+  "report_frames_5s": 136,
+  "sample_targets": [
+    [
+      {
+        "x_mm": -132,
+        "y_mm": 478,
+        "speed_cms": 8,
+        "resolution_mm": 360
+      }
+    ],
+    [
+      {
+        "x_mm": -137,
+        "y_mm": 482,
+        "speed_cms": 0,
+        "resolution_mm": 360
+      }
+    ],
+    [
+      {
+        "x_mm": -139,
+        "y_mm": 485,
+        "speed_cms": 0,
+        "resolution_mm": 360
+      }
+    ],
+    [
+      {
+        "x_mm": -142,
+        "y_mm": 487,
+        "speed_cms": 0,
+        "resolution_mm": 360
+      }
+    ],
+    [
+      {
+        "x_mm": -144,
+        "y_mm": 487,
+        "speed_cms": 8,
+        "resolution_mm": 360
+      }
+    ]
+  ],
+  "ack_bodies_hex": [
+    "ff01000001004000",
+    "a00100000001140212241125",
+    "fe010000"
+  ],
+  "firmware_version": "V2.14.25112412"
+}

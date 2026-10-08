@@ -27,8 +27,8 @@ power-cycle boot, and custom-to-custom replacement are bench-verified with two
 handshake latch and subsequent update retry are also bench-verified in hello.
 The radar image now reports 80/80 initialization writes ACKed and retains working
 updater entry. Bounded SPI DMA capture now yields checksum-valid, distinct
-RX0/RX1 records. Continuous acquisition, RF calibration and stock restoration remain
-unverified; see [the image guide](docs/IMAGE_BUILD.md) for exact artifacts.
+RX0/RX1 records. Continuous acquisition and stock restoration have since been verified (see the
+repository README); RF calibration remains open; see [the image guide](docs/IMAGE_BUILD.md) for exact artifacts.
 
 ## Implemented
 

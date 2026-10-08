@@ -1,8 +1,8 @@
 # UART update integration investigation
 
 Status: 2026-10-05. Stock V2.14 to custom hello, power-cycle boot, and replacement
-with a different custom hello build are bench-verified at 256000 baud. Stock
-restoration remains untested. Current artifacts, the bench-verified recovery
+with a different custom hello build are bench-verified at 256000 baud. Restoring
+stock V2.14 from a custom image was verified on 2026-10-08 (below). Current artifacts, the bench-verified recovery
 window, and evidence are in [IMAGE_BUILD.md](IMAGE_BUILD.md). The
 [stock compatibility investigation](../../output/stock_uart_compatibility/report.md)
 finds a 0xB2 entry wrapper in V2.14 that is absent from the V2.04 command
@@ -55,6 +55,47 @@ downloaded executable uses a different product wrapper. Stock handoff pin
 defaults, staging/reset behavior, loader acceptance, and custom boot remain
 unverified until a complete physical transfer. No firmware data is sent by
 the separate entry probe.
+
+## Restoring stock firmware
+
+One command puts stock Hi-Link V2.14 back on a module running any custom image
+built here:
+
+```powershell
+python firmware/tools/restore_stock.py --port COM13
+```
+
+Substitute the module UART port. It needs `pyserial` and `lz4`. If the custom
+image does not answer within 20 seconds, power-cycle the module while the
+command waits: the three-second boot recovery window catches it. Afterwards the
+tool waits for stock target reports and asks for the firmware version, and
+writes `output/stock_restore/<time>/result.json`. `--check-only` runs just the
+check and writes nothing.
+
+What is sent: the stock V2.14 UFW committed in this repository
+(`5o09fdkye1jo8.ufw`, SHA-256 `b5085694...c093`, from Hi-Link's download
+server). Its application, bootloader and configuration files go to the module
+unchanged; a host test checks that only the `ota.bin` bundle differs. Inside
+that bundle, the vendor flash-writing loader `uart_user.bin` gets the two
+instruction fixes from [UART_LOADER_BENCH.md](UART_LOADER_BENCH.md). That
+loader only runs during the transfer. Unpatched, it cannot receive on the
+module's two-wire UART at 256000 baud (it writes a CON1 value that blocked
+reception on the bench, and from stock it also selects one-wire mode), so the
+transfer fails and the previous firmware stays. The restore image's SHA-256 is
+pinned (`0e9d61d0...316d`).
+
+Bench, 2026-10-08: from the installed range-bin image (`usb-bins40-20261008`),
+417 reads and final success. The module then streamed stock target report frames
+on COM13 at **9600 baud**, tracking a person at about 0.5 m, answered the
+version query with **V2.14.25112412**, and the custom native USB port (COM30)
+was gone. Evidence: `output/stock_restore/20261008-133050/`.
+
+After the restore the module UART runs at 9600, not the 256000 in the LD2450
+manual; the same happened after the user's earlier BLE update to V2.14. Set the
+rate in the HLKRadarTool app, or with the serial set-baud command, if a host
+expects 256000. Going from this state back to a custom image uses the stock
+B2 entry above (`--entry stock-b2`), which was verified with the module at
+256000.
 
 ## What runs where
 

@@ -140,7 +140,7 @@ That image was installed through the custom updater at 256000 baud: 417 reads,
 12 COM13 heartbeats in the following 12 seconds. It was installed at that stage;
 SHA256 `05fafed95ed20aba1400bbeae2884a054d9716edae345850e02ceff23c4b1edb`.
 Evidence: `output/stock_uart_compatibility/hello_logfix_custom_20261006T024728Z/`.
-Stock restoration remains untested; radar initialization results are recorded below.
+Stock restoration was verified on 2026-10-08; see [Restoring stock firmware](UART_UPDATE.md#restoring-stock-firmware). Radar initialization results are recorded below.
 Full debug mode also makes SDK assertions flush diagnostics and halt instead
 of immediately resetting.
 

@@ -16,7 +16,7 @@ towards the sensor at 0.4 m/s. The angle is not calibrated yet.*
 
 | Part | State |
 |---|---|
-| Updating | Stock-to-custom and custom-to-custom UART updates work at 256000 baud, with a three-second boot recovery window. |
+| Updating | Stock-to-custom, custom-to-custom and custom-to-stock UART updates work, with a three-second boot recovery window. |
 | Radar setup | The S5KM312CL is started with the recovered stock profile, changed to a 240 MHz in-band sweep (24.005-24.245 GHz, about 0.64 m per range bin). Its registers are [mapped](docs/S5KM312CL_REGISTER_MAP.md). |
 | On-device processing | Both receivers are captured continuously over SPI DMA. Each chirp goes through the JieLi BR23's hardware FFT engine (512-point complex, unscaled, 53 us; [characterised here](firmware/docs/HW_FFT.md)), and bins -40..40 are kept (about 25 m). This replaced raw export, which could only fit 16 of the 64 chirps per frame. |
 | Export | All 64 chirps of every radar frame, about 11 frames/s and 540 kB/s, over native USB CDC (LDF1 codec 2). Live register reads and writes go over the same port. Installed image: [`firmware/releases/usb-bins40-20261008`](firmware/releases/usb-bins40-20261008). |
@@ -50,6 +50,21 @@ bins, shorter range), which transmits outside that band. That is the operator's
 decision: each run needs an acknowledgement. The viewer drops to minimum
 transmit power and returns to the in-band profile on a 2-30 minute timer, on
 **Restore in band now**, on a failed write, and on disconnect or shutdown.
+
+## Reverting to stock
+
+The original Hi-Link firmware can be put back with one command over the module
+UART (pyserial and lz4 needed), verified on 2026-10-08:
+
+```powershell
+python firmware/tools/restore_stock.py --port COM13
+```
+
+It flashes the stock V2.14 image committed in this repository and then checks
+that stock target reports and the version reply (V2.14.25112412) come back.
+Stock firmware starts at 9600 baud after the restore. See
+[Restoring stock firmware](firmware/docs/UART_UPDATE.md#restoring-stock-firmware)
+for what is sent and why the vendor's transfer loader needs two small fixes.
 
 ## Documentation
 

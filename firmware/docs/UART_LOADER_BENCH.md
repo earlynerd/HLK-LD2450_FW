@@ -3,7 +3,7 @@
 **Current result (2026-10-05):** The corrected hello application boots, survives
 a power cycle, and accepts a different custom build through its UART updater at
 256000 baud. See [the current image and bench evidence](IMAGE_BUILD.md).
-Stock restoration and radar operation remain untested. The observations below
+Stock restoration was verified later (2026-10-08, [UART_UPDATE.md](UART_UPDATE.md#restoring-stock-firmware)). The observations below
 retain the history of the earlier failed applications.
 
 On 2026-10-04, stock V2.14 on COM13 at 256000 baud accepted the custom
@@ -52,7 +52,7 @@ This writes firmware. Substitute the actual port. V2.04 needs the previously
 documented BLE update to V2.14 first. Use the currently verified hello image
 from IMAGE_BUILD.md rather than the historical build/image artifact above.
 Custom-to-custom application replacement is now verified for hello;
-stock restoration remains physically unverified.
+custom-to-stock restoration was verified on 2026-10-08.
 
 ## Exact artifacts and observations
 

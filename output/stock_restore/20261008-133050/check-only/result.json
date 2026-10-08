@@ -1,0 +1,18 @@
+{
+  "started": "2026-10-08T13:34:20.973108-07:00",
+  "check": {
+    "port": "COM13",
+    "baud": 9600,
+    "report_frames": 17,
+    "last_targets": [
+      {
+        "x_mm": -225,
+        "y_mm": 518,
+        "speed_cms": 0,
+        "resolution_mm": 360
+      }
+    ],
+    "firmware_version": "V2.14.25112412",
+    "stock_running": true
+  }
+}

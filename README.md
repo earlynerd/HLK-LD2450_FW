@@ -20,7 +20,7 @@ towards the sensor at 0.4 m/s. The angle is not calibrated yet.*
 | Radar setup | The S5KM312CL is started with the recovered stock profile, changed to a 240 MHz in-band sweep (24.005-24.245 GHz, about 0.64 m per range bin). Its registers are [mapped](docs/S5KM312CL_REGISTER_MAP.md). |
 | On-device processing | Both receivers are captured continuously over SPI DMA. Each chirp goes through the JieLi BR23's hardware FFT engine (512-point complex, unscaled, 53 us; [characterised here](firmware/docs/HW_FFT.md)), and bins -40..40 are kept (about 25 m). This replaced raw export, which could only fit 16 of the 64 chirps per frame. |
 | Export | All 64 chirps of every radar frame, about 11 frames/s and 540 kB/s, over native USB CDC (LDF1 codec 2). Live register reads and writes go over the same port. Installed image: [`firmware/releases/usb-bins40-20261008`](firmware/releases/usb-bins40-20261008). |
-| Host viewer | Range spectra, change waterfall, 64-chirp range-Doppler map (13 Hz bins), constellation, CFAR detection on both receivers, angle from the receiver phase difference, a clutter map and Kalman tracks. Register control, and a sweep-width control for out-of-band experiments. |
+| Host viewer | Range spectra, change waterfall, 64-chirp range-Doppler map (13 Hz bins), constellation, slow-time phase per range bin (breathing visible), CFAR detection on both receivers, angle from the receiver phase difference, a clutter map and Kalman tracks. Register control, and a sweep-width control for out-of-band experiments. |
 
 Not yet calibrated:
 - **Angle:** live angles still jump for one object, consistent with an

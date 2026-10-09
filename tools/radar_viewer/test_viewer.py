@@ -14,7 +14,7 @@ from unittest.mock import patch
 
 import numpy as np
 
-from .processing import Pipeline, DEFAULT_SETTINGS, unpack_iq, load_calibration
+from .processing import Pipeline, DEFAULT_SETTINGS, unpack_iq, load_calibration, slow_time
 from . import server
 from frame_stream import HEADER, crc, Parser, Frames, Message
 
@@ -443,6 +443,59 @@ class TrackTests(unittest.TestCase):
         for i in range(7, 12):
             tracks = pipe.process(frame(i, 3_000_000 + i * self.PERIOD_US), DEFAULT_SETTINGS)["products"]["tracks"]
         self.assertNotEqual(tracks["tracks"][0]["id"], first_id)
+
+
+class PhaseTests(unittest.TestCase):
+    PERIOD_US = 89000
+
+    def breathing_frame(self, i, start=1000, breath_mm=4.0, bin_=6):
+        """A strong static reflector at bin 4 and a weaker one at bin_ moving in range by
+        breath_mm peak to peak at 0.3 Hz: too slow to leave Doppler bin 0."""
+        lam = load_calibration()["wavelength_m"]
+        t = i * self.PERIOD_US / 1e6
+        d = breath_mm / 2e3 * np.sin(2 * np.pi * 0.3 * t)
+        rng = np.random.default_rng(i)
+        n = np.arange(512)[None, None, :]
+        z = (3000 * np.exp(2j * np.pi * 4 * n / 512) + (900 - 400j)
+             + 400 * np.exp(1j * (2 * np.pi * bin_ * n / 512 + 4 * np.pi * d / lam + 1.0))
+             + 4 * (rng.standard_normal((2, 64, 512)) + 1j * rng.standard_normal((2, 64, 512))))
+        return from_samples(z, frame_id=i, start_us=start + i * self.PERIOD_US)
+
+    def test_breathing_shows_in_slow_time_phase(self):
+        pipe = Pipeline()
+        for i in range(240):
+            result = pipe.process(self.breathing_frame(i), DEFAULT_SETTINGS)
+            self.assertEqual(result["stage_errors"], {})
+            phase = result["products"]["phase"]
+            if i == 20:
+                self.assertTrue(phase["filling"])
+        self.assertFalse(phase["filling"])
+        self.assertAlmostEqual(phase["window_s"], 20, delta=0.1)
+        self.assertEqual(phase["auto_bin"], 6)   # Not the much stronger static bin 4.
+        b = phase["bins"][phase["range_bins"].index(6)]
+        self.assertAlmostEqual(b["breath_hz"], 0.3, delta=0.05)
+        self.assertAlmostEqual(b["disp_pp_mm"], 4.0, delta=0.4)
+        self.assertGreater(b["motion_db"], phase["bins"][phase["range_bins"].index(4)]["motion_db"] + 20)
+        hz = np.array(phase["hz"])
+        self.assertLessEqual(abs(hz).max(), 3.0)
+        self.assertEqual(np.array(phase["map_db"]).shape, (len(hz), len(phase["range_bins"])))
+
+    def test_slow_time_finds_heart_line_and_resets_on_gap(self):
+        lam, fs = 0.0124, 11.2
+        t = np.arange(0, 20, 1 / fs)
+        d = 2e-3 * np.sin(2 * np.pi * .25 * t) + 0.15e-3 * np.sin(2 * np.pi * 1.2 * t)
+        rng = np.random.default_rng(2)
+        v = 0.05 * (rng.standard_normal((len(t), 2, 3)) + 1j * rng.standard_normal((len(t), 2, 3)))
+        v[:, :, 1] += 20 * np.exp(1j) + 5 * np.exp(4j * np.pi * d / lam)[:, None] * np.array([1, np.exp(.7j)])
+        b = slow_time(t, v, lam)["bins"][1]
+        self.assertAlmostEqual(b["breath_hz"], 0.25, delta=0.03)
+        self.assertAlmostEqual(b["heart_hz"], 1.2, delta=0.06)
+        self.assertGreater(b["heart_ratio"], 100)
+        pipe = Pipeline()
+        for i in range(80):
+            pipe.process(self.breathing_frame(i), DEFAULT_SETTINGS)
+        phase = pipe.process(self.breathing_frame(81, start=3_000_000), DEFAULT_SETTINGS)["products"]["phase"]
+        self.assertEqual(phase["frames"], 1)   # Gap over max_gap_s: history restarts.
 
 
 class AcquisitionTests(unittest.TestCase):

@@ -2,8 +2,8 @@
 
 A local browser workspace for the custom firmware's validated LDF1 feed. It
 shows tracked targets in a top view, both receivers' range-bin spectra,
-spectral history, a 64-chirp Doppler map, a per-bin constellation, and
-transport/processing health. It also controls the radar's registers and sweep
+spectral history, a 64-chirp Doppler map, a per-bin constellation, each range
+bin's slow-time phase (breathing-scale motion), and transport/processing health. It also controls the radar's registers and sweep
 width. It does not require a firmware change or a web service. Dependencies are
 NumPy and pyserial; the UI uses browser Canvas with no package build or
 external assets.
@@ -166,6 +166,39 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
   cluster; motion at that bin appears as rotation or an arc. Changing the bin
   restarts the trail. The axis range grows immediately to keep every point
   visible and shrinks by 4% per new frame.
+- **Slow-time phase:** each range bin's value, averaged over the frame's
+  chirps, followed from frame to frame over the last 20 s (stage `phase`, range
+  bins 1 to `max_range_m`). A displacement d turns a bin's phase by
+  4 pi d / wavelength, about 29 deg per 0.1 mm, long before the object moves
+  far enough to leave Doppler bin 0. So breathing and heartbeat are visible here
+  while the range-Doppler map, static removal and the clutter map discard them.
+  The two receivers are added after turning RX2 onto RX1 by their mean cross
+  phase, and the sum is resampled to 10 Hz (frames arrive at about 11/s with
+  gaps). Three views:
+  - **Slow-time spectrum of each bin** (range bin across, -3 to +3 Hz up): the
+    FFT over the 20 s window of the deviation from the bin's mean. Breathing is
+    a pair of lines near +/-0.2-0.5 Hz in the bin of a person holding still.
+  - **I/Q path** of the selected bin. Motion turns the phasor about the bin's
+    static part (walls, leakage, the still parts of the body), not about the
+    origin, so a circle is fitted to the path and its centre (+) is the static
+    part.
+  - **Displacement**: the angle about that centre converted to mm, with the
+    linear trend removed. The sign is uncalibrated. A short arc still gives the
+    right waveform shape, but its scale is then uncertain.
+
+  **Auto** selects the bin with the most slow-time motion (0.1-3 Hz). It moves
+  only when another bin is 3 dB stronger. The text below the plots gives each
+  bin's strongest breathing-band (0.1-0.6 Hz) and heart-band (0.8-2.5 Hz) line,
+  with its ratio to the band median. These rates mean something only while
+  someone holds still in that bin, and a breathing harmonic can fall in the
+  heart band. History restarts on configuration, setting or background changes
+  and on a gap over 1 s.
+
+  Frame-to-frame phase coherence was checked live on 2026-10-09 (30 s, still
+  scene beyond 3 m): the phase of static bins steps 2-3 deg between frames
+  (40-50 um), with slower wander of 5-20 deg over seconds. Live, the bin at
+  0.78 m in front of the user showed a breathing waveform of about 15/min and
+  4.6 mm peak to peak.
 - **I/Q correction:** **Calibrate I/Q** fits each receiver's Q-versus-I gain
   and phase error from the latest frame, assuming a static scene with a strong
   reflector: a mismatch puts a conjugated copy of each positive-frequency
@@ -371,7 +404,10 @@ codec-2 bins matching the host conversion of raw frames (with I/Q correction),
 endianness, corruption recovery, bounded display backlog, port identity,
 recording hashes, replay/snapshot lifecycle, and local HTTP control protection.
 Detection, angle and tracking tests use synthetic scenes (two targets, a
-fluctuating walker, a fan, noise alone). Sweep tests use a simulated device:
+fluctuating walker, a fan, noise alone). Phase tests: a 4 mm, 0.3 Hz breathing
+reflector beside a 17 dB stronger static one is selected automatically, with the
+rate and displacement recovered. A 1.2 Hz, 0.3 mm heartbeat under breathing is
+found, and a time gap restarts the history. Sweep tests use a simulated device:
 the acknowledgement and timer checks, the order of the writes (minimum power
 first), range scaling to the live step, and the return to in band on the
-timer, a failed write, Restore and disconnect. 37 tests pass (2026-10-08).
+timer, a failed write, Restore and disconnect. 40 tests pass (2026-10-09).

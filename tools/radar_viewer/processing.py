@@ -21,6 +21,11 @@ objects across frames (Tracker): consistency over time, not agreement between
 the two receivers, is what separates real objects from noise here; summing both
 receivers' power is already the best two-channel detector for an unknown angle.
 
+Stage "phase" follows each range bin's phase from frame to frame (slow time). A
+displacement d changes the phase by 4 pi d / wavelength, about 29 degrees per
+0.1 mm, long before the object moves far enough to change its Doppler bin, so
+breathing and heartbeat show here while the range-Doppler map sees nothing.
+
 Add a stage to Pipeline.stages to publish another named product. Each stage
 receives a FrameContext and returns JSON-compatible data. Acquisition and the
 LDF1 integrity boundary do not need to change when adding a stage.
@@ -327,6 +332,83 @@ def targets(ctx, cal, clutter=None):
             "units": {"range": "m", "angle": "deg, positive per calibration sign", "velocity": "m/s"}}
 
 
+PHASE_WINDOW_S = 20.0   # Slow-time history: several breaths, and 0.05 Hz resolution.
+PHASE_MIN_S = 5.0       # Shorter histories are published as filling, without spectra.
+PHASE_RATE_HZ = 10.0    # Uniform resampling of the ~11 frames/s, which arrive with gaps.
+PHASE_MAX_HZ = 3.0      # Slow-time spectrum shown up to here.
+BREATH_HZ = (0.1, 0.6)
+HEART_HZ = (0.8, 2.5)
+PHASE_AUTO_DB = 3.0     # The automatic bin moves only to a bin this much stronger.
+
+
+def circle_centre(z):
+    """Centre of the circle best fitting the points z (algebraic least squares).
+
+    A reflector moving in range turns its phasor about the bin's static part (walls,
+    leakage and the body's still parts in the same bin), so the motion is the angle
+    about that centre, not about the origin. A short arc still gives a usable
+    waveform: its scale is then uncertain, its shape is not.
+    """
+    x, y = z.real, z.imag
+    a = np.c_[2 * x, 2 * y, np.ones_like(x)]
+    c = np.linalg.lstsq(a, x * x + y * y, rcond=None)[0]
+    return complex(c[0], c[1])
+
+
+def band_peak(f, power, band):
+    """Strongest line in band (Hz) and its ratio to the band median."""
+    sel = (f >= band[0]) & (f <= band[1])
+    if not sel.any():
+        return None, None
+    i = int(np.argmax(power[sel]))
+    return round(float(f[sel][i]), 3), round(float(power[sel][i] / max(np.median(power[sel]), 1e-30)), 1)
+
+
+def slow_time(times_s, values, wavelength_m):
+    """Slow-time analysis of range bins: values is frames x receivers x bins (chirp means).
+
+    The receivers are added after turning RX2 onto RX1 by their mean cross phase, which
+    points the pair at the strongest reflector in each bin. The sum is resampled to
+    PHASE_RATE_HZ. Per bin: the slow-time spectrum of the deviation from the mean
+    (motion up to PHASE_MAX_HZ), and the displacement from the angle about the fitted
+    circle centre (sign uncalibrated), linear trend removed. Breathing and heart-band
+    peaks are the strongest displacement-spectrum lines in those bands, with the ratio
+    to the band median; a breathing harmonic can fall in the heart band.
+    """
+    z1, z2 = values[:, 0], values[:, 1]
+    z = (z1 + z2 * np.exp(-1j * np.angle(np.sum(z2 * np.conj(z1), axis=0)))) / 2
+    t = np.arange(times_s[0], times_s[-1], 1 / PHASE_RATE_HZ)
+    z = np.stack([np.interp(t, times_s, z[:, b].real) + 1j * np.interp(t, times_s, z[:, b].imag)
+                  for b in range(z.shape[1])], axis=1)
+    n, window = len(t), np.hanning(len(t))
+    freq = np.fft.fftshift(np.fft.fftfreq(n, 1 / PHASE_RATE_HZ))
+    shown = np.abs(freq) <= PHASE_MAX_HZ
+    spectrum = np.fft.fftshift(np.fft.fft((z - z.mean(axis=0)) * window[:, None], axis=0), axes=0) / window.sum()
+    motion = (np.abs(freq) >= BREATH_HZ[0]) & shown
+    real_f = np.fft.rfftfreq(n, 1 / PHASE_RATE_HZ)
+    mm_per_rad = wavelength_m / (4 * np.pi) * 1e3
+    bins, traces, centres = [], [], []
+    for b in range(z.shape[1]):
+        centre = circle_centre(z[:, b])
+        angle = np.unwrap(np.angle(z[:, b] - centre))
+        disp = angle * mm_per_rad
+        disp = disp - np.polyval(np.polyfit(t - t[0], disp, 1), t - t[0])
+        power = np.abs(np.fft.rfft(disp * window)) ** 2
+        breath_hz, breath_ratio = band_peak(real_f, power, BREATH_HZ)
+        heart_hz, heart_ratio = band_peak(real_f, power, HEART_HZ)
+        bins.append({"static_db": round(float(20 * np.log10(max(abs(z[:, b].mean()), 1e-9))), 1),
+                     "motion_db": round(float(10 * np.log10(max(np.sum(abs(spectrum[motion, b]) ** 2), 1e-30))), 1),
+                     "arc_deg": round(float(np.degrees(np.ptp(angle))), 1),
+                     "disp_pp_mm": round(float(np.ptp(disp)), 3),
+                     "breath_hz": breath_hz, "breath_ratio": breath_ratio,
+                     "heart_hz": heart_hz, "heart_ratio": heart_ratio})
+        traces.append(np.round(disp, 4).tolist())
+        centres.append([round(centre.real, 3), round(centre.imag, 3)])
+    return {"t_s": np.round(t - t[-1], 2).tolist(), "hz": np.round(freq[shown], 3).tolist(),
+            "map_db": db(abs(spectrum[shown])), "bins": bins, "disp_mm": traces, "centre": centres,
+            "iq": np.round(np.stack([z.real, z.imag], axis=-1), 3).transpose(1, 0, 2).tolist()}
+
+
 TRACKING_DEFAULTS = {
     "confirm_hits": 3, "confirm_frames": 5, "coast_s": 1.0, "max_gap_s": 1.0, "accel_mps2": 3.0,
     "initial_speed_mps": 1.5, "range_sigma_bins": 0.4, "range_sigma_min_m": 0.1, "gate_chi2": 13.8,
@@ -493,10 +575,11 @@ class Pipeline:
         self.cal = self.calibration   # This frame's calibration (range scaled to the live sweep).
         self.stages = {"quality": signal_quality, "spectrum": spectrum, "change": self.change,
                        "doppler": doppler, "iq_balance": iq_balance,
-                       "targets": self.detect, "tracks": self.track}
+                       "targets": self.detect, "tracks": self.track, "phase": self.phase}
         self.tracker, self.tracker_key = Tracker(), None
         self.clutter = self.clutter_us = None
         self.clutter_age = 0.0
+        self.phase_frames, self.phase_auto = [], None
         self.iq_cal = self.iq_cal_config = None
         self.reference = None
         self.reference_config = None
@@ -528,6 +611,7 @@ class Pipeline:
             self.tracker.reset()
             self.clutter = self.clutter_us = None
             self.clutter_age = 0.0
+            self.phase_frames, self.phase_auto = [], None
             self.tracker_key = key
 
     def detect(self, ctx):
@@ -582,6 +666,45 @@ class Pipeline:
         return {"tracks": tracks, "detections": len(ctx.cache["targets"]), "clusters": clusters,
                 "clutter_age_s": age, "clutter_learning": bool(tau > 0 and (age is None or age < tau)),
                 "tentative": sum(not tr["confirmed"] for tr in self.tracker.tracks)}
+
+    def phase(self, ctx):
+        """Slow-time phase of range bins 1..max_range_m over the last PHASE_WINDOW_S.
+
+        Each frame contributes the mean over its chirps of every bin (spectra: background,
+        I/Q, DC and window settings applied; static is kept, the circle fit removes it).
+        A gap over tracking max_gap_s or a time stamp going backwards restarts the history.
+        """
+        self.scene_key(ctx)
+        rng = self.cal["range"]
+        top = min(-ctx.bin_lo, int(np.ceil((self.cal["detection"]["max_range_m"] - rng["offset_m"]) / rng["m_per_bin"])))
+        now = ctx.frame["started_us"]
+        if self.phase_frames:
+            dt = ((now - self.phase_frames[-1][0]) & 0xffffffff) / 1e6
+            gap = dict(TRACKING_DEFAULTS, **self.cal.get("tracking", {}))["max_gap_s"]
+            if dt > gap or self.phase_frames[-1][1].shape[-1] != top:
+                self.phase_frames, self.phase_auto = [], None
+        zero = -ctx.bin_lo
+        self.phase_frames.append((now, ctx.spectra[:, :, zero + 1:zero + 1 + top].mean(axis=1)))
+        start = self.phase_frames[0][0]
+        times = np.array([((u - start) & 0xffffffff) / 1e6 for u, _ in self.phase_frames])
+        keep = times >= times[-1] - PHASE_WINDOW_S
+        self.phase_frames = [f for f, k in zip(self.phase_frames, keep) if k]
+        times = times[keep]
+        result = {"window_s": round(float(times[-1] - times[0]), 2), "target_window_s": PHASE_WINDOW_S,
+                  "frames": len(times), "range_bins": list(range(1, top + 1)),
+                  "range_m": [round(k * rng["m_per_bin"] + rng["offset_m"], 2) for k in range(1, top + 1)],
+                  "breath_band_hz": BREATH_HZ, "heart_band_hz": HEART_HZ, "rate_hz": PHASE_RATE_HZ,
+                  "filling": bool(times[-1] - times[0] < PHASE_MIN_S)}
+        if result["filling"]:
+            return result
+        result.update(slow_time(times, np.stack([v for _, v in self.phase_frames]), self.cal["wavelength_m"]))
+        # Automatic bin: strongest slow-time motion, with hysteresis so it does not flicker.
+        level = [b["motion_db"] for b in result["bins"]]
+        best = int(np.argmax(level))
+        if self.phase_auto is None or self.phase_auto >= len(level) or level[best] > level[self.phase_auto] + PHASE_AUTO_DB:
+            self.phase_auto = best
+        result["auto_bin"] = result["range_bins"][self.phase_auto]
+        return result
 
     def set_reference(self, frame):
         self.reference = frame_bins(frame)[0].mean(axis=1, keepdims=True)

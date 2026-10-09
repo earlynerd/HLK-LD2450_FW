@@ -95,6 +95,15 @@
       <canvas id="constellation" aria-label="In-phase versus quadrature constellation for both receivers"></canvas>
       <div class="legend"><span class="cyan">RX1</span><span class="orange">RX2</span><span class="right" id="constellation-detail">Exported counts</span></div>
     </section>
+    <section class="panel wide"><div class="panel-heading"><div><h2>Slow-time phase</h2><p id="phase-subtitle">Each range bin's phase from frame to frame · 0.1 mm of motion turns it about 29°</p></div><span class="tag">PHASE</span></div>
+      <div class="wave-controls"><label for="phase-bin">Range bin</label><select id="phase-bin"><option value="auto">Auto · most slow motion</option></select><span id="phase-state" class="hint"></span></div>
+      <div class="phase-body">
+        <div><canvas id="phase-map" aria-label="Slow-time spectrum of every range bin"></canvas><div class="legend"><span>Slow-time spectrum of each bin · selected bin outlined</span><span class="right">Range bin · Hz</span></div></div>
+        <div><canvas id="phase-iq" aria-label="Path of the selected range bin in the I/Q plane"></canvas><div class="legend"><span>I/Q path · newest brightest · + fitted centre</span></div></div>
+        <div><canvas id="phase-disp" aria-label="Displacement of the selected range bin over time"></canvas><div class="legend"><span>Displacement · trend removed · sign uncalibrated</span><span class="right">mm · seconds before now</span></div></div>
+      </div>
+      <p id="phase-detail" class="hint">Motion of a few millimetres turns a bin's phase through a large angle long before it changes the Doppler bin. Breathing and heartbeat appear here.</p>
+    </section>
   </div>
   <section class="health"><div><h2>Stream health</h2><p id="health-summary">Only complete frames that pass transport and radar integrity checks are displayed.</p></div>
     <dl><div><dt>Parser errors</dt><dd id="parser-errors">0</dd></div><div><dt>Protocol errors</dt><dd id="protocol-errors">0</dd></div><div><dt>Rejected exports</dt><dd id="rejected">0</dd></div><div><dt>Resync bytes</dt><dd id="resync">0</dd></div><div><dt>Device skipped*</dt><dd id="device-skips">0</dd></div><div><dt>Device rejected*</dt><dd id="device-rejects">0</dd></div><div><dt>Buffer-full aborts</dt><dd id="queue-aborts">0</dd></div><div><dt>CPU-guard aborts</dt><dd id="cpu-aborts">0</dd></div><div><dt>Other device aborts</dt><dd id="other-aborts">0</dd></div><div><dt>Invalid / incomplete</dt><dd id="invalid-frames">0</dd></div><div><dt>Display work dropped</dt><dd id="drops">0</dd></div><div><dt>Timing outliers†</dt><dd id="timing">0</dd></div></dl>

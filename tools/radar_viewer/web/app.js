@@ -212,7 +212,10 @@ function targetsView(){
   $('targets-subtitle').textContent=`${data.moving_only?'Moving targets (static removal on)':'All targets (static removal off; capture a background to suppress clutter)'} · CFAR ${data.threshold_db} dB`+(data.clutter_tau_s>0?(tk?.clutter_learning?` · learning persistent clutter (${(tk.clutter_age_s??0).toFixed(0)} of ~${data.clutter_tau_s} s)`:` · clutter map ${data.clutter_tau_s} s`):'')+` · up to ${R} m · ${(data.m_per_bin*100).toFixed(1)} cm/bin`+(data.sweep_step?` (rise step ${data.sweep_step})`:'');
   $('targets-detail').textContent=`${tracks.length} track${tracks.length===1?'':'s'}`+(tk?` (${tk.tentative} tentative)`:'')+` · ${data.targets.length} detection${data.targets.length===1?'':'s'} this frame · noise ${data.noise_db} dB`+(unc.length?` · uncalibrated: ${unc.join(', ')} (see tools/radar_viewer/calibration.json)`:'');
 }
-// Slow-time phase: the server keeps each bin's chirp-mean value over the last 20 s.
+// Slow-time phase: the server keeps each bin's chirp-mean value over the last 20 s as a strip
+// chart (samples are never revised). The axes stay put until the data leaves them or fills
+// under 40% of them, so the past also stays still on screen.
+const phaseView={key:null,cx:0,cy:0,r:0,peak:0};
 function symTicks(r){const t=Math.pow(10,Math.floor(Math.log10(r))),step=r/t>=5?t*2:r/t>=2?t:t/2,ticks=[];for(let v=-Math.floor(r/step)*step;v<=r+1e-12;v+=step)ticks.push(Number(v.toPrecision(6)));return ticks.length>7?ticks.filter((_,i)=>i%2===0):ticks;}
 function phaseOptions(data){
   const select=$('phase-bin'),want=['auto',...data.range_bins.map(String)];
@@ -235,9 +238,13 @@ function phaseViews(){
   const rows=[...data.map_db].reverse(),[min,max]=percentileRange(rows,.05,.999,20),b0=data.range_bins[0],b1=data.range_bins.at(-1),f=data.hz.at(-1);
   heat(maps,rows,min,max);axes(maps,b0-.5,b1+.5,-f,f,data.range_bins.filter((_,j)=>data.range_bins.length<14||j%2===0),[-3,-2,-1,0,1,2,3].filter(v=>Math.abs(v)<=f),false);
   {const {ctx}=maps,w=maps.pw/(b1-b0+1);ctx.strokeStyle='#ffffff';ctx.lineWidth=1.5;ctx.strokeRect(maps.x+(k-b0)*w,maps.y,w,maps.ph);}
-  // I/Q path about the fitted centre; equal axes, centred on the path.
-  const pts=data.iq[i],[cx,cy]=data.centre[i];let mx=0,my=0;for(const [a,q] of pts){mx+=a;my+=q;}mx/=pts.length;my/=pts.length;
-  let r=1e-9;for(const [a,q] of pts)r=Math.max(r,Math.abs(a-mx),Math.abs(q-my));r*=1.15;
+  // I/Q path about the fitted centre; equal axes.
+  const v=phaseView,key=k+':'+current.generation;if(v.key!==key){v.key=key;v.r=v.peak=0;}
+  const pts=data.iq[i],[cx,cy]=data.centre[i];let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+  for(const [a,q] of pts){x0=Math.min(x0,a);x1=Math.max(x1,a);y0=Math.min(y0,q);y1=Math.max(y1,q);}
+  const half=Math.max(x1-x0,y1-y0,1e-9)/2;
+  if(x0<v.cx-v.r||x1>v.cx+v.r||y0<v.cy-v.r||y1>v.cy+v.r||half<.4*v.r){v.cx=(x0+x1)/2;v.cy=(y0+y1)/2;v.r=half*1.3;}
+  const mx=v.cx,my=v.cy,r=v.r;
   const side=Math.min(iqp.pw,iqp.ph),sq={...iqp,x:iqp.x+(iqp.pw-side)/2,pw:side,ph:side},X=a=>sq.x+(a-mx+r)/(2*r)*side,Y=q=>sq.y+side-(q-my+r)/(2*r)*side;
   {const {ctx}=iqp;ctx.strokeStyle='#40516a';ctx.strokeRect(sq.x,sq.y,side,side);ctx.save();ctx.beginPath();ctx.rect(sq.x,sq.y,side,side);ctx.clip();
     for(let j=1;j<pts.length;j++){ctx.globalAlpha=.15+.85*j/pts.length;ctx.strokeStyle=colors[0];ctx.beginPath();ctx.moveTo(X(pts[j-1][0]),Y(pts[j-1][1]));ctx.lineTo(X(pts[j][0]),Y(pts[j][1]));ctx.stroke();}
@@ -245,10 +252,13 @@ function phaseViews(){
     ctx.strokeStyle=colors[2];ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(X(cx)-5,Y(cy));ctx.lineTo(X(cx)+5,Y(cy));ctx.moveTo(X(cx),Y(cy)-5);ctx.lineTo(X(cx),Y(cy)+5);ctx.stroke();
     ctx.globalAlpha=.4;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(X(cx),Y(cy));ctx.lineTo(X(last[0]),Y(last[1]));ctx.stroke();ctx.restore();
     ctx.fillStyle='#8195af';ctx.textAlign='left';ctx.textBaseline='top';ctx.fillText(`±${Number(r.toPrecision(2))} counts`,sq.x+4,sq.y+4);}
-  // Displacement over the window.
-  const trace=data.disp_mm[i];let peak=1e-3;for(const v of trace)peak=Math.max(peak,Math.abs(v));peak*=1.1;
-  const t0=data.t_s[0],tt=[];for(let s=Math.ceil(t0/5)*5;s<=0;s+=5)tt.push(s);
-  axes(disp,t0,0,-peak,peak,tt,symTicks(peak));line(disp,trace,-peak,peak,colors[0]);
+  // Displacement at the frames' own times (frames arrive with gaps), fixed 20 s axis.
+  const trace=data.disp_mm[i],ts=data.t_s,t0=-data.target_window_s;let m=1e-3;for(const d of trace)m=Math.max(m,Math.abs(d));
+  if(m>v.peak||m<.4*v.peak)v.peak=m*1.3;
+  const peak=v.peak,tt=[];for(let s=t0;s<=0;s+=5)tt.push(s);
+  axes(disp,t0,0,-peak,peak,tt,symTicks(peak));
+  {const {ctx,x,y,pw,ph}=disp;ctx.save();ctx.beginPath();ctx.rect(x,y,pw,ph);ctx.clip();ctx.strokeStyle=colors[0];ctx.lineWidth=1.15;ctx.beginPath();
+    trace.forEach((d,j)=>{const xx=x+(ts[j]-t0)/-t0*pw,yy=y+ph-(d+peak)/(2*peak)*ph;j?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);});ctx.stroke();ctx.restore();}
   const bpm=(hz,ratio)=>hz==null?'—':`${(hz*60).toFixed(0)}/min (${hz.toFixed(2)} Hz, ${ratio}× band median)`;
   $('phase-detail').textContent=`Bin ${k} · ${data.range_m[i].toFixed(2)} m · static ${b.static_db} dB · slow motion ${b.motion_db} dB · phase swept ${b.arc_deg.toFixed(0)}° · ${b.disp_pp_mm.toFixed(2)} mm peak to peak · strongest breathing-band line ${bpm(b.breath_hz,b.breath_ratio)} · strongest heart-band line ${bpm(b.heart_hz,b.heart_ratio)}. Rates are only meaningful while someone holds still in this bin; a breathing harmonic can fall in the heart band.`;
 }

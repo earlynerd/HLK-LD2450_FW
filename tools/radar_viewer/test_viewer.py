@@ -14,7 +14,7 @@ from unittest.mock import patch
 
 import numpy as np
 
-from .processing import Pipeline, DEFAULT_SETTINGS, unpack_iq, load_calibration, slow_time
+from .processing import Pipeline, DEFAULT_SETTINGS, unpack_iq, load_calibration
 from . import server
 from frame_stream import HEADER, crc, Parser, Frames, Message
 
@@ -448,12 +448,13 @@ class TrackTests(unittest.TestCase):
 class PhaseTests(unittest.TestCase):
     PERIOD_US = 89000
 
-    def breathing_frame(self, i, start=1000, breath_mm=4.0, bin_=6):
+    def breathing_frame(self, i, start=1000, breath_mm=4.0, bin_=6, heart_mm=0.0):
         """A strong static reflector at bin 4 and a weaker one at bin_ moving in range by
-        breath_mm peak to peak at 0.3 Hz: too slow to leave Doppler bin 0."""
+        breath_mm peak to peak at 0.3 Hz (plus heart_mm at 1.2 Hz): too slow to leave
+        Doppler bin 0."""
         lam = load_calibration()["wavelength_m"]
         t = i * self.PERIOD_US / 1e6
-        d = breath_mm / 2e3 * np.sin(2 * np.pi * 0.3 * t)
+        d = breath_mm / 2e3 * np.sin(2 * np.pi * 0.3 * t) + heart_mm / 2e3 * np.sin(2 * np.pi * 1.2 * t)
         rng = np.random.default_rng(i)
         n = np.arange(512)[None, None, :]
         z = (3000 * np.exp(2j * np.pi * 4 * n / 512) + (900 - 400j)
@@ -463,7 +464,7 @@ class PhaseTests(unittest.TestCase):
 
     def test_breathing_shows_in_slow_time_phase(self):
         pipe = Pipeline()
-        for i in range(240):
+        for i in range(300):   # Past the start-up of the running averages.
             result = pipe.process(self.breathing_frame(i), DEFAULT_SETTINGS)
             self.assertEqual(result["stage_errors"], {})
             phase = result["products"]["phase"]
@@ -480,22 +481,32 @@ class PhaseTests(unittest.TestCase):
         self.assertLessEqual(abs(hz).max(), 3.0)
         self.assertEqual(np.array(phase["map_db"]).shape, (len(hz), len(phase["range_bins"])))
 
-    def test_slow_time_finds_heart_line_and_resets_on_gap(self):
-        lam, fs = 0.0124, 11.2
-        t = np.arange(0, 20, 1 / fs)
-        d = 2e-3 * np.sin(2 * np.pi * .25 * t) + 0.15e-3 * np.sin(2 * np.pi * 1.2 * t)
-        rng = np.random.default_rng(2)
-        v = 0.05 * (rng.standard_normal((len(t), 2, 3)) + 1j * rng.standard_normal((len(t), 2, 3)))
-        v[:, :, 1] += 20 * np.exp(1j) + 5 * np.exp(4j * np.pi * d / lam)[:, None] * np.array([1, np.exp(.7j)])
-        b = slow_time(t, v, lam)["bins"][1]
-        self.assertAlmostEqual(b["breath_hz"], 0.25, delta=0.03)
-        self.assertAlmostEqual(b["heart_hz"], 1.2, delta=0.06)
-        self.assertGreater(b["heart_ratio"], 100)
+    def test_heart_line_under_breathing_and_reset_on_gap(self):
         pipe = Pipeline()
-        for i in range(80):
-            pipe.process(self.breathing_frame(i), DEFAULT_SETTINGS)
-        phase = pipe.process(self.breathing_frame(81, start=3_000_000), DEFAULT_SETTINGS)["products"]["phase"]
+        for i in range(240):
+            phase = pipe.process(self.breathing_frame(i, heart_mm=0.3), DEFAULT_SETTINGS)["products"]["phase"]
+        b = phase["bins"][phase["range_bins"].index(6)]
+        self.assertAlmostEqual(b["breath_hz"], 0.3, delta=0.05)
+        self.assertAlmostEqual(b["heart_hz"], 1.2, delta=0.06)
+        self.assertGreater(b["heart_ratio"], 20)
+        phase = pipe.process(self.breathing_frame(241, start=3_000_000), DEFAULT_SETTINGS)["products"]["phase"]
         self.assertEqual(phase["frames"], 1)   # Gap over max_gap_s: history restarts.
+
+    def test_past_samples_never_change(self):
+        """A strip chart: a later frame appends a sample and drops old ones, but the values
+        already shown for earlier instants stay exactly the same."""
+        pipe, products = Pipeline(), []
+        for i in range(260):
+            products.append(pipe.process(self.breathing_frame(i), DEFAULT_SETTINGS)["products"]["phase"])
+        a, b = products[-2], products[-1]
+        step = self.PERIOD_US / 1e6
+        ta, tb = np.array(a["t_s"]), np.array(b["t_s"]) + step   # b's times on a's clock.
+        common = np.isin(np.round(ta, 3), np.round(tb, 3))
+        self.assertGreater(common.sum(), 200)
+        ib = np.searchsorted(np.round(tb, 3), np.round(ta[common], 3))
+        for key in ("disp_mm", "iq"):
+            for bin_a, bin_b in zip(a[key], b[key]):
+                np.testing.assert_array_equal(np.array(bin_a)[common], np.array(bin_b)[ib])
 
 
 class AcquisitionTests(unittest.TestCase):

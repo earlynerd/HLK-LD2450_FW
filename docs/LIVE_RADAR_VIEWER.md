@@ -172,19 +172,30 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
   4 pi d / wavelength, about 29 deg per 0.1 mm, long before the object moves
   far enough to leave Doppler bin 0. So breathing and heartbeat are visible here
   while the range-Doppler map, static removal and the clutter map discard them.
-  The two receivers are added after turning RX2 onto RX1 by their mean cross
-  phase, and the sum is resampled to 10 Hz (frames arrive at about 11/s with
-  gaps). Three views:
+  The history is a strip chart. Each frame's sample is computed once, when the
+  frame arrives, and never revised, so the past does not change on screen. The
+  two receivers are added after turning RX2 onto RX1 by a running average
+  (5 s) of their cross product. Spectra resample the window to 10 Hz, since
+  frames arrive at about 11/s with gaps. Three views:
   - **Slow-time spectrum of each bin** (range bin across, -3 to +3 Hz up): the
     FFT over the 20 s window of the deviation from the bin's mean. Breathing is
     a pair of lines near +/-0.2-0.5 Hz in the bin of a person holding still.
   - **I/Q path** of the selected bin. Motion turns the phasor about the bin's
     static part (walls, leakage, the still parts of the body), not about the
-    origin, so a circle is fitted to the path and its centre (+) is the static
-    part.
-  - **Displacement**: the angle about that centre converted to mm, with the
-    linear trend removed. The sign is uncalibrated. A short arc still gives the
-    right waveform shape, but its scale is then uncertain.
+    origin. A circle is refitted to the path every frame and smoothed (2 s);
+    its centre (+) is the static part.
+  - **Displacement**: each frame adds the phase step from the previous frame,
+    measured about the current centre and converted to mm, so unwrapping never
+    revisits old samples. Drift is removed by subtracting a 10 s running
+    average. The sign is uncalibrated. A short arc gives the right waveform
+    shape, but its scale is then uncertain. Steps over 180 deg between frames
+    (above about 35 mm/s) alias, so this view is for slow motion.
+
+  The running averages start as plain means, so they settle within seconds of
+  a restart. The I/Q and displacement axes stay fixed until the data leaves
+  them or fills less than 40% of them. An earlier version recomputed the whole
+  window every frame, so the receiver rotation, circle centre, unwrapping and
+  trend fit all moved the displayed past.
 
   **Auto** selects the bin with the most slow-time motion (0.1-3 Hz). It moves
   only when another bin is 3 dB stronger. The text below the plots gives each
@@ -407,7 +418,8 @@ Detection, angle and tracking tests use synthetic scenes (two targets, a
 fluctuating walker, a fan, noise alone). Phase tests: a 4 mm, 0.3 Hz breathing
 reflector beside a 17 dB stronger static one is selected automatically, with the
 rate and displacement recovered. A 1.2 Hz, 0.3 mm heartbeat under breathing is
-found, and a time gap restarts the history. Sweep tests use a simulated device:
+found, a time gap restarts the history, and consecutive products give
+bit-identical values for every instant they share. Sweep tests use a simulated device:
 the acknowledgement and timer checks, the order of the writes (minimum power
 first), range scaling to the live step, and the return to in band on the
-timer, a failed write, Restore and disconnect. 40 tests pass (2026-10-09).
+timer, a failed write, Restore and disconnect. 41 tests pass (2026-10-09).

@@ -27,6 +27,7 @@ WEB = Path(__file__).with_name("web")
 OUTPUT = ROOT / "output" / "live_radar"
 USB_VID, USB_PID, USB_SERIAL = 0x4c4a, 0x4155, "LD2450-STREAM-01"
 RECORD_LIMIT = 1024 * 1024 * 1024
+STATE_WAIT_S = 1.0      # Longest /api/state long poll; the page asks with wait=0.5.
 REGISTER_TABLE = ROOT / "output" / "evb1122_analysis" / "register_write_table.json"
 REGISTER_FINDINGS = Path(__file__).with_name("register_findings.json")  # Hand-edited bench findings.
 READ_CHUNK = 4          # Registers per READ: fits the device's between-frame window.
@@ -100,6 +101,7 @@ def new_folder(kind):
 class Viewer:
     def __init__(self):
         self.lock = threading.RLock()
+        self.changed = threading.Condition(self.lock)   # Notified when self.version advances.
         self.lifecycle = threading.Lock()
         self.pipeline_lock = threading.Lock()
         self.stop_event = threading.Event()
@@ -150,8 +152,11 @@ class Viewer:
         self.rate_at = time.monotonic()
         self.rate_bytes = self.rate_frames = 0
 
-    def state(self, since=-1):
+    def state(self, since=-1, wait=0.0):
+        """Viewer state. With wait > 0, first wait up to that long for a version newer than since."""
         with self.lock:
+            if wait > 0:
+                self.changed.wait_for(lambda: self.version != since, timeout=wait)
             now = time.monotonic()
             age = None if self.last_frame_at is None else round(now - self.last_frame_at, 2)
             stats = dict(self.stats)
@@ -229,6 +234,7 @@ class Viewer:
                 self.version += 1
                 self.generation += 1
                 self.status, self.source, self.error = "replay" if replay else "live", source, ""
+                self.changed.notify_all()
             frame_queue = queue.Queue(maxsize=1)
             processor = threading.Thread(target=self._process, args=(frame_queue,), daemon=True, name="radar-dsp")
             self.threads = [processor]
@@ -596,6 +602,7 @@ class Viewer:
                         self.latest = result
                         self.last_frame_at = time.monotonic()
                         self.version += 1
+                        self.changed.notify_all()
                         self.stats["timing_outliers"] += result["products"].get("quality", {}).get("timing_outliers", 0)
             except Exception as exc:
                 self.fail(exc)
@@ -699,7 +706,11 @@ def make_handler(viewer, token):
             parsed = urlparse(self.path)
             try:
                 if parsed.path == "/api/state":
-                    return self.respond(200, viewer.state(int(parse_qs(parsed.query).get("since", [-1])[0])))
+                    query = parse_qs(parsed.query)
+                    # Long poll: answer as soon as a newer frame is processed, so the page sees every frame.
+                    wait = float(query.get("wait", ["0"])[0])
+                    wait = min(wait, STATE_WAIT_S) if wait > 0 else 0.0
+                    return self.respond(200, viewer.state(int(query.get("since", [-1])[0]), wait))
                 if parsed.path == "/api/options":
                     with viewer.lock:
                         sources = [{"id": key, "name": str(path.relative_to(ROOT))} for key, path in viewer.sources.items()]

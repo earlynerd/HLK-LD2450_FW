@@ -151,7 +151,7 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
   0 through +32 or all exported bins are selectable. This crops the plotted bins
   only.
 - **Spectrum history:** the last 160 spectra displayed in this browser, newest
-  at the bottom. The default **Change from running average** mode shows the RMS
+  at the bottom: about 15 s when the browser draws every frame. The default **Change from running average** mode shows the RMS
   deviation of each frame's complex spectrum from an exponential average of
   previous frames (weight 0.1 per processed frame, about 10 frames of memory).
   Static leakage and clutter dominate the absolute magnitude spectrum while
@@ -342,8 +342,11 @@ The viewer neither weakens checks nor introduces another wire decoder.
    (device codec-2 bins, or a host FFT of raw records) and constructs
    `FrameContext`. Its named `stages` mapping publishes JSON-compatible products.
    Stage exceptions appear as named errors; other stages can still render.
-4. The browser polls the latest result. Slow/frozen/closed browsers never block
-   acquisition. It retains only one frame plus 160 displayed spectra. Settings
+4. The browser long-polls `/api/state`: the server answers as soon as a newer
+   frame is processed (or after 0.5 s), and the page asks again straight after
+   drawing. Every frame is drawn (about 11/s, ~180 kB of JSON each) while the
+   browser keeps up; a slower browser draws the newest frame and skips the
+   rest. Slow/frozen/closed browsers never block acquisition. It retains only one frame plus 160 displayed spectra. Settings
    and configuration generations prevent combining different processing modes
    in the same waterfall history.
 

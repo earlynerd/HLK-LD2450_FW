@@ -488,6 +488,26 @@ class AcquisitionTests(unittest.TestCase):
         viewer.rate_at -= 3
         self.assertEqual(viewer.state()["stats"]["wire_kbps"], 0)
 
+    def test_state_long_poll_returns_on_new_frame_or_timeout(self):
+        viewer = server.Viewer()
+        version = viewer.state()["version"]
+        started = time.monotonic()
+        self.assertNotIn("frame", viewer.state(version, 0.2))      # Nothing new: waits, then no frame.
+        self.assertGreaterEqual(time.monotonic() - started, 0.15)
+
+        def publish():
+            time.sleep(0.05)
+            with viewer.lock:
+                viewer.latest = {"frame_id": 7}
+                viewer.version += 1
+                viewer.changed.notify_all()
+        threading.Thread(target=publish).start()
+        started = time.monotonic()
+        state = viewer.state(version, 5.0)
+        self.assertLess(time.monotonic() - started, 2.0)            # Returned on the new frame.
+        self.assertEqual(state["frame"], {"frame_id": 7})
+        self.assertEqual(state["version"], version + 1)
+
     def test_corrupt_frame_never_reaches_processing_and_next_frame_recovers(self):
         viewer = server.Viewer()
         chunks, frames = queue.Queue(), queue.Queue(maxsize=1)

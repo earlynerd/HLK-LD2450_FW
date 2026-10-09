@@ -369,9 +369,12 @@ function updateState(state,polledAt=Infinity){
   }
   version=state.version;
 }
+// Long poll: the server replies as soon as a newer frame is processed (or after 0.5 s),
+// so every frame is drawn while the browser keeps up; otherwise it draws the newest.
 async function poll(){
-  try {const polledAt=performance.now(),response=await fetch('/api/state?since='+version);if(!response.ok)throw new Error('Viewer server returned '+response.status);updateState(await response.json(),polledAt);}
-  catch(err){$('status').textContent='SERVER OFFLINE';$('status').className='badge error';notice(err.message,true);}
-  setTimeout(poll,180);
+  let retry=0;
+  try {const polledAt=performance.now(),response=await fetch('/api/state?since='+version+'&wait=0.5');if(!response.ok)throw new Error('Viewer server returned '+response.status);updateState(await response.json(),polledAt);}
+  catch(err){$('status').textContent='SERVER OFFLINE';$('status').className='badge error';notice(err.message,true);retry=1000;}
+  setTimeout(poll,retry);
 }
 options().then(poll).catch(err=>{notice(err.message,true);setTimeout(()=>location.reload(),3000);});

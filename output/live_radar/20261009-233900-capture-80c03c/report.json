@@ -1,0 +1,8 @@
+{
+  "source": "USB COM30",
+  "received_bytes": 50550912,
+  "started": "2026-10-09T23:39:00.227081-07:00",
+  "stream_sha256": "e466c63d4e532e4d1bf472f9ee43de33a822345523829f435747e79c63012bc5",
+  "reason": "Stopped by user or source closed",
+  "note": "Unmodified wire bytes; start/end may contain partial frames."
+}

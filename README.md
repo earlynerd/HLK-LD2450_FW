@@ -12,7 +12,43 @@ host: Doppler, detection, angle and tracking.
 *The live viewer (2026-10-08): one person tracked at about 1.5 m, walking
 towards the sensor at 0.4 m/s. The angle is not calibrated yet.*
 
-## Current state (2026-10-08)
+## Why replace the stock firmware
+
+The stock firmware turns the radar into a list of at most three targets. This
+firmware hands you the radar data itself, and the viewer and plotting scripts
+show what that makes possible.
+
+| | Stock firmware | This firmware |
+|---|---|---|
+| Output | Up to 3 targets: x, y, speed, over the UART | Complex range bins of both receivers for all 64 chirps of every frame, about 11 frames/s and 540 kB/s over USB |
+| Motion | One speed per target | A Doppler spectrum in every range bin: 0.08 m/s resolution over +/-2.6 m/s |
+| Small motion | Not reported | Slow-time phase per range bin: 1 mm of motion turns the phase by 58 deg, enough to see breathing |
+| Processing | Fixed and closed | Python on the host: change detection, tracking or anything else |
+| Radar settings | Fixed | All S5KM312CL registers readable and writable live: gain, sweep, chirp timing |
+| Going back | | One command restores the stock firmware ([below](#reverting-to-stock)) |
+
+![Micro-Doppler spectrogram and range-time map of one person walking towards and away from the sensor four times](resources/walk_micro_doppler.png)
+
+*One person walking towards the sensor and away again, four times
+(2026-10-09). Top: Doppler speed over time, summed over 0.8-8 m. The body
+makes the bright core and the swinging arms and legs the spread around it;
+the stock firmware reports this as one speed. Bottom: where the moving power
+is in range. Both panels come from one 46 s recording drawn with
+[`tools/readme_figures.py`](tools/readme_figures.py), which makes the same
+figures from any recording made with the viewer's Record button.*
+
+![Top: chest displacement of a seated person over 88 seconds with a breath hold shaded. Bottom: the breath hold magnified to micrometres, with 24 heartbeats circled](resources/breathing.png)
+
+*One person sitting about 0.8 m from the sensor, from the slow-time phase of
+one range bin, exactly as the viewer drew it live (2026-10-09). Top: breathing
+(about 3 mm per breath from 25 to 50 s), then a breath hold. Bottom: the hold
+magnified, with only a smooth curve removed (the viewer's drift filter
+settling after the last breath). Each heartbeat moves the chest by about
+50 um, which turns the phase by about 3 deg; 24 beats at about 92 per minute.
+The beats were also visible live, in the viewer's I/Q path and displacement
+plots.*
+
+## Current state (2026-10-09)
 
 | Part | State |
 |---|---|
@@ -27,7 +63,8 @@ Not yet calibrated:
   unmeasured receiver phase offset or antenna spacing.
 - **Range:** the metre scale comes from a three-point fit at the old 204 MHz
   sweep, rescaled to 240 MHz.
-- **Velocity sign.**
+
+The velocity sign is calibrated (2026-10-09): positive is moving away.
 
 A corner-reflector session is the next step. See the
 [processing plan](DSP_plan.md) for the work log and next actions.
@@ -127,6 +164,9 @@ for what is sent and why the vendor's transfer loader needs two small fixes.
 - **2026-10-08:** Hardware-FFT range-bin export for all 64 chirps installed. The
   viewer moved to range bins and gained detection, angle, tracking, a clutter
   map and the sweep-width control.
+- **2026-10-09:** Slow-time phase per range bin (breathing visible), a verified
+  one-command restore to stock, the velocity sign from a recorded walk, and
+  the MIT license.
 
 ## Radar register map
 
@@ -152,6 +192,13 @@ application binary, commands and hash manifests. It never accesses a device.
 Build caches and generated images are ignored by Git. See the image guide for
 custom profiles, the experimental PC uploader and first-boot checks, and
 [FRAME_STREAM.md](firmware/docs/FRAME_STREAM.md) for the stream image options.
+
+## License
+
+This project's own code and documentation are released under the
+[MIT License](LICENSE). The vendor materials described under Provenance (the
+stock `.ufw` images and code extracted from them) and the downloaded SDK and
+toolchain are third-party and not covered by it.
 
 ## Provenance
 

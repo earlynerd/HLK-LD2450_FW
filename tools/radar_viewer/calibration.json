@@ -18,8 +18,8 @@
   },
   "velocity": {
     "sign": 1,
-    "calibrated": false,
-    "basis": "Positive Doppler bin reported as positive velocity; which direction that is has not been checked."
+    "calibrated": true,
+    "basis": "Positive velocity = moving away (range increasing). 2026-10-09 walk towards and away, output/live_radar/20261009-232605-capture-3fb256: on every pass the Doppler sign matched the range rate (first pass 5.3 to 0.8 m at -0.7 m/s Doppler, range rate about -0.75 m/s)."
   },
   "detection": {
     "max_range_m": 8.0,

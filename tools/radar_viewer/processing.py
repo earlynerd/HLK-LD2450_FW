@@ -22,8 +22,8 @@ the two receivers, is what separates real objects from noise here; summing both
 receivers' power is already the best two-channel detector for an unknown angle.
 
 Stage "phase" follows each range bin's phase from frame to frame (slow time). A
-displacement d changes the phase by 4 pi d / wavelength, about 29 degrees per
-0.1 mm, long before the object moves far enough to change its Doppler bin, so
+displacement d changes the phase by 4 pi d / wavelength, about 58 degrees per
+mm, long before the object moves far enough to change its Doppler bin, so
 breathing and heartbeat show here while the range-Doppler map sees nothing.
 
 Add a stage to Pipeline.stages to publish another named product. Each stage

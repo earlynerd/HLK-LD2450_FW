@@ -108,7 +108,8 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
   - It is flagged *in place* when its Doppler speed is at least 0.25 m/s but
     its range hardly changes (fans, fidgeting).
   - Comparing Doppler speed with the fitted range rate also checks the
-    velocity sign: for a walker they should agree.
+    velocity sign: for a walker they should agree. Measured 2026-10-09
+    (four passes towards and away): positive velocity means moving away.
   - Synthetic check: a walker detected in about 60% of frames stays one track
     in every frame after confirmation, and the tracked angle spread is 3.5 deg
     against 5.9 deg per detection.
@@ -169,7 +170,7 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
 - **Slow-time phase:** each range bin's value, averaged over the frame's
   chirps, followed from frame to frame over the last 20 s (stage `phase`, range
   bins 1 to `max_range_m`). A displacement d turns a bin's phase by
-  4 pi d / wavelength, about 29 deg per 0.1 mm, long before the object moves
+  4 pi d / wavelength, about 58 deg per mm, long before the object moves
   far enough to leave Doppler bin 0. So breathing and heartbeat are visible here
   while the range-Doppler map, static removal and the clutter map discard them.
   The history is a strip chart. Each frame's sample is computed once, when the
@@ -209,7 +210,14 @@ the raw-sample constellation. At the 240 MHz sweep a bin is about 0.64 m, so
   scene beyond 3 m): the phase of static bins steps 2-3 deg between frames
   (40-50 um), with slower wander of 5-20 deg over seconds. Live, the bin at
   0.78 m in front of the user showed a breathing waveform of about 15/min and
-  4.6 mm peak to peak.
+  4.6 mm peak to peak. Heartbeat, 2026-10-09
+  (`output/live_radar/20261009-233900-capture-80c03c`, bin at 0.78 m): during
+  a breath hold, each beat moves the displacement by about 50 um peak to peak,
+  visible live and in the recorded trace without filtering. 24 beats in 16.5 s
+  at a steady 0.60-0.70 s interval (about 92/min), with a second harmonic near
+  184/min; the next range bin gives the same rate.
+  `python tools/readme_figures.py --still <capture> --still-hold START END`
+  draws it.
 - **I/Q correction:** **Calibrate I/Q** fits each receiver's Q-versus-I gain
   and phase error from the latest frame, assuming a static scene with a strong
   reflector: a mismatch puts a conjugated copy of each positive-frequency
@@ -316,8 +324,8 @@ stock 204 MHz sweep, so about 0.64 m per bin at the installed 240 MHz sweep,
 scaled again for wider sweeps. The sample window covers about 98% of the
 up-ramp (register map, 0x02). Target range, angle and velocity are marked
 uncalibrated until `calibration.json` says otherwise: the 240 MHz range scale,
-the receiver phase offset, antenna spacing and angle sign, and the velocity
-sign have not been measured. Live angles still jump for one object. The
+the receiver phase offset, antenna spacing and angle sign have not been
+measured. The velocity sign has (2026-10-09): positive is moving away. Live angles still jump for one object. The
 spectra are not dBm measurements.
 
 The 2026-10-06 sampling/slope experiment confirms that the prominent outer
